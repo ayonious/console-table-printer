@@ -34,6 +34,17 @@ p.addRows([
 
 //print
 p.printAll();
+
+/*
+┌───────┬───────────────────────────────────────┬────────┐
+│ index │                                  text │  value │
+├───────┼───────────────────────────────────────┼────────┤
+│     1 │     I would like some red wine please │ 10.212 │
+│     2 │ I would like some green gemuse please │     20 │
+│     3 │  I would like some gelb bananen bitte │    100 │
+│     4 │        I hope batch update is working │    300 │
+└───────┴───────────────────────────────────────┴────────┘
+*/
 ```
 
 Output:
