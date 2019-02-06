@@ -1,5 +1,11 @@
 # Print Pretty tables on Your Console
 
+[![Build Status](https://travis-ci.org/ayonious/console-table-printer.svg?branch=master)](https://travis-ci.org/ayonious/console-table-printer)
+[![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fayonious%2Fconsole-table-printer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fayonious%2Fconsole-table-printer?ref=badge_shield)
+[![dependencies Status](https://david-dm.org/ayonious/console-table-printer/status.svg)](https://david-dm.org/ayonious/console-table-printer)
+[![devDependencies Status](https://david-dm.org/ayonious/console-table-printer/dev-status.svg)](https://david-dm.org/ayonious/console-table-printer?type=dev)
+
 ## Synopsis
 
 Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console. Using as less code possible you can print the table on console.

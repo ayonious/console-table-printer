@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- stable
+- "--lts"
+deploy:
+  provider: npm
+  email: jaissatai6@gmail.com
+  api_key:
+    secure: ImVPCq8F1T+fSODPXuaNq2bLtJLWt/fEfrfm/G+YLDoB7oRGHDi7YHhCCY3A2B6sBl9iFEHYvc09Wyyl5H/Agwv3FpYhEF0hG2Iqtxw3C4l1NH0ZyYUzs+sRMeFcBkjSgN4lxw0a/65/2MoQzKNp+AnhWJeHXqqbKJ74wJDqci05ANAvOkg9FcgZBUuKPhdYH5pTN0oFa2Subm398U+HseMJc5kxa5Z9qKLmKsWnIb/oWiGpTfXEQBCDijSvaeNSJwSZQYBesC+qqxWJ+bSpCUXi3GYQ6Lwll8O8AJR8R/YjkpnE7FxuwidozdbvbBqCCSIolvdg5O0Rw1PVuzdkTa8cTKHeXidJe95eHVTLtC+87O/pe0xWun7omonM9oqZX9a1dcarMJyKTFmnH/8UAfAOVf/33U0/s6YUkp3OfnNBh5E5MC24ZVFSx5B7NqYcHEd62Io0lnwGvx77ZEqRfRUQ9Zclwhd4oNSfIpj5O/pBh5Ks+EFX0wet3a8QEiNVK82ZDbDP1YwpmCC7adwyv1rxPcSmEgSrWYHTVdOEtI9c+BxyLd5/JGOziRVBvDGO0Hs5j1w0JAqzbxTj5FFk4EiPRtQ+2dJ/PvwKD2rdt1mgvrn4UnFvUWVyvAN+957NLDQpI0pEMpQt/9b3rMlDbf+Ijd5tK/F5fjlXAmoDo88=
+  on:
+    branch: master
