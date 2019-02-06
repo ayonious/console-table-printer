@@ -1,5 +1,4 @@
 const {Table} = require('../src/console-table-printer');
-const {expect} = require('chai');
 
 describe('Example: Print a simple Table', () => {
     it(`Readme Example`, function () {
