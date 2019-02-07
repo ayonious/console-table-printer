@@ -25,26 +25,15 @@ const {Table} = require('console-table-printer');
 const p = new Table();
 
 //add rows with color
-p.addRow({ index: 1, text: 'I would like some red wine please', value: 10.212 });
-p.addRow({ index: 2, text: 'I would like some green gemuse please', value: 20.00 });
-p.addRows([
-    { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
-    { index: 4, text: 'I hope batch update is working', value: 300}
+p.addRow({ index: 1, text: 'red wine please', value: 10.212 });
+p.addRow({ index: 2, text: 'green gemuse please', value: 20.00 });
+p.addRows([ //adding multiple rows are possible
+    { index: 3, text: 'gelb bananen bitte', value: 100 },
+    { index: 4, text: 'update is working', value: 300}
 ]);
 
 //print
 p.printAll();
-
-/*
-┌───────┬───────────────────────────────────────┬────────┐
-│ index │                                  text │  value │
-├───────┼───────────────────────────────────────┼────────┤
-│     1 │     I would like some red wine please │ 10.212 │
-│     2 │ I would like some green gemuse please │     20 │
-│     3 │  I would like some gelb bananen bitte │    100 │
-│     4 │        I hope batch update is working │    300 │
-└───────┴───────────────────────────────────────┴────────┘
-*/
 ```
 
 Output:
@@ -54,9 +43,9 @@ Output:
 You can also put some color to your table like this:
 ```javascript
 const p = new Table();
-p.addRow({ index: 1, text: 'I would like some red wine please', value: 10.212 }, {color: 'red'});
-p.addRow({ index: 2, text: 'I would like some green gemuse please', value: 20.00 }, {color: 'green'});
-p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 }, {color: 'yellow'});
+p.addRow({ index: 1, text: 'red wine', value: 10.212 }, {color: 'red'});
+p.addRow({ index: 2, text: 'green gemuse', value: 20.00 }, {color: 'green'});
+p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, {color: 'yellow'});
 p.printAll();
 ```
 

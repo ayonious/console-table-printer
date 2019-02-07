@@ -1,17 +1,30 @@
 const {Table} = require('../src/console-table-printer');
 
 describe('Example: Print a simple Table', () => {
-    it(`Readme Example`, function () {
+    it(`Readme Example1`, function () {
         //Create a table
         const p = new Table();
 
         //add rows with color
-        p.addRow({ index: 1, text: 'I would like some red wine please', value: 10.212 });
-        p.addRow({ index: 2, text: 'I would like some green gemuse please', value: 20.00 });
-        p.addRows([
-            { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
-            { index: 4, text: 'I hope batch update is working', value: 300}
+        p.addRow({ index: 1, text: 'red wine please', value: 10.212 });
+        p.addRow({ index: 2, text: 'green gemuse please', value: 20.00 });
+        p.addRows([ //adding multiple rows are possible
+            { index: 3, text: 'gelb bananen bitte', value: 100 },
+            { index: 4, text: 'update is working', value: 300}
         ]);
+
+        //print
+        p.printAll();
+    });
+
+    it(`Readme Example2`, function () {
+        //Create a table
+        const p = new Table();
+
+        //add rows with color
+        p.addRow({ index: 1, text: 'red wine', value: 10.212 }, {color: 'red'});
+        p.addRow({ index: 2, text: 'green gemuse', value: 20.00 }, {color: 'green'});
+        p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, {color: 'yellow'});
 
         //print
         p.printAll();
