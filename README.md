@@ -49,7 +49,7 @@ p.printAll();
 
 Output:
 
-![Screenshot](https://github.com/ayonious/console-table-printer/blob/master/static-resources/screenshot-simple.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-simple.png)
 
 You can also put some color to your table like this:
 ```javascript
@@ -62,7 +62,7 @@ p.printAll();
 
 Output:
 
-![Screenshot](https://github.com/ayonious/console-table-printer/blob/master/static-resources/screenshot-colored.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
 
 ## License
 
