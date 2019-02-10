@@ -1,6 +1,8 @@
-const {ColoredConsoleLine} = require('./colored-console-line');
 const {TABLE_STYLE} = require('./table-constants');
-const {textWithPadding, createTableHorizontalBorders} = require('./table-helpers');
+const {ColoredConsoleLine} = require('./colored-console-line');
+const {textWithPadding, printTableHorizontalBorders,
+    createColum, createRow,createHeaderAsRow,
+    findMaxLenOfColumn} = require('./table-helpers');
 
 class TableInternal {
     initSimple (columns) {
@@ -28,10 +30,6 @@ class TableInternal {
         );
     }
 
-    makeColum(name)  {
-        return {name}
-    }
-
     constructor(options) {
         if( options === undefined ) {
             this.initDefault();
@@ -43,18 +41,44 @@ class TableInternal {
         this.rows = [];
     }
 
+    setBorderStyle(style, details) {
+        switch(style) {
+            case 'thinBorder': 
+                this.style = 'thinBorder';
+            case 'fatBorder':
+                this.style = 'fatBorder';
+            case 'customized':
+                this.style = 'customized';
+                this.styleDetails = details;
+            default:
+                this.style = this.style;
+        }
+
+    }
+
     createColumnFromRow(text) {
         const colNames = this.columns.map( col => col.name );
         for( let key in text) {
             if( !colNames.includes(key) ) {
-                this.columns.push(this.makeColum(key));
+                this.columns.push(createColum(key));
             }
         }
     }
 
+    addColumn(text) {
+        this.columns.push(createColum(text));
+    }
+
+    addColumns(toBeInsertedColumns) {
+        for(let toBeInsertedColumn of toBeInsertedColumns) {
+            this.addColumn(toBeInsertedColumn);
+        }
+    }
+
+
     addRow(text, options) {
         this.createColumnFromRow(text);
-        this.rows.push(this.createRow( (options && options.color) || 'white' , text));
+        this.rows.push(createRow( (options && options.color ) || 'white' , text));
     }
 
     addRows(toBeInsertedRows) {
@@ -63,75 +87,50 @@ class TableInternal {
         }
     }
 
-    createRow(color, text)  {
-        return { color, text };
-    }
-
-    prepareLine(row) {
+    prepareLineAndPrint(row) {
         let line = new ColoredConsoleLine();
         line.addWithColor('white', this.tableStyle.vertical);
         for( let column of this.columns) {
             line.addWithColor('white', ' ');
-            line.addWithColor(row.color, textWithPadding(`${row.text[column.name]}`, column.alignment, column.max_ln));
+            line.addWithColor(row.color, textWithPadding(`${row.text[column.name] || ''}`, column.alignment, column.max_ln));
             line.addWithColor('white', ' ' + this.tableStyle.vertical);
         }
-        return line;
+        line.printConsole();
     }
 
     printRow(row) {
-        let line = this.prepareLine(row);
-        line.printConsole();
+        this.prepareLineAndPrint(row);
     }
 
     printTableHeaders() {
-        let headerTopStr = createTableHorizontalBorders(
-            this.tableStyle.headerTop,
+        printTableHorizontalBorders(this.tableStyle.headerTop,
             this.columns.map( m => m.max_ln));
-        console.log(headerTopStr);
-        
-        function createHeaderAsRow (createRow, columns) {
-            let row = createRow('white_bold', {});
-            for (let column of columns) {
-                row.text[column.name] = column.name;
-            }
-            return row;
-        }
-        let row = createHeaderAsRow(this.createRow, this.columns);
-        let line = this.prepareLine(row);
-        line.printConsole();
 
-        let headerBottomStr = createTableHorizontalBorders(this.tableStyle.headerBottom,
-            this.columns.map( m => m.max_ln));
-        console.log(headerBottomStr);
+        let row = createHeaderAsRow(createRow, this.columns);
+        this.prepareLineAndPrint(row);
+    
+        printTableHorizontalBorders(this.tableStyle.headerBottom,
+            this.columns.map( m => m.max_ln));       
     }
 
     printTableEnding(row) {
-        let headerBottomStr = createTableHorizontalBorders(this.tableStyle.tableBottom,
+        printTableHorizontalBorders(this.tableStyle.tableBottom,
             this.columns.map( m => m.max_ln));
-        console.log(headerBottomStr);
     }
 
-    printAll() {
+    calculateColumnProperty() {
+        for (let column of this.columns) {
+            column.max_ln = findMaxLenOfColumn(column, this.rows);
+        }
+    }
+
+    printTable() {
         this.calculateColumnProperty();
         this.printTableHeaders();
         for (let row of this.rows) {
             this.printRow(row);
         }
         this.printTableEnding();
-    }
-
-    calculateColumnProperty() {
-        const findMaxLenOfColumn = (column) => {
-            let column_name = column.name;
-            let max_ln = `${column_name}`.length;
-            for (let row of this.rows) {
-                max_ln = Math.max(max_ln, `${row.text[column_name]}`.length);
-            }
-            return max_ln;
-        }
-        for (let column of this.columns) {
-            column.max_ln = findMaxLenOfColumn(column);
-        }
     }
 }
 module.exports = {

@@ -39,6 +39,14 @@ columns:
         this.table = new TableInternal(options);
     }
 
+    addColumn(column) {
+        this.table.addColumn(column);
+    }
+
+    addColumns(columns) {
+        this.table.addColumns(columns);
+    }
+
     addRow(text, color) {
         this.table.addRow(text, color);
     }
@@ -47,8 +55,8 @@ columns:
         this.table.addRows(toBeInsertedRows);
     }
 
-    printAll() {
-        this.table.printAll();
+    printTable() {
+        this.table.printTable();
     }
 }
 

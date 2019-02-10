@@ -14,7 +14,7 @@ describe('Example: Print a simple Table', () => {
         ]);
 
         //print
-        p.printAll();
+        p.printTable();
     });
 
     it(`Readme Example2`, function () {
@@ -27,7 +27,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, {color: 'yellow'});
 
         //print
-        p.printAll();
+        p.printTable();
     });
 
     it(`table With 3 rows`, function () {
@@ -46,7 +46,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 }, {color: 'yellow'});
 
         //print
-        p.printAll();
+        p.printTable();
     });
     it(`fat Border Table`, function () {
         //Create a table
@@ -65,7 +65,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 }, {color: 'yellow'});
 
         //print
-        p.printAll();
+        p.printTable();
     });
     
     it(`simple table constructor`, function () {
@@ -78,7 +78,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 }, {color: 'yellow'});
 
         //print
-        p.printAll();
+        p.printTable();
     });
 
     it(`without color`, function () {
@@ -91,7 +91,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 });
 
         //print
-        p.printAll();
+        p.printTable();
     });
 
 
@@ -108,9 +108,25 @@ describe('Example: Print a simple Table', () => {
         ]);
 
         //print
-        p.printAll();
+        p.printTable();
     });
 
+    it(`column creation`, function () {
+        //Create a table
+        const p = new Table();
+
+        //add rows with color
+        p.addRows([
+            { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
+            { index: 4, text: 'I hope batch update is working', value: 300 }
+        ]);
+
+        p.addColumn('extra_column1');
+        p.addColumns(['extra_column2', 'extra_column3']);
+
+        //print
+        p.printTable();
+    });
 
     it(`create column from rows`, function () {
         //Create a table
@@ -123,8 +139,8 @@ describe('Example: Print a simple Table', () => {
             { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
             { index: 4, text: 'I hope batch update is working', value: 300, comment: 'best Result'}
         ]);
-
+        
         //print
-        p.printAll();
+        p.printTable();
     });
 });

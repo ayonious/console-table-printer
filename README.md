@@ -8,7 +8,7 @@
 
 ## Synopsis
 
-Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console. Using as less code possible you can print the table on console.
+Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console.
 
 ## Installation
 
@@ -52,6 +52,66 @@ p.printAll();
 Output:
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
+
+Documentation
+
+### Table instance creation
+3 ways to Table Instance creation:
+
+1. Simplest way `new Table()`
+
+2. Only with column names: `new Table(['column1', 'column2', 'column3'])`
+
+3. Detailed way of creating table instance
+
+```javascript
+new Table({
+    style: 'fatBorder', //style of border of the table
+    columns: [
+        {name: 'column1', alignment: 'left'}, //with alignment
+        {name: 'column2', alignment: 'right'},
+        {name: 'column3'}
+    ]
+});
+```
+
+### Functions
+
+`addRow(rowObjet, options)` adding single row.
+`addRows(rowObjets)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
+`addColumn(columnObject)` adding single column
+`addColumns(columnObjects)` adding multiple columns
+`printTable()` Prints the table on your console
+
+### possible `color` values for rows
+
+* red
+* green
+* yellow
+* white
+* blue
+* magenta
+* cyan
+* crimson
+* white_bold
+
+### possible border Style of table
+
+thinBorder
+┌────────────┬─────┬──────┐
+│ foo        │ bar │ baz  │
+├────────────┼─────┼──────┤
+│ frobnicate │ bar │ quuz │
+└────────────┴─────┴──────┘
+
+fatBorder:
+╔══════╦═════╦══════╗
+║ hob  ║ foo ║ mia  ║
+╟══════╬═════╬══════╢
+║ ball ║ fox ║ mama ║
+╚══════╩═════╩══════╝
+
+Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
 ## License
 

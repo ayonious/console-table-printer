@@ -1,7 +1,7 @@
 const TABLE_STYLE = {
     thinBorder: {
         /*
-        Style2: thinBorder
+        Style1: thinBorder
         ┌────────────┬─────┬──────┐
         │ foo        │ bar │ baz  │
         │ frobnicate │ bar │ quuz │
@@ -20,12 +20,12 @@ const TABLE_STYLE = {
     },
     fatBorder: {
         /*
-        Style1: fatBorder
-        ╔══════╤═════╤══════╗
-        ║ hob  │ foo │ mia  ║
-        ╟──────┼─────┼──────╢
-        ║ ball │ fox │ mama ║
-        ╚══════╧═════╧══════╝
+        Style2: fatBorder
+        ╔══════╦═════╦══════╗
+        ║ hob  ║ foo ║ mia  ║
+        ╟══════╬═════╬══════╢
+        ║ ball ║ fox ║ mama ║
+        ╚══════╩═════╩══════╝
         */
         headerTop : {
             left: "╔", mid: '╦', right:  "╗", other: "═",
