@@ -2,7 +2,7 @@ const {Table} = require('../src/console-table-printer');
 
 describe('Example: Print a simple Table', () => {
 
-    /*
+
     it(`Readme Example1`, function () {
         //Create a table
         const p = new Table();
@@ -32,7 +32,6 @@ describe('Example: Print a simple Table', () => {
         p.printTable();
     });
 
-    */
 
     it(`Readme Example: screenshots generator for style`, function () {
         //Create a table
@@ -55,7 +54,6 @@ describe('Example: Print a simple Table', () => {
         p2.printTable();
     });
 
-    /*
     it(`table With 3 rows`, function () {
         //Create a table
         const p = new Table({
@@ -170,5 +168,4 @@ describe('Example: Print a simple Table', () => {
         //print
         p.printTable();
     });
-    */
 });
