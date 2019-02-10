@@ -41,6 +41,21 @@ class TableInternal {
         this.rows = [];
     }
 
+    setBorderStyle(style, details) {
+        switch(style) {
+            case 'thinBorder': 
+                this.style = 'thinBorder';
+            case 'fatBorder':
+                this.style = 'fatBorder';
+            case 'customized':
+                this.style = 'customized';
+                this.styleDetails = details;
+            default:
+                this.style = this.style;
+        }
+
+    }
+
     createColumnFromRow(text) {
         const colNames = this.columns.map( col => col.name );
         for( let key in text) {

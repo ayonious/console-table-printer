@@ -21,11 +21,11 @@ const TABLE_STYLE = {
     fatBorder: {
         /*
         Style2: fatBorder
-        ╔══════╤═════╤══════╗
-        ║ hob  │ foo │ mia  ║
-        ╟──────┼─────┼──────╢
-        ║ ball │ fox │ mama ║
-        ╚══════╧═════╧══════╝
+        ╔══════╦═════╦══════╗
+        ║ hob  ║ foo ║ mia  ║
+        ╟══════╬═════╬══════╢
+        ║ ball ║ fox ║ mama ║
+        ╚══════╩═════╩══════╝
         */
         headerTop : {
             left: "╔", mid: '╦', right:  "╗", other: "═",

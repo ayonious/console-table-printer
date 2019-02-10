@@ -68,18 +68,17 @@ Documentation
 new Table({
     style: 'fatBorder', //style of border of the table
     columns: [
-        {name: 'index', alignment: 'left'}, //with alignment
-        {name: 'text', alignment: 'right'},
-        {name: 'value'}
+        {name: 'column1', alignment: 'left'}, //with alignment
+        {name: 'column2', alignment: 'right'},
+        {name: 'column3'}
     ]
 });
-
 ```
 
 ### Functions
 
 `addRow(rowObjet, options)` adding single row.
-`addRows(rowObjet)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
+`addRows(rowObjets)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
 `addColumn(columnObject)` adding single column
 `addColumns(columnObjects)` adding multiple columns
 `printTable()` Prints the table on your console
@@ -106,11 +105,11 @@ thinBorder
 └────────────┴─────┴──────┘
 
 fatBorder:
-╔══════╤═════╤══════╗
-║ hob  │ foo │ mia  ║
-╟──────┼─────┼──────╢
-║ ball │ fox │ mama ║
-╚══════╧═════╧══════╝
+╔══════╦═════╦══════╗
+║ hob  ║ foo ║ mia  ║
+╟══════╬═════╬══════╢
+║ ball ║ fox ║ mama ║
+╚══════╩═════╩══════╝
 
 Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
