@@ -1,6 +1,8 @@
 const {Table} = require('../src/console-table-printer');
 
 describe('Example: Print a simple Table', () => {
+
+    /*
     it(`Readme Example1`, function () {
         //Create a table
         const p = new Table();
@@ -30,6 +32,30 @@ describe('Example: Print a simple Table', () => {
         p.printTable();
     });
 
+    */
+
+    it(`Readme Example: screenshots generator for style`, function () {
+        //Create a table
+        const p1 = new Table();
+
+        //add rows with color
+        p1.addRow({ index: 1, text: 'red wine', value: 10.9});
+        p1.addRow({ index: 2, text: 'green gemuse', value: 20.00 });
+
+        //print
+        p1.printTable();
+
+        const p2 = new Table({style: 'fatBorder'});
+
+        //add rows with color
+        p2.addRow({ index: 1, text: 'red wine', value: 10.9});
+        p2.addRow({ index: 2, text: 'green gemuse', value: 20.00 });
+
+        //print
+        p2.printTable();
+    });
+
+    /*
     it(`table With 3 rows`, function () {
         //Create a table
         const p = new Table({
@@ -48,6 +74,7 @@ describe('Example: Print a simple Table', () => {
         //print
         p.printTable();
     });
+
     it(`fat Border Table`, function () {
         //Create a table
         const p = new Table({
@@ -143,4 +170,5 @@ describe('Example: Print a simple Table', () => {
         //print
         p.printTable();
     });
+    */
 });

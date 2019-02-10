@@ -104,11 +104,11 @@ table.addRow(rowObject, {color: 'blue'});
 
 * thinBorder
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border.png)
 
 * fatBorder:
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-fatborder.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-fat-border.png)
 
 Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
