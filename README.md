@@ -58,9 +58,23 @@ Documentation
 ### Table instance creation
 3 ways to Table Instance creation:
 
-1. Simplest way: `new Table()`
-2. Only with column name: `new Table(['column1', 'column2', 'column3'])`
-3. new Table(['column1', 'column2', 'column3'])
+1. Simplest way `new Table()`
+
+2. Only with column names: `new Table(['column1', 'column2', 'column3'])`
+
+3. Detailed way of creating table instance
+
+```javascript
+new Table({
+    style: 'fatBorder', //style of border of the table
+    columns: [
+        {name: 'index', alignment: 'left'}, //with alignment
+        {name: 'text', alignment: 'right'},
+        {name: 'value'}
+    ]
+});
+
+```
 
 ### Functions
 
@@ -70,8 +84,8 @@ Documentation
 `addColumns(columnObjects)` adding multiple columns
 `printTable()` Prints the table on your console
 
-
 ### possible `color` values for rows
+
 * red
 * green
 * yellow
@@ -97,6 +111,8 @@ fatBorder:
 ╟──────┼─────┼──────╢
 ║ ball │ fox │ mama ║
 ╚══════╧═════╧══════╝
+
+Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
 ## License
 
