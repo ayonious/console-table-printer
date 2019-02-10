@@ -22,12 +22,12 @@ class TableInternal {
 
     initDetailed (options) {
         this.tableStyle = TABLE_STYLE[options.style || 'thinBorder'];
-        this.columns = options.columns.map( column => (
+        this.columns = options.columns && options.columns.map( column => (
             { 
                 name: column.name,
                 alignment: column.alignment || 'right'
             })
-        );
+        ) || [];
     }
 
     constructor(options) {

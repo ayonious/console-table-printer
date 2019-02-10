@@ -53,7 +53,7 @@ Output:
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
 
-Documentation
+## Documentation
 
 ### Table instance creation
 3 ways to Table Instance creation:
@@ -95,21 +95,20 @@ new Table({
 * crimson
 * white_bold
 
+Example usage: To Create a row of color blue
+```js
+table.addRow(rowObject, {color: 'blue'});
+```
+
 ### possible border Style of table
 
-thinBorder
-┌────────────┬─────┬──────┐
-│ foo        │ bar │ baz  │
-├────────────┼─────┼──────┤
-│ frobnicate │ bar │ quuz │
-└────────────┴─────┴──────┘
+* thinBorder
 
-fatBorder:
-╔══════╦═════╦══════╗
-║ hob  ║ foo ║ mia  ║
-╟══════╬═════╬══════╢
-║ ball ║ fox ║ mama ║
-╚══════╩═════╩══════╝
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border.png)
+
+* fatBorder:
+
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-fat-border.png)
 
 Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
