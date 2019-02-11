@@ -77,11 +77,11 @@ new Table({
 
 ### Functions
 
-`addRow(rowObjet, options)` adding single row.
-`addRows(rowObjets)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
-`addColumn(columnObject)` adding single column
-`addColumns(columnObjects)` adding multiple columns
-`printTable()` Prints the table on your console
+* `addRow(rowObjet, options)` adding single row.
+* `addRows(rowObjets)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
+* `addColumn(columnObject)` adding single column
+* `addColumns(columnObjects)` adding multiple columns
+* `printTable()` Prints the table on your console
 
 ### possible `color` values for rows
 
