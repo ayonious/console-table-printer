@@ -33,7 +33,7 @@ p.addRows([ //adding multiple rows are possible
 ]);
 
 //print
-p.printAll();
+p.printTable();
 ```
 
 Output:
@@ -46,7 +46,7 @@ const p = new Table();
 p.addRow({ index: 1, text: 'red wine', value: 10.212 }, {color: 'red'});
 p.addRow({ index: 2, text: 'green gemuse', value: 20.00 }, {color: 'green'});
 p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, {color: 'yellow'});
-p.printAll();
+p.printTable();
 ```
 
 Output:
