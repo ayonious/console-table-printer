@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "1.0.0-beta11",
+  "version": "1.0.0-beta12",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "index.js",
@@ -10,6 +10,6 @@
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^6.0.0"
   }
 }
