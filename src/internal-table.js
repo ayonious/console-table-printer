@@ -1,8 +1,6 @@
 const {TABLE_STYLE} = require('./table-constants');
 const {ColoredConsoleLine} = require('./colored-console-line');
-const {textWithPadding, printTableHorizontalBorders,
-    createColum, createRow,createHeaderAsRow,
-    findMaxLenOfColumn} = require('./table-helpers');
+const {textWithPadding, createColum, createRow} = require('./table-helpers');
 
 const {printTable} = require('./printer');
 
