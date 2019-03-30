@@ -2,7 +2,7 @@ const {ColoredConsoleLine} = require('./colored-console-line');
 const {textWithPadding, printTableHorizontalBorders,
     createRow,createHeaderAsRow,
     findMaxLenOfColumn} = require('./table-helpers');
-const {TableInternal} = require('./internal-table');
+
 
 function prepareLineAndPrint(tableStyle, columns, row) {
     let line = new ColoredConsoleLine();
@@ -53,12 +53,14 @@ function printTable(table) {
 }
 
 function printSimpleTable(rows) {
-    table = new TableInternal();
+    const {TableInternal} = require('./internal-table');
+    let table = new TableInternal();
     table.addRows(rows);
-    printTable(rows);
+    printTable(table);
 }
 
 module.exports = {
-    printTable, printSimpleTable
+    printTable, 
+    printSimpleTable
 }
 
