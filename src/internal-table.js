@@ -1,8 +1,6 @@
 const {TABLE_STYLE} = require('./table-constants');
-const {ColoredConsoleLine} = require('./colored-console-line');
-const {textWithPadding, printTableHorizontalBorders,
-    createColum, createRow,createHeaderAsRow,
-    findMaxLenOfColumn} = require('./table-helpers');
+const {createColum, createRow} = require('./table-helpers');
+const {printTable} = require('./internal-table-printer');
 
 class TableInternal {
     initSimple (columns) {
@@ -75,7 +73,6 @@ class TableInternal {
         }
     }
 
-
     addRow(text, options) {
         this.createColumnFromRow(text);
         this.rows.push(createRow( (options && options.color ) || 'white' , text));
@@ -87,52 +84,15 @@ class TableInternal {
         }
     }
 
-    prepareLineAndPrint(row) {
-        let line = new ColoredConsoleLine();
-        line.addWithColor('white', this.tableStyle.vertical);
-        for( let column of this.columns) {
-            line.addWithColor('white', ' ');
-            line.addWithColor(row.color, textWithPadding(`${row.text[column.name] || ''}`, column.alignment, column.max_ln));
-            line.addWithColor('white', ' ' + this.tableStyle.vertical);
-        }
-        line.printConsole();
-    }
-
-    printRow(row) {
-        this.prepareLineAndPrint(row);
-    }
-
-    printTableHeaders() {
-        printTableHorizontalBorders(this.tableStyle.headerTop,
-            this.columns.map( m => m.max_ln));
-
-        let row = createHeaderAsRow(createRow, this.columns);
-        this.prepareLineAndPrint(row);
-    
-        printTableHorizontalBorders(this.tableStyle.headerBottom,
-            this.columns.map( m => m.max_ln));       
-    }
-
-    printTableEnding(row) {
-        printTableHorizontalBorders(this.tableStyle.tableBottom,
-            this.columns.map( m => m.max_ln));
-    }
-
-    calculateColumnProperty() {
-        for (let column of this.columns) {
-            column.max_ln = findMaxLenOfColumn(column, this.rows);
-        }
+    getColumns() {
+        return this.columns;
     }
 
     printTable() {
-        this.calculateColumnProperty();
-        this.printTableHeaders();
-        for (let row of this.rows) {
-            this.printRow(row);
-        }
-        this.printTableEnding();
+        printTable(this);
     }
 }
+
 module.exports = {
     TableInternal
 }

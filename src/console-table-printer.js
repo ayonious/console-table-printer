@@ -1,4 +1,5 @@
 const {TableInternal} = require('./internal-table');
+const {printSimpleTable} = require('./internal-table-printer');
 
 class Table {
 /*
@@ -61,5 +62,6 @@ columns:
 }
 
 module.exports = {
-    Table
+    Table,
+    printTable: printSimpleTable
 }

@@ -41,5 +41,5 @@ const TABLE_STYLE = {
 };
 
 module.exports = {
-    TABLE_STYLE,
+    TABLE_STYLE
 }
