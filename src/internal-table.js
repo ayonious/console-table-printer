@@ -1,8 +1,6 @@
 const {TABLE_STYLE} = require('./table-constants');
-const {ColoredConsoleLine} = require('./colored-console-line');
-const {textWithPadding, createColum, createRow} = require('./table-helpers');
-
-const {printTable} = require('./printer');
+const {createColum, createRow} = require('./table-helpers');
+const {printTable} = require('./internal-table-printer');
 
 class TableInternal {
     initSimple (columns) {
@@ -90,30 +88,11 @@ class TableInternal {
         return this.columns;
     }
 
-    prepareLineAndPrint(row) {
-        let line = new ColoredConsoleLine();
-        line.addWithColor('white', this.tableStyle.vertical);
-        for( let column of this.columns) {
-            line.addWithColor('white', ' ');
-            line.addWithColor(row.color, textWithPadding(`${row.text[column.name] || ''}`, column.alignment, column.max_ln));
-            line.addWithColor('white', ' ' + this.tableStyle.vertical);
-        }
-        line.printConsole();
-    }
-
     printTable() {
-        //console.log(this);
         printTable(this);
-        /*
-        this.calculateColumnProperty();
-        this.printTableHeaders();
-        for (let row of this.rows) {
-            this.printRow(row);
-        }
-        this.printTableEnding();
-        */
     }
 }
+
 module.exports = {
     TableInternal
 }

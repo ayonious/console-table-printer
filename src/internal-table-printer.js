@@ -2,6 +2,7 @@ const {ColoredConsoleLine} = require('./colored-console-line');
 const {textWithPadding, printTableHorizontalBorders,
     createRow,createHeaderAsRow,
     findMaxLenOfColumn} = require('./table-helpers');
+const {TableInternal} = require('./internal-table');
 
 function prepareLineAndPrint(tableStyle, columns, row) {
     let line = new ColoredConsoleLine();
@@ -23,7 +24,7 @@ function printTableHeaders(table) {
         table.columns.map( m => m.max_ln));
 
     let row = createHeaderAsRow(createRow, table.columns);
-    table.prepareLineAndPrint(row);
+    prepareLineAndPrint(table.tableStyle, table.columns, row);
 
     printTableHorizontalBorders(table.tableStyle.headerBottom,
         table.columns.map( m => m.max_ln));       
@@ -40,19 +41,6 @@ function calculateColumnProperty(table) {
     }
 }
 
-
-// rows 
-/*
-{ 
-    color: 'white',
-    text: 
-    { 
-        index: 3,
-        text: 'I would like some gelb bananen bitte',
-        value: 100 
-    } 
-}
-*/
 function printTable(table) {
     calculateColumnProperty(table);
     printTableHeaders(table);
@@ -64,7 +52,13 @@ function printTable(table) {
     printTableEnding(table);
 }
 
+function printSimpleTable(rows) {
+    table = new TableInternal();
+    table.addRows(rows);
+    printTable(rows);
+}
+
 module.exports = {
-    printTable,
+    printTable, printSimpleTable
 }
 
