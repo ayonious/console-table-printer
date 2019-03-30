@@ -4,6 +4,8 @@ const {textWithPadding, printTableHorizontalBorders,
     createColum, createRow,createHeaderAsRow,
     findMaxLenOfColumn} = require('./table-helpers');
 
+const {printTable} = require('./printer');
+
 class TableInternal {
     initSimple (columns) {
         this.tableStyle = TABLE_STYLE['thinBorder'];
@@ -75,7 +77,6 @@ class TableInternal {
         }
     }
 
-
     addRow(text, options) {
         this.createColumnFromRow(text);
         this.rows.push(createRow( (options && options.color ) || 'white' , text));
@@ -85,6 +86,10 @@ class TableInternal {
         for(let toBeInsertedRow of toBeInsertedRows) {
             this.addRow(toBeInsertedRow);
         }
+    }
+
+    getColumns() {
+        return this.columns;
     }
 
     prepareLineAndPrint(row) {
@@ -98,39 +103,17 @@ class TableInternal {
         line.printConsole();
     }
 
-    printRow(row) {
-        this.prepareLineAndPrint(row);
-    }
-
-    printTableHeaders() {
-        printTableHorizontalBorders(this.tableStyle.headerTop,
-            this.columns.map( m => m.max_ln));
-
-        let row = createHeaderAsRow(createRow, this.columns);
-        this.prepareLineAndPrint(row);
-    
-        printTableHorizontalBorders(this.tableStyle.headerBottom,
-            this.columns.map( m => m.max_ln));       
-    }
-
-    printTableEnding(row) {
-        printTableHorizontalBorders(this.tableStyle.tableBottom,
-            this.columns.map( m => m.max_ln));
-    }
-
-    calculateColumnProperty() {
-        for (let column of this.columns) {
-            column.max_ln = findMaxLenOfColumn(column, this.rows);
-        }
-    }
-
     printTable() {
+        //console.log(this);
+        printTable(this);
+        /*
         this.calculateColumnProperty();
         this.printTableHeaders();
         for (let row of this.rows) {
             this.printRow(row);
         }
         this.printTableEnding();
+        */
     }
 }
 module.exports = {
