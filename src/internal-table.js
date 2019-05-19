@@ -19,11 +19,11 @@ class TableInternal {
     }
 
     initDetailed (options) {
-        this.tableStyle = TABLE_STYLE[options.style || 'thinBorder'];
+        this.tableStyle = ( options.style && TABLE_STYLE[options.style] ) || TABLE_STYLE.thinBorder;
         this.columns = options.columns && options.columns.map( column => (
             { 
                 name: column.name,
-                alignment: column.alignment || 'right'
+                alignment: column.alignment || COLUMN_ALIGNMENT.right
             })
         ) || [];
     }

@@ -1,4 +1,4 @@
-const { COLUMN_ALIGNMENT } = require('./table-constants');
+const { COLUMN_ALIGNMENT, COLOR } = require('./table-constants');
 
 function textWithPadding (text, alignment, size) {
     switch (alignment) {
@@ -45,7 +45,7 @@ function printTableHorizontalBorders(style, column_lengths) {
 }
 
 function createHeaderAsRow (createRow, columns) {
-    let row = createRow('white_bold', {});
+    let row = createRow(COLOR.white_bold, {});
     for (let column of columns) {
         row.text[column.name] = column.name;
     }
