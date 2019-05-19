@@ -1,10 +1,12 @@
+const { COLUMN_ALIGNMENT, COLOR } = require('./table-constants');
+
 function textWithPadding (text, alignment, size) {
     switch (alignment) {
-        case 'left': 
+        case COLUMN_ALIGNMENT.left: 
             return text.padEnd(size);
-        case 'right':
+        case COLUMN_ALIGNMENT.right:
             return text.padStart(size);
-         default:
+        default:
             return text.padStart(size);
     }
 }
@@ -37,14 +39,13 @@ function findMaxLenOfColumn(column, rows) {
     return max_ln;
 }
 
-
 function printTableHorizontalBorders(style, column_lengths) {
     const str = createTableHorizontalBorders (style, column_lengths)
     console.log(str);
 }
 
 function createHeaderAsRow (createRow, columns) {
-    let row = createRow('white_bold', {});
+    let row = createRow(COLOR.white_bold, {});
     for (let column of columns) {
         row.text[column.name] = column.name;
     }

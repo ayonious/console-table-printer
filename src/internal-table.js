@@ -1,29 +1,29 @@
-const {TABLE_STYLE} = require('./table-constants');
+const {TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR} = require('./table-constants');
 const {createColum, createRow} = require('./table-helpers');
 const {printTable} = require('./internal-table-printer');
 
 class TableInternal {
     initSimple (columns) {
-        this.tableStyle = TABLE_STYLE['thinBorder'];
+        this.tableStyle = TABLE_STYLE.thinBorder;
         this.columns = columns.map( column => (
             { 
                 name: column,
-                alignment: 'right'
+                alignment: COLUMN_ALIGNMENT.right
             })
         );
     }
     
     initDefault () {
-        this.tableStyle = TABLE_STYLE['thinBorder'];
+        this.tableStyle = TABLE_STYLE.thinBorder;
         this.columns = [];
     }
 
     initDetailed (options) {
-        this.tableStyle = TABLE_STYLE[options.style || 'thinBorder'];
+        this.tableStyle = ( options.style && TABLE_STYLE[options.style] ) || TABLE_STYLE.thinBorder;
         this.columns = options.columns && options.columns.map( column => (
             { 
                 name: column.name,
-                alignment: column.alignment || 'right'
+                alignment: column.alignment || COLUMN_ALIGNMENT.right
             })
         ) || [];
     }
@@ -41,15 +41,14 @@ class TableInternal {
 
     setBorderStyle(style, details) {
         switch(style) {
-            case 'thinBorder': 
-                this.style = 'thinBorder';
-            case 'fatBorder':
-                this.style = 'fatBorder';
-            case 'customized':
-                this.style = 'customized';
+            case TABLE_BORDER_STYLES.customized:
+                this.style = TABLE_BORDER_STYLES.customized;
                 this.styleDetails = details;
+            case TABLE_BORDER_STYLES.thinBorder: 
+            case TABLE_BORDER_STYLES.fatBorder:
+                this.style = style;
             default:
-                this.style = this.style;
+                this.style = style;
         }
 
     }
@@ -75,7 +74,7 @@ class TableInternal {
 
     addRow(text, options) {
         this.createColumnFromRow(text);
-        this.rows.push(createRow( (options && options.color ) || 'white' , text));
+        this.rows.push(createRow( (options && options.color ) || COLOR.white , text));
     }
 
     addRows(toBeInsertedRows) {

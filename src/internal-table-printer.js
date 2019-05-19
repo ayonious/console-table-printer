@@ -1,3 +1,4 @@
+const {COLOR} = require('./table-constants');
 const {ColoredConsoleLine} = require('./colored-console-line');
 const {textWithPadding, printTableHorizontalBorders,
     createRow,createHeaderAsRow,
@@ -6,11 +7,11 @@ const {textWithPadding, printTableHorizontalBorders,
 
 function prepareLineAndPrint(tableStyle, columns, row) {
     let line = new ColoredConsoleLine();
-    line.addWithColor('white', tableStyle.vertical);
+    line.addWithColor(COLOR.white, tableStyle.vertical);
     for( let column of columns) {
-        line.addWithColor('white', ' ');
+        line.addWithColor(COLOR.white, ' ');
         line.addWithColor(row.color, textWithPadding(`${row.text[column.name] || ''}`, column.alignment, column.max_ln));
-        line.addWithColor('white', ' ' + tableStyle.vertical);
+        line.addWithColor(COLOR.white, ' ' + tableStyle.vertical);
     }
     line.printConsole();
 }

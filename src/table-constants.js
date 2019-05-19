@@ -40,6 +40,33 @@ const TABLE_STYLE = {
     }
 };
 
+const COLUMN_ALIGNMENT = {
+    left: 'left',
+    right: 'right',
+}
+
+const COLOR = {
+    red: 'red',
+    green: 'green',
+    yellow: 'yellow',
+    white: 'white',
+    blue: 'blue',
+    magenta: 'magenta',
+    cyan: 'cyan',
+    crimson: 'crimson',
+    white_bold: 'white_bold',
+    reset: 'reset',
+}
+
+const TABLE_BORDER_STYLES = {
+    thinBorder: 'thinBorder',
+    fatBorder: 'fatBorder',
+    customized: 'customized',
+};
+
 module.exports = {
-    TABLE_STYLE
+    COLOR,
+    COLUMN_ALIGNMENT,
+    TABLE_BORDER_STYLES,
+    TABLE_STYLE,
 }
