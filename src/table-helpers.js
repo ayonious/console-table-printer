@@ -42,6 +42,7 @@ function findMaxLenOfColumn(column, rows) {
 function printTableHorizontalBorders(style, column_lengths) {
     const str = createTableHorizontalBorders (style, column_lengths)
     console.log(str);
+    return str;
 }
 
 function createHeaderAsRow (createRow, columns) {

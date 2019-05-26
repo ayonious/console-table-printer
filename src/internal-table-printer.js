@@ -1,8 +1,11 @@
 const {COLOR} = require('./table-constants');
 const {ColoredConsoleLine} = require('./colored-console-line');
-const {textWithPadding, printTableHorizontalBorders,
-    createRow,createHeaderAsRow,
-    findMaxLenOfColumn} = require('./table-helpers');
+const {textWithPadding, 
+    printTableHorizontalBorders,
+    createRow,
+    createHeaderAsRow,
+    findMaxLenOfColumn
+} = require('./table-helpers');
 
 
 function prepareLineAndPrint(tableStyle, columns, row) {
@@ -13,27 +16,46 @@ function prepareLineAndPrint(tableStyle, columns, row) {
         line.addWithColor(row.color, textWithPadding(`${row.text[column.name] || ''}`, column.alignment, column.max_ln));
         line.addWithColor(COLOR.white, ' ' + tableStyle.vertical);
     }
-    line.printConsole();
+    return line.printConsole();
 }
 
+// ║ 1     ║     I would like some red wine please ║ 10.212 ║
 function printRow(table, row) {
-    prepareLineAndPrint(table.tableStyle, table.columns, row);
+    let ret = [];
+    ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
+    return ret;
 }
 
+
+/* 
+ ╔═══════╦═══════════════════════════════════════╦════════╗
+ ║ index ║                                  text ║  value ║
+ ╟═══════╬═══════════════════════════════════════╬════════╢
+*/
 function printTableHeaders(table) {
-    printTableHorizontalBorders(table.tableStyle.headerTop,
-        table.columns.map( m => m.max_ln));
+    let ret = [];
+    
+    // ╔═══════╦═══════════════════════════════════════╦════════╗
+    ret.push(printTableHorizontalBorders(table.tableStyle.headerTop,
+        table.columns.map( m => m.max_ln)));
 
+    // ║ index ║                                  text ║  value ║
     let row = createHeaderAsRow(createRow, table.columns);
-    prepareLineAndPrint(table.tableStyle, table.columns, row);
+    ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
 
-    printTableHorizontalBorders(table.tableStyle.headerBottom,
-        table.columns.map( m => m.max_ln));       
+    // ╟═══════╬═══════════════════════════════════════╬════════╢
+    ret.push(printTableHorizontalBorders(table.tableStyle.headerBottom,
+        table.columns.map( m => m.max_ln)));
+        
+    return ret;
 }
 
 function printTableEnding(table) {
-    printTableHorizontalBorders(table.tableStyle.tableBottom,
-        table.columns.map( m => m.max_ln));
+    let ret = [];
+    // ╚═══════╩═══════════════════════════════════════╩════════╝
+    ret.push(printTableHorizontalBorders(table.tableStyle.tableBottom,
+        table.columns.map( m => m.max_ln)));
+    return ret;
 }
 
 function calculateColumnProperty(table) {
@@ -44,20 +66,23 @@ function calculateColumnProperty(table) {
 
 function printTable(table) {
     calculateColumnProperty(table);
-    printTableHeaders(table);
     
-    for (let row of table.rows) {
-        printRow(table, row);
-    }
+    let ret = [];
 
-    printTableEnding(table);
+    printTableHeaders(table).forEach( row => ret.push(row) );
+    for (let row of table.rows) {
+        printRow(table, row).forEach( row => ret.push(row) );
+    }
+    printTableEnding(table).forEach( row => ret.push(row) );
+
+    return ret;
 }
 
 function printSimpleTable(rows) {
     const {TableInternal} = require('./internal-table');
     let table = new TableInternal();
     table.addRows(rows);
-    printTable(table);
+    return printTable(table);
 }
 
 module.exports = {

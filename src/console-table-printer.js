@@ -57,7 +57,7 @@ columns:
     }
 
     printTable() {
-        this.table.printTable();
+        return this.table.printTable();
     }
 }
 
