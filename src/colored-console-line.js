@@ -24,6 +24,7 @@ class ColoredConsoleLine {
 
     printConsole() {
         console.log(this.text);
+        return this.text;
     }
 }
 

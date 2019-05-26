@@ -88,7 +88,7 @@ class TableInternal {
     }
 
     printTable() {
-        printTable(this);
+        return printTable(this);
     }
 }
 
