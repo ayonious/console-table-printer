@@ -64,29 +64,37 @@ function calculateColumnProperty(table) {
     }
 }
 
-function printTable(table) {
+function printTableTest(table) {
     calculateColumnProperty(table);
-    
     let ret = [];
-
     printTableHeaders(table).forEach( row => ret.push(row) );
     for (let row of table.rows) {
         printRow(table, row).forEach( row => ret.push(row) );
     }
     printTableEnding(table).forEach( row => ret.push(row) );
-
     return ret;
 }
 
-function printSimpleTable(rows) {
+function printTable(table) {
+    printTableTest(table);
+}
+
+function printSimpleTableTest(rows) {
     const {TableInternal} = require('./internal-table');
     let table = new TableInternal();
     table.addRows(rows);
-    return printTable(table);
+    return printTableTest(table);
+}
+
+function printSimpleTable(rows) {
+    printSimpleTableTest(rows);
 }
 
 module.exports = {
-    printTable, 
-    printSimpleTable
+    printTable,
+    printSimpleTable,
+
+    // test functions
+    printSimpleTableTest
 }
 
