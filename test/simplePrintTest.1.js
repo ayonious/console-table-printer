@@ -1,4 +1,4 @@
-const {printTable} = require('../src/console-table-printer');
+const {printSimpleTableTest} = require('../src/internal-table-printer');
 const assert = require('assert');
 
 describe('Example: Print a simple Table without table instance creation', () => {
@@ -7,7 +7,7 @@ describe('Example: Print a simple Table without table instance creation', () => 
             { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
             { index: 4, text: 'I hope batch update is working', value: 300 }
         ];
-        let tableArray = printTable(testCases);
+        let tableArray = printSimpleTableTest(testCases);
         
         const expect = [ 
             '┌───────┬──────────────────────────────────────┬───────┐',
