@@ -1,8 +1,8 @@
 const { COLUMN_ALIGNMENT, COLOR } = require('./table-constants');
 
-function textWithPadding (text, alignment, size) {
+function textWithPadding(text, alignment, size) {
     switch (alignment) {
-        case COLUMN_ALIGNMENT.left: 
+        case COLUMN_ALIGNMENT.left:
             return text.padEnd(size);
         case COLUMN_ALIGNMENT.right:
             return text.padStart(size);
@@ -11,9 +11,9 @@ function textWithPadding (text, alignment, size) {
     }
 }
 
-function createTableHorizontalBorders ( {left, mid, right, other}, column_lengths) {
+function createTableHorizontalBorders({ left, mid, right, other }, column_lengths) {
     let ret = left;
-    for( let len of column_lengths ) {
+    for (let len of column_lengths) {
         ret += other.repeat(len + 2);
         ret += mid;
     }
@@ -22,11 +22,11 @@ function createTableHorizontalBorders ( {left, mid, right, other}, column_length
     return ret;
 }
 
-function createColum(name)  {
-    return {name}
+function createColum(name) {
+    return { name }
 }
 
-function createRow(color, text)  {
+function createRow(color, text) {
     return { color, text };
 }
 
@@ -34,18 +34,18 @@ function findMaxLenOfColumn(column, rows) {
     let column_name = column.name;
     let max_ln = `${column_name}`.length;
     for (let row of rows) {
-        max_ln = Math.max(max_ln, `${row.text[column_name]  || ''}`.length);
+        max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length);
     }
     return max_ln;
 }
 
 function printTableHorizontalBorders(style, column_lengths) {
-    const str = createTableHorizontalBorders (style, column_lengths)
+    const str = createTableHorizontalBorders(style, column_lengths)
     console.log(str);
     return str;
 }
 
-function createHeaderAsRow (createRow, columns) {
+function createHeaderAsRow(createRow, columns) {
     let row = createRow(COLOR.white_bold, {});
     for (let column of columns) {
         row.text[column.name] = column.name;

@@ -7,14 +7,14 @@ const TABLE_STYLE = {
         │ frobnicate │ bar │ quuz │
         └────────────┴─────┴──────┘
         */
-        headerTop : {
-            left: "┌", mid: '┬', right:  "┐", other: "─",
+        headerTop: {
+            left: "┌", mid: '┬', right: "┐", other: "─",
         },
         headerBottom: {
-            left: "├", mid: '┼', right:  "┤", other: "─",
+            left: "├", mid: '┼', right: "┤", other: "─",
         },
         tableBottom: {
-            left: "└", mid: '┴', right:  "┘", other: "─",
+            left: "└", mid: '┴', right: "┘", other: "─",
         },
         vertical: '│'
     },
@@ -27,14 +27,14 @@ const TABLE_STYLE = {
         ║ ball ║ fox ║ mama ║
         ╚══════╩═════╩══════╝
         */
-        headerTop : {
-            left: "╔", mid: '╦', right:  "╗", other: "═",
+        headerTop: {
+            left: "╔", mid: '╦', right: "╗", other: "═",
         },
         headerBottom: {
-            left: "╟", mid: '╬', right:  "╢", other: "═",
+            left: "╟", mid: '╬', right: "╢", other: "═",
         },
         tableBottom: {
-            left: "╚", mid: '╩', right:  "╝", other: "═",
+            left: "╚", mid: '╩', right: "╝", other: "═",
         },
         vertical: '║'
     }
