@@ -7,9 +7,6 @@
   "scripts": {
     "test": "mocha $NODE_DEBUG_OPTION --timeout 10000"
   },
-  "bin": {
-    "[command-name]": "./bin/index.js"
-  },
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
