@@ -1,4 +1,4 @@
-const {printTable} = require('../src/console-table-printer');
+const { printTable } = require('../src/console-table-printer');
 const assert = require('assert');
 
 describe('Example: Print a simple Table without table instance creation', () => {
