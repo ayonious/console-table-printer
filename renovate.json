@@ -1,6 +1,7 @@
 {
-    "extends": [
-      "config:base"
-    ],
-    "rangeStrategy": "replace"
-  }
+  "extends": [
+    "config:base"
+  ],
+  "rangeStrategy": "bump",
+  "bumpVersion": "patch"
+}
