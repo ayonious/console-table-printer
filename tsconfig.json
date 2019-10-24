@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "dist",
     "target": "es2017",
     "noImplicitAny": false,
@@ -8,12 +7,7 @@
     "module": "commonjs",
     "allowJs": true,
     "lib": ["es2017", "dom"],
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "strict": true,
-    "sourceMap": true,
-    "inlineSources": true,
-    "types": ["node", "jest"]
   },
   "include": ["./src/**/*"]
 }

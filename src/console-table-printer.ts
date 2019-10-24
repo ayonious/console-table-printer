@@ -61,8 +61,3 @@ columns:
         return this.table.printTable();
     }
 }
-
-export = {
-    Table,
-    printTable: printSimpleTable
-}

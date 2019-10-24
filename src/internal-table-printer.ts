@@ -83,7 +83,7 @@ function calculateColumnProperty(table) {
   }
 }
 
-function printTableTest(table) {
+export function printTableTest(table) {
   calculateColumnProperty(table);
   let ret = [];
   printTableHeaders(table).forEach(row => ret.push(row));

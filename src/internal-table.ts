@@ -34,7 +34,7 @@ export class TableInternal {
         ) || [];
     }
 
-    constructor(options) {
+    constructor(options?) {
         if (options === undefined) {
             this.initDefault();
         } else if (options instanceof Array) {
