@@ -1,7 +1,8 @@
-const {TableInternal} = require('./internal-table');
-const {printSimpleTable} = require('./internal-table-printer');
+import {TableInternal} from './internal-table';
+import {printSimpleTable} from './internal-table-printer';
 
-class Table {
+export class Table {
+    table: any;
 /*
 rows:
 [
@@ -36,7 +37,7 @@ columns:
 ]
 */
 
-    constructor(options) {
+    constructor(options?) {
         this.table = new TableInternal(options);
     }
 
@@ -48,7 +49,7 @@ columns:
         this.table.addColumns(columns);
     }
 
-    addRow(text, color) {
+    addRow(text, color?) {
         this.table.addRow(text, color);
     }
 
@@ -61,7 +62,7 @@ columns:
     }
 }
 
-module.exports = {
+export = {
     Table,
     printTable: printSimpleTable
 }

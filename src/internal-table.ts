@@ -1,8 +1,14 @@
-const { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR } = require('./table-constants');
-const { createColum, createRow } = require('./table-helpers');
-const { printTable } = require('./internal-table-printer');
+import { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR } from './table-constants';
+import { createColum, createRow } from './table-helpers';
+import { printTable } from './internal-table-printer';
 
-class TableInternal {
+export class TableInternal {
+    tableStyle: any;
+    columns: any;
+    rows: any;
+    style: any;
+    styleDetails: any;
+
     initSimple(columns) {
         this.tableStyle = TABLE_STYLE.thinBorder;
         this.columns = columns.map(column => (
@@ -79,7 +85,7 @@ class TableInternal {
 
     addRows(toBeInsertedRows) {
         for (let toBeInsertedRow of toBeInsertedRows) {
-            this.addRow(toBeInsertedRow);
+            this.addRow(toBeInsertedRow, undefined);
         }
     }
 
@@ -90,8 +96,4 @@ class TableInternal {
     printTable() {
         return printTable(this);
     }
-}
-
-module.exports = {
-    TableInternal
 }

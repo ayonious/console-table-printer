@@ -1,5 +1,5 @@
-const { Table } = require('../src/console-table-printer');
-const assert = require('assert');
+import * as assert from 'assert';
+import { Table } from '../src/console-table-printer';
 
 describe('Example: Print a simple Table', () => {
 
