@@ -1,8 +1,10 @@
 import {TableInternal} from './internal-table';
 import {printSimpleTable} from './internal-table-printer';
+import { RowOptions, Column } from './table-helpers';
+import { COLOR } from './table-constants';
 
 export class Table {
-    table: any;
+    table: TableInternal;
 /*
 rows:
 [
@@ -41,15 +43,15 @@ columns:
         this.table = new TableInternal(options);
     }
 
-    addColumn(column) {
+    addColumn(column: string) {
         this.table.addColumn(column);
     }
 
-    addColumns(columns) {
+    addColumns(columns: string[]) {
         this.table.addColumns(columns);
     }
 
-    addRow(text, color?) {
+    addRow(text: any, color?: COLOR) {
         this.table.addRow(text, color);
     }
 

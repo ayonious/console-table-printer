@@ -1,3 +1,24 @@
+export interface TABLE_LINE_DETAILS {
+  left: string;
+  mid: string;
+  right: string;
+  other: string;
+};
+
+export interface TABLE_STYLE_DETAILS {
+  headerTop: TABLE_LINE_DETAILS;
+  headerBottom: TABLE_LINE_DETAILS;
+  tableBottom: TABLE_LINE_DETAILS;
+  vertical: string;
+};
+
+export enum TABLE_BORDER_STYLES {
+  thinBorder,
+  fatBorder,
+  customized,
+};
+
+
 export const TABLE_STYLE = {
   thinBorder: {
     /*
@@ -58,26 +79,21 @@ export const TABLE_STYLE = {
   }
 };
 
-export const COLUMN_ALIGNMENT = {
-  left: "left",
-  right: "right"
+export enum COLUMN_ALIGNMENT {
+  left,
+  right
 };
 
-export const COLOR = {
-  red: "red",
-  green: "green",
-  yellow: "yellow",
-  white: "white",
-  blue: "blue",
-  magenta: "magenta",
-  cyan: "cyan",
-  crimson: "crimson",
-  white_bold: "white_bold",
-  reset: "reset"
+export enum COLOR {
+  red,
+  green,
+  yellow,
+  white,
+  blue,
+  magenta,
+  cyan,
+  crimson,
+  white_bold,
+  reset,
 };
 
-export const TABLE_BORDER_STYLES = {
-  thinBorder: "thinBorder",
-  fatBorder: "fatBorder",
-  customized: "customized"
-};

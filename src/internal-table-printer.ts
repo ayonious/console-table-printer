@@ -1,15 +1,17 @@
-import { COLOR } from "./table-constants";
+import { COLOR, TABLE_STYLE_DETAILS } from "./table-constants";
 import { ColoredConsoleLine } from "./colored-console-line";
 import {
   textWithPadding,
   printTableHorizontalBorders,
   createRow,
   createHeaderAsRow,
-  findMaxLenOfColumn
+  findMaxLenOfColumn,
+  Row,
+  Column
 } from "./table-helpers";
 import { TableInternal } from "./internal-table";
 
-function prepareLineAndPrint(tableStyle, columns, row) {
+function prepareLineAndPrint(tableStyle: TABLE_STYLE_DETAILS, columns:Column[], row:Row): string {
   let line = new ColoredConsoleLine();
   line.addWithColor(COLOR.white, tableStyle.vertical);
   for (let column of columns) {
@@ -28,8 +30,8 @@ function prepareLineAndPrint(tableStyle, columns, row) {
 }
 
 // ║ 1     ║     I would like some red wine please ║ 10.212 ║
-function printRow(table, row) {
-  let ret = [];
+function printRow(table: TableInternal, row: Row): string[] {
+  let ret: string[] = [];
   ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
   return ret;
 }
@@ -39,8 +41,8 @@ function printRow(table, row) {
  ║ index ║                                  text ║  value ║
  ╟═══════╬═══════════════════════════════════════╬════════╢
 */
-function printTableHeaders(table) {
-  let ret = [];
+function printTableHeaders(table: TableInternal): string[] {
+  let ret: string[] = [];
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
   ret.push(
@@ -65,8 +67,8 @@ function printTableHeaders(table) {
   return ret;
 }
 
-function printTableEnding(table) {
-  let ret = [];
+function printTableEnding(table: TableInternal):string[] {
+  let ret:string[] = [];
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret.push(
     printTableHorizontalBorders(
@@ -77,13 +79,13 @@ function printTableEnding(table) {
   return ret;
 }
 
-function calculateColumnProperty(table) {
+function calculateColumnProperty(table: TableInternal) {
   for (let column of table.columns) {
     column.max_ln = findMaxLenOfColumn(column, table.rows);
   }
 }
 
-export function printTableTest(table) {
+export function printTableTest(table: TableInternal) {
   calculateColumnProperty(table);
   let ret = [];
   printTableHeaders(table).forEach(row => ret.push(row));
@@ -94,17 +96,16 @@ export function printTableTest(table) {
   return ret;
 }
 
-export function printTable(table) {
+export function printTable(table: TableInternal) {
   printTableTest(table);
 }
 
-export function printSimpleTableTest(rows) {
-  
+export function printSimpleTableTest(rows: Row[]) {
   let table = new TableInternal();
   table.addRows(rows);
   return printTableTest(table);
 }
 
-export function printSimpleTable(rows) {
+export function printSimpleTable(rows: Row[]) {
   printSimpleTableTest(rows);
 }

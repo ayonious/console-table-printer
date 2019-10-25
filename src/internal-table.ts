@@ -1,15 +1,15 @@
-import { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR } from './table-constants';
-import { createColum, createRow } from './table-helpers';
+import { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR, TABLE_STYLE_DETAILS } from './table-constants';
+import { createColum, createRow, Column, Row, RowOptions } from './table-helpers';
 import { printTable } from './internal-table-printer';
 
 export class TableInternal {
-    tableStyle: any;
-    columns: any;
-    rows: any;
-    style: any;
-    styleDetails: any;
+    tableStyle: TABLE_STYLE_DETAILS;
+    columns: Column[];
+    rows: Row[];
+    style: TABLE_BORDER_STYLES;
+    styleDetails: TABLE_STYLE_DETAILS;
 
-    initSimple(columns) {
+    initSimple(columns: string[]) {
         this.tableStyle = TABLE_STYLE.thinBorder;
         this.columns = columns.map(column => (
             {
@@ -45,7 +45,7 @@ export class TableInternal {
         this.rows = [];
     }
 
-    setBorderStyle(style, details) {
+    setBorderStyle(style: TABLE_BORDER_STYLES, details: TABLE_STYLE_DETAILS) {
         switch (style) {
             case TABLE_BORDER_STYLES.customized:
                 this.style = TABLE_BORDER_STYLES.customized;
@@ -59,7 +59,7 @@ export class TableInternal {
 
     }
 
-    createColumnFromRow(text) {
+    createColumnFromRow(text: any) {
         const colNames = this.columns.map(col => col.name);
         for (let key in text) {
             if (!colNames.includes(key)) {
@@ -68,28 +68,28 @@ export class TableInternal {
         }
     }
 
-    addColumn(text) {
+    addColumn(text: string) {
         this.columns.push(createColum(text));
     }
 
-    addColumns(toBeInsertedColumns) {
+    addColumns(toBeInsertedColumns: string[]) {
         for (let toBeInsertedColumn of toBeInsertedColumns) {
             this.addColumn(toBeInsertedColumn);
         }
     }
 
-    addRow(text, options) {
+    addRow(text: any, options: RowOptions) {
         this.createColumnFromRow(text);
         this.rows.push(createRow((options && options.color) || COLOR.white, text));
     }
 
-    addRows(toBeInsertedRows) {
+    addRows(toBeInsertedRows: any) {
         for (let toBeInsertedRow of toBeInsertedRows) {
             this.addRow(toBeInsertedRow, undefined);
         }
     }
 
-    getColumns() {
+    getColumns(): Column[] {
         return this.columns;
     }
 

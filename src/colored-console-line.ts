@@ -24,7 +24,7 @@ export class ColoredConsoleLine {
     this.text += COLOR_MAP.reset;
   }
 
-  printConsole() {
+  printConsole(): string {
     console.log(this.text);
     return this.text;
   }

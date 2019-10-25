@@ -1,6 +1,21 @@
 import { COLUMN_ALIGNMENT, COLOR } from "./table-constants";
 
-export function textWithPadding(text, alignment, size) {
+export interface Column {
+  name: string;
+  alignment?: any;
+  max_ln?: number;
+}
+
+export interface Row {
+  color: COLOR;
+  text: any;
+}
+
+export interface RowOptions {
+  color: COLOR;
+}
+
+export function textWithPadding(text: string, alignment: COLUMN_ALIGNMENT, size: number):string {
   switch (alignment) {
     case COLUMN_ALIGNMENT.left:
       return text.padEnd(size);
@@ -25,15 +40,15 @@ export function createTableHorizontalBorders(
   return ret;
 }
 
-export function createColum(name) {
+export function createColum(name: string):Column {
   return { name };
 }
 
-export function createRow(color, text) {
+export function createRow(color: COLOR, text: string): Row {
   return { color, text };
 }
 
-export function findMaxLenOfColumn(column, rows) {
+export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   let column_name = column.name;
   let max_ln = `${column_name}`.length;
   for (let row of rows) {
@@ -42,14 +57,14 @@ export function findMaxLenOfColumn(column, rows) {
   return max_ln;
 }
 
-export function printTableHorizontalBorders(style, column_lengths) {
+export function printTableHorizontalBorders(style, column_lengths): string {
   const str = createTableHorizontalBorders(style, column_lengths);
   console.log(str);
   return str;
 }
 
-export function createHeaderAsRow(createRow, columns) {
-  let row = createRow(COLOR.white_bold, {});
+export function createHeaderAsRow(createRow, columns: Column[]): Row {
+  let row: Row = createRow(COLOR.white_bold, {});
   for (let column of columns) {
     row.text[column.name] = column.name;
   }
