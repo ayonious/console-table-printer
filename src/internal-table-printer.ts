@@ -100,7 +100,7 @@ export function printTable(table: TableInternal) {
   printTableTest(table);
 }
 
-export function printSimpleTableTest(rows: Row[]) {
+export function printSimpleTableTest(rows: any[]) {
   let table = new TableInternal();
   table.addRows(rows);
   return printTableTest(table);
