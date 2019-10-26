@@ -1,43 +1,10 @@
 import {TableInternal} from './internal-table';
 import {printSimpleTable} from './internal-table-printer';
-import { RowOptions, Column } from './table-helpers';
+import { RowOptionsRaw, Column, convertRawRowOptionsToStanrd } from './table-helpers';
 import { COLOR } from './table-constants';
 
 export class Table {
     table: TableInternal;
-/*
-rows:
-[
-    {
-        color: 'red',
-        text: {
-            name: 'adsf'
-            age: '12'
-        }
-    }.
-    {
-        color: 'green',
-        text: {
-            name: 'adsf'
-            age: '12'
-        }
-    }
-]
-
-columns:
-[
-    {
-        max_ln: 10,
-        alignment: 'left',
-        name: 'name'
-    },
-    {
-        max_ln: 2,
-        alignment: 'left',
-        name: 'age'
-    }
-]
-*/
 
     constructor(options?) {
         this.table = new TableInternal(options);
@@ -51,8 +18,8 @@ columns:
         this.table.addColumns(columns);
     }
 
-    addRow(text: any, color?: COLOR) {
-        this.table.addRow(text, color);
+    addRow(text: any, rowOptions?: RowOptionsRaw) {
+        this.table.addRow(text, convertRawRowOptionsToStanrd(rowOptions));
     }
 
     addRows(toBeInsertedRows) {

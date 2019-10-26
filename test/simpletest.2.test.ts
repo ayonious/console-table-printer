@@ -1,4 +1,3 @@
-import * as assert from 'assert';
 import { Table } from '../src/console-table-printer';
 
 describe('Example: Print a simple Table', () => {
@@ -17,7 +16,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
 
@@ -28,7 +27,7 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 2, text: 'green gemuse', value: 20.00 }, { color: 'green' });
         p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, { color: 'yellow' });
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
 
@@ -51,7 +50,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p2.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`table With 3 rows`, function () {
@@ -71,7 +70,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`fat Border Table`, function () {
@@ -92,7 +91,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`simple table constructor`, function () {
@@ -106,7 +105,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`without color`, function () {
@@ -120,7 +119,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
 
@@ -138,7 +137,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`column creation`, function () {
@@ -156,7 +155,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`create column from rows`, function () {
@@ -173,6 +172,6 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 });

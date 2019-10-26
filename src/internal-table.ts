@@ -78,7 +78,7 @@ export class TableInternal {
         }
     }
 
-    addRow(text: any, options: RowOptions) {
+    addRow(text: any, options?: RowOptions) {
         this.createColumnFromRow(text);
         this.rows.push(createRow((options && options.color) || COLOR.white, text));
     }
