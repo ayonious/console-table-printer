@@ -1,15 +1,15 @@
 {
   "name": "console-table-printer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "index.js",
   "scripts": {
-    "test": "mocha $NODE_DEBUG_OPTION --timeout 10000"
+    "test": "jest"
   },
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^6.2.2"
+    "jest": "^24.9.0"
   }
 }

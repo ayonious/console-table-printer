@@ -17,7 +17,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBe(undefined);
     });
 
 
