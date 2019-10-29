@@ -106,6 +106,6 @@ export function printSimpleTableTest(rows: any[]) {
   return printTableTest(table);
 }
 
-export function printSimpleTable(rows: Row[]) {
+export function printSimpleTable(rows: any[]) {
   printSimpleTableTest(rows);
 }
