@@ -1,5 +1,4 @@
 const { printSimpleTableTest } = require('../src/internal-table-printer');
-const assert = require('assert');
 
 describe('Example: Print a simple Table without table instance creation', () => {
     it(`simple print`, function () {
