@@ -5,7 +5,7 @@
   "description": "Printing pretty tables on console log",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --config jestconfig.json"
   },
   "author": "Nahiyan Kamal",
   "license": "MIT",
