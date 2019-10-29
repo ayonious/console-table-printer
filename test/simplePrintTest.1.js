@@ -16,6 +16,6 @@ describe('Example: Print a simple Table without table instance creation', () => 
             '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mI would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
             '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m      I hope batch update is working\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
             '└───────┴──────────────────────────────────────┴───────┘'];
-            expect(JSON.stringify(tableArray)).toBe(JSON.stringify(expect));
+            expect(JSON.stringify(tableArray)).toBe(JSON.stringify(expected));
     });
 });
