@@ -11,7 +11,6 @@ export interface Row {
   text: any;
 }
 
-
 export function convertRawRowOptionsToStanrd(options?: RowOptionsRaw): RowOptions | undefined {
   if(options && options.color) {
     return {

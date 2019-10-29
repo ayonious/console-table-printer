@@ -10,7 +10,7 @@ const COLOR_MAP = {
   [COLOR.white]: "\x1b[37m",
   [COLOR.crimson]: "\x1b[38m",
   [COLOR.white_bold]: "\x1b[01m",
-  [COLOR.reset]: "\x1b[0m"
+  [COLOR.reset]: "\x1b[0m",
 };
 
 export class ColoredConsoleLine {

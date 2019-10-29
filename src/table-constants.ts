@@ -85,6 +85,7 @@ export enum COLUMN_ALIGNMENT {
 };
 
 export enum COLOR {
+  NO_COLOR, // I added this for a reason I dont know. Without this red color was not getting printed on console
   red,
   green,
   yellow,
