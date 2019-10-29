@@ -10,6 +10,6 @@
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^6.2.2"
+    "jest": "^24.9.0"
   }
 }
