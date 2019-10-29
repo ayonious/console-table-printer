@@ -80,8 +80,9 @@ export const TABLE_STYLE = {
 };
 
 export enum COLUMN_ALIGNMENT {
+  SOME_ELSE,
+  right, 
   left,
-  right
 };
 
 export enum COLOR {
