@@ -6,6 +6,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "setup": "npm install",
+    "build": "tsc",
     "test": "jest --config jestconfig.json"
   },
   "author": "Nahiyan Kamal",
