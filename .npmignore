@@ -68,3 +68,4 @@ coverage
 renovate.json
 .travis.yml
 static-resources
+src

@@ -1,7 +1,7 @@
-const { Table } = require('../src/console-table-printer');
-const assert = require('assert');
+import { Table } from '../src/console-table-printer';
 
 describe('Example: Print a simple Table', () => {
+
 
     it(`Readme Example1`, function () {
         //Create a table
@@ -17,7 +17,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        expect(returned).toBe(undefined);
+        expect(returned).toBeUndefined();
     });
 
 
@@ -28,12 +28,14 @@ describe('Example: Print a simple Table', () => {
         p.addRow({ index: 2, text: 'green gemuse', value: 20.00 }, { color: 'green' });
         p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, { color: 'yellow' });
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
+    
 
     it(`Readme Example: screenshots generator for style`, function () {
         //Create a table
+        
         const p1 = new Table();
 
         //add rows with color
@@ -42,6 +44,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         p1.printTable();
+        
 
         const p2 = new Table({ style: 'fatBorder' });
 
@@ -51,10 +54,11 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p2.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
-    it(`table With 3 rows`, function () {
+
+    it(`table With all colored rows`, function () {
         //Create a table
         const p = new Table({
             columns: [
@@ -65,15 +69,20 @@ describe('Example: Print a simple Table', () => {
         });
 
         //add rows with color
-        p.addRow({ index: 1, text: 'I would like some red wine please', value: 10.212 }, { color: 'red' });
-        p.addRow({ index: 2, text: 'I would like some green gemuse please', value: 20.00 }, { color: 'green' });
-        p.addRow({ index: 3, text: 'I would like some gelb bananen bitte', value: 100 }, { color: 'yellow' });
+        p.addRow({ index: 2, text: 'I would like some blue poison please', value: 10.212 }, { color: 'blue' });
+        p.addRow({ index: 3, text: 'I would like some red wine please', value: 10.212 }, { color: 'red' });
+        p.addRow({ index: 4, text: 'I would like some cyan wine please', value: 10.212 }, { color: 'cyan' });
+        p.addRow({ index: 5, text: 'I would like some white_bold wine please', value: 10.212 }, { color: 'white_bold' });
+        p.addRow({ index: 6, text: 'I would like some crimson sky please', value: 10.212 }, { color: 'crimson' });
+        p.addRow({ index: 7, text: 'I would like some green gemuse please', value: 20.00 }, { color: 'green' });
+        p.addRow({ index: 8, text: 'I would like some gelb bananen bitte', value: 100 }, { color: 'yellow' });
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
+   
     it(`fat Border Table`, function () {
         //Create a table
         const p = new Table({
@@ -92,7 +101,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`simple table constructor`, function () {
@@ -106,7 +115,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`without color`, function () {
@@ -120,7 +129,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
 
@@ -138,7 +147,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`column creation`, function () {
@@ -156,7 +165,7 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 
     it(`create column from rows`, function () {
@@ -173,6 +182,6 @@ describe('Example: Print a simple Table', () => {
 
         //print
         const returned = p.printTable();
-        assert.equal(returned, undefined, "Didnt Match the table");
+        expect(returned).toBeUndefined();
     });
 });

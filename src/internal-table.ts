@@ -1,9 +1,24 @@
-const { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR } = require('./table-constants');
-const { createColum, createRow } = require('./table-helpers');
-const { printTable } = require('./internal-table-printer');
+import { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR, TABLE_STYLE_DETAILS } from './table-constants';
+import { createColum, createRow, Column, Row, RowOptions } from './table-helpers';
+import { printTable } from './internal-table-printer';
 
-class TableInternal {
-    initSimple(columns) {
+export interface ComplexOptions {
+    style: string,
+    columns: [{
+        name: string,
+        alignment: string
+    }],
+}
+
+
+export class TableInternal {
+    tableStyle: TABLE_STYLE_DETAILS;
+    columns: Column[];
+    rows: Row[];
+    style: TABLE_BORDER_STYLES;
+    styleDetails: TABLE_STYLE_DETAILS;
+
+    initSimple(columns: string[]) {
         this.tableStyle = TABLE_STYLE.thinBorder;
         this.columns = columns.map(column => (
             {
@@ -18,17 +33,17 @@ class TableInternal {
         this.columns = [];
     }
 
-    initDetailed(options) {
+    initDetailed(options: ComplexOptions) {
         this.tableStyle = (options.style && TABLE_STYLE[options.style]) || TABLE_STYLE.thinBorder;
         this.columns = options.columns && options.columns.map(column => (
             {
                 name: column.name,
-                alignment: column.alignment || COLUMN_ALIGNMENT.right
+                alignment: (column.alignment && COLUMN_ALIGNMENT[column.alignment]) || COLUMN_ALIGNMENT.right
             })
         ) || [];
     }
 
-    constructor(options) {
+    constructor(options?: ComplexOptions | string[]) {
         if (options === undefined) {
             this.initDefault();
         } else if (options instanceof Array) {
@@ -39,7 +54,7 @@ class TableInternal {
         this.rows = [];
     }
 
-    setBorderStyle(style, details) {
+    setBorderStyle(style: TABLE_BORDER_STYLES, details: TABLE_STYLE_DETAILS) {
         switch (style) {
             case TABLE_BORDER_STYLES.customized:
                 this.style = TABLE_BORDER_STYLES.customized;
@@ -53,7 +68,7 @@ class TableInternal {
 
     }
 
-    createColumnFromRow(text) {
+    createColumnFromRow(text: any) {
         const colNames = this.columns.map(col => col.name);
         for (let key in text) {
             if (!colNames.includes(key)) {
@@ -62,36 +77,32 @@ class TableInternal {
         }
     }
 
-    addColumn(text) {
+    addColumn(text: string) {
         this.columns.push(createColum(text));
     }
 
-    addColumns(toBeInsertedColumns) {
+    addColumns(toBeInsertedColumns: string[]) {
         for (let toBeInsertedColumn of toBeInsertedColumns) {
             this.addColumn(toBeInsertedColumn);
         }
     }
 
-    addRow(text, options) {
+    addRow(text: any, options?: RowOptions) {
         this.createColumnFromRow(text);
         this.rows.push(createRow((options && options.color) || COLOR.white, text));
     }
 
-    addRows(toBeInsertedRows) {
+    addRows(toBeInsertedRows: any) {
         for (let toBeInsertedRow of toBeInsertedRows) {
-            this.addRow(toBeInsertedRow);
+            this.addRow(toBeInsertedRow, undefined);
         }
     }
 
-    getColumns() {
+    getColumns(): Column[] {
         return this.columns;
     }
 
     printTable() {
         return printTable(this);
     }
-}
-
-module.exports = {
-    TableInternal
 }

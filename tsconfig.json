@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es2017",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "module": "commonjs",
+    "declaration": true,
+    "lib": ["es2017", "dom"],
+    "strict": true,
+    "types": ["jest"],
+    "sourceMap": true
+  },
+  "include": ["./src/**/*", "index.ts"]
+}

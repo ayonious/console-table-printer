@@ -2,6 +2,9 @@ language: node_js
 node_js:
 - stable
 - "--lts"
+before_script:
+  - npm run setup
+  - npm run build
 deploy:
   provider: npm
   email: jaissatai6@gmail.com
