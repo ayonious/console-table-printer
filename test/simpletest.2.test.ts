@@ -2,7 +2,7 @@ import { Table } from '../src/console-table-printer';
 
 describe('Example: Print a simple Table', () => {
 
-    /*
+
     it(`Readme Example1`, function () {
         //Create a table
         const p = new Table();
@@ -57,9 +57,7 @@ describe('Example: Print a simple Table', () => {
         expect(returned).toBeUndefined();
     });
 
-    */
 
-    
     it(`table With all colored rows`, function () {
         //Create a table
         const p = new Table({
@@ -83,8 +81,8 @@ describe('Example: Print a simple Table', () => {
         const returned = p.printTable();
         expect(returned).toBeUndefined();
     });
-    /*
 
+   
     it(`fat Border Table`, function () {
         //Create a table
         const p = new Table({
@@ -185,5 +183,5 @@ describe('Example: Print a simple Table', () => {
         //print
         const returned = p.printTable();
         expect(returned).toBeUndefined();
-    });*/
+    });
 });

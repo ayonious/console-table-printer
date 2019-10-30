@@ -2,7 +2,7 @@ import { COLUMN_ALIGNMENT, COLOR } from "./table-constants";
 
 export interface Column {
   name: string;
-  alignment?: any;
+  alignment?: COLUMN_ALIGNMENT;
   max_ln?: number;
 }
 

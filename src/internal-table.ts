@@ -2,6 +2,15 @@ import { TABLE_STYLE, TABLE_BORDER_STYLES, COLUMN_ALIGNMENT, COLOR, TABLE_STYLE_
 import { createColum, createRow, Column, Row, RowOptions } from './table-helpers';
 import { printTable } from './internal-table-printer';
 
+export interface ComplexOptions {
+    style: string,
+    columns: [{
+        name: string,
+        alignment: string
+    }],
+}
+
+
 export class TableInternal {
     tableStyle: TABLE_STYLE_DETAILS;
     columns: Column[];
@@ -24,17 +33,17 @@ export class TableInternal {
         this.columns = [];
     }
 
-    initDetailed(options) {
+    initDetailed(options: ComplexOptions) {
         this.tableStyle = (options.style && TABLE_STYLE[options.style]) || TABLE_STYLE.thinBorder;
         this.columns = options.columns && options.columns.map(column => (
             {
                 name: column.name,
-                alignment: column.alignment || COLUMN_ALIGNMENT.right
+                alignment: (column.alignment && COLUMN_ALIGNMENT[column.alignment]) || COLUMN_ALIGNMENT.right
             })
         ) || [];
     }
 
-    constructor(options?) {
+    constructor(options?: ComplexOptions | string[]) {
         if (options === undefined) {
             this.initDefault();
         } else if (options instanceof Array) {

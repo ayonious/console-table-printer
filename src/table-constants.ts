@@ -13,8 +13,8 @@ export interface TABLE_STYLE_DETAILS {
 };
 
 export enum TABLE_BORDER_STYLES {
-  thinBorder,
   fatBorder,
+  thinBorder,
   customized,
 };
 
@@ -80,7 +80,6 @@ export const TABLE_STYLE = {
 };
 
 export enum COLUMN_ALIGNMENT {
-  SOME_ELSE,
   right, 
   left,
 };
