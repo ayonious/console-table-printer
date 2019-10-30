@@ -5,10 +5,10 @@
     "noImplicitAny": false,
     "strictNullChecks": false,
     "module": "commonjs",
-    "allowJs": true,
+    "declaration": true,
     "lib": ["es2017", "dom"],
     "strict": true,
     "types": ["jest"]
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "index.ts"]
 }
