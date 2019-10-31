@@ -3,21 +3,20 @@ export interface TABLE_LINE_DETAILS {
   mid: string;
   right: string;
   other: string;
-};
+}
 
 export interface TABLE_STYLE_DETAILS {
   headerTop: TABLE_LINE_DETAILS;
   headerBottom: TABLE_LINE_DETAILS;
   tableBottom: TABLE_LINE_DETAILS;
   vertical: string;
-};
+}
 
 export enum TABLE_BORDER_STYLES {
   fatBorder,
   thinBorder,
-  customized,
-};
-
+  customized
+}
 
 export const TABLE_STYLE = {
   thinBorder: {
@@ -80,9 +79,9 @@ export const TABLE_STYLE = {
 };
 
 export enum COLUMN_ALIGNMENT {
-  right, 
-  left,
-};
+  right,
+  left
+}
 
 export enum COLOR {
   NO_COLOR, // I added this for a reason I dont know. Without this red color was not getting printed on console
@@ -95,6 +94,5 @@ export enum COLOR {
   cyan,
   crimson,
   white_bold,
-  reset,
-};
-
+  reset
+}
