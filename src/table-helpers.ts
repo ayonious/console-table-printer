@@ -11,8 +11,10 @@ export interface Row {
   text: any;
 }
 
-export function convertRawRowOptionsToStanrd(options?: RowOptionsRaw): RowOptions | undefined {
-  if(options && options.color) {
+export function convertRawRowOptionsToStanrd(
+  options?: RowOptionsRaw
+): RowOptions | undefined {
+  if (options && options.color) {
     return {
       color: COLOR[options.color]
     };
@@ -28,7 +30,11 @@ export interface RowOptions {
   color: COLOR;
 }
 
-export function textWithPadding(text: string, alignment: COLUMN_ALIGNMENT, size: number):string {
+export function textWithPadding(
+  text: string,
+  alignment: COLUMN_ALIGNMENT,
+  size: number
+): string {
   switch (alignment) {
     case COLUMN_ALIGNMENT.left:
       return text.padEnd(size);
@@ -53,7 +59,7 @@ export function createTableHorizontalBorders(
   return ret;
 }
 
-export function createColum(name: string):Column {
+export function createColum(name: string): Column {
   return { name };
 }
 

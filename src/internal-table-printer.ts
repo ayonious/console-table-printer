@@ -11,7 +11,11 @@ import {
 } from "./table-helpers";
 import { TableInternal } from "./internal-table";
 
-function prepareLineAndPrint(tableStyle: TABLE_STYLE_DETAILS, columns:Column[], row:Row): string {
+function prepareLineAndPrint(
+  tableStyle: TABLE_STYLE_DETAILS,
+  columns: Column[],
+  row: Row
+): string {
   let line = new ColoredConsoleLine();
   line.addWithColor(COLOR.white, tableStyle.vertical);
   for (let column of columns) {
@@ -67,8 +71,8 @@ function printTableHeaders(table: TableInternal): string[] {
   return ret;
 }
 
-function printTableEnding(table: TableInternal):string[] {
-  let ret:string[] = [];
+function printTableEnding(table: TableInternal): string[] {
+  let ret: string[] = [];
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret.push(
     printTableHorizontalBorders(
