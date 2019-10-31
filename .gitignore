@@ -18,7 +18,7 @@ lib-cov
 coverage
 
 # dist directory created by ts
-# dist
+dist
 
 # nyc test coverage
 .nyc_output
