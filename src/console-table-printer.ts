@@ -1,7 +1,5 @@
 import {TableInternal} from './internal-table';
-import {printSimpleTable} from './internal-table-printer';
-import { RowOptionsRaw, Column, convertRawRowOptionsToStanrd } from './table-helpers';
-import { COLOR } from './table-constants';
+import { RowOptionsRaw, convertRawRowOptionsToStanrd } from './table-helpers';
 
 export class Table {
     table: TableInternal;

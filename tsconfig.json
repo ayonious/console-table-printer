@@ -8,8 +8,7 @@
     "declaration": true,
     "lib": ["es2017", "dom"],
     "strict": true,
-    "types": ["jest"],
-    "sourceMap": true
+    "types": ["jest"]
   },
   "include": ["src/**/*", "index.ts"]
 }
