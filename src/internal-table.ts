@@ -54,20 +54,6 @@ export class TableInternal {
         this.rows = [];
     }
 
-    setBorderStyle(style: TABLE_BORDER_STYLES, details: TABLE_STYLE_DETAILS) {
-        switch (style) {
-            case TABLE_BORDER_STYLES.customized:
-                this.style = TABLE_BORDER_STYLES.customized;
-                this.styleDetails = details;
-            case TABLE_BORDER_STYLES.thinBorder:
-            case TABLE_BORDER_STYLES.fatBorder:
-                this.style = style;
-            default:
-                this.style = style;
-        }
-
-    }
-
     createColumnFromRow(text: any) {
         const colNames = this.columns.map(col => col.name);
         for (let key in text) {
@@ -96,10 +82,6 @@ export class TableInternal {
         for (let toBeInsertedRow of toBeInsertedRows) {
             this.addRow(toBeInsertedRow, undefined);
         }
-    }
-
-    getColumns(): Column[] {
-        return this.columns;
     }
 
     printTable() {
