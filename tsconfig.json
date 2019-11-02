@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2017",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictNullChecks": false,
     "module": "commonjs",
     "declaration": true,

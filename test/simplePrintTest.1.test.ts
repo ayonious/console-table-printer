@@ -18,6 +18,5 @@ describe("Example: Print a simple Table without table instance creation", () => 
     ];
 
     expect(JSON.stringify(tableArray)).toBe(JSON.stringify(expected));
-
   });
 });

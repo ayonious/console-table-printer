@@ -91,7 +91,7 @@ function calculateColumnProperty(table: TableInternal) {
 
 export function printTableTest(table: TableInternal): string[] {
   calculateColumnProperty(table);
-  let ret = [];
+  let ret: string[] = [];
   printTableHeaders(table).forEach(row => ret.push(row));
   for (let row of table.rows) {
     printRow(table, row).forEach(row => ret.push(row));

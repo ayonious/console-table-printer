@@ -13,10 +13,10 @@ export interface Row {
 
 export function convertRawRowOptionsToStanrd(
   options?: RowOptionsRaw
-): RowOptions | undefined {
-  if (options && options.color) {
+): RowOptions {
+  if (options) {
     return {
-      color: COLOR[options.color]
+      color: (<any>COLOR)[options.color]
     };
   }
   return undefined;
@@ -46,8 +46,8 @@ export function textWithPadding(
 }
 
 export function createTableHorizontalBorders(
-  { left, mid, right, other },
-  column_lengths
+  { left, mid, right, other }: { left: string, mid: string, right: string, other:string },
+  column_lengths: number[]
 ) {
   let ret = left;
   for (let len of column_lengths) {
@@ -76,13 +76,13 @@ export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   return max_ln;
 }
 
-export function printTableHorizontalBorders(style, column_lengths): string {
+export function printTableHorizontalBorders(style: any, column_lengths: number[]): string {
   const str = createTableHorizontalBorders(style, column_lengths);
   console.log(str);
   return str;
 }
 
-export function createHeaderAsRow(createRow, columns: Column[]): Row {
+export function createHeaderAsRow(createRow: any, columns: Column[]): Row {
   let row: Row = createRow(COLOR.white_bold, {});
   for (let column of columns) {
     row.text[column.name] = column.name;
