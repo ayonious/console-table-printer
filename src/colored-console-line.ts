@@ -21,7 +21,7 @@ export class ColoredConsoleLine {
   }
 
   addWithColor(color: COLOR, text: string) {
-    this.text += COLOR_MAP[color];
+    this.text += color && COLOR_MAP[color];
     this.text += text;
     this.text += COLOR_MAP[COLOR.reset];
   }

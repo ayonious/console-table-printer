@@ -14,14 +14,14 @@ import {
 } from "./table-helpers";
 import { printTable } from "./internal-table-printer";
 
+interface ColumnOptionsRaw {
+  name: string;
+  alignment? : string;
+}
+
 export interface ComplexOptions {
-  style: string;
-  columns: [
-    {
-      name: string;
-      alignment: string;
-    }
-  ];
+  style?: string;
+  columns?: ColumnOptionsRaw[];
 }
 
 export class TableInternal {
@@ -46,14 +46,12 @@ export class TableInternal {
 
   initDetailed(options: ComplexOptions) {
     this.tableStyle =
-      (options.style && TABLE_STYLE[options.style]) || TABLE_STYLE.thinBorder;
+      (options && options.style && (<any>TABLE_STYLE)[options.style]) || TABLE_STYLE.thinBorder;
     this.columns =
       (options.columns &&
         options.columns.map(column => ({
           name: column.name,
-          alignment:
-            (column.alignment && COLUMN_ALIGNMENT[column.alignment]) ||
-            COLUMN_ALIGNMENT.right
+          alignment: (<any>COLUMN_ALIGNMENT)[column.alignment] || COLUMN_ALIGNMENT.right
         }))) ||
       [];
   }

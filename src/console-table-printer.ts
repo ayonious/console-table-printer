@@ -1,10 +1,10 @@
-import { TableInternal } from "./internal-table";
+import { TableInternal, ComplexOptions } from "./internal-table";
 import { RowOptionsRaw, convertRawRowOptionsToStanrd } from "./table-helpers";
 
 export class Table {
   table: TableInternal;
 
-  constructor(options?) {
+  constructor(options?: ComplexOptions | string[]) {
     this.table = new TableInternal(options);
   }
 
@@ -20,7 +20,7 @@ export class Table {
     this.table.addRow(text, convertRawRowOptionsToStanrd(rowOptions));
   }
 
-  addRows(toBeInsertedRows) {
+  addRows(toBeInsertedRows: any) {
     this.table.addRows(toBeInsertedRows);
   }
 
