@@ -35,7 +35,7 @@ export class TableInternal {
     this.columns = columns.map(column => ({
       name: column,
       alignment: COLUMN_ALIGNMENT.right
-    })) || [];
+    }));
   }
 
   initDetailed(options: ComplexOptions) {
