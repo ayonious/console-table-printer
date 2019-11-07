@@ -32,16 +32,10 @@ export class TableInternal {
   styleDetails: TABLE_STYLE_DETAILS;
 
   initSimple(columns: string[]) {
-    this.tableStyle = TABLE_STYLE.thinBorder;
     this.columns = columns.map(column => ({
       name: column,
       alignment: COLUMN_ALIGNMENT.right
-    }));
-  }
-
-  initDefault() {
-    this.tableStyle = TABLE_STYLE.thinBorder;
-    this.columns = [];
+    })) || [];
   }
 
   initDetailed(options: ComplexOptions) {
@@ -51,20 +45,22 @@ export class TableInternal {
       (options.columns &&
         options.columns.map(column => ({
           name: column.name,
-          alignment: (<any>COLUMN_ALIGNMENT)[column.alignment] || COLUMN_ALIGNMENT.right
+          alignment: (<any>COLUMN_ALIGNMENT)[column.alignment || COLUMN_ALIGNMENT.right]
         }))) ||
       [];
   }
 
   constructor(options?: ComplexOptions | string[]) {
-    if (options === undefined) {
-      this.initDefault();
-    } else if (options instanceof Array) {
+    // default construction
+    this.rows = [];
+    this.columns = [];
+    this.tableStyle = TABLE_STYLE.thinBorder;
+
+    if (options instanceof Array) {
       this.initSimple(options);
     } else if (typeof options === "object") {
       this.initDetailed(options);
     }
-    this.rows = [];
   }
 
   createColumnFromRow(text: any) {
