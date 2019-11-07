@@ -53,7 +53,6 @@ export class TableInternal {
   constructor(options?: ComplexOptions | string[]) {
     // default construction
     this.rows = [];
-    this.tableStyle = TABLE_STYLE.thinBorder;
     this.columns = [];
     this.tableStyle = TABLE_STYLE.thinBorder;
 
