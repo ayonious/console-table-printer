@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -16,7 +16,7 @@
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^24.0.22",
+    "@types/jest": "^24.0.23",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
