@@ -1,11 +1,24 @@
-# Print Pretty tables on Your Console
-
-[![Build Status](https://travis-ci.org/ayonious/console-table-printer.svg?branch=master)](https://travis-ci.org/ayonious/console-table-printer)
-[![codecov](https://codecov.io/gh/ayonious/console-table-printer/branch/master/graph/badge.svg)](https://codecov.io/gh/ayonious/console-table-printer)
-[![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
-[![install size](https://packagephobia.now.sh/badge?p=console-table-printer@1.1.10)](https://packagephobia.now.sh/result?p=console-table-printer@1.1.10)
-[![dependencies Status](https://david-dm.org/ayonious/console-table-printer/status.svg)](https://david-dm.org/ayonious/console-table-printer)
-[![devDependencies Status](https://david-dm.org/ayonious/console-table-printer/dev-status.svg)](https://david-dm.org/ayonious/console-table-printer?type=dev)
+<h1 align="center">console-table-printer</h1>
+<h3 align="center">🖥️🍭Printing Pretty Tables on your console</h3>
+<p align="center">
+  <a href="https://travis-ci.org/ayonious/console-table-printer">
+    <img alt="Build Status" src="https://travis-ci.org/ayonious/console-table-printer.svg?branch=master">
+  </a>
+  <a href="https://codecov.io/gh/ayonious/console-table-printer">
+    <img alt="codecov" src="https://codecov.io/gh/ayonious/console-table-printer/branch/master/graph/badge.svg">
+  </a>
+  <a href="https://badge.fury.io/js/console-table-printer">
+    <img alt="npm version" src="https://badge.fury.io/js/console-table-printer.svg">
+  </a>
+</p>
+<p align="center">
+  <a href="https://david-dm.org/ayonious/console-table-printer">
+    <img alt="dependencies Status" src="https://david-dm.org/ayonious/console-table-printer/status.svg">
+  </a>
+  <a href="https://david-dm.org/ayonious/console-table-printer?type=dev">
+    <img alt="devDependencies Status" src="https://david-dm.org/ayonious/console-table-printer/dev-status.svg">
+  </a>
+</p>
 
 ## Synopsis
 
