@@ -10,6 +10,9 @@
   <a href="https://badge.fury.io/js/console-table-printer">
     <img alt="npm version" src="https://badge.fury.io/js/console-table-printer.svg">
   </a>
+  <a href="https://packagephobia.now.sh/result?p=console-table-printer@latest">
+    <img alt="install size" src="https://packagephobia.now.sh/badge?p=console-table-printer@latest">
+  </a>
 </p>
 <p align="center">
   <a href="https://david-dm.org/ayonious/console-table-printer">
