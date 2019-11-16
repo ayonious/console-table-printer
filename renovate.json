@@ -3,5 +3,6 @@
     "config:base"
   ],
   "rangeStrategy": "bump",
-  "bumpVersion": "patch"
+  "bumpVersion": "patch",
+  "automerge": true
 }
