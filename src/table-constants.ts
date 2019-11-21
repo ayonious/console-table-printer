@@ -1,11 +1,10 @@
-export interface TABLE_LINE_DETAILS {
-  left: string;
-  mid: string;
-  right: string;
-  other: string;
+type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other'
+
+export type TABLE_LINE_DETAILS ={
+  [key in TABLE_LINE_DETAILS_KEYS]: string;
 }
 
-export interface TABLE_STYLE_DETAILS {
+export type TABLE_STYLE_DETAILS = {
   headerTop: TABLE_LINE_DETAILS;
   headerBottom: TABLE_LINE_DETAILS;
   tableBottom: TABLE_LINE_DETAILS;

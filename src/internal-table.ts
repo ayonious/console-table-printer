@@ -29,7 +29,6 @@ export class TableInternal {
   columns: Column[];
   rows: Row[];
   style: TABLE_BORDER_STYLES;
-  styleDetails: TABLE_STYLE_DETAILS;
 
   initSimple(columns: string[]) {
     this.columns = columns.map(column => ({
@@ -55,6 +54,7 @@ export class TableInternal {
     this.rows = [];
     this.columns = [];
     this.tableStyle = TABLE_STYLE.thinBorder;
+    this.style = TABLE_BORDER_STYLES.thinBorder;
 
     if (options instanceof Array) {
       this.initSimple(options);

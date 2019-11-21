@@ -1,5 +1,6 @@
 import { COLOR } from "./table-constants";
 
+
 const COLOR_MAP = {
   [COLOR.red]: "\x1b[31m",
   [COLOR.green]: "\x1b[32m",

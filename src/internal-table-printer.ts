@@ -1,4 +1,4 @@
-import { COLOR, TABLE_STYLE_DETAILS } from "./table-constants";
+import { COLOR, TABLE_STYLE_DETAILS, COLUMN_ALIGNMENT } from "./table-constants";
 import { ColoredConsoleLine } from "./colored-console-line";
 import {
   textWithPadding,
@@ -24,8 +24,8 @@ function prepareLineAndPrint(
       row.color,
       textWithPadding(
         `${row.text[column.name] || ""}`,
-        column.alignment,
-        column.max_ln
+        column.alignment || COLUMN_ALIGNMENT.right,
+        column.max_ln || 20
       )
     );
     line.addWithColor(COLOR.white, " " + tableStyle.vertical);
@@ -52,7 +52,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map(m => m.max_ln)
+      table.columns.map(m => (m.max_ln || 20))
     )
   );
 
@@ -64,7 +64,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map(m => m.max_ln)
+      table.columns.map(m => (m.max_ln || 20))
     )
   );
 
@@ -77,7 +77,7 @@ function printTableEnding(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map(m => m.max_ln)
+      table.columns.map(m => (m.max_ln || 20))
     )
   );
   return ret;
