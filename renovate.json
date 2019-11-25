@@ -4,5 +4,8 @@
   ],
   "rangeStrategy": "bump",
   "bumpVersion": "patch",
-  "automerge": true
+  "automerge": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
