@@ -1,46 +1,46 @@
-import { printTable } from './internal-table-printer'
+import { printTable } from './internal-table-printer';
 import {
   COLOR,
   COLUMN_ALIGNMENT,
   TABLE_BORDER_STYLES,
   TABLE_STYLE,
   TABLE_STYLE_DETAILS,
-} from './table-constants'
+} from './table-constants';
 import {
   Column,
   createColum,
   createRow,
   Row,
   RowOptions,
-} from './table-helpers'
+} from './table-helpers';
 
 interface ColumnOptionsRaw {
-  name: string
-  alignment?: string
+  name: string;
+  alignment?: string;
 }
 
 export interface ComplexOptions {
-  style?: string
-  columns?: ColumnOptionsRaw[]
+  style?: string;
+  columns?: ColumnOptionsRaw[];
 }
 
 export class TableInternal {
-  tableStyle: TABLE_STYLE_DETAILS
-  columns: Column[]
-  rows: Row[]
-  style: TABLE_BORDER_STYLES
+  tableStyle: TABLE_STYLE_DETAILS;
+  columns: Column[];
+  rows: Row[];
+  style: TABLE_BORDER_STYLES;
 
   initSimple(columns: string[]) {
     this.columns = columns.map(column => ({
       name: column,
       alignment: COLUMN_ALIGNMENT.right,
-    }))
+    }));
   }
 
   initDetailed(options: ComplexOptions) {
     this.tableStyle =
       (options && options.style && (<any>TABLE_STYLE)[options.style]) ||
-      TABLE_STYLE.thinBorder
+      TABLE_STYLE.thinBorder;
     this.columns =
       (options.columns &&
         options.columns.map(column => ({
@@ -49,54 +49,54 @@ export class TableInternal {
             column.alignment || COLUMN_ALIGNMENT.right
           ],
         }))) ||
-      []
+      [];
   }
 
   constructor(options?: ComplexOptions | string[]) {
     // default construction
-    this.rows = []
-    this.columns = []
-    this.tableStyle = TABLE_STYLE.thinBorder
-    this.style = TABLE_BORDER_STYLES.thinBorder
+    this.rows = [];
+    this.columns = [];
+    this.tableStyle = TABLE_STYLE.thinBorder;
+    this.style = TABLE_BORDER_STYLES.thinBorder;
 
     if (options instanceof Array) {
-      this.initSimple(options)
+      this.initSimple(options);
     } else if (typeof options === 'object') {
-      this.initDetailed(options)
+      this.initDetailed(options);
     }
   }
 
   createColumnFromRow(text: any) {
-    const colNames = this.columns.map(col => col.name)
+    const colNames = this.columns.map(col => col.name);
     for (let key in text) {
       if (!colNames.includes(key)) {
-        this.columns.push(createColum(key))
+        this.columns.push(createColum(key));
       }
     }
   }
 
   addColumn(text: string) {
-    this.columns.push(createColum(text))
+    this.columns.push(createColum(text));
   }
 
   addColumns(toBeInsertedColumns: string[]) {
     for (let toBeInsertedColumn of toBeInsertedColumns) {
-      this.addColumn(toBeInsertedColumn)
+      this.addColumn(toBeInsertedColumn);
     }
   }
 
   addRow(text: any, options?: RowOptions) {
-    this.createColumnFromRow(text)
-    this.rows.push(createRow((options && options.color) || COLOR.white, text))
+    this.createColumnFromRow(text);
+    this.rows.push(createRow((options && options.color) || COLOR.white, text));
   }
 
   addRows(toBeInsertedRows: any) {
     for (let toBeInsertedRow of toBeInsertedRows) {
-      this.addRow(toBeInsertedRow, undefined)
+      this.addRow(toBeInsertedRow, undefined);
     }
   }
 
   printTable() {
-    return printTable(this)
+    return printTable(this);
   }
 }

@@ -1,15 +1,15 @@
-type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other'
+type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other';
 
 export type TABLE_LINE_DETAILS = {
-  [key in TABLE_LINE_DETAILS_KEYS]: string
-}
+  [key in TABLE_LINE_DETAILS_KEYS]: string;
+};
 
 export type TABLE_STYLE_DETAILS = {
-  headerTop: TABLE_LINE_DETAILS
-  headerBottom: TABLE_LINE_DETAILS
-  tableBottom: TABLE_LINE_DETAILS
-  vertical: string
-}
+  headerTop: TABLE_LINE_DETAILS;
+  headerBottom: TABLE_LINE_DETAILS;
+  tableBottom: TABLE_LINE_DETAILS;
+  vertical: string;
+};
 
 export enum TABLE_BORDER_STYLES {
   fatBorder,
@@ -75,7 +75,7 @@ export const TABLE_STYLE = {
     },
     vertical: '║',
   },
-}
+};
 
 export enum COLUMN_ALIGNMENT {
   right,

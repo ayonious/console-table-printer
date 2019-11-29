@@ -1,4 +1,4 @@
-import { COLOR } from './table-constants'
+import { COLOR } from './table-constants';
 
 const COLOR_MAP = {
   [COLOR.red]: '\x1b[31m',
@@ -11,23 +11,23 @@ const COLOR_MAP = {
   [COLOR.crimson]: '\x1b[38m',
   [COLOR.white_bold]: '\x1b[01m',
   [COLOR.reset]: '\x1b[0m',
-}
+};
 
 export class ColoredConsoleLine {
-  text: string
+  text: string;
 
   constructor() {
-    this.text = ''
+    this.text = '';
   }
 
   addWithColor(color: COLOR, text: string) {
-    this.text += color && COLOR_MAP[color]
-    this.text += text
-    this.text += COLOR_MAP[COLOR.reset]
+    this.text += color && COLOR_MAP[color];
+    this.text += text;
+    this.text += COLOR_MAP[COLOR.reset];
   }
 
   printConsole(): string {
-    console.log(this.text)
-    return this.text
+    console.log(this.text);
+    return this.text;
   }
 }
