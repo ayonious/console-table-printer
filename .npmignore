@@ -76,3 +76,6 @@ renovate.json
 static-resources
 src
 index.ts
+.huskyrc.json
+.prettierrc
+.prettierignore
