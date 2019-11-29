@@ -8,7 +8,7 @@
   "scripts": {
     "setup": "npm install",
     "build": "tsc",
-    "format": "prettier --write \"**/*.{json,md,ts,tsx}\"",
+    "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json"
   },
   "files": [
