@@ -1,4 +1,4 @@
 {
-  "collectCoverage":true,
+  "collectCoverage": true,
   "preset": "ts-jest"
 }

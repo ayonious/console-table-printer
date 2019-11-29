@@ -1,43 +1,43 @@
-import { COLOR, TABLE_STYLE_DETAILS, COLUMN_ALIGNMENT } from "./table-constants";
-import { ColoredConsoleLine } from "./colored-console-line";
+import { ColoredConsoleLine } from './colored-console-line'
+import { TableInternal } from './internal-table'
+import { COLOR, COLUMN_ALIGNMENT, TABLE_STYLE_DETAILS } from './table-constants'
 import {
-  textWithPadding,
-  printTableHorizontalBorders,
-  createRow,
+  Column,
   createHeaderAsRow,
+  createRow,
   findMaxLenOfColumn,
+  printTableHorizontalBorders,
   Row,
-  Column
-} from "./table-helpers";
-import { TableInternal } from "./internal-table";
+  textWithPadding,
+} from './table-helpers'
 
 function prepareLineAndPrint(
   tableStyle: TABLE_STYLE_DETAILS,
   columns: Column[],
   row: Row
 ): string {
-  let line = new ColoredConsoleLine();
-  line.addWithColor(COLOR.white, tableStyle.vertical);
+  let line = new ColoredConsoleLine()
+  line.addWithColor(COLOR.white, tableStyle.vertical)
   for (let column of columns) {
-    line.addWithColor(COLOR.white, " ");
+    line.addWithColor(COLOR.white, ' ')
     line.addWithColor(
       row.color,
       textWithPadding(
-        `${row.text[column.name] || ""}`,
+        `${row.text[column.name] || ''}`,
         column.alignment || COLUMN_ALIGNMENT.right,
         column.max_ln || 20
       )
-    );
-    line.addWithColor(COLOR.white, " " + tableStyle.vertical);
+    )
+    line.addWithColor(COLOR.white, ' ' + tableStyle.vertical)
   }
-  return line.printConsole();
+  return line.printConsole()
 }
 
 // ║ 1     ║     I would like some red wine please ║ 10.212 ║
 function printRow(table: TableInternal, row: Row): string[] {
-  let ret: string[] = [];
-  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
-  return ret;
+  let ret: string[] = []
+  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row))
+  return ret
 }
 
 /* 
@@ -46,70 +46,70 @@ function printRow(table: TableInternal, row: Row): string[] {
  ╟═══════╬═══════════════════════════════════════╬════════╢
 */
 function printTableHeaders(table: TableInternal): string[] {
-  let ret: string[] = [];
+  let ret: string[] = []
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
-  );
+  )
 
   // ║ index ║                                  text ║  value ║
-  let row = createHeaderAsRow(createRow, table.columns);
-  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
+  let row = createHeaderAsRow(createRow, table.columns)
+  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row))
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
-  );
+  )
 
-  return ret;
+  return ret
 }
 
 function printTableEnding(table: TableInternal): string[] {
-  let ret: string[] = [];
+  let ret: string[] = []
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
-  );
-  return ret;
+  )
+  return ret
 }
 
 function calculateColumnProperty(table: TableInternal) {
   for (let column of table.columns) {
-    column.max_ln = findMaxLenOfColumn(column, table.rows);
+    column.max_ln = findMaxLenOfColumn(column, table.rows)
   }
 }
 
 export function printTableTest(table: TableInternal): string[] {
-  calculateColumnProperty(table);
-  let ret: string[] = [];
-  printTableHeaders(table).forEach(row => ret.push(row));
+  calculateColumnProperty(table)
+  let ret: string[] = []
+  printTableHeaders(table).forEach(row => ret.push(row))
   for (let row of table.rows) {
-    printRow(table, row).forEach(row => ret.push(row));
+    printRow(table, row).forEach(row => ret.push(row))
   }
-  printTableEnding(table).forEach(row => ret.push(row));
-  return ret;
+  printTableEnding(table).forEach(row => ret.push(row))
+  return ret
 }
 
 export function printTable(table: TableInternal) {
-  printTableTest(table);
+  printTableTest(table)
 }
 
 export function printSimpleTableTest(rows: any[]) {
-  let table = new TableInternal();
-  table.addRows(rows);
-  return printTableTest(table);
+  let table = new TableInternal()
+  table.addRows(rows)
+  return printTableTest(table)
 }
 
 export function printSimpleTable(rows: any[]) {
-  printSimpleTableTest(rows);
+  printSimpleTableTest(rows)
 }

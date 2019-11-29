@@ -1,20 +1,20 @@
 type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other'
 
-export type TABLE_LINE_DETAILS ={
-  [key in TABLE_LINE_DETAILS_KEYS]: string;
+export type TABLE_LINE_DETAILS = {
+  [key in TABLE_LINE_DETAILS_KEYS]: string
 }
 
 export type TABLE_STYLE_DETAILS = {
-  headerTop: TABLE_LINE_DETAILS;
-  headerBottom: TABLE_LINE_DETAILS;
-  tableBottom: TABLE_LINE_DETAILS;
-  vertical: string;
+  headerTop: TABLE_LINE_DETAILS
+  headerBottom: TABLE_LINE_DETAILS
+  tableBottom: TABLE_LINE_DETAILS
+  vertical: string
 }
 
 export enum TABLE_BORDER_STYLES {
   fatBorder,
   thinBorder,
-  customized
+  customized,
 }
 
 export const TABLE_STYLE = {
@@ -27,24 +27,24 @@ export const TABLE_STYLE = {
         └────────────┴─────┴──────┘
         */
     headerTop: {
-      left: "┌",
-      mid: "┬",
-      right: "┐",
-      other: "─"
+      left: '┌',
+      mid: '┬',
+      right: '┐',
+      other: '─',
     },
     headerBottom: {
-      left: "├",
-      mid: "┼",
-      right: "┤",
-      other: "─"
+      left: '├',
+      mid: '┼',
+      right: '┤',
+      other: '─',
     },
     tableBottom: {
-      left: "└",
-      mid: "┴",
-      right: "┘",
-      other: "─"
+      left: '└',
+      mid: '┴',
+      right: '┘',
+      other: '─',
     },
-    vertical: "│"
+    vertical: '│',
   },
   fatBorder: {
     /*
@@ -56,30 +56,30 @@ export const TABLE_STYLE = {
         ╚══════╩═════╩══════╝
         */
     headerTop: {
-      left: "╔",
-      mid: "╦",
-      right: "╗",
-      other: "═"
+      left: '╔',
+      mid: '╦',
+      right: '╗',
+      other: '═',
     },
     headerBottom: {
-      left: "╟",
-      mid: "╬",
-      right: "╢",
-      other: "═"
+      left: '╟',
+      mid: '╬',
+      right: '╢',
+      other: '═',
     },
     tableBottom: {
-      left: "╚",
-      mid: "╩",
-      right: "╝",
-      other: "═"
+      left: '╚',
+      mid: '╩',
+      right: '╝',
+      other: '═',
     },
-    vertical: "║"
-  }
-};
+    vertical: '║',
+  },
+}
 
 export enum COLUMN_ALIGNMENT {
   right,
-  left
+  left,
 }
 
 export enum COLOR {
@@ -93,5 +93,5 @@ export enum COLOR {
   cyan,
   crimson,
   white_bold,
-  reset
+  reset,
 }

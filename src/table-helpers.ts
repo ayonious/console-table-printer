@@ -1,14 +1,14 @@
-import { COLUMN_ALIGNMENT, COLOR } from "./table-constants";
+import { COLOR, COLUMN_ALIGNMENT } from './table-constants'
 
 export interface Column {
-  name: string;
-  alignment?: COLUMN_ALIGNMENT;
-  max_ln?: number;
+  name: string
+  alignment?: COLUMN_ALIGNMENT
+  max_ln?: number
 }
 
 export interface Row {
-  color: COLOR;
-  text: any;
+  color: COLOR
+  text: any
 }
 
 export function convertRawRowOptionsToStanrd(
@@ -16,18 +16,18 @@ export function convertRawRowOptionsToStanrd(
 ): RowOptions | undefined {
   if (options) {
     return {
-      color: (<any>COLOR)[options.color]
-    };
+      color: (<any>COLOR)[options.color],
+    }
   }
-  return undefined;
+  return undefined
 }
 
 export interface RowOptionsRaw {
-  color: string;
+  color: string
 }
 
 export interface RowOptions {
-  color: COLOR;
+  color: COLOR
 }
 
 export function textWithPadding(
@@ -37,11 +37,11 @@ export function textWithPadding(
 ): string {
   switch (alignment) {
     case COLUMN_ALIGNMENT.left:
-      return text.padEnd(size);
+      return text.padEnd(size)
     case COLUMN_ALIGNMENT.right:
-      return text.padStart(size);
+      return text.padStart(size)
     default:
-      return text.padStart(size);
+      return text.padStart(size)
   }
 }
 
@@ -50,50 +50,50 @@ export function createTableHorizontalBorders(
     left,
     mid,
     right,
-    other
+    other,
   }: { left: string; mid: string; right: string; other: string },
   column_lengths: number[]
 ) {
-  let ret = left;
+  let ret = left
   for (let len of column_lengths) {
-    ret += other.repeat(len + 2);
-    ret += mid;
+    ret += other.repeat(len + 2)
+    ret += mid
   }
-  ret = ret.slice(0, -1);
-  ret += right;
-  return ret;
+  ret = ret.slice(0, -1)
+  ret += right
+  return ret
 }
 
 export function createColum(name: string): Column {
-  return { name };
+  return { name }
 }
 
 export function createRow(color: COLOR, text: string): Row {
-  return { color, text };
+  return { color, text }
 }
 
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
-  let column_name = column.name;
-  let max_ln = `${column_name}`.length;
+  let column_name = column.name
+  let max_ln = `${column_name}`.length
   for (let row of rows) {
-    max_ln = Math.max(max_ln, `${row.text[column_name] || ""}`.length);
+    max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length)
   }
-  return max_ln;
+  return max_ln
 }
 
 export function printTableHorizontalBorders(
   style: any,
   column_lengths: number[]
 ): string {
-  const str = createTableHorizontalBorders(style, column_lengths);
-  console.log(str);
-  return str;
+  const str = createTableHorizontalBorders(style, column_lengths)
+  console.log(str)
+  return str
 }
 
 export function createHeaderAsRow(createRow: any, columns: Column[]): Row {
-  let row: Row = createRow(COLOR.white_bold, {});
+  let row: Row = createRow(COLOR.white_bold, {})
   for (let column of columns) {
-    row.text[column.name] = column.name;
+    row.text[column.name] = column.name
   }
-  return row;
+  return row
 }

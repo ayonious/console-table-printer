@@ -8,6 +8,7 @@
   "scripts": {
     "setup": "npm install",
     "build": "tsc",
+    "format": "prettier --write \"**/*.{json,md,ts,tsx}\"",
     "test": "jest --config jestconfig.json"
   },
   "files": [
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "jest": "^24.9.0",
+    "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.2"
   }
