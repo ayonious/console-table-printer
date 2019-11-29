@@ -1,22 +1,22 @@
+import { printTable } from './internal-table-printer';
 import {
-  TABLE_STYLE,
-  TABLE_BORDER_STYLES,
-  COLUMN_ALIGNMENT,
   COLOR,
-  TABLE_STYLE_DETAILS
-} from "./table-constants";
+  COLUMN_ALIGNMENT,
+  TABLE_BORDER_STYLES,
+  TABLE_STYLE,
+  TABLE_STYLE_DETAILS,
+} from './table-constants';
 import {
+  Column,
   createColum,
   createRow,
-  Column,
   Row,
-  RowOptions
-} from "./table-helpers";
-import { printTable } from "./internal-table-printer";
+  RowOptions,
+} from './table-helpers';
 
 interface ColumnOptionsRaw {
   name: string;
-  alignment? : string;
+  alignment?: string;
 }
 
 export interface ComplexOptions {
@@ -33,18 +33,21 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map(column => ({
       name: column,
-      alignment: COLUMN_ALIGNMENT.right
+      alignment: COLUMN_ALIGNMENT.right,
     }));
   }
 
   initDetailed(options: ComplexOptions) {
     this.tableStyle =
-      (options && options.style && (<any>TABLE_STYLE)[options.style]) || TABLE_STYLE.thinBorder;
+      (options && options.style && (<any>TABLE_STYLE)[options.style]) ||
+      TABLE_STYLE.thinBorder;
     this.columns =
       (options.columns &&
         options.columns.map(column => ({
           name: column.name,
-          alignment: (<any>COLUMN_ALIGNMENT)[column.alignment || COLUMN_ALIGNMENT.right]
+          alignment: (<any>COLUMN_ALIGNMENT)[
+            column.alignment || COLUMN_ALIGNMENT.right
+          ],
         }))) ||
       [];
   }
@@ -58,7 +61,7 @@ export class TableInternal {
 
     if (options instanceof Array) {
       this.initSimple(options);
-    } else if (typeof options === "object") {
+    } else if (typeof options === 'object') {
       this.initDetailed(options);
     }
   }

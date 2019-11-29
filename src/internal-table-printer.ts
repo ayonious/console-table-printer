@@ -1,15 +1,19 @@
-import { COLOR, TABLE_STYLE_DETAILS, COLUMN_ALIGNMENT } from "./table-constants";
-import { ColoredConsoleLine } from "./colored-console-line";
+import { ColoredConsoleLine } from './colored-console-line';
+import { TableInternal } from './internal-table';
 import {
-  textWithPadding,
-  printTableHorizontalBorders,
-  createRow,
+  COLOR,
+  COLUMN_ALIGNMENT,
+  TABLE_STYLE_DETAILS,
+} from './table-constants';
+import {
+  Column,
   createHeaderAsRow,
+  createRow,
   findMaxLenOfColumn,
+  printTableHorizontalBorders,
   Row,
-  Column
-} from "./table-helpers";
-import { TableInternal } from "./internal-table";
+  textWithPadding,
+} from './table-helpers';
 
 function prepareLineAndPrint(
   tableStyle: TABLE_STYLE_DETAILS,
@@ -19,16 +23,16 @@ function prepareLineAndPrint(
   let line = new ColoredConsoleLine();
   line.addWithColor(COLOR.white, tableStyle.vertical);
   for (let column of columns) {
-    line.addWithColor(COLOR.white, " ");
+    line.addWithColor(COLOR.white, ' ');
     line.addWithColor(
       row.color,
       textWithPadding(
-        `${row.text[column.name] || ""}`,
+        `${row.text[column.name] || ''}`,
         column.alignment || COLUMN_ALIGNMENT.right,
         column.max_ln || 20
       )
     );
-    line.addWithColor(COLOR.white, " " + tableStyle.vertical);
+    line.addWithColor(COLOR.white, ' ' + tableStyle.vertical);
   }
   return line.printConsole();
 }
@@ -52,7 +56,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
   );
 
@@ -64,7 +68,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
   );
 
@@ -77,7 +81,7 @@ function printTableEnding(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map(m => (m.max_ln || 20))
+      table.columns.map(m => m.max_ln || 20)
     )
   );
   return ret;

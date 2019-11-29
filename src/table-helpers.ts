@@ -1,4 +1,4 @@
-import { COLUMN_ALIGNMENT, COLOR } from "./table-constants";
+import { COLOR, COLUMN_ALIGNMENT } from './table-constants';
 
 export interface Column {
   name: string;
@@ -16,7 +16,7 @@ export function convertRawRowOptionsToStanrd(
 ): RowOptions | undefined {
   if (options) {
     return {
-      color: (<any>COLOR)[options.color]
+      color: (<any>COLOR)[options.color],
     };
   }
   return undefined;
@@ -50,7 +50,7 @@ export function createTableHorizontalBorders(
     left,
     mid,
     right,
-    other
+    other,
   }: { left: string; mid: string; right: string; other: string },
   column_lengths: number[]
 ) {
@@ -76,7 +76,7 @@ export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   let column_name = column.name;
   let max_ln = `${column_name}`.length;
   for (let row of rows) {
-    max_ln = Math.max(max_ln, `${row.text[column_name] || ""}`.length);
+    max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length);
   }
   return max_ln;
 }

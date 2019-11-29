@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "pre-push": "pretty-quick --staged"
+  }
+}
