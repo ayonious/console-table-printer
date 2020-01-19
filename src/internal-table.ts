@@ -39,17 +39,15 @@ export class TableInternal {
 
   initDetailed(options: ComplexOptions) {
     this.tableStyle =
-      (options && options.style && (<any>TABLE_STYLE)[options.style]) ||
+      (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
     this.columns =
-      (options.columns &&
-        options.columns.map(column => ({
-          name: column.name,
-          alignment: (<any>COLUMN_ALIGNMENT)[
-            column.alignment || COLUMN_ALIGNMENT.right
-          ],
-        }))) ||
-      [];
+      options.columns?.map(column => ({
+        name: column.name,
+        alignment: (<any>COLUMN_ALIGNMENT)[
+          column.alignment || COLUMN_ALIGNMENT.right
+        ],
+      })) || [];
   }
 
   constructor(options?: ComplexOptions | string[]) {
@@ -87,7 +85,7 @@ export class TableInternal {
 
   addRow(text: any, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow((options && options.color) || COLOR.white, text));
+    this.rows.push(createRow(options?.color || COLOR.white, text));
   }
 
   addRows(toBeInsertedRows: any) {
