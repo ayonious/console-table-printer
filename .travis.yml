@@ -7,6 +7,7 @@ before_script:
   - npm run build
 deploy:
   provider: npm
+  edge: true
   email: jaissatai6@gmail.com
   skip_cleanup: true
   api_key:
