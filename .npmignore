@@ -79,3 +79,6 @@ index.ts
 .huskyrc.json
 .prettierrc
 .prettierignore
+
+# vs code configuration to be ignored
+.vscode
