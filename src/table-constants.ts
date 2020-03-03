@@ -17,7 +17,10 @@ export enum TABLE_BORDER_STYLES {
   customized,
 }
 
-export const TABLE_STYLE = {
+export const TABLE_STYLE: {
+  fatBorder: TABLE_STYLE_DETAILS;
+  thinBorder: TABLE_STYLE_DETAILS;
+} = {
   thinBorder: {
     /*
         Style1: thinBorder

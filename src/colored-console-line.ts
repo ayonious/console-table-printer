@@ -1,6 +1,8 @@
 import { COLOR } from './table-constants';
 
-const COLOR_MAP = {
+const COLOR_MAP: {
+  [key in COLOR]?: string;
+} = {
   [COLOR.red]: '\x1b[31m',
   [COLOR.green]: '\x1b[32m',
   [COLOR.yellow]: '\x1b[33m',
