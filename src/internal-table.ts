@@ -17,11 +17,22 @@ import {
 interface ColumnOptionsRaw {
   name: string;
   alignment?: string;
+  color?: string;
 }
 
 export interface ComplexOptions {
   style?: string;
   columns?: ColumnOptionsRaw[];
+}
+
+function objIfExists(key: string, val: any) {
+  if (!val) {
+    return {};
+  }
+
+  return {
+    [key]: val,
+  };
 }
 
 export class TableInternal {
@@ -44,6 +55,7 @@ export class TableInternal {
     this.columns =
       options.columns?.map(column => ({
         name: column.name,
+        ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
         alignment: (<any>COLUMN_ALIGNMENT)[
           column.alignment || COLUMN_ALIGNMENT.right
         ],
