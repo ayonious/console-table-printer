@@ -18,14 +18,15 @@ import {
 function prepareLineAndPrint(
   tableStyle: TABLE_STYLE_DETAILS,
   columns: Column[],
-  row: Row
+  row: Row,
+  isHeader?: boolean
 ): string {
   let line = new ColoredConsoleLine();
   line.addWithColor(COLOR.white, tableStyle.vertical);
   for (let column of columns) {
     line.addWithColor(COLOR.white, ' ');
     line.addWithColor(
-      row.color,
+      (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
       textWithPadding(
         `${row.text[column.name] || ''}`,
         column.alignment || COLUMN_ALIGNMENT.right,
@@ -62,7 +63,7 @@ function printTableHeaders(table: TableInternal): string[] {
 
   // ║ index ║                                  text ║  value ║
   let row = createHeaderAsRow(createRow, table.columns);
-  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
+  ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row, true));
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
   ret.push(

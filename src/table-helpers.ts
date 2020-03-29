@@ -3,6 +3,7 @@ import { COLOR, COLUMN_ALIGNMENT } from './table-constants';
 export interface Column {
   name: string;
   alignment?: COLUMN_ALIGNMENT;
+  color?: COLOR;
   max_ln?: number;
 }
 
