@@ -112,7 +112,7 @@ Output:
 new Table({
   style: 'fatBorder', //style of border of the table
   columns: [
-    { name: 'column1', alignment: 'left' }, //with alignment
+    { name: 'column1', alignment: 'left', color: 'red' }, //with alignment and color
     { name: 'column2', alignment: 'right' },
     { name: 'column3' },
   ],
