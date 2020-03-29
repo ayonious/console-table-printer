@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "1.1.71",
+  "version": "1.2.0",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
