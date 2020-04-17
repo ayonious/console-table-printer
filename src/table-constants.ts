@@ -83,6 +83,7 @@ export const TABLE_STYLE: {
 export enum COLUMN_ALIGNMENT {
   right,
   left,
+  center,
 }
 
 export enum COLOR {

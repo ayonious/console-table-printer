@@ -41,6 +41,8 @@ export function textWithPadding(
       return text.padEnd(size);
     case COLUMN_ALIGNMENT.right:
       return text.padStart(size);
+    case COLUMN_ALIGNMENT.center:
+      return text.padStart(size / 2 + (size % 2)).padEnd(size / 2);
     default:
       return text.padStart(size);
   }
