@@ -44,7 +44,7 @@ export function textWithPadding(
     case COLUMN_ALIGNMENT.center:
       const curTextSize = text.length;
       return text
-        .padStart((mxColumnSize - curTextSize) / 2)
+        .padStart((mxColumnSize - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnSize);
     default:
       return text.padStart(mxColumnSize);
