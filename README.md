@@ -160,17 +160,17 @@ new Table({
 - crimson
 - white_bold
 
-### possible `alignment` values for columns
-
-- left
-- right
-- center
-
 Example usage: To Create a row of color blue
 
 ```js
 table.addRow(rowObject, { color: 'blue' });
 ```
+
+### possible `alignment` values for columns
+
+- left
+- right
+- center
 
 ### possible border Style of table
 
