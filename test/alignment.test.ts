@@ -7,7 +7,7 @@ describe('Testing column alignment', () => {
       columns: [
         { name: 'red_left_align_index', alignment: 'left', color: 'red' },
         { name: 'right_align_text', alignment: 'right' },
-        { name: 'green_value', alignment: 'center', color: 'green' },
+        { name: 'green_value_center', alignment: 'center', color: 'green' },
       ],
     });
 
@@ -16,7 +16,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 2,
         right_align_text: 'This row is blue',
-        green_value: 10.212,
+        green_value_center: 10.212,
       },
       { color: 'blue' }
     );
@@ -24,7 +24,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 3,
         right_align_text: 'I would like some red wine please',
-        green_value: 10.212,
+        green_value_center: 10.212,
       },
       { color: 'red' }
     );
@@ -32,7 +32,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 4,
         right_align_text: 'I would like some cyan wine please',
-        green_value: 10.212,
+        green_value_center: 10.212,
       },
       { color: 'cyan' }
     );
@@ -40,7 +40,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 5,
         right_align_text: 'I would like some white_bold wine please',
-        green_value: 10.212,
+        green_value_center: 10.212,
       },
       { color: 'white_bold' }
     );
@@ -48,7 +48,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 6,
         right_align_text: 'I would like some crimson sky please',
-        green_value: 10.212,
+        green_value_center: 10.212,
       },
       { color: 'crimson' }
     );
@@ -56,7 +56,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 7,
         right_align_text: 'I would like some green gemuse please',
-        green_value: 20.0,
+        green_value_center: 20.0,
       },
       { color: 'green' }
     );
@@ -64,7 +64,7 @@ describe('Testing column alignment', () => {
       {
         red_left_align_index: 8,
         right_align_text: 'I would like some gelb bananen bitte',
-        green_value: 100,
+        green_value_center: 100,
       },
       { color: 'yellow' }
     );
