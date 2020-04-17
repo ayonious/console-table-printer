@@ -1,4 +1,4 @@
-import { printSimpleTableTest } from '../src/internal-table-printer';
+import { printSimpleTableTest } from '../../src/internal-table-printer';
 
 describe('Example: Print a simple Table without table instance creation', () => {
   it(`simple print`, function() {
