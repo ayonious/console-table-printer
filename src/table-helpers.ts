@@ -34,17 +34,20 @@ export interface RowOptions {
 export function textWithPadding(
   text: string,
   alignment: COLUMN_ALIGNMENT,
-  size: number
+  mxColumnSize: number
 ): string {
   switch (alignment) {
     case COLUMN_ALIGNMENT.left:
-      return text.padEnd(size);
+      return text.padEnd(mxColumnSize);
     case COLUMN_ALIGNMENT.right:
-      return text.padStart(size);
+      return text.padStart(mxColumnSize);
     case COLUMN_ALIGNMENT.center:
-      return text.padStart(size / 2 + (size % 2)).padEnd(size / 2);
+      const curTextSize = text.length;
+      return text
+        .padStart((mxColumnSize - curTextSize) / 2)
+        .padEnd(mxColumnSize);
     default:
-      return text.padStart(size);
+      return text.padStart(mxColumnSize);
   }
 }
 
