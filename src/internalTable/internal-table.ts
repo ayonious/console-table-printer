@@ -20,7 +20,8 @@ interface ColumnOptionsRaw {
   color?: string;
 }
 
-type RowSortFunction = (row1: any, row2: any) => Boolean;
+export type RowSortFunction = (row1: any, row2: any) => number;
+const defaultRowSortFunc = () => 0;
 
 export interface ComplexOptions {
   style?: string;
@@ -43,7 +44,7 @@ export class TableInternal {
   columns: Column[];
   rows: Row[];
   style: TABLE_BORDER_STYLES;
-  sortFunction: RowSortFunction | undefined;
+  sortFunction: RowSortFunction;
 
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
@@ -56,6 +57,7 @@ export class TableInternal {
     this.tableStyle =
       (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
+    this.sortFunction = options?.sort_order || defaultRowSortFunc;
     this.columns =
       options.columns?.map((column) => ({
         name: column.name,
@@ -72,7 +74,7 @@ export class TableInternal {
     this.columns = [];
     this.tableStyle = TABLE_STYLE.thinBorder;
     this.style = TABLE_BORDER_STYLES.thinBorder;
-    this.sortFunction = undefined;
+    this.sortFunction = defaultRowSortFunc;
 
     if (options instanceof Array) {
       this.initSimple(options);
