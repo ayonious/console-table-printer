@@ -30,8 +30,6 @@ describe('Example: Print a simple Table wiht column colors', () => {
     //print
     const returned = printTableAndGetConsoleOutput(p.table);
 
-    console.log(returned);
-
     const expected = [
       '╔═══════╦═══════════════════════════════════════╦════════╗',
       '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[01m                                 text\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[01m value\u001b[0m\u001b[37m ║\u001b[0m',
