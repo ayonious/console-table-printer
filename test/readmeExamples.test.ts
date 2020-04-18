@@ -1,4 +1,4 @@
-import { Table } from '../src/console-table-printer';
+import { Table } from '../index';
 
 describe('Example: Print a simple Table', () => {
   it(`Readme Example1`, function() {

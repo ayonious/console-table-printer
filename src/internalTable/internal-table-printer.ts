@@ -1,10 +1,10 @@
-import { ColoredConsoleLine } from './colored-console-line';
+import { ColoredConsoleLine } from '../utils/colored-console-line';
 import { TableInternal } from './internal-table';
 import {
   COLOR,
   COLUMN_ALIGNMENT,
   TABLE_STYLE_DETAILS,
-} from './table-constants';
+} from '../utils/table-constants';
 import {
   Column,
   createHeaderAsRow,
@@ -13,7 +13,7 @@ import {
   printTableHorizontalBorders,
   Row,
   textWithPadding,
-} from './table-helpers';
+} from '../utils/table-helpers';
 
 function prepareLineAndPrint(
   tableStyle: TABLE_STYLE_DETAILS,
@@ -57,7 +57,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map(m => m.max_ln || 20)
+      table.columns.map((m) => m.max_ln || 20)
     )
   );
 
@@ -69,7 +69,7 @@ function printTableHeaders(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map(m => m.max_ln || 20)
+      table.columns.map((m) => m.max_ln || 20)
     )
   );
 
@@ -82,7 +82,7 @@ function printTableEnding(table: TableInternal): string[] {
   ret.push(
     printTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map(m => m.max_ln || 20)
+      table.columns.map((m) => m.max_ln || 20)
     )
   );
   return ret;
@@ -97,11 +97,11 @@ function calculateColumnProperty(table: TableInternal) {
 export function printTableTest(table: TableInternal): string[] {
   calculateColumnProperty(table);
   let ret: string[] = [];
-  printTableHeaders(table).forEach(row => ret.push(row));
+  printTableHeaders(table).forEach((row) => ret.push(row));
   for (let row of table.rows) {
-    printRow(table, row).forEach(row => ret.push(row));
+    printRow(table, row).forEach((row) => ret.push(row));
   }
-  printTableEnding(table).forEach(row => ret.push(row));
+  printTableEnding(table).forEach((row) => ret.push(row));
   return ret;
 }
 
