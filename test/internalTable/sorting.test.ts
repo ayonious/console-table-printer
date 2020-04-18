@@ -10,7 +10,7 @@ describe('Testing column alignment', () => {
         { name: 'right_align_text', alignment: 'right' },
         { name: 'green_value_center', alignment: 'center' },
       ],
-      sort_order: (row1, row2) =>
+      sort: (row1, row2) =>
         +row2.red_left_align_index - +row1.red_left_align_index,
     });
 

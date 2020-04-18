@@ -29,7 +29,7 @@ const defaultRowFilterFunc = () => true;
 export interface ComplexOptions {
   style?: string;
   columns?: ColumnOptionsRaw[];
-  sort_order?: RowSortFunction;
+  sort?: RowSortFunction;
   filter?: RowFilterFunction;
 }
 
@@ -62,7 +62,7 @@ export class TableInternal {
     this.tableStyle =
       (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
-    this.sortFunction = options?.sort_order || defaultRowSortFunc;
+    this.sortFunction = options?.sort || defaultRowSortFunc;
     this.filterFunction = options?.filter || defaultRowFilterFunc;
     this.columns =
       options.columns?.map((column) => ({
