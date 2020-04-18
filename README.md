@@ -137,8 +137,8 @@ new Table({
     { name: 'column2', alignment: 'right' },
     { name: 'column3' },
   ],
-  sorting_order:
-  filter:
+  sorting_order: (row1, row2) => row1.index > row2.index // sorting order of rows (optional)
+  filter: (row) => row.index <10 // filtering rows (optional)
 });
 ```
 
