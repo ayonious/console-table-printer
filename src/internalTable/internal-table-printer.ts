@@ -109,12 +109,12 @@ export function printTable(table: TableInternal) {
   printTableAndGetConsoleOutput(table);
 }
 
-export function printSimpleTableTest(rows: any[]) {
+export function printSimpleTableAndGetConsoleOutput(rows: any[]) {
   let table = new TableInternal();
   table.addRows(rows);
   return printTableAndGetConsoleOutput(table);
 }
 
 export function printSimpleTable(rows: any[]) {
-  printSimpleTableTest(rows);
+  printSimpleTableAndGetConsoleOutput(rows);
 }
