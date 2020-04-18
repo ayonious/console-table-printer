@@ -131,12 +131,14 @@ p.printTable();
 
 ```javascript
 new Table({
-  style: 'fatBorder', //style of border of the table
+  style: 'fatBorder', //style of border of the table, (optional)default = thinBorder
   columns: [
     { name: 'column1', alignment: 'left', color: 'red' }, //with alignment and color
     { name: 'column2', alignment: 'right' },
     { name: 'column3' },
   ],
+  sort: (row1, row2) => row1.index > row2.index // sorting order of rows (optional)
+  filter: (row) => row.index <10 // filtering rows (optional)
 });
 ```
 

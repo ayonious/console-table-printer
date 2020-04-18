@@ -6,10 +6,12 @@ describe('Testing column alignment', () => {
     //Create a table
     const p = new Table({
       columns: [
-        { name: 'red_left_align_index', alignment: 'left', color: 'red' },
+        { name: 'red_left_align_index', alignment: 'left' },
         { name: 'right_align_text', alignment: 'right' },
-        { name: 'green_value_center', alignment: 'center', color: 'green' },
+        { name: 'green_value_center', alignment: 'center' },
       ],
+      sort: (row1, row2) =>
+        +row2.red_left_align_index - +row1.red_left_align_index,
     });
 
     //add rows with color
@@ -72,17 +74,18 @@ describe('Testing column alignment', () => {
 
     //print
     const returned = printTableAndGetConsoleOutput(p.table);
+
     const expected = [
       '┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐',
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        right_align_text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value_center\u001b[0m\u001b[37m │\u001b[0m',
       '├──────────────────────┼──────────────────────────────────────────┼────────────────────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m2                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m                        This row is blue\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m       I would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m4                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[36m      I would like some cyan wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m5                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mI would like some white_bold wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m6                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[38m    I would like some crimson sky please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m7                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m   I would like some green gemuse please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m        20        \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m8                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m       100        \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[33m8                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m       100        \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m7                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m   I would like some green gemuse please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m        20        \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[38m6                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[38m    I would like some crimson sky please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[38m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01m5                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mI would like some white_bold wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[36m4                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[36m      I would like some cyan wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[36m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m       I would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[34m2                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m                        This row is blue\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┴────────────────────┘',
     ];
     expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));

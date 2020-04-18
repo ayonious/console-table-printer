@@ -1,4 +1,8 @@
 import { COLOR, COLUMN_ALIGNMENT } from './table-constants';
+import {
+  RowSortFunction,
+  RowFilterFunction,
+} from '../internalTable/internal-table';
 
 export interface Column {
   name: string;
@@ -29,6 +33,16 @@ export interface RowOptionsRaw {
 
 export interface RowOptions {
   color: COLOR;
+}
+
+export function preProcessRows(
+  rows: Row[],
+  filterFunc: RowFilterFunction,
+  sortFunc: RowSortFunction
+): Row[] {
+  return rows
+    .filter((r) => filterFunc(r.text))
+    .sort((r1, r2) => sortFunc(r1.text, r2.text));
 }
 
 export function textWithPadding(

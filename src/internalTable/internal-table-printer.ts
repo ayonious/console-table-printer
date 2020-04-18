@@ -13,6 +13,7 @@ import {
   printTableHorizontalBorders,
   Row,
   textWithPadding,
+  preProcessRows,
 } from '../utils/table-helpers';
 
 function prepareLineAndPrint(
@@ -94,10 +95,13 @@ function calculateColumnProperty(table: TableInternal) {
   }
 }
 
-export function printTableTest(table: TableInternal): string[] {
+export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   calculateColumnProperty(table);
+  table.rows = preProcessRows(table.rows, table.filterFunction, table.sortFunction); //sort and filter
+
   let ret: string[] = [];
   printTableHeaders(table).forEach((row) => ret.push(row));
+
   for (let row of table.rows) {
     printRow(table, row).forEach((row) => ret.push(row));
   }
@@ -106,15 +110,15 @@ export function printTableTest(table: TableInternal): string[] {
 }
 
 export function printTable(table: TableInternal) {
-  printTableTest(table);
+  printTableAndGetConsoleOutput(table);
 }
 
-export function printSimpleTableTest(rows: any[]) {
+export function printSimpleTableAndGetConsoleOutput(rows: any[]) {
   let table = new TableInternal();
   table.addRows(rows);
-  return printTableTest(table);
+  return printTableAndGetConsoleOutput(table);
 }
 
 export function printSimpleTable(rows: any[]) {
-  printSimpleTableTest(rows);
+  printSimpleTableAndGetConsoleOutput(rows);
 }
