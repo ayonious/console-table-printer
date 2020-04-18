@@ -97,7 +97,7 @@ function calculateColumnProperty(table: TableInternal) {
 
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   calculateColumnProperty(table);
-  table.rows = preProcessRows(table.rows, table.sortFunction); //sort and filter
+  table.rows = preProcessRows(table.rows, table.filterFunction, table.sortFunction); //sort and filter
 
   let ret: string[] = [];
   printTableHeaders(table).forEach((row) => ret.push(row));

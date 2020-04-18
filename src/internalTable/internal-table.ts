@@ -23,10 +23,14 @@ interface ColumnOptionsRaw {
 export type RowSortFunction = (row1: any, row2: any) => number;
 const defaultRowSortFunc = () => 0;
 
+export type RowFilterFunction = (row: any) => Boolean;
+const defaultRowFilterFunc = () => true;
+
 export interface ComplexOptions {
   style?: string;
   columns?: ColumnOptionsRaw[];
   sort_order?: RowSortFunction;
+  filter?: RowFilterFunction;
 }
 
 function objIfExists(key: string, val: any) {
@@ -44,6 +48,7 @@ export class TableInternal {
   columns: Column[];
   rows: Row[];
   style: TABLE_BORDER_STYLES;
+  filterFunction: RowFilterFunction;
   sortFunction: RowSortFunction;
 
   initSimple(columns: string[]) {
@@ -58,6 +63,7 @@ export class TableInternal {
       (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
     this.sortFunction = options?.sort_order || defaultRowSortFunc;
+    this.filterFunction = options?.filter || defaultRowFilterFunc;
     this.columns =
       options.columns?.map((column) => ({
         name: column.name,
@@ -74,6 +80,7 @@ export class TableInternal {
     this.columns = [];
     this.tableStyle = TABLE_STYLE.thinBorder;
     this.style = TABLE_BORDER_STYLES.thinBorder;
+    this.filterFunction = defaultRowFilterFunc;
     this.sortFunction = defaultRowSortFunc;
 
     if (options instanceof Array) {
