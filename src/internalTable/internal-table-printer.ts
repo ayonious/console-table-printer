@@ -94,7 +94,7 @@ function calculateColumnProperty(table: TableInternal) {
   }
 }
 
-export function printTableTest(table: TableInternal): string[] {
+export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   calculateColumnProperty(table);
   let ret: string[] = [];
   printTableHeaders(table).forEach((row) => ret.push(row));
@@ -106,13 +106,13 @@ export function printTableTest(table: TableInternal): string[] {
 }
 
 export function printTable(table: TableInternal) {
-  printTableTest(table);
+  printTableAndGetConsoleOutput(table);
 }
 
 export function printSimpleTableTest(rows: any[]) {
   let table = new TableInternal();
   table.addRows(rows);
-  return printTableTest(table);
+  return printTableAndGetConsoleOutput(table);
 }
 
 export function printSimpleTable(rows: any[]) {

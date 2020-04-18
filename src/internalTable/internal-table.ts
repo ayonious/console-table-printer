@@ -20,9 +20,12 @@ interface ColumnOptionsRaw {
   color?: string;
 }
 
+type RowSortFunction = (row1: any, row2: any) => Boolean;
+
 export interface ComplexOptions {
   style?: string;
   columns?: ColumnOptionsRaw[];
+  sort_order?: RowSortFunction;
 }
 
 function objIfExists(key: string, val: any) {
@@ -40,9 +43,10 @@ export class TableInternal {
   columns: Column[];
   rows: Row[];
   style: TABLE_BORDER_STYLES;
+  sortFunction: RowSortFunction | undefined;
 
   initSimple(columns: string[]) {
-    this.columns = columns.map(column => ({
+    this.columns = columns.map((column) => ({
       name: column,
       alignment: COLUMN_ALIGNMENT.right,
     }));
@@ -53,7 +57,7 @@ export class TableInternal {
       (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
     this.columns =
-      options.columns?.map(column => ({
+      options.columns?.map((column) => ({
         name: column.name,
         ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
         alignment: (<any>COLUMN_ALIGNMENT)[
@@ -68,6 +72,7 @@ export class TableInternal {
     this.columns = [];
     this.tableStyle = TABLE_STYLE.thinBorder;
     this.style = TABLE_BORDER_STYLES.thinBorder;
+    this.sortFunction = undefined;
 
     if (options instanceof Array) {
       this.initSimple(options);
@@ -77,7 +82,7 @@ export class TableInternal {
   }
 
   createColumnFromRow(text: any) {
-    const colNames = this.columns.map(col => col.name);
+    const colNames = this.columns.map((col) => col.name);
     for (let key in text) {
       if (!colNames.includes(key)) {
         this.columns.push(createColum(key));

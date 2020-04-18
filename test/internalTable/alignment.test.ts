@@ -1,4 +1,4 @@
-import { printTableTest } from '../../src/internalTable/internal-table-printer';
+import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column alignment', () => {
@@ -71,7 +71,7 @@ describe('Testing column alignment', () => {
     );
 
     //print
-    const returned = printTableTest(p.table);
+    const returned = printTableAndGetConsoleOutput(p.table);
     const expected = [
       '┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐',
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        right_align_text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value_center\u001b[0m\u001b[37m │\u001b[0m',
