@@ -1,5 +1,5 @@
-import { printTableTest } from '../../src/internal-table-printer';
-import { Table } from '../../src/console-table-printer';
+import { printTableTest } from '../../src/internalTable/internal-table-printer';
+import { Table } from '../../index';
 
 describe('Testing column alignment', () => {
   it(`all kind of alignments are working`, function () {

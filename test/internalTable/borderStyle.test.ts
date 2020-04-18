@@ -1,5 +1,5 @@
-import { printTableTest } from '../../src/internal-table-printer';
-import { Table } from '../../src/console-table-printer';
+import { printTableTest } from '../../src/internalTable/internal-table-printer';
+import { Table } from '../../index';
 
 describe('Example: Print a simple Table wiht column colors', () => {
   it(`column colors are working`, function () {

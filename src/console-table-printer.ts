@@ -1,5 +1,8 @@
-import { ComplexOptions, TableInternal } from './internal-table';
-import { convertRawRowOptionsToStanrd, RowOptionsRaw } from './table-helpers';
+import { ComplexOptions, TableInternal } from './internalTable/internal-table';
+import {
+  convertRawRowOptionsToStanrd,
+  RowOptionsRaw,
+} from './utils/table-helpers';
 
 export class Table {
   table: TableInternal;

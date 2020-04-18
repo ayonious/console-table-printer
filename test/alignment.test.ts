@@ -1,7 +1,7 @@
-import { Table } from '../src/console-table-printer';
+import { Table } from '../index';
 
 describe('Testing column alignment', () => {
-  it(`all kind of alignments are working`, function () {
+  it(`all kind of alignments are working`, function() {
     //Create a table
     const p = new Table({
       columns: [

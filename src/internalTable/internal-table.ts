@@ -5,14 +5,14 @@ import {
   TABLE_BORDER_STYLES,
   TABLE_STYLE,
   TABLE_STYLE_DETAILS,
-} from './table-constants';
+} from '../utils/table-constants';
 import {
   Column,
   createColum,
   createRow,
   Row,
   RowOptions,
-} from './table-helpers';
+} from '../utils/table-helpers';
 
 interface ColumnOptionsRaw {
   name: string;
