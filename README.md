@@ -102,7 +102,7 @@ const p = new Table({
   ],
 });
 
-p.addRow({ index: 1, text: 'red wine', value: 10.212 }, { color: 'red' });
+p.addRow({ index: 1, text: 'red wine', value: 10.212 }, { color: 'green' });
 p.addRow({ index: 2, text: 'green gemuse', value: 20.0 });
 p.addRow(
   { index: 3, text: 'gelb bananen', value: 100, is_priority_today: 'Y' },
@@ -115,7 +115,7 @@ p.addRow(
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border-column-props.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border-column-props.2.png)
 
 ## Documentation
 
