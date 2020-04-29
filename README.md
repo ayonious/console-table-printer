@@ -30,7 +30,7 @@
 
 ## Synopsis
 
-Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console.
+Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console using js.
 
 ## Installation
 
@@ -116,6 +116,10 @@ p.printTable();
 ```
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border-column-props.2.png)
+
+## CLI
+
+There is also a CLI tool for printing Tables on Terminal directly [table-printer-cli](https://www.npmjs.com/package/table-printer-cli)
 
 ## Documentation
 
