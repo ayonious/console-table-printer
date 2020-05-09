@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -11,6 +11,12 @@
     "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json"
   },
+  "keywords": [
+    "console-table",
+    "console-log",
+    "print-table",
+    "node-table-printing"
+  ],
   "files": [
     "dist"
   ],
