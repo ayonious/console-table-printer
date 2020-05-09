@@ -11,6 +11,12 @@
     "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json"
   },
+  "keywords": [
+    "console-table",
+    "console-log",
+    "print-table",
+    "node-table-printing"
+  ],
   "files": [
     "dist"
   ],
