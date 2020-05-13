@@ -14,6 +14,7 @@ import {
   Row,
   textWithPadding,
   preProcessRows,
+  cellText,
 } from '../utils/table-helpers';
 
 function prepareLineAndPrint(
@@ -29,7 +30,7 @@ function prepareLineAndPrint(
     line.addWithColor(
       (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
       textWithPadding(
-        `${row.text[column.name] || ''}`,
+        `${cellText(row.text[column.name])}`,
         column.alignment || COLUMN_ALIGNMENT.right,
         column.max_ln || 20
       )
@@ -97,7 +98,11 @@ function calculateColumnProperty(table: TableInternal) {
 
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   calculateColumnProperty(table);
-  table.rows = preProcessRows(table.rows, table.filterFunction, table.sortFunction); //sort and filter
+  table.rows = preProcessRows(
+    table.rows,
+    table.filterFunction,
+    table.sortFunction
+  ); //sort and filter
 
   let ret: string[] = [];
   printTableHeaders(table).forEach((row) => ret.push(row));
