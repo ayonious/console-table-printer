@@ -117,3 +117,7 @@ export function createHeaderAsRow(createRow: any, columns: Column[]): Row {
   }
   return row;
 }
+
+export function cellText(text: string): string {
+  return text === undefined || text === null ? '' : text;
+}
