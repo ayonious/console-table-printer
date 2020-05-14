@@ -1,2 +1,4 @@
-export { Table } from './src/console-table-printer';
-export { printSimpleTable as printTable } from './src/internalTable/internal-table-printer';
+import Table from './src/console-table-printer';
+import { printSimpleTable as printTable } from './src/internalTable/internal-table-printer';
+
+export { Table, printTable };
