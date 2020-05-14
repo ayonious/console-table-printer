@@ -50,13 +50,13 @@ export function textWithPadding(
   alignment: COLUMN_ALIGNMENT,
   mxColumnLen: number
 ): string {
+  const curTextSize = text.length;
   switch (alignment) {
     case COLUMN_ALIGNMENT.left:
       return text.padEnd(mxColumnLen);
     case COLUMN_ALIGNMENT.right:
       return text.padStart(mxColumnLen);
     case COLUMN_ALIGNMENT.center:
-      const curTextSize = text.length;
       return text
         .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnLen);
@@ -75,10 +75,12 @@ export function createTableHorizontalBorders(
   column_lengths: number[]
 ) {
   let ret = left;
-  for (let len of column_lengths) {
+
+  column_lengths.forEach((len) => {
     ret += other.repeat(len + 2);
     ret += mid;
-  }
+  });
+
   ret = ret.slice(0, -1);
   ret += right;
   return ret;
@@ -93,11 +95,13 @@ export function createRow(color: COLOR, text: string): Row {
 }
 
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
-  let column_name = column.name;
+  const column_name = column.name;
   let max_ln = `${column_name}`.length;
-  for (let row of rows) {
+
+  rows.forEach((row) => {
     max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length);
-  }
+  });
+
   return max_ln;
 }
 
@@ -110,11 +114,11 @@ export function printTableHorizontalBorders(
   return str;
 }
 
-export function createHeaderAsRow(createRow: any, columns: Column[]): Row {
-  let row: Row = createRow(COLOR.white_bold, {});
-  for (let column of columns) {
+export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
+  const row: Row = createRowFn(COLOR.white_bold, {});
+  columns.forEach((column) => {
     row.text[column.name] = column.name;
-  }
+  });
   return row;
 }
 

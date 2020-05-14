@@ -1,4 +1,4 @@
-import { ColoredConsoleLine } from '../utils/colored-console-line';
+import ColoredConsoleLine from '../utils/colored-console-line';
 import { TableInternal } from './internal-table';
 import {
   COLOR,
@@ -23,9 +23,10 @@ function prepareLineAndPrint(
   row: Row,
   isHeader?: boolean
 ): string {
-  let line = new ColoredConsoleLine();
+  const line = new ColoredConsoleLine();
   line.addWithColor(COLOR.white, tableStyle.vertical);
-  for (let column of columns) {
+
+  columns.forEach((column) => {
     line.addWithColor(COLOR.white, ' ');
     line.addWithColor(
       (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
@@ -35,25 +36,26 @@ function prepareLineAndPrint(
         column.max_ln || 20
       )
     );
-    line.addWithColor(COLOR.white, ' ' + tableStyle.vertical);
-  }
+    line.addWithColor(COLOR.white, ` ${tableStyle.vertical}`);
+  });
+
   return line.printConsole();
 }
 
 // ║ 1     ║     I would like some red wine please ║ 10.212 ║
 function printRow(table: TableInternal, row: Row): string[] {
-  let ret: string[] = [];
+  const ret: string[] = [];
   ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
   return ret;
 }
 
-/* 
+/*
  ╔═══════╦═══════════════════════════════════════╦════════╗
  ║ index ║                                  text ║  value ║
  ╟═══════╬═══════════════════════════════════════╬════════╢
 */
 function printTableHeaders(table: TableInternal): string[] {
-  let ret: string[] = [];
+  const ret: string[] = [];
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
   ret.push(
@@ -64,7 +66,7 @@ function printTableHeaders(table: TableInternal): string[] {
   );
 
   // ║ index ║                                  text ║  value ║
-  let row = createHeaderAsRow(createRow, table.columns);
+  const row = createHeaderAsRow(createRow, table.columns);
   ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row, true));
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
@@ -79,7 +81,7 @@ function printTableHeaders(table: TableInternal): string[] {
 }
 
 function printTableEnding(table: TableInternal): string[] {
-  let ret: string[] = [];
+  const ret: string[] = [];
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret.push(
     printTableHorizontalBorders(
@@ -91,25 +93,27 @@ function printTableEnding(table: TableInternal): string[] {
 }
 
 function calculateColumnProperty(table: TableInternal) {
-  for (let column of table.columns) {
+  table.columns.forEach((column) => {
+    // eslint-disable-next-line no-param-reassign
     column.max_ln = findMaxLenOfColumn(column, table.rows);
-  }
+  });
 }
 
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   calculateColumnProperty(table);
+  // eslint-disable-next-line no-param-reassign
   table.rows = preProcessRows(
     table.rows,
     table.filterFunction,
     table.sortFunction
-  ); //sort and filter
+  ); // sort and filter
 
-  let ret: string[] = [];
+  const ret: string[] = [];
   printTableHeaders(table).forEach((row) => ret.push(row));
 
-  for (let row of table.rows) {
-    printRow(table, row).forEach((row) => ret.push(row));
-  }
+  table.rows.forEach((row) => {
+    printRow(table, row).forEach((row_) => ret.push(row_));
+  });
   printTableEnding(table).forEach((row) => ret.push(row));
   return ret;
 }
@@ -119,7 +123,7 @@ export function printTable(table: TableInternal) {
 }
 
 export function printSimpleTableAndGetConsoleOutput(rows: any[]) {
-  let table = new TableInternal();
+  const table = new TableInternal();
   table.addRows(rows);
   return printTableAndGetConsoleOutput(table);
 }
