@@ -1,8 +1,8 @@
 import { Table } from '../index';
 
 describe('Testing column alignment', () => {
-  it(`all kind of alignments are working`, function() {
-    //Create a table
+  it('all kind of alignments are working', () => {
+    // Create a table
     const p = new Table({
       columns: [
         { name: 'red_left_align_index', alignment: 'left', color: 'red' },
@@ -11,7 +11,7 @@ describe('Testing column alignment', () => {
       ],
     });
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       {
         red_left_align_index: 2,
@@ -69,7 +69,7 @@ describe('Testing column alignment', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = p.printTable();
   });
 });

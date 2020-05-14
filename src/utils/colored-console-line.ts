@@ -15,7 +15,7 @@ const COLOR_MAP: {
   [COLOR.reset]: '\x1b[0m',
 };
 
-export class ColoredConsoleLine {
+export default class ColoredConsoleLine {
   text: string;
 
   constructor() {

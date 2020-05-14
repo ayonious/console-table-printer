@@ -2,8 +2,8 @@ import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-
 import { Table } from '../../index';
 
 describe('Example: Print a simple Table wiht column colors', () => {
-  it(`column colors are working`, function () {
-    //Create a table
+  it('column colors are working', () => {
+    // Create a table
     const p = new Table({
       style: 'fatBorder',
       columns: [
@@ -13,7 +13,7 @@ describe('Example: Print a simple Table wiht column colors', () => {
       ],
     });
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       { index: 1, text: 'I would like some red wine please', value: 10.212 },
       { color: 'red' }
@@ -27,7 +27,7 @@ describe('Example: Print a simple Table wiht column colors', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = printTableAndGetConsoleOutput(p.table);
 
     const expected = [

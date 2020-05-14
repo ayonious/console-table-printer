@@ -2,8 +2,8 @@ import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-
 import { Table } from '../../index';
 
 describe('Example: Print a simple Table wiht column colors', () => {
-  it(`column colors are working`, function () {
-    //Create a table
+  it('column colors are working', () => {
+    // Create a table
     const p = new Table({
       columns: [
         { name: 'red_left_align_index', alignment: 'left', color: 'red' },
@@ -12,7 +12,7 @@ describe('Example: Print a simple Table wiht column colors', () => {
       ],
     });
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       {
         red_left_align_index: 2,
@@ -70,7 +70,7 @@ describe('Example: Print a simple Table wiht column colors', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = printTableAndGetConsoleOutput(p.table);
 
     const expected = [

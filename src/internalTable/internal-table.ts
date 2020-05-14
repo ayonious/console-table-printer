@@ -45,10 +45,15 @@ function objIfExists(key: string, val: any) {
 
 export class TableInternal {
   tableStyle: TABLE_STYLE_DETAILS;
+
   columns: Column[];
+
   rows: Row[];
+
   style: TABLE_BORDER_STYLES;
+
   filterFunction: RowFilterFunction;
+
   sortFunction: RowSortFunction;
 
   initSimple(columns: string[]) {
@@ -92,11 +97,11 @@ export class TableInternal {
 
   createColumnFromRow(text: any) {
     const colNames = this.columns.map((col) => col.name);
-    for (let key in text) {
+    Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
         this.columns.push(createColum(key));
       }
-    }
+    });
   }
 
   addColumn(text: string) {
@@ -104,9 +109,9 @@ export class TableInternal {
   }
 
   addColumns(toBeInsertedColumns: string[]) {
-    for (let toBeInsertedColumn of toBeInsertedColumns) {
+    toBeInsertedColumns.forEach((toBeInsertedColumn) => {
       this.addColumn(toBeInsertedColumn);
-    }
+    });
   }
 
   addRow(text: any, options?: RowOptions) {
@@ -114,10 +119,10 @@ export class TableInternal {
     this.rows.push(createRow(options?.color || COLOR.white, text));
   }
 
-  addRows(toBeInsertedRows: any) {
-    for (let toBeInsertedRow of toBeInsertedRows) {
+  addRows(toBeInsertedRows: any[]) {
+    toBeInsertedRows.forEach((toBeInsertedRow) => {
       this.addRow(toBeInsertedRow, undefined);
-    }
+    });
   }
 
   printTable() {

@@ -4,7 +4,7 @@ import {
   RowOptionsRaw,
 } from './utils/table-helpers';
 
-export class Table {
+export default class Table {
   table: TableInternal;
 
   constructor(options?: ComplexOptions | string[]) {

@@ -1,26 +1,26 @@
 import { Table } from '../index';
 
 describe('Example: Print a simple Table', () => {
-  it(`Readme Example1`, function() {
-    //Create a table
+  it('Readme Example1', () => {
+    // Create a table
     const p = new Table();
 
-    //add rows with color
+    // add rows with color
     p.addRow({ index: 1, text: 'red wine please', value: 10.212 });
     p.addRow({ index: 2, text: 'green gemuse please', value: 20.0 });
     p.addRows([
-      //adding multiple rows are possible
+      // adding multiple rows are possible
       { index: 3, text: 'gelb bananen bitte', value: 100 },
       { index: 4, text: 'update is working', value: 300 },
     ]);
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`Readme Example2`, function() {
-    //Create a table
+  it('Readme Example2', () => {
+    // Create a table
     const p = new Table();
     p.addRow({ index: 1, text: 'red wine', value: 10.212 }, { color: 'red' });
     p.addRow(
@@ -35,31 +35,31 @@ describe('Example: Print a simple Table', () => {
     expect(returned).toBeUndefined();
   });
 
-  it(`Readme Example: screenshots generator for style`, function() {
-    //Create a table
+  it('Readme Example: screenshots generator for style', () => {
+    // Create a table
 
     const p1 = new Table();
 
-    //add rows with color
+    // add rows with color
     p1.addRow({ index: 1, text: 'red wine', value: 10.9 });
     p1.addRow({ index: 2, text: 'green gemuse', value: 20.0 });
 
-    //print
+    // print
     p1.printTable();
 
     const p2 = new Table({ style: 'fatBorder' });
 
-    //add rows with color
+    // add rows with color
     p2.addRow({ index: 1, text: 'red wine', value: 10.9 });
     p2.addRow({ index: 2, text: 'green gemuse', value: 20.0 });
 
-    //print
+    // print
     const returned = p2.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`table With all colored rows`, function() {
-    //Create a table
+  it('table With all colored rows', () => {
+    // Create a table
     const p = new Table({
       columns: [
         { name: 'index', alignment: 'left' },
@@ -68,7 +68,7 @@ describe('Example: Print a simple Table', () => {
       ],
     });
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       { index: 2, text: 'I would like some blue poison please', value: 10.212 },
       { color: 'blue' }
@@ -102,13 +102,13 @@ describe('Example: Print a simple Table', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`fat Border Table`, function() {
-    //Create a table
+  it('fat Border Table', () => {
+    // Create a table
     const p = new Table({
       style: 'fatBorder',
       columns: [
@@ -118,7 +118,7 @@ describe('Example: Print a simple Table', () => {
       ],
     });
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       { index: 1, text: 'I would like some red wine please', value: 10.212 },
       { color: 'red' }
@@ -132,16 +132,16 @@ describe('Example: Print a simple Table', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`simple table constructor`, function() {
-    //Create a table
+  it('simple table constructor', () => {
+    // Create a table
     const p = new Table(['index', 'text', 'value']);
 
-    //add rows with color
+    // add rows with color
     p.addRow(
       { index: 1, text: 'I would like some red wine please', value: 10.212 },
       { color: 'red' }
@@ -155,16 +155,16 @@ describe('Example: Print a simple Table', () => {
       { color: 'yellow' }
     );
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`without color`, function() {
-    //Create a table
+  it('without color', () => {
+    // Create a table
     const p = new Table(['index', 'text', 'value']);
 
-    //add rows with color
+    // add rows with color
     p.addRow({
       index: 1,
       text: 'I would like some red wine please',
@@ -181,16 +181,16 @@ describe('Example: Print a simple Table', () => {
       value: 100,
     });
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`batch insert`, function() {
-    //Create a table
+  it('batch insert', () => {
+    // Create a table
     const p = new Table(['index', 'text', 'value']);
 
-    //add rows with color
+    // add rows with color
     p.addRow({
       index: 1,
       text: 'I would like some red wine please',
@@ -206,16 +206,16 @@ describe('Example: Print a simple Table', () => {
       { index: 4, text: 'I hope batch update is working', value: 300 },
     ]);
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`column creation`, function() {
-    //Create a table
+  it('column creation', () => {
+    // Create a table
     const p = new Table();
 
-    //add rows with color
+    // add rows with color
     p.addRows([
       { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
       { index: 4, text: 'I hope batch update is working', value: 300 },
@@ -224,16 +224,16 @@ describe('Example: Print a simple Table', () => {
     p.addColumn('extra_column1');
     p.addColumns(['extra_column2', 'extra_column3']);
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
 
-  it(`create column from rows`, function() {
-    //Create a table
+  it('create column from rows', () => {
+    // Create a table
     const p = new Table();
 
-    //add rows with color
+    // add rows with color
     p.addRow({
       index: 1,
       text: 'I would like some red wine please',
@@ -255,7 +255,7 @@ describe('Example: Print a simple Table', () => {
       },
     ]);
 
-    //print
+    // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
