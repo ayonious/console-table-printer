@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -36,7 +36,7 @@
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.9.2"
   }
 }
