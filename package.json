@@ -38,5 +38,6 @@
     "pretty-quick": "^2.0.1",
     "ts-jest": "^26.0.0",
     "typescript": "^3.9.3"
-  }
+  },
+  "homepage": "https://console-table.netlify.app"
 }
