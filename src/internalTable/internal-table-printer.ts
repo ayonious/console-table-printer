@@ -57,7 +57,7 @@ function printRow(table: TableInternal, row: Row): string[] {
 function printTableTitle(table: TableInternal): string[] {
   const ret: string[] = [];
 
-  if(table.title === undefined) {
+  if (table.title === undefined) {
     return ret;
   }
 
