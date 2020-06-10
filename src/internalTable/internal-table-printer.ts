@@ -57,6 +57,10 @@ function printRow(table: TableInternal, row: Row): string[] {
 function printTableTitle(table: TableInternal): string[] {
   const ret: string[] = [];
 
+  if(table.title === undefined) {
+    return ret;
+  }
+
   const getTableWidth = () => {
     const reducer = (accumulator: number, currentValue: number) =>
       accumulator + currentValue + 1;
@@ -135,7 +139,7 @@ export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   ); // sort and filter
 
   const ret: string[] = [];
-  table.title && printTableTitle(table).forEach((row) => ret.push(row));
+  printTableTitle(table).forEach((row) => ret.push(row));
 
   printTableHeaders(table).forEach((row) => ret.push(row));
 
