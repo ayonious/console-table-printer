@@ -1,4 +1,4 @@
-import { COLOR, COLUMN_ALIGNMENT } from './table-constants';
+import { COLOR, ALIGNMENT } from './table-constants';
 import {
   RowSortFunction,
   RowFilterFunction,
@@ -6,7 +6,7 @@ import {
 
 export interface Column {
   name: string;
-  alignment?: COLUMN_ALIGNMENT;
+  alignment?: ALIGNMENT;
   color?: COLOR;
   max_ln?: number;
 }
@@ -47,16 +47,16 @@ export function preProcessRows(
 
 export function textWithPadding(
   text: string,
-  alignment: COLUMN_ALIGNMENT,
+  alignment: ALIGNMENT,
   mxColumnLen: number
 ): string {
   const curTextSize = text.length;
   switch (alignment) {
-    case COLUMN_ALIGNMENT.left:
+    case ALIGNMENT.left:
       return text.padEnd(mxColumnLen);
-    case COLUMN_ALIGNMENT.right:
+    case ALIGNMENT.right:
       return text.padStart(mxColumnLen);
-    case COLUMN_ALIGNMENT.center:
+    case ALIGNMENT.center:
       return text
         .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnLen);
@@ -103,6 +103,11 @@ export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   });
 
   return max_ln;
+}
+
+export function printTableTitleInConsole(title: string): string {
+  console.log(title);
+  return title;
 }
 
 export function printTableHorizontalBorders(

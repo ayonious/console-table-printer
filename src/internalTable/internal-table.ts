@@ -1,7 +1,7 @@
 import { printTable } from './internal-table-printer';
 import {
   COLOR,
-  COLUMN_ALIGNMENT,
+  ALIGNMENT,
   TABLE_BORDER_STYLES,
   TABLE_STYLE,
   TABLE_STYLE_DETAILS,
@@ -28,6 +28,7 @@ const defaultRowFilterFunc = () => true;
 
 export interface ComplexOptions {
   style?: string;
+  title?: string;
   columns?: ColumnOptionsRaw[];
   sort?: RowSortFunction;
   filter?: RowFilterFunction;
@@ -44,6 +45,8 @@ function objIfExists(key: string, val: any) {
 }
 
 export class TableInternal {
+  title?: string;
+
   tableStyle: TABLE_STYLE_DETAILS;
 
   columns: Column[];
@@ -59,11 +62,12 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
-      alignment: COLUMN_ALIGNMENT.right,
+      alignment: ALIGNMENT.right,
     }));
   }
 
   initDetailed(options: ComplexOptions) {
+    this.title = options.title || undefined;
     this.tableStyle =
       (options?.style && (<any>TABLE_STYLE)[options.style]) ||
       TABLE_STYLE.thinBorder;
@@ -73,9 +77,7 @@ export class TableInternal {
       options.columns?.map((column) => ({
         name: column.name,
         ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
-        alignment: (<any>COLUMN_ALIGNMENT)[
-          column.alignment || COLUMN_ALIGNMENT.right
-        ],
+        alignment: (<any>ALIGNMENT)[column.alignment || ALIGNMENT.right],
       })) || [];
   }
 
@@ -83,6 +85,7 @@ export class TableInternal {
     // default construction
     this.rows = [];
     this.columns = [];
+    this.title = undefined;
     this.tableStyle = TABLE_STYLE.thinBorder;
     this.style = TABLE_BORDER_STYLES.thinBorder;
     this.filterFunction = defaultRowFilterFunc;

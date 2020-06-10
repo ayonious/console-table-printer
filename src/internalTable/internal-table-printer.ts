@@ -2,7 +2,7 @@ import ColoredConsoleLine from '../utils/colored-console-line';
 import { TableInternal } from './internal-table';
 import {
   COLOR,
-  COLUMN_ALIGNMENT,
+  ALIGNMENT,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
@@ -15,6 +15,7 @@ import {
   textWithPadding,
   preProcessRows,
   cellText,
+  printTableTitleInConsole,
 } from '../utils/table-helpers';
 
 function prepareLineAndPrint(
@@ -32,7 +33,7 @@ function prepareLineAndPrint(
       (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
-        column.alignment || COLUMN_ALIGNMENT.right,
+        column.alignment || ALIGNMENT.right,
         column.max_ln || 20
       )
     );
@@ -46,6 +47,35 @@ function prepareLineAndPrint(
 function printRow(table: TableInternal, row: Row): string[] {
   const ret: string[] = [];
   ret.push(prepareLineAndPrint(table.tableStyle, table.columns, row));
+  return ret;
+}
+
+/*
+                  The analysis Result
+ ╔═══════╦═══════════════════════════════════════╦════════╗
+*/
+function printTableTitle(table: TableInternal): string[] {
+  const ret: string[] = [];
+
+  if (table.title === undefined) {
+    return ret;
+  }
+
+  const getTableWidth = () => {
+    const reducer = (accumulator: number, currentValue: number) =>
+      accumulator + currentValue + 1;
+    return table.columns.map((m) => m.max_ln || 20).reduce(reducer, 1);
+  };
+
+  const titleWithPadding = textWithPadding(
+    table.title as string,
+    ALIGNMENT.center,
+    getTableWidth()
+  );
+  const styledText = new ColoredConsoleLine();
+  styledText.addWithColor(COLOR.white_bold, titleWithPadding);
+  //                  The analysis Result
+  ret.push(styledText.printConsole());
   return ret;
 }
 
@@ -109,6 +139,8 @@ export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   ); // sort and filter
 
   const ret: string[] = [];
+  printTableTitle(table).forEach((row) => ret.push(row));
+
   printTableHeaders(table).forEach((row) => ret.push(row));
 
   table.rows.forEach((row) => {
