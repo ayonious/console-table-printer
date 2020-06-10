@@ -80,7 +80,7 @@ export const TABLE_STYLE: {
   },
 };
 
-export enum COLUMN_ALIGNMENT {
+export enum ALIGNMENT {
   right,
   left,
   center,
