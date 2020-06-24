@@ -144,6 +144,8 @@ new Table({
   ],
   sort: (row1, row2) => row2.column1 - row1.column1, // sorting order of rows (optional), this is normal js sort function for Array.sort
   filter: (row) => row.column1 < 3, // filtering rows (optional)
+  enabledColumns: ['column1'], // array of columns that you want to see, all other will be ignored (optional)
+  disabledColumns: ['column2'], // array of columns that you DONT want to see, these will always be hidden
 });
 ```
 
