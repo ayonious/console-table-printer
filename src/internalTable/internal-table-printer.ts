@@ -9,14 +9,13 @@ import {
   Column,
   createHeaderAsRow,
   createRow,
-  findMaxLenOfColumn,
   printTableHorizontalBorders,
   Row,
   textWithPadding,
-  preProcessRows,
   cellText,
-  printTableTitleInConsole,
 } from '../utils/table-helpers';
+
+import { preProcessColumns, preProcessRows } from './tablePreProcessors';
 
 function prepareLineAndPrint(
   tableStyle: TABLE_STYLE_DETAILS,
@@ -122,21 +121,9 @@ function printTableEnding(table: TableInternal): string[] {
   return ret;
 }
 
-function calculateColumnProperty(table: TableInternal) {
-  table.columns.forEach((column) => {
-    // eslint-disable-next-line no-param-reassign
-    column.max_ln = findMaxLenOfColumn(column, table.rows);
-  });
-}
-
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
-  calculateColumnProperty(table);
-  // eslint-disable-next-line no-param-reassign
-  table.rows = preProcessRows(
-    table.rows,
-    table.filterFunction,
-    table.sortFunction
-  ); // sort and filter
+  preProcessColumns(table); // enable / disable cols, find maxLn of each col
+  preProcessRows(table); // sort and filter
 
   const ret: string[] = [];
   printTableTitle(table).forEach((row) => ret.push(row));

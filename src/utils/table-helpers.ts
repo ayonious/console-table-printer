@@ -35,16 +35,6 @@ export interface RowOptions {
   color: COLOR;
 }
 
-export function preProcessRows(
-  rows: Row[],
-  filterFunc: RowFilterFunction,
-  sortFunc: RowSortFunction
-): Row[] {
-  return rows
-    .filter((r) => filterFunc(r.text))
-    .sort((r1, r2) => sortFunc(r1.text, r2.text));
-}
-
 export function textWithPadding(
   text: string,
   alignment: ALIGNMENT,
