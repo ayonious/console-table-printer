@@ -123,12 +123,7 @@ function printTableEnding(table: TableInternal): string[] {
 
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
   preProcessColumns(table); // enable / disable cols, find maxLn of each col
-  // eslint-disable-next-line no-param-reassign
-  table.rows = preProcessRows(
-    table.rows,
-    table.filterFunction,
-    table.sortFunction
-  ); // sort and filter
+  preProcessRows(table); // sort and filter
 
   const ret: string[] = [];
   printTableTitle(table).forEach((row) => ret.push(row));
