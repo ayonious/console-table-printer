@@ -32,6 +32,8 @@ export interface ComplexOptions {
   columns?: ColumnOptionsRaw[];
   sort?: RowSortFunction;
   filter?: RowFilterFunction;
+  enabledColumns?: string[];
+  disabledColumns?: string[];
 }
 
 function objIfExists(key: string, val: any) {
@@ -59,6 +61,10 @@ export class TableInternal {
 
   sortFunction: RowSortFunction;
 
+  enabledColumns: string[];
+
+  disabledColumns: string[];
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -73,8 +79,10 @@ export class TableInternal {
       TABLE_STYLE.thinBorder;
     this.sortFunction = options?.sort || defaultRowSortFunc;
     this.filterFunction = options?.filter || defaultRowFilterFunc;
+    this.enabledColumns = options?.enabledColumns || [];
+    this.disabledColumns = options?.disabledColumns || [];
     this.columns =
-      options.columns?.map((column) => ({
+      options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
         ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
         alignment: (<any>ALIGNMENT)[column.alignment || ALIGNMENT.right],
@@ -90,6 +98,8 @@ export class TableInternal {
     this.style = TABLE_BORDER_STYLES.thinBorder;
     this.filterFunction = defaultRowFilterFunc;
     this.sortFunction = defaultRowSortFunc;
+    this.enabledColumns = [];
+    this.disabledColumns = [];
 
     if (options instanceof Array) {
       this.initSimple(options);
