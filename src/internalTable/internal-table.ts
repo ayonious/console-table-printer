@@ -20,6 +20,10 @@ interface ColumnOptionsRaw {
   color?: string;
 }
 
+export interface ComputedColumn extends ColumnOptionsRaw {
+  function: (arg0: any) => any;
+}
+
 export type RowSortFunction = (row1: any, row2: any) => number;
 const defaultRowSortFunc = () => 0;
 
@@ -34,7 +38,7 @@ export interface ComplexOptions {
   filter?: RowFilterFunction;
   enabledColumns?: string[];
   disabledColumns?: string[];
-  computedColumns?: any[];
+  computedColumns?: ComputedColumn[];
 }
 
 function objIfExists(key: string, val: any) {

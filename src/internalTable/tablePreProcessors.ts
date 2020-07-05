@@ -1,12 +1,16 @@
-import { TableInternal } from './internal-table';
-import { findMaxLenOfColumn, Column } from '../utils/table-helpers';
+import { TableInternal, ComputedColumn } from './internal-table';
+import { findMaxLenOfColumn, Column, Row } from '../utils/table-helpers';
 
 function createComputedColumnsIfNecessary(table: TableInternal) {
-  if (table.enabledColumns.length) {
+  if (table.computedColumns.length) {
     // eslint-disable-next-line no-param-reassign
-    table.columns = table.columns.filter((col: Column) =>
-      table.enabledColumns.includes(col.name)
-    );
+    table.computedColumns.forEach((computedColumn: ComputedColumn) => {
+      table.addColumn(computedColumn.name);
+      table.rows.forEach((row: Row) => {
+        // eslint-disable-next-line no-param-reassign
+        row.text[computedColumn.name] = computedColumn.function(row.text);
+      });
+    });
   }
 }
 
