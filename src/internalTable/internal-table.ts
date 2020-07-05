@@ -72,8 +72,6 @@ export class TableInternal {
 
   computedColumns: any[];
 
-  inputOptions: ComplexOptions | undefined;
-
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -91,7 +89,6 @@ export class TableInternal {
     this.enabledColumns = options?.enabledColumns || [];
     this.disabledColumns = options?.disabledColumns || [];
     this.computedColumns = options?.computedColumns || [];
-    this.inputOptions = options;
     this.columns =
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
@@ -112,7 +109,6 @@ export class TableInternal {
     this.enabledColumns = [];
     this.disabledColumns = [];
     this.computedColumns = [];
-    this.inputOptions = undefined;
 
     if (options instanceof Array) {
       this.initSimple(options);
