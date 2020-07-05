@@ -122,7 +122,7 @@ function printTableEnding(table: TableInternal): string[] {
 }
 
 export function printTableAndGetConsoleOutput(table: TableInternal): string[] {
-  preProcessColumns(table); // enable / disable cols, find maxLn of each col
+  preProcessColumns(table); // enable / disable cols, find maxLn of each col/ computed Columns
   preProcessRows(table); // sort and filter
 
   const ret: string[] = [];

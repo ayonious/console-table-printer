@@ -20,6 +20,10 @@ interface ColumnOptionsRaw {
   color?: string;
 }
 
+export interface ComputedColumn extends ColumnOptionsRaw {
+  function: (arg0: any) => any;
+}
+
 export type RowSortFunction = (row1: any, row2: any) => number;
 const defaultRowSortFunc = () => 0;
 
@@ -34,6 +38,7 @@ export interface ComplexOptions {
   filter?: RowFilterFunction;
   enabledColumns?: string[];
   disabledColumns?: string[];
+  computedColumns?: ComputedColumn[];
 }
 
 function objIfExists(key: string, val: any) {
@@ -65,6 +70,10 @@ export class TableInternal {
 
   disabledColumns: string[];
 
+  computedColumns: any[];
+
+  inputOptions: ComplexOptions | undefined;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -81,6 +90,8 @@ export class TableInternal {
     this.filterFunction = options?.filter || defaultRowFilterFunc;
     this.enabledColumns = options?.enabledColumns || [];
     this.disabledColumns = options?.disabledColumns || [];
+    this.computedColumns = options?.computedColumns || [];
+    this.inputOptions = options;
     this.columns =
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
@@ -100,6 +111,8 @@ export class TableInternal {
     this.sortFunction = defaultRowSortFunc;
     this.enabledColumns = [];
     this.disabledColumns = [];
+    this.computedColumns = [];
+    this.inputOptions = undefined;
 
     if (options instanceof Array) {
       this.initSimple(options);
