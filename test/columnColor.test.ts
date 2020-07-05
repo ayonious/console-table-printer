@@ -1,6 +1,6 @@
 import { Table } from '../index';
 
-describe('Example: Print a simple Table wiht column colors', () => {
+describe('Example: Print a simple Table with column colors', () => {
   it('column colors are working', () => {
     // Create a table
     const p = new Table({
