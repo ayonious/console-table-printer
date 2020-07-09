@@ -62,7 +62,8 @@ function printTableTitle(table: TableInternal): string[] {
 
   const getTableWidth = () => {
     const reducer = (accumulator: number, currentValue: number) =>
-      accumulator + currentValue + 1;
+      // ║ cell ║, 2 spaces + cellTextSize + one border on the left
+      accumulator + currentValue + 2 + 1;
     return table.columns.map((m) => m.max_ln || 20).reduce(reducer, 1);
   };
 
