@@ -74,7 +74,7 @@ describe('Testing column alignment', () => {
     // print
     const returned = printTableAndGetConsoleOutput(p.table);
     const expected = [
-      '\u001b[01m                                Some Random Title                                 \u001b[0m',
+      '\u001b[01m                                   Some Random Title                                    \u001b[0m',
       '┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐',
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        right_align_text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value_center\u001b[0m\u001b[37m │\u001b[0m',
       '├──────────────────────┼──────────────────────────────────────────┼────────────────────┤',
@@ -86,6 +86,48 @@ describe('Testing column alignment', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m7                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m   I would like some green gemuse please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m        20        \u001b[0m\u001b[37m │\u001b[0m',
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m8                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m       100        \u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┴────────────────────┘',
+    ];
+    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+  });
+
+  it('Simpler title test', () => {
+    // Create a table
+    const p = new Table({
+      title: 'Some Random Title',
+      columns: [
+        { name: 'red_left_align_index', alignment: 'left' },
+        { name: 'green_value_center', alignment: 'center', color: 'green' },
+        { name: 'col1' },
+        { name: 'col2' },
+        { name: 'col2' },
+      ],
+    });
+
+    // add rows with color
+    p.addRow({
+      red_left_align_index: 3,
+      green_value_center: 10.212,
+    });
+    p.addRow({
+      red_left_align_index: 4,
+      green_value_center: 10.212,
+    });
+    p.addRow({
+      red_left_align_index: 5,
+      green_value_center: 10.212,
+    });
+
+    // print
+    const returned = printTableAndGetConsoleOutput(p.table);
+    const expected = [
+      '\u001b[01m                        Some Random Title                         \u001b[0m',
+      '┌──────────────────────┬────────────────────┬──────┬──────┬──────┐',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value_center\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mcol1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mcol2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mcol2\u001b[0m\u001b[37m │\u001b[0m',
+      '├──────────────────────┼────────────────────┼──────┼──────┼──────┤',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m4                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m5                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m',
+      '└──────────────────────┴────────────────────┴──────┴──────┴──────┘',
     ];
     expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
   });

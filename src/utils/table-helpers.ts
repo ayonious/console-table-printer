@@ -95,11 +95,6 @@ export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   return max_ln;
 }
 
-export function printTableTitleInConsole(title: string): string {
-  console.log(title);
-  return title;
-}
-
 export function printTableHorizontalBorders(
   style: any,
   column_lengths: number[]
