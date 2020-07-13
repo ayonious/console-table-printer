@@ -1,13 +1,13 @@
 import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
-describe('Example: Print a simple Table with column colors', () => {
-  it('column colors are working', () => {
+describe('Example: Check if borders are styled properly', () => {
+  it('print a fat border table', () => {
     // Create a table
     const p = new Table({
       style: {
         /*
-            Style2: fatBorder
+            Style:
             ╔══════╦═════╦══════╗
             ║ hob  ║ foo ║ mia  ║
             ╟══════╬═════╬══════╢
