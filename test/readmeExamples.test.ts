@@ -47,7 +47,7 @@ describe('Example: Print a simple Table', () => {
     // print
     p1.printTable();
 
-    const p2 = new Table({ style: 'fatBorder' });
+    const p2 = new Table();
 
     // add rows with color
     p2.addRow({ index: 1, text: 'red wine', value: 10.9 });
@@ -99,36 +99,6 @@ describe('Example: Print a simple Table', () => {
     );
     p.addRow(
       { index: 8, text: 'I would like some gelb bananen bitte', value: 100 },
-      { color: 'yellow' }
-    );
-
-    // print
-    const returned = p.printTable();
-    expect(returned).toBeUndefined();
-  });
-
-  it('fat Border Table', () => {
-    // Create a table
-    const p = new Table({
-      style: 'fatBorder',
-      columns: [
-        { name: 'index', alignment: 'left' },
-        { name: 'text', alignment: 'right' },
-        { name: 'value' },
-      ],
-    });
-
-    // add rows with color
-    p.addRow(
-      { index: 1, text: 'I would like some red wine please', value: 10.212 },
-      { color: 'red' }
-    );
-    p.addRow(
-      { index: 2, text: 'I would like some green gemuse please', value: 20.0 },
-      { color: 'green' }
-    );
-    p.addRow(
-      { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
       { color: 'yellow' }
     );
 

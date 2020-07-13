@@ -5,7 +5,35 @@ describe('Example: Print a simple Table with column colors', () => {
   it('column colors are working', () => {
     // Create a table
     const p = new Table({
-      style: 'fatBorder',
+      style: {
+        /*
+            Style2: fatBorder
+            ╔══════╦═════╦══════╗
+            ║ hob  ║ foo ║ mia  ║
+            ╟══════╬═════╬══════╢
+            ║ ball ║ fox ║ mama ║
+            ╚══════╩═════╩══════╝
+            */
+        headerTop: {
+          left: '╔',
+          mid: '╦',
+          right: '╗',
+          other: '═',
+        },
+        headerBottom: {
+          left: '╟',
+          mid: '╬',
+          right: '╢',
+          other: '═',
+        },
+        tableBottom: {
+          left: '╚',
+          mid: '╩',
+          right: '╝',
+          other: '═',
+        },
+        vertical: '║',
+      },
       columns: [
         { name: 'index', alignment: 'left' },
         { name: 'text', alignment: 'right' },

@@ -2,8 +2,7 @@ import { printTable } from './internal-table-printer';
 import {
   COLOR,
   ALIGNMENT,
-  TABLE_BORDER_STYLES,
-  TABLE_STYLE,
+  DEFAULT_TABLE_STYLE,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
@@ -31,7 +30,7 @@ export type RowFilterFunction = (row: any) => Boolean;
 const defaultRowFilterFunc = () => true;
 
 export interface ComplexOptions {
-  style?: string;
+  style?: TABLE_STYLE_DETAILS;
   title?: string;
   columns?: ColumnOptionsRaw[];
   sort?: RowSortFunction;
@@ -60,8 +59,6 @@ export class TableInternal {
 
   rows: Row[];
 
-  style: TABLE_BORDER_STYLES;
-
   filterFunction: RowFilterFunction;
 
   sortFunction: RowSortFunction;
@@ -81,9 +78,7 @@ export class TableInternal {
 
   initDetailed(options: ComplexOptions) {
     this.title = options.title || undefined;
-    this.tableStyle =
-      (options?.style && (<any>TABLE_STYLE)[options.style]) ||
-      TABLE_STYLE.thinBorder;
+    this.tableStyle = options?.style || DEFAULT_TABLE_STYLE;
     this.sortFunction = options?.sort || defaultRowSortFunc;
     this.filterFunction = options?.filter || defaultRowFilterFunc;
     this.enabledColumns = options?.enabledColumns || [];
@@ -102,8 +97,7 @@ export class TableInternal {
     this.rows = [];
     this.columns = [];
     this.title = undefined;
-    this.tableStyle = TABLE_STYLE.thinBorder;
-    this.style = TABLE_BORDER_STYLES.thinBorder;
+    this.tableStyle = DEFAULT_TABLE_STYLE;
     this.filterFunction = defaultRowFilterFunc;
     this.sortFunction = defaultRowSortFunc;
     this.enabledColumns = [];
