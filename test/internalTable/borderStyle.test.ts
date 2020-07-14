@@ -75,7 +75,7 @@ describe('Example: Check if borders are styled properly', () => {
     const p = new Table({
       style: {
         /*
-            Style: (green)
+            Style: (red)
             ╔══════╦═════╦══════╗
             ║ hob  ║ foo ║ mia  ║
             ╟══════╬═════╬══════╢
