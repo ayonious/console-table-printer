@@ -11,73 +11,33 @@ export type TABLE_STYLE_DETAILS = {
   vertical: string;
 };
 
-export enum TABLE_BORDER_STYLES {
-  fatBorder,
-  thinBorder,
-  customized,
-}
-
-export const TABLE_STYLE: {
-  fatBorder: TABLE_STYLE_DETAILS;
-  thinBorder: TABLE_STYLE_DETAILS;
-} = {
-  thinBorder: {
-    /*
-        Style1: thinBorder
-        ┌────────────┬─────┬──────┐
-        │ foo        │ bar │ baz  │
-        │ frobnicate │ bar │ quuz │
-        └────────────┴─────┴──────┘
-        */
-    headerTop: {
-      left: '┌',
-      mid: '┬',
-      right: '┐',
-      other: '─',
-    },
-    headerBottom: {
-      left: '├',
-      mid: '┼',
-      right: '┤',
-      other: '─',
-    },
-    tableBottom: {
-      left: '└',
-      mid: '┴',
-      right: '┘',
-      other: '─',
-    },
-    vertical: '│',
+export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
+  /*
+      Default Style
+      ┌────────────┬─────┬──────┐
+      │ foo        │ bar │ baz  │
+      │ frobnicate │ bar │ quuz │
+      └────────────┴─────┴──────┘
+      */
+  headerTop: {
+    left: '┌',
+    mid: '┬',
+    right: '┐',
+    other: '─',
   },
-  fatBorder: {
-    /*
-        Style2: fatBorder
-        ╔══════╦═════╦══════╗
-        ║ hob  ║ foo ║ mia  ║
-        ╟══════╬═════╬══════╢
-        ║ ball ║ fox ║ mama ║
-        ╚══════╩═════╩══════╝
-        */
-    headerTop: {
-      left: '╔',
-      mid: '╦',
-      right: '╗',
-      other: '═',
-    },
-    headerBottom: {
-      left: '╟',
-      mid: '╬',
-      right: '╢',
-      other: '═',
-    },
-    tableBottom: {
-      left: '╚',
-      mid: '╩',
-      right: '╝',
-      other: '═',
-    },
-    vertical: '║',
+  headerBottom: {
+    left: '├',
+    mid: '┼',
+    right: '┤',
+    other: '─',
   },
+  tableBottom: {
+    left: '└',
+    mid: '┴',
+    right: '┘',
+    other: '─',
+  },
+  vertical: '│',
 };
 
 export enum ALIGNMENT {

@@ -135,7 +135,6 @@ There is also a CLI tool for printing Tables on Terminal directly [table-printer
 
 ```javascript
 new Table({
-  style: 'fatBorder', //style of border of the table, (optional)
   title: 'Title of the Table', // A text showsup on top of table (optoinal)
   columns: [
     { name: 'column1', alignment: 'left', color: 'red' }, //with alignment and color
@@ -180,18 +179,6 @@ table.addRow(rowObject, { color: 'blue' });
 - left
 - right
 - center
-
-### possible border Style of table
-
-- thinBorder
-
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border.png)
-
-- fatBorder:
-
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-fat-border.png)
-
-Example for creating fat border Table `new Table({style: 'fatBorder'});`
 
 ## License
 

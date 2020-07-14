@@ -64,14 +64,19 @@ export function createTableHorizontalBorders(
   }: { left: string; mid: string; right: string; other: string },
   column_lengths: number[]
 ) {
+  // ╚
   let ret = left;
 
+  // ╚═══════╩═══════════════════════════════════════╩════════╩
   column_lengths.forEach((len) => {
     ret += other.repeat(len + 2);
     ret += mid;
   });
 
-  ret = ret.slice(0, -1);
+  // ╚═══════╩═══════════════════════════════════════╩════════
+  ret = ret.slice(0, -mid.length);
+
+  // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret += right;
   return ret;
 }
