@@ -102,6 +102,11 @@ describe('Example: Check if borders are styled properly', () => {
         },
         vertical: '\x1b[31m║\x1b[0m',
       },
+      columns: [
+        { name: 'index', alignment: 'left' },
+        { name: 'text', alignment: 'right' },
+        { name: 'value' },
+      ],
     });
 
     // add rows with color
