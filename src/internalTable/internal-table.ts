@@ -16,7 +16,7 @@ import {
 interface ColumnOptionsRaw {
   name: string;
   alignment?: string;
-  color?: string;
+  color?: COLOR;
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
@@ -87,7 +87,7 @@ export class TableInternal {
     this.columns =
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
-        ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
+        ...objIfExists('color', column.color as COLOR),
         alignment: (<any>ALIGNMENT)[column.alignment || ALIGNMENT.right],
       })) || [];
   }
@@ -132,7 +132,7 @@ export class TableInternal {
 
   addRow(text: any, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow(options?.color || COLOR.white, text));
+    this.rows.push(createRow(options?.color || 'white', text));
   }
 
   addRows(toBeInsertedRows: any[]) {

@@ -21,7 +21,7 @@ export function convertRawRowOptionsToStanrd(
 ): RowOptions | undefined {
   if (options) {
     return {
-      color: (<any>COLOR)[options.color],
+      color: options.color as COLOR,
     };
   }
   return undefined;
@@ -110,7 +110,7 @@ export function printTableHorizontalBorders(
 }
 
 export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
-  const row: Row = createRowFn(COLOR.white_bold, {});
+  const row: Row = createRowFn('white_bold', {});
   columns.forEach((column) => {
     row.text[column.name] = column.name;
   });

@@ -46,16 +46,17 @@ export enum ALIGNMENT {
   center,
 }
 
-export enum COLOR {
-  NO_COLOR, // I added this for a reason I dont know. Without this red color was not getting printed on console
-  red,
-  green,
-  yellow,
-  white,
-  blue,
-  magenta,
-  cyan,
-  crimson,
-  white_bold,
-  reset,
-}
+export const colors = [
+  'red',
+  'green',
+  'yellow',
+  'white',
+  'blue',
+  'magenta',
+  'cyan',
+  'crimson',
+  'white_bold',
+  'reset',
+] as const;
+
+export type COLOR = typeof colors[number];

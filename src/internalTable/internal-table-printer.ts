@@ -24,19 +24,19 @@ function prepareLineAndPrint(
   isHeader?: boolean
 ): string {
   const line = new ColoredConsoleLine();
-  line.addWithColor(COLOR.white, tableStyle.vertical);
+  line.addWithColor('white', tableStyle.vertical);
 
   columns.forEach((column) => {
-    line.addWithColor(COLOR.white, ' ');
+    line.addWithColor('white', ' ');
     line.addWithColor(
-      (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
+      (isHeader && 'white_bold') || column.color || row.color, // column color is priotized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
         column.alignment || ALIGNMENT.right,
         column.max_ln || 20
       )
     );
-    line.addWithColor(COLOR.white, ` ${tableStyle.vertical}`);
+    line.addWithColor('white', ` ${tableStyle.vertical}`);
   });
 
   return line.printConsole();
@@ -73,7 +73,7 @@ function printTableTitle(table: TableInternal): string[] {
     getTableWidth()
   );
   const styledText = new ColoredConsoleLine();
-  styledText.addWithColor(COLOR.white_bold, titleWithPadding);
+  styledText.addWithColor('white_bold', titleWithPadding);
   //                  The analysis Result
   ret.push(styledText.printConsole());
   return ret;
