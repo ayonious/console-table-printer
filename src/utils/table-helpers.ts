@@ -42,11 +42,11 @@ export function textWithPadding(
 ): string {
   const curTextSize = text.length;
   switch (alignment) {
-    case ALIGNMENT.left:
+    case 'left':
       return text.padEnd(mxColumnLen);
-    case ALIGNMENT.right:
+    case 'right':
       return text.padStart(mxColumnLen);
-    case ALIGNMENT.center:
+    case 'center':
       return text
         .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnLen);

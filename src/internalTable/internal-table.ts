@@ -1,7 +1,6 @@
 import { printTable } from './internal-table-printer';
 import {
   COLOR,
-  ALIGNMENT,
   DEFAULT_TABLE_STYLE,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
@@ -72,7 +71,7 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
-      alignment: ALIGNMENT.right,
+      alignment: 'right',
     }));
   }
 
@@ -88,7 +87,7 @@ export class TableInternal {
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
         ...objIfExists('color', column.color as COLOR),
-        alignment: (<any>ALIGNMENT)[column.alignment || ALIGNMENT.right],
+        alignment: column.alignment || 'right',
       })) || [];
   }
 

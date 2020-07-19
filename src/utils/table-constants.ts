@@ -40,11 +40,9 @@ export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   vertical: '│',
 };
 
-export enum ALIGNMENT {
-  right,
-  left,
-  center,
-}
+const alignments = ['right', 'left', 'center'];
+
+export type ALIGNMENT = typeof alignments[number];
 
 export const colors = [
   'red',

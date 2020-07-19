@@ -1,10 +1,6 @@
 import ColoredConsoleLine from '../utils/colored-console-line';
 import { TableInternal } from './internal-table';
-import {
-  COLOR,
-  ALIGNMENT,
-  TABLE_STYLE_DETAILS,
-} from '../utils/table-constants';
+import { TABLE_STYLE_DETAILS } from '../utils/table-constants';
 import {
   Column,
   createHeaderAsRow,
@@ -32,7 +28,7 @@ function prepareLineAndPrint(
       (isHeader && 'white_bold') || column.color || row.color, // column color is priotized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
-        column.alignment || ALIGNMENT.right,
+        column.alignment || 'right',
         column.max_ln || 20
       )
     );
@@ -69,7 +65,7 @@ function printTableTitle(table: TableInternal): string[] {
 
   const titleWithPadding = textWithPadding(
     table.title as string,
-    ALIGNMENT.center,
+    'center',
     getTableWidth()
   );
   const styledText = new ColoredConsoleLine();
