@@ -3,6 +3,7 @@ import {
   COLOR,
   DEFAULT_TABLE_STYLE,
   TABLE_STYLE_DETAILS,
+  ALIGNMENT,
 } from '../utils/table-constants';
 import {
   Column,
@@ -14,7 +15,7 @@ import {
 
 interface ColumnOptionsRaw {
   name: string;
-  alignment?: string;
+  alignment?: ALIGNMENT;
   color?: COLOR;
 }
 

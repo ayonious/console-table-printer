@@ -1,10 +1,13 @@
-import { COLOR, Table } from '../index';
+import { COLOR, Table, ALIGNMENT } from '../index';
 
 describe('Testing column alignment', () => {
   it('all kind of alignments are working', () => {
     // Create a table
 
     const red_color: COLOR = 'red';
+    const green_color: COLOR = 'green';
+    const left_alignment: ALIGNMENT = 'left';
+    const center_alignment: ALIGNMENT = 'center';
 
     const p = new Table({
       columns: [
@@ -13,11 +16,11 @@ describe('Testing column alignment', () => {
           alignment: 'left',
           color: red_color,
         },
-        { name: 'right_align_text', alignment: 'right' },
+        { name: 'right_align_text', alignment: left_alignment },
         {
           name: 'green_value_center',
-          alignment: 'center',
-          color: 'green',
+          alignment: center_alignment,
+          color: green_color,
         },
       ],
     });
@@ -32,6 +35,6 @@ describe('Testing column alignment', () => {
       { color: 'blue' }
     );
     // print
-    const returned = p.printTable();
+    p.printTable();
   });
 });
