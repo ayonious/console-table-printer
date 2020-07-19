@@ -58,3 +58,9 @@ export const colors = [
 export type ALIGNMENT = typeof alignments[number];
 
 export type COLOR = typeof colors[number];
+
+export const defaultRowFontColor: COLOR = 'white';
+export const defaultHeaderFontColor: COLOR = 'white_bold';
+
+export const defaultRowAlignment: ALIGNMENT = 'right';
+export const defaultHeaderAlignment: ALIGNMENT = 'center';

@@ -1,8 +1,4 @@
-import { COLOR, ALIGNMENT } from './table-constants';
-import {
-  RowSortFunction,
-  RowFilterFunction,
-} from '../internalTable/internal-table';
+import { ALIGNMENT, COLOR } from './table-constants';
 
 export interface Column {
   name: string;
@@ -110,7 +106,8 @@ export function printTableHorizontalBorders(
 }
 
 export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
-  const row: Row = createRowFn('white_bold', {});
+  const headerBolor: COLOR = 'white_bold';
+  const row: Row = createRowFn(headerBolor, {});
   columns.forEach((column) => {
     row.text[column.name] = column.name;
   });

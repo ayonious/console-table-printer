@@ -4,6 +4,8 @@ import {
   DEFAULT_TABLE_STYLE,
   TABLE_STYLE_DETAILS,
   ALIGNMENT,
+  defaultRowAlignment,
+  defaultRowFontColor,
 } from '../utils/table-constants';
 import {
   Column,
@@ -72,7 +74,7 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
-      alignment: 'right',
+      alignment: defaultRowAlignment,
     }));
   }
 
@@ -88,7 +90,7 @@ export class TableInternal {
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
         ...objIfExists('color', column.color as COLOR),
-        alignment: column.alignment || 'right',
+        alignment: column.alignment || defaultRowAlignment,
       })) || [];
   }
 
@@ -132,7 +134,7 @@ export class TableInternal {
 
   addRow(text: any, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow(options?.color || 'white', text));
+    this.rows.push(createRow(options?.color || defaultRowFontColor, text));
   }
 
   addRows(toBeInsertedRows: any[]) {
