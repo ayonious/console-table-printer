@@ -40,12 +40,11 @@ export function textWithPadding(
   switch (alignment) {
     case 'left':
       return text.padEnd(mxColumnLen);
-    case 'right':
-      return text.padStart(mxColumnLen);
     case 'center':
       return text
         .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnLen);
+    case 'right':
     default:
       return text.padStart(mxColumnLen);
   }
