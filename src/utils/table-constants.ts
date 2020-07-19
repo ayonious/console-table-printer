@@ -40,22 +40,27 @@ export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   vertical: '│',
 };
 
-export enum ALIGNMENT {
-  right,
-  left,
-  center,
-}
+const alignments = ['right', 'left', 'center'] as const;
 
-export enum COLOR {
-  NO_COLOR, // I added this for a reason I dont know. Without this red color was not getting printed on console
-  red,
-  green,
-  yellow,
-  white,
-  blue,
-  magenta,
-  cyan,
-  crimson,
-  white_bold,
-  reset,
-}
+export const colors = [
+  'red',
+  'green',
+  'yellow',
+  'white',
+  'blue',
+  'magenta',
+  'cyan',
+  'crimson',
+  'white_bold',
+  'reset',
+] as const;
+
+export type ALIGNMENT = typeof alignments[number];
+
+export type COLOR = typeof colors[number];
+
+export const defaultRowFontColor: COLOR = 'white';
+export const defaultHeaderFontColor: COLOR = 'white_bold';
+
+export const defaultRowAlignment: ALIGNMENT = 'right';
+export const defaultHeaderAlignment: ALIGNMENT = 'center';

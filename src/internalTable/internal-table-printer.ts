@@ -1,20 +1,21 @@
 import ColoredConsoleLine from '../utils/colored-console-line';
-import { TableInternal } from './internal-table';
 import {
-  COLOR,
-  ALIGNMENT,
+  defaultRowAlignment,
+  defaultHeaderAlignment,
+  defaultHeaderFontColor,
+  defaultRowFontColor,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
+  cellText,
   Column,
   createHeaderAsRow,
   createRow,
   printTableHorizontalBorders,
   Row,
   textWithPadding,
-  cellText,
 } from '../utils/table-helpers';
-
+import { TableInternal } from './internal-table';
 import { preProcessColumns, preProcessRows } from './tablePreProcessors';
 
 function prepareLineAndPrint(
@@ -24,19 +25,19 @@ function prepareLineAndPrint(
   isHeader?: boolean
 ): string {
   const line = new ColoredConsoleLine();
-  line.addWithColor(COLOR.white, tableStyle.vertical);
+  line.addWithColor(defaultRowFontColor, tableStyle.vertical);
 
   columns.forEach((column) => {
-    line.addWithColor(COLOR.white, ' ');
+    line.addWithColor(defaultRowFontColor, ' ');
     line.addWithColor(
-      (isHeader && COLOR.white_bold) || column.color || row.color, // column color is priotized as row color
+      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is priotized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
-        column.alignment || ALIGNMENT.right,
+        column.alignment || defaultRowAlignment,
         column.max_ln || 20
       )
     );
-    line.addWithColor(COLOR.white, ` ${tableStyle.vertical}`);
+    line.addWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
   });
 
   return line.printConsole();
@@ -69,11 +70,11 @@ function printTableTitle(table: TableInternal): string[] {
 
   const titleWithPadding = textWithPadding(
     table.title as string,
-    ALIGNMENT.center,
+    defaultHeaderAlignment,
     getTableWidth()
   );
   const styledText = new ColoredConsoleLine();
-  styledText.addWithColor(COLOR.white_bold, titleWithPadding);
+  styledText.addWithColor(defaultHeaderFontColor, titleWithPadding);
   //                  The analysis Result
   ret.push(styledText.printConsole());
   return ret;

@@ -1,8 +1,4 @@
-import { COLOR, ALIGNMENT } from './table-constants';
-import {
-  RowSortFunction,
-  RowFilterFunction,
-} from '../internalTable/internal-table';
+import { ALIGNMENT, COLOR } from './table-constants';
 
 export interface Column {
   name: string;
@@ -21,7 +17,7 @@ export function convertRawRowOptionsToStanrd(
 ): RowOptions | undefined {
   if (options) {
     return {
-      color: (<any>COLOR)[options.color],
+      color: options.color as COLOR,
     };
   }
   return undefined;
@@ -42,14 +38,13 @@ export function textWithPadding(
 ): string {
   const curTextSize = text.length;
   switch (alignment) {
-    case ALIGNMENT.left:
+    case 'left':
       return text.padEnd(mxColumnLen);
-    case ALIGNMENT.right:
-      return text.padStart(mxColumnLen);
-    case ALIGNMENT.center:
+    case 'center':
       return text
         .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
         .padEnd(mxColumnLen);
+    case 'right':
     default:
       return text.padStart(mxColumnLen);
   }
@@ -110,7 +105,8 @@ export function printTableHorizontalBorders(
 }
 
 export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
-  const row: Row = createRowFn(COLOR.white_bold, {});
+  const headerBolor: COLOR = 'white_bold';
+  const row: Row = createRowFn(headerBolor, {});
   columns.forEach((column) => {
     row.text[column.name] = column.name;
   });

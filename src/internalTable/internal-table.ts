@@ -1,9 +1,11 @@
 import { printTable } from './internal-table-printer';
 import {
   COLOR,
-  ALIGNMENT,
   DEFAULT_TABLE_STYLE,
   TABLE_STYLE_DETAILS,
+  ALIGNMENT,
+  defaultRowAlignment,
+  defaultRowFontColor,
 } from '../utils/table-constants';
 import {
   Column,
@@ -15,8 +17,8 @@ import {
 
 interface ColumnOptionsRaw {
   name: string;
-  alignment?: string;
-  color?: string;
+  alignment?: ALIGNMENT;
+  color?: COLOR;
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
@@ -72,7 +74,7 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
-      alignment: ALIGNMENT.right,
+      alignment: defaultRowAlignment,
     }));
   }
 
@@ -87,8 +89,8 @@ export class TableInternal {
     this.columns =
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
-        ...objIfExists('color', column.color && (<any>COLOR)[column.color]),
-        alignment: (<any>ALIGNMENT)[column.alignment || ALIGNMENT.right],
+        ...objIfExists('color', column.color as COLOR),
+        alignment: column.alignment || defaultRowAlignment,
       })) || [];
   }
 
@@ -132,7 +134,7 @@ export class TableInternal {
 
   addRow(text: any, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow(options?.color || COLOR.white, text));
+    this.rows.push(createRow(options?.color || defaultRowFontColor, text));
   }
 
   addRows(toBeInsertedRows: any[]) {
