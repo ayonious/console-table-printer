@@ -123,6 +123,8 @@ There is also a CLI tool for printing Tables on Terminal directly [table-printer
 
 ## Documentation
 
+Official documentation has been moved here: [console-table-documentation](https://console-table.netlify.app)
+
 ### Table instance creation
 
 3 ways to Table Instance creation:
@@ -158,15 +160,7 @@ new Table({
 
 ### possible `color` values for rows
 
-- red
-- green
-- yellow
-- white
-- blue
-- magenta
-- cyan
-- crimson
-- white_bold
+Check Docs: [color-vals](https://console-table.netlify.app/docs/doc-color)
 
 Example usage: To Create a row of color blue
 
@@ -176,9 +170,11 @@ table.addRow(rowObject, { color: 'blue' });
 
 ### possible `alignment` values for columns
 
-- left
-- right
-- center
+Check Docs: [alignment-vals](https://console-table.netlify.app/docs/doc-alignment)
+
+### Typesccript Support
+
+You can get color / alignment as types. Check Docs: [types-docs](https://console-table.netlify.app/docs/doc-typescript)
 
 ## License
 
