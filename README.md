@@ -72,7 +72,8 @@ p.addRows([
   //adding multiple rows are possible
   { index: 3, text: 'gelb bananen bitte', value: 100 },
   { index: 4, text: 'update is working', value: 300 },
-]);
+],
+{ color: 'green' });
 
 //print
 p.printTable();
@@ -153,7 +154,7 @@ new Table({
 ### Functions
 
 - `addRow(rowObjet, options)` adding single row.
-- `addRows(rowObjets)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
+- `addRows(rowObjects, options)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
 - `addColumn(columnObject)` adding single column
 - `addColumns(columnObjects)` adding multiple columns
 - `printTable()` Prints the table on your console
@@ -166,6 +167,12 @@ Example usage: To Create a row of color blue
 
 ```js
 table.addRow(rowObject, { color: 'blue' });
+```
+
+Example usage: To apply blue for all rows
+
+```js
+table.addRows(rowsArray, { color: 'blue' })
 ```
 
 ### possible `alignment` values for columns

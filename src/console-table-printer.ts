@@ -23,8 +23,11 @@ export default class Table {
     this.table.addRow(text, convertRawRowOptionsToStanrd(rowOptions));
   }
 
-  addRows(toBeInsertedRows: any) {
-    this.table.addRows(toBeInsertedRows);
+  addRows(toBeInsertedRows: any, rowOptions?: RowOptionsRaw) {
+    this.table.addRows(
+      toBeInsertedRows,
+      convertRawRowOptionsToStanrd(rowOptions)
+    );
   }
 
   printTable() {
