@@ -137,9 +137,9 @@ export class TableInternal {
     this.rows.push(createRow(options?.color || defaultRowFontColor, text));
   }
 
-  addRows(toBeInsertedRows: any[]) {
+  addRows(toBeInsertedRows: any[], options?: RowOptions) {
     toBeInsertedRows.forEach((toBeInsertedRow) => {
-      this.addRow(toBeInsertedRow, undefined);
+      this.addRow(toBeInsertedRow, options);
     });
   }
 
