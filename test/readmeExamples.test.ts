@@ -9,9 +9,9 @@ describe('Example: Print a simple Table', () => {
     p.addRow({ index: 1, text: 'red wine please', value: 10.212 });
     p.addRow({ index: 2, text: 'green gemuse please', value: 20.0 });
     p.addRows([
-      // adding multiple rows are possible
-      { index: 3, text: 'green color text1', value: 100 },
-      { index: 4, text: 'green color text2', value: 300 },
+      //adding multiple rows are possible
+      { index: 3, text: 'gelb bananen bitte', value: 100 },
+      { index: 4, text: 'update is working', value: 300 },
     ]);
 
     // print
