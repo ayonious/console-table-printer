@@ -72,8 +72,7 @@ p.addRows([
   //adding multiple rows are possible
   { index: 3, text: 'gelb bananen bitte', value: 100 },
   { index: 4, text: 'update is working', value: 300 },
-],
-{ color: 'green' });
+]);
 
 //print
 p.printTable();
@@ -172,7 +171,7 @@ table.addRow(rowObject, { color: 'blue' });
 Example usage: To apply blue for all rows
 
 ```js
-table.addRows(rowsArray, { color: 'blue' })
+table.addRows(rowsArray, { color: 'blue' });
 ```
 
 ### possible `alignment` values for columns
