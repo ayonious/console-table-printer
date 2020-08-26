@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "2.3.20",
+  "version": "2.3.21",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -36,7 +36,7 @@
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "pretty-quick": "^3.0.0",
-    "ts-jest": "^26.2.0",
+    "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
   },
   "homepage": "https://console-table.netlify.app"
