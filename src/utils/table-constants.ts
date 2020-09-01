@@ -40,7 +40,7 @@ export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   vertical: '│',
 };
 
-const alignments = ['right', 'left', 'center'] as const;
+const alignments = ['right', 'left', 'center'];
 
 export const colors = [
   'red',
@@ -53,7 +53,7 @@ export const colors = [
   'crimson',
   'white_bold',
   'reset',
-] as const;
+];
 
 export type ALIGNMENT = typeof alignments[number];
 

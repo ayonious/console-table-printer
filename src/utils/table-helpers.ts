@@ -12,6 +12,14 @@ export interface Row {
   text: any;
 }
 
+export interface RowOptionsRaw {
+  color: string;
+}
+
+export interface RowOptions {
+  color: COLOR;
+}
+
 export function convertRawRowOptionsToStanrd(
   options?: RowOptionsRaw
 ): RowOptions | undefined {
@@ -21,14 +29,6 @@ export function convertRawRowOptionsToStanrd(
     };
   }
   return undefined;
-}
-
-export interface RowOptionsRaw {
-  color: string;
-}
-
-export interface RowOptions {
-  color: COLOR;
 }
 
 export function textWithPadding(
