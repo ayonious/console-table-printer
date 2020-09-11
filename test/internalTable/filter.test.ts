@@ -82,6 +82,6 @@ describe('Testing column alignment', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m       I would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┴────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

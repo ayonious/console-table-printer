@@ -87,7 +87,7 @@ describe('Testing column alignment', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m8                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m       100        \u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┴────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('Simpler title test', () => {
@@ -129,6 +129,6 @@ describe('Testing column alignment', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m5                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m      10.212      \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴────────────────────┴──────┴──────┴──────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

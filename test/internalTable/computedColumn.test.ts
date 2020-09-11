@@ -50,6 +50,6 @@ describe('Testing Computed Column', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m         5\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m          6\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m 11\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m      45.45\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m       54.55\u001b[0m\u001b[37m │\u001b[0m',
       '└────────────┴─────────────┴─────┴─────────────┴──────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

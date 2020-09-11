@@ -27,7 +27,7 @@ describe('Testing Row coloring', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  300\u001b[0m\u001b[37m │\u001b[0m',
       '└───────┴───────────────────┴───────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('Batch Row default coloring is working', () => {
@@ -51,7 +51,7 @@ describe('Testing Row coloring', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
       '└───────┴───────────────────┴───────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('Batch Row coloring is working', () => {
@@ -78,6 +78,6 @@ describe('Testing Row coloring', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  300\u001b[0m\u001b[37m │\u001b[0m',
       '└───────┴───────────────────┴───────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

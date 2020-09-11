@@ -83,7 +83,7 @@ describe('Testing column Enable and Disable', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[33m                   8\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('disable basic example', () => {
@@ -167,6 +167,6 @@ describe('Testing column Enable and Disable', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[33m               100\u001b[0m\u001b[37m │\u001b[0m',
       '└────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });
