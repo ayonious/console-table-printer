@@ -1,4 +1,4 @@
-import { printTable } from './internal-table-printer';
+import { printTable, renderTable } from './internal-table-printer';
 import {
   COLOR,
   DEFAULT_TABLE_STYLE,
@@ -144,6 +144,10 @@ export class TableInternal {
   }
 
   printTable() {
-    return printTable(this);
+    printTable(this);
+  }
+
+  renderTable() {
+    return renderTable(this);
   }
 }
