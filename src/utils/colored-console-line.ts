@@ -28,8 +28,7 @@ export default class ColoredConsoleLine {
     this.text += COLOR_MAP.reset;
   }
 
-  printConsole(): string {
-    console.log(this.text);
+  renderConsole(): string {
     return this.text;
   }
 }

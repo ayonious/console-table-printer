@@ -1,5 +1,5 @@
 import {
-  printSimpleTableAndGetConsoleOutput,
+  renderSimpleTable,
   printSimpleTable,
 } from '../../src/internalTable/internal-table-printer';
 
@@ -9,7 +9,7 @@ describe('Example: Print a simple Table without table instance creation', () => 
       { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
       { index: 4, text: 'I hope batch update is working', value: 300 },
     ];
-    const tableArray: string[] = printSimpleTableAndGetConsoleOutput(testCases);
+    const tableStr: string = renderSimpleTable(testCases);
 
     const expected = [
       '┌───────┬──────────────────────────────────────┬───────┐',
@@ -20,7 +20,7 @@ describe('Example: Print a simple Table without table instance creation', () => 
       '└───────┴──────────────────────────────────────┴───────┘',
     ];
 
-    expect(JSON.stringify(tableArray)).toBe(JSON.stringify(expected));
+    expect(tableStr).toBe(expected.join('\n'));
   });
 
   it('Make sure this function works dont throw exception', () => {

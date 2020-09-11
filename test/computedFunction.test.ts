@@ -39,7 +39,6 @@ describe('Example: Print a simple Table wtih Computed Columns', () => {
     });
 
     // print
-    const returned = p.printTable();
-    expect(returned).toBeUndefined();
+    p.printTable();
   });
 });

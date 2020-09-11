@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Example: Check if borders are styled properly', () => {
@@ -56,7 +56,7 @@ describe('Example: Check if borders are styled properly', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '╔═══════╦═══════════════════════════════════════╦════════╗',
@@ -67,7 +67,7 @@ describe('Example: Check if borders are styled properly', () => {
       '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[33m3    \u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[33m I would like some gelb bananen bitte\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[33m   100\u001b[0m\u001b[37m ║\u001b[0m',
       '╚═══════╩═══════════════════════════════════════╩════════╝',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('print a RED table', () => {
@@ -124,7 +124,7 @@ describe('Example: Check if borders are styled properly', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '\u001b[31m╔\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╦\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╦\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╗\u001b[0m',
@@ -135,6 +135,6 @@ describe('Example: Check if borders are styled properly', () => {
       '\u001b[37m\u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m3    \u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m I would like some gelb bananen bitte\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m   100\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m',
       '\u001b[31m╚\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╩\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╩\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╝\u001b[0m',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

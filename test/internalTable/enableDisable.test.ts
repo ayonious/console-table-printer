@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column Enable and Disable', () => {
@@ -67,7 +67,7 @@ describe('Testing column Enable and Disable', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     console.log(returned);
     const expected = [
@@ -83,7 +83,7 @@ describe('Testing column Enable and Disable', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[33m                   8\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m',
       '└──────────────────────┴──────────────────────────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 
   it('disable basic example', () => {
@@ -151,7 +151,7 @@ describe('Testing column Enable and Disable', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     console.log(returned);
     const expected = [
@@ -167,6 +167,6 @@ describe('Testing column Enable and Disable', () => {
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[33m               100\u001b[0m\u001b[37m │\u001b[0m',
       '└────────────────────┘',
     ];
-    expect(JSON.stringify(returned)).toBe(JSON.stringify(expected));
+    expect(returned).toBe(expected.join('\n'));
   });
 });

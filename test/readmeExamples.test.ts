@@ -226,7 +226,6 @@ describe('Example: Print a simple Table', () => {
     ]);
 
     // print
-    const returned = p.printTable();
-    expect(returned).toBeUndefined();
+    p.printTable();
   });
 });

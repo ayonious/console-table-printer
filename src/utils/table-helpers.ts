@@ -95,12 +95,11 @@ export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   return max_ln;
 }
 
-export function printTableHorizontalBorders(
+export function renderTableHorizontalBorders(
   style: any,
   column_lengths: number[]
 ): string {
   const str = createTableHorizontalBorders(style, column_lengths);
-  console.log(str);
   return str;
 }
 
