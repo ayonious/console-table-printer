@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Example: Print a simple Table with column colors', () => {
@@ -71,7 +71,7 @@ describe('Example: Print a simple Table with column colors', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '┌──────────────────────┬──────────────────────────────────────────┬─────────────┐',

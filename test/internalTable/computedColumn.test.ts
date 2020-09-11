@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing Computed Column', () => {
@@ -40,7 +40,7 @@ describe('Testing Computed Column', () => {
     });
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
     const expected = [
       '┌────────────┬─────────────┬─────┬─────────────┬──────────────┐',
       '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_amount\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mblue_amount\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01msum\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_percent\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mblue_percent\u001b[0m\u001b[37m │\u001b[0m',

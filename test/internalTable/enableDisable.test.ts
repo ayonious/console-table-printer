@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column Enable and Disable', () => {
@@ -67,7 +67,7 @@ describe('Testing column Enable and Disable', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     console.log(returned);
     const expected = [
@@ -151,7 +151,7 @@ describe('Testing column Enable and Disable', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     console.log(returned);
     const expected = [

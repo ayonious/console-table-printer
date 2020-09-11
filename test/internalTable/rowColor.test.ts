@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing Row coloring', () => {
@@ -17,7 +17,7 @@ describe('Testing Row coloring', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '┌───────┬───────────────────┬───────┐',
@@ -41,7 +41,7 @@ describe('Testing Row coloring', () => {
     ]);
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '┌───────┬───────────────────┬───────┐',
@@ -68,7 +68,7 @@ describe('Testing Row coloring', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '┌───────┬───────────────────┬───────┐',

@@ -1,4 +1,4 @@
-import { printTableAndGetConsoleOutput } from '../../src/internalTable/internal-table-printer';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column alignment', () => {
@@ -72,7 +72,7 @@ describe('Testing column alignment', () => {
     );
 
     // print
-    const returned = printTableAndGetConsoleOutput(p.table);
+    const returned = renderTable(p.table);
 
     const expected = [
       '┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐',
