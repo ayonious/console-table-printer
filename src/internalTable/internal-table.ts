@@ -1,4 +1,4 @@
-import { printTable, renderTable } from './internal-table-printer';
+import { renderTable } from './internal-table-printer';
 import {
   COLOR,
   DEFAULT_TABLE_STYLE,
@@ -141,10 +141,6 @@ export class TableInternal {
     toBeInsertedRows.forEach((toBeInsertedRow) => {
       this.addRow(toBeInsertedRow, options);
     });
-  }
-
-  printTable() {
-    printTable(this);
   }
 
   renderTable() {

@@ -139,11 +139,6 @@ export function renderTable(table: TableInternal): string {
   return ret.join('\n');
 }
 
-export function printTable(table: TableInternal) {
-  const tableStr = renderTable(table);
-  console.log(tableStr);
-}
-
 export function renderSimpleTable(rows: any[]) {
   const table = new TableInternal();
   table.addRows(rows);

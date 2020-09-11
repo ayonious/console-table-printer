@@ -1,7 +1,7 @@
 import { Table } from '../index';
 
-describe('Testing column alignment', () => {
-  it('all kind of alignments are working', () => {
+describe('Testing rendering column alignment', () => {
+  it('render function gives output the same as print function', () => {
     // Create a table
     const p = new Table({
       columns: [
@@ -68,6 +68,10 @@ describe('Testing column alignment', () => {
       },
       { color: 'yellow' }
     );
+
+    // render and print
+    const render = p.render();
+    console.log(render);
 
     // print
     p.printTable();

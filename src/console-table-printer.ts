@@ -31,7 +31,8 @@ export default class Table {
   }
 
   printTable() {
-    this.table.printTable();
+    const tableRendered = this.table.renderTable();
+    console.log(tableRendered);
   }
 
   render() {
