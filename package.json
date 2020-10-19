@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "2.4.21",
+  "version": "2.4.22",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -33,7 +33,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
-    "jest": "^26.5.3",
+    "jest": "^26.6.0",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
     "ts-jest": "^26.4.1",
