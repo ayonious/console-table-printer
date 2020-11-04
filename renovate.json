@@ -2,5 +2,5 @@
   "extends": ["config:base"],
   "rangeStrategy": "bump",
   "bumpVersion": "patch",
-  "automerge": true
+  "automerge": false
 }
