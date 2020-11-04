@@ -7,14 +7,17 @@ before_script:
   - npm run setup
   - npm run build
 deploy:
-  provider: npm
+  provider: script
   edge: true
-  email: jaissatai6@gmail.com
-  skip_cleanup: true
-  api_key:
-    secure: ImVPCq8F1T+fSODPXuaNq2bLtJLWt/fEfrfm/G+YLDoB7oRGHDi7YHhCCY3A2B6sBl9iFEHYvc09Wyyl5H/Agwv3FpYhEF0hG2Iqtxw3C4l1NH0ZyYUzs+sRMeFcBkjSgN4lxw0a/65/2MoQzKNp+AnhWJeHXqqbKJ74wJDqci05ANAvOkg9FcgZBUuKPhdYH5pTN0oFa2Subm398U+HseMJc5kxa5Z9qKLmKsWnIb/oWiGpTfXEQBCDijSvaeNSJwSZQYBesC+qqxWJ+bSpCUXi3GYQ6Lwll8O8AJR8R/YjkpnE7FxuwidozdbvbBqCCSIolvdg5O0Rw1PVuzdkTa8cTKHeXidJe95eHVTLtC+87O/pe0xWun7omonM9oqZX9a1dcarMJyKTFmnH/8UAfAOVf/33U0/s6YUkp3OfnNBh5E5MC24ZVFSx5B7NqYcHEd62Io0lnwGvx77ZEqRfRUQ9Zclwhd4oNSfIpj5O/pBh5Ks+EFX0wet3a8QEiNVK82ZDbDP1YwpmCC7adwyv1rxPcSmEgSrWYHTVdOEtI9c+BxyLd5/JGOziRVBvDGO0Hs5j1w0JAqzbxTj5FFk4EiPRtQ+2dJ/PvwKD2rdt1mgvrn4UnFvUWVyvAN+957NLDQpI0pEMpQt/9b3rMlDbf+Ijd5tK/F5fjlXAmoDo88=
+  cleanup: false
+  script:
+    - npx semantic-release
   on:
     branch: master
     node_js: '--lts'
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
+env:
+  global:
+    - secure: PvQwSkhvg2370V+GMwcSwCEAtd5JtFvn+AqDyxiKUmX4QwHklhfZJ+wDmxIudA+YRnWTBtfJ3w+2zGI/eEK709lK/78Jc4q7QqXO+PYyGBmdHvSG9oSGohoBF/LUfPLTDsoT57SsPx+HpDjv+RFCg10JPak/LaCRQKXjnP1LYWEZk4SrxGzazEuerSGF33giXsgYid6U9ueBcNQ5eRh+zKc0SPa1AU4w/SFqgA3xGmLmseHMvlCq/GEQcWT2z1YdwbKMjmjMlsuJQAaiUVIedZBC6sPrSQlhIyZX7/dQN3jUgIwo6DjjlTdbW7UZiWBrNfyDlTiGGbn/g69Q97k2ZCyB8IH+oG60Kg4LZgNZv0UdyWteBAxeu4PWOjv3ixnIZRc6WuuDd83ALLUWnKicFi/zQz87sBLhFptWMUjTQwg1UumOarQoWUyb56yszkcX2PZUzbqwch6N2HM/xHWmgGFRu4BSbYk+N+YEvPfKw4jFJea0jEGQnEnlOakBN0nGbP32ntSUlROQ3MsXsCxwfbx8bdhnEstTwFvTnzSOLp11qo/pBC4Y+rrLl9A9ReCCwsWQZSj9Pcl8rI+wU9f5Kcs33ESFJ3ICuTXFURbgJE1tGy/fgEkrSdecVUlzGgCIWP2xGo5LaljnroNoXa0vBbX4T/1qNDlm3fEO0aHFe18=
+    - secure: ToB/06aluSY07M0vjx9ABQLDr9WDQWLWFpLtBpLfQ1Jl3Zl1T+kt4Etc0eJDk4X+WDmxgwkBWM5whZXcm1EzTBKnh8HOZp5biNipS4cIxTWHk220cbZEgj3ZZ/IATEJOREP00ohqqQ3JGnG5qUAvdgcBp6mpxp9g2j3e+awTqc7mRWrn5Cw79datk/fkQU+y/RECUNNJzOg3cSBwztIYs46Yne/6PvUvsSyDVIU0DsyXjypK2WLAEGcY6YIkHWZqZMJbDSsw6aV4gNakDXi29EUQsD+ahfYW9lVIYyt/eX89HPa5YAftqP/6jTiBdxiEyccWo1KEtYgmNw6JJKgIaMSaGElTWVTZer8oyVfXMd+4CnEbYZCCY9fUsuRQ3WkvDkhP+EnfPYFUvbyXwuI9hrYQsM8ipAFjovJjOIG0rzfIfq4wcqZ0aGi9DN5Mi7SF9lWkXvxX/dRxb0KQsLV8APgmJBQ4o5l00J5emsw/y/AXSnMXuoUnEW49tGOnNef2XFLoqm64YOaMpuM1u99m26KQjDdyHRAINhqLVjQayzQ7QrII3jMkeBISW9gQeSjo8i/v33dwO/vgYRLHluwA5bfdE9FNkcisOWrzLrrIFXtnIOFVU3ahaKsnRFWMAU8/x+33ZMk7uEW6zvKfBUlPggXUtamc3O/4Z6XSHZIzOqs=
