@@ -1,6 +1,6 @@
 {
   "name": "console-table-printer",
-  "version": "2.4.36",
+  "version": "0.0.0",
   "repository": "github:ayonious/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
@@ -10,7 +10,8 @@
     "build": "tsc",
     "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json",
-    "lint": "eslint --ext=js,ts ."
+    "lint": "eslint --ext=js,ts .",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "console-table",
@@ -24,6 +25,8 @@
   "author": "Nahiyan Kamal",
   "license": "MIT",
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
@@ -36,6 +39,7 @@
     "jest": "^26.6.3",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
+    "semantic-release": "^17.2.2",
     "ts-jest": "^26.4.3",
     "typescript": "^4.0.5"
   },
