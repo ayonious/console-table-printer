@@ -2,7 +2,7 @@
 <h3 align="center">🖥️🍭Printing Pretty Tables on your console</h3>
 <p align="center">
   <a href="https://travis-ci.com/ayonious/console-table-printer">
-    <img alt="Build Status" src="https://travis-ci.org/ayonious/console-table-printer.svg?branch=master">
+    <img alt="Build Status" src="https://travis-ci.com/ayonious/console-table-printer.svg?branch=master">
   </a>
   <a href="https://codecov.io/gh/ayonious/console-table-printer">
     <img alt="codecov" src="https://codecov.io/gh/ayonious/console-table-printer/branch/master/graph/badge.svg">
