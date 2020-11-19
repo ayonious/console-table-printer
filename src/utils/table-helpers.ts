@@ -1,3 +1,4 @@
+import wcwidth from 'wcwidth';
 import { ALIGNMENT, COLOR } from './table-constants';
 
 export interface Column {
@@ -36,17 +37,23 @@ export function textWithPadding(
   alignment: ALIGNMENT,
   mxColumnLen: number
 ): string {
-  const curTextSize = text.length;
+  const curTextSize = wcwidth(text);
+
+  // Calc how much padding to the left when alignment is 'center'
+  const alignCenterPaddingLeft = Math.floor((mxColumnLen - curTextSize) / 2);
+
   switch (alignment) {
     case 'left':
-      return text.padEnd(mxColumnLen);
+      return text + ' '.repeat(mxColumnLen - curTextSize);
     case 'center':
-      return text
-        .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
-        .padEnd(mxColumnLen);
+      return (
+        ' '.repeat(alignCenterPaddingLeft) +
+        text +
+        ' '.repeat(mxColumnLen - curTextSize - alignCenterPaddingLeft)
+      );
     case 'right':
     default:
-      return text.padStart(mxColumnLen);
+      return ' '.repeat(mxColumnLen - curTextSize) + text;
   }
 }
 
@@ -86,10 +93,10 @@ export function createRow(color: COLOR, text: string): Row {
 
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   const column_name = column.name;
-  let max_ln = `${column_name}`.length;
+  let max_ln = wcwidth(`${column_name}`);
 
   rows.forEach((row) => {
-    max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length);
+    max_ln = Math.max(max_ln, wcwidth(`${row.text[column_name] || ''}`));
   });
 
   return max_ln;
