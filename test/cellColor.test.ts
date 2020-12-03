@@ -17,7 +17,19 @@ describe('Example: Print a simple Table with cell colors', () => {
 
     // print
     p.printTable();
+
+    const expected = [
+      '┌───────┬─────────┬────────┐',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m   text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m value\u001b[0m\u001b[37m │\u001b[0m',
+      '├───────┼─────────┼────────┤',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    \u001b[31mred\u001b[39m\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m10.212\u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  \u001b[32mgreen\u001b[39m\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m    20\u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m \u001b[33myellow\u001b[39m\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m   100\u001b[0m\u001b[37m │\u001b[0m',
+      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m\u001b[45mmagenta\u001b[49m\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m   300\u001b[0m\u001b[37m │\u001b[0m',
+      '└───────┴─────────┴────────┘',
+    ];
+
     const returned = p.render();
-    expect(returned).toMatchSnapshot();
+    expect(returned).toBe(expected.join('\n'));
   });
 });
