@@ -38,16 +38,17 @@ export function textWithPadding(
   mxColumnLen: number
 ): string {
   const curTextSize = stripAnsiColorCode(text).length;
+  // alignments for center padding case
+  const leftPadding = Math.floor((mxColumnLen - curTextSize) / 2);
+  const rightPadding = mxColumnLen - leftPadding - curTextSize;
   switch (alignment) {
     case 'left':
-      return text.padEnd(mxColumnLen);
+      return text + ' '.repeat(mxColumnLen - curTextSize);
     case 'center':
-      return text
-        .padStart((mxColumnLen - curTextSize) / 2 + curTextSize)
-        .padEnd(mxColumnLen);
+      return ' '.repeat(leftPadding) + text + ' '.repeat(rightPadding);
     case 'right':
     default:
-      return text.padStart(mxColumnLen);
+      return ' '.repeat(mxColumnLen - curTextSize) + text;
   }
 }
 
