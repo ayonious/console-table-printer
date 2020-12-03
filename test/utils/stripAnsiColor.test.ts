@@ -1,12 +1,18 @@
+import chalk from 'chalk';
 import stripAnsiColor from '../../src/utils/ansi-color-stripper';
 import ColoredConsoleLine from '../../src/utils/colored-console-line';
 
 describe('Strip Ansi Tester', () => {
-  it('Simplest test', () => {
+  it('Simplest test: ColoredConsoleLine', () => {
     const line = new ColoredConsoleLine();
     line.addWithColor('red', 'red');
     line.addWithColor('green', 'green');
     line.addWithColor('white_bold', 'white');
     expect(stripAnsiColor(line.renderConsole())).toBe('redgreenwhite');
+  });
+
+  it('Simplest test: chalk', () => {
+    expect(stripAnsiColor(chalk.black('black'))).toBe('black');
+    expect(stripAnsiColor(chalk.redBright('redBright'))).toBe('redBright');
   });
 });
