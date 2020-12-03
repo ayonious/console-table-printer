@@ -10,9 +10,13 @@ describe('Strip Ansi Tester', () => {
     line.addWithColor('white_bold', 'white');
     expect(stripAnsiColor(line.renderConsole())).toBe('redgreenwhite');
   });
-
   it('Simplest test: chalk', () => {
-    expect(stripAnsiColor(chalk.black('black'))).toBe('black');
-    expect(stripAnsiColor(chalk.redBright('redBright'))).toBe('redBright');
+    const testFunction = (Fn: any) => {
+      expect(stripAnsiColor(Fn('text'))).toBe('text');
+    };
+    testFunction(chalk.black);
+    testFunction(chalk.redBright);
+    testFunction(chalk.strikethrough);
+    testFunction(chalk.bgMagentaBright);
   });
 });
