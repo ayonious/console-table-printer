@@ -1,4 +1,5 @@
 import { ALIGNMENT, COLOR } from './table-constants';
+import stripAnsiColorCode from './ansi-color-stripper';
 
 export interface Column {
   name: string;
@@ -36,7 +37,7 @@ export function textWithPadding(
   alignment: ALIGNMENT,
   mxColumnLen: number
 ): string {
-  const curTextSize = text.length;
+  const curTextSize = stripAnsiColorCode(text).length;
   switch (alignment) {
     case 'left':
       return text.padEnd(mxColumnLen);
@@ -86,10 +87,13 @@ export function createRow(color: COLOR, text: string): Row {
 
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   const column_name = column.name;
-  let max_ln = `${column_name}`.length;
+  let max_ln = stripAnsiColorCode(`${column_name}`).length;
 
   rows.forEach((row) => {
-    max_ln = Math.max(max_ln, `${row.text[column_name] || ''}`.length);
+    max_ln = Math.max(
+      max_ln,
+      stripAnsiColorCode(`${row.text[column_name] || ''}`).length
+    );
   });
 
   return max_ln;
