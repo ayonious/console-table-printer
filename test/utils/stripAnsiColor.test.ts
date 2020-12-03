@@ -18,5 +18,10 @@ describe('Strip Ansi Tester', () => {
     testFunction(chalk.redBright);
     testFunction(chalk.strikethrough);
     testFunction(chalk.bgMagentaBright);
+    testFunction(chalk.bold);
+    testFunction(chalk.magentaBright);
+    testFunction(chalk.visible);
+    testFunction(chalk.hidden);
+    testFunction(chalk.dim);
   });
 });
