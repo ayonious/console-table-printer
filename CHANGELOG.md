@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/ayonious/console-table-printer/compare/v2.5.1...v2.6.0) (2020-12-04)
+
+
+### Features
+
+* Allow cell coloring ([#317](https://github.com/ayonious/console-table-printer/issues/317)) ([1026d51](https://github.com/ayonious/console-table-printer/commit/1026d5136240228b6e44d29afee45f1a6350ad07))
+
 ## [2.5.1](https://github.com/ayonious/console-table-printer/compare/v2.5.0...v2.5.1) (2020-11-07)
 
 
