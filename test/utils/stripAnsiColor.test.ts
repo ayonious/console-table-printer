@@ -5,7 +5,8 @@ describe('Strip Ansi Tester', () => {
   it('Simplest test: chalk', () => {
     const testFunction = (Fn: any) => {
       const str = Fn('text');
-      for(  const char of str) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const char of str) {
         console.log(char);
       }
     };
