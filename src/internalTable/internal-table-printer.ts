@@ -16,7 +16,7 @@ import {
   textWithPadding,
 } from '../utils/table-helpers';
 import { TableInternal } from './internal-table';
-import { preProcessColumns, preProcessRows } from './tablePreProcessors';
+import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 function renderLine(
   tableStyle: TABLE_STYLE_DETAILS,
