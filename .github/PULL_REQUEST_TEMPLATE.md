@@ -2,7 +2,7 @@
 
 Summary of what this is about
 
-## 🚀Changes
+## 🚀 Changes
 
 ### Added
 
@@ -12,3 +12,9 @@ Summary of what this is about
 ### Fixed
 
 ### Updated
+
+## 🖼 Screenshots 
+
+| Before     | After      |
+| ---------- | ---------- |
+| 🧟 | 😎 |
