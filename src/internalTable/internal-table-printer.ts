@@ -30,7 +30,7 @@ function renderLine(
   columns.forEach((column) => {
     line.addWithColor(defaultRowFontColor, ' ');
     line.addWithColor(
-      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is priotized as row color
+      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
         column.alignment || defaultRowAlignment,

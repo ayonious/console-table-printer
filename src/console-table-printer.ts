@@ -1,6 +1,6 @@
 import { ComplexOptions, TableInternal } from './internalTable/internal-table';
 import {
-  convertRawRowOptionsToStanrd,
+  convertRawRowOptionsToStandard,
   RowOptionsRaw,
 } from './utils/table-helpers';
 
@@ -20,13 +20,13 @@ export default class Table {
   }
 
   addRow(text: any, rowOptions?: RowOptionsRaw) {
-    this.table.addRow(text, convertRawRowOptionsToStanrd(rowOptions));
+    this.table.addRow(text, convertRawRowOptionsToStandard(rowOptions));
   }
 
   addRows(toBeInsertedRows: any, rowOptions?: RowOptionsRaw) {
     this.table.addRows(
       toBeInsertedRows,
-      convertRawRowOptionsToStanrd(rowOptions)
+      convertRawRowOptionsToStandard(rowOptions)
     );
   }
 

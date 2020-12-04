@@ -21,7 +21,7 @@ export interface RowOptions {
   color: COLOR;
 }
 
-export function convertRawRowOptionsToStanrd(
+export function convertRawRowOptionsToStandard(
   options?: RowOptionsRaw
 ): RowOptions | undefined {
   if (options) {
@@ -109,8 +109,8 @@ export function renderTableHorizontalBorders(
 }
 
 export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
-  const headerBolor: COLOR = 'white_bold';
-  const row: Row = createRowFn(headerBolor, {});
+  const headerColor: COLOR = 'white_bold';
+  const row: Row = createRowFn(headerColor, {});
   columns.forEach((column) => {
     row.text[column.name] = column.name;
   });
