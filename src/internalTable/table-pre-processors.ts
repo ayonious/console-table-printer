@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
-import { TableInternal, ComputedColumn } from './internal-table';
-import { findMaxLenOfColumn, Column, Row } from '../utils/table-helpers';
+import { Column, Row } from '../models/internal-table';
+import { findMaxLenOfColumn } from '../utils/table-helpers';
+import { ComputedColumn, TableInternal } from './internal-table';
 
 function createComputedColumnsIfNecessary(table: TableInternal) {
   if (table.computedColumns.length) {
@@ -29,7 +30,7 @@ function enableColumnsIfNecessary(table: TableInternal) {
   }
 }
 
-function findMaxColLen(table: TableInternal) {
+function findMaxColumnLength(table: TableInternal) {
   table.columns.forEach((column) => {
     column.max_ln = findMaxLenOfColumn(column, table.rows);
   });
@@ -39,7 +40,7 @@ export function preProcessColumns(table: TableInternal) {
   createComputedColumnsIfNecessary(table);
   enableColumnsIfNecessary(table);
   disableColumnsIfNecessary(table);
-  findMaxColLen(table);
+  findMaxColumnLength(table);
 }
 
 export function preProcessRows(table: TableInternal) {

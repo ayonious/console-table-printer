@@ -1,4 +1,5 @@
 import { ComplexOptions, TableInternal } from './internalTable/internal-table';
+import { Dictionary } from './models/common';
 import {
   convertRawRowOptionsToStandard,
   RowOptionsRaw,
@@ -19,7 +20,7 @@ export default class Table {
     this.table.addColumns(columns);
   }
 
-  addRow(text: any, rowOptions?: RowOptionsRaw) {
+  addRow(text: Dictionary, rowOptions?: RowOptionsRaw) {
     this.table.addRow(text, convertRawRowOptionsToStandard(rowOptions));
   }
 

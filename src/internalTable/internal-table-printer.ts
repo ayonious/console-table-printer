@@ -1,18 +1,17 @@
+import { Column, Row } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import {
-  defaultRowAlignment,
   defaultHeaderAlignment,
   defaultHeaderFontColor,
+  defaultRowAlignment,
   defaultRowFontColor,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
   cellText,
-  Column,
   createHeaderAsRow,
   createRow,
   renderTableHorizontalBorders,
-  Row,
   textWithPadding,
 } from '../utils/table-helpers';
 import { TableInternal } from './internal-table';
