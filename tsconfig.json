@@ -8,7 +8,8 @@
     "declaration": true,
     "lib": ["es2017", "dom"],
     "strict": true,
-    "types": ["jest"]
+    "types": ["jest"],
+    "esModuleInterop": true,
   },
   "include": ["src/**/*", "index.ts"]
 }
