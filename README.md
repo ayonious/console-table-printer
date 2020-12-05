@@ -87,13 +87,14 @@ p.printTable();
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
 
-You can also put properties based on columns (color/alignment)
+You can also put properties based on columns (color/alignment/title)
 
 ```javascript
 const p = new Table({
   columns: [
     { name: 'index', alignment: 'left', color: 'blue' }, //with alignment and color
     { name: 'text', alignment: 'right' },
+    { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
   ],
 });
 
@@ -110,7 +111,7 @@ p.addRow(
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border-column-props.2.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-column-props.png)
 
 ## CLI
 
@@ -134,9 +135,9 @@ Official documentation has been moved here: [console-table-documentation](https:
 new Table({
   title: 'Title of the Table', // A text showsup on top of table (optoinal)
   columns: [
-    { name: 'column1', alignment: 'left', color: 'red' }, //with alignment and color
+    { name: 'column1', alignment: 'left', color: 'red' }, // with alignment and color
     { name: 'column2', alignment: 'right' },
-    { name: 'column3' },
+    { name: 'column3', title: 'Column3' }, // Title is what will be shown while printing, by default title = name
   ],
   sort: (row1, row2) => row2.column1 - row1.column1, // sorting order of rows (optional), this is normal js sort function for Array.sort
   filter: (row) => row.column1 < 3, // filtering rows (optional)

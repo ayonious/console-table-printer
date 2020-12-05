@@ -1,22 +1,21 @@
+import { Column, Row } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import {
-  defaultRowAlignment,
   defaultHeaderAlignment,
   defaultHeaderFontColor,
+  defaultRowAlignment,
   defaultRowFontColor,
   TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
   cellText,
-  Column,
   createHeaderAsRow,
   createRow,
   renderTableHorizontalBorders,
-  Row,
   textWithPadding,
 } from '../utils/table-helpers';
 import { TableInternal } from './internal-table';
-import { preProcessColumns, preProcessRows } from './tablePreProcessors';
+import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 function renderLine(
   tableStyle: TABLE_STYLE_DETAILS,
@@ -30,7 +29,7 @@ function renderLine(
   columns.forEach((column) => {
     line.addWithColor(defaultRowFontColor, ' ');
     line.addWithColor(
-      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is priotized as row color
+      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
       textWithPadding(
         `${cellText(row.text[column.name])}`,
         column.alignment || defaultRowAlignment,

@@ -1,3 +1,24 @@
+## [2.7.1](https://github.com/ayonious/console-table-printer/compare/v2.7.0...v2.7.1) (2020-12-05)
+
+
+### Bug Fixes
+
+* **docs:** readme update for Header title ([#321](https://github.com/ayonious/console-table-printer/issues/321)) ([572979f](https://github.com/ayonious/console-table-printer/commit/572979f7d5d8b9f83a69bc51020cbaebd83a3f93))
+
+# [2.7.0](https://github.com/ayonious/console-table-printer/compare/v2.6.0...v2.7.0) (2020-12-05)
+
+
+### Features
+
+* Header title - View Header Title in console instead of ugly header name ([#319](https://github.com/ayonious/console-table-printer/issues/319)) ([78bb5aa](https://github.com/ayonious/console-table-printer/commit/78bb5aa6a6cb76d09c63f115f37cb9f4ad02e315))
+
+# [2.6.0](https://github.com/ayonious/console-table-printer/compare/v2.5.1...v2.6.0) (2020-12-04)
+
+
+### Features
+
+* Allow cell coloring ([#317](https://github.com/ayonious/console-table-printer/issues/317)) ([1026d51](https://github.com/ayonious/console-table-printer/commit/1026d5136240228b6e44d29afee45f1a6350ad07))
+
 ## [2.5.1](https://github.com/ayonious/console-table-printer/compare/v2.5.0...v2.5.1) (2020-11-07)
 
 

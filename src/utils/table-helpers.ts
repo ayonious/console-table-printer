@@ -1,17 +1,8 @@
 import wcwidth from 'wcwidth';
+import { Dictionary } from '../models/common';
+import { Column, Row } from '../models/internal-table';
+import stripAnsiColorCode from './ansi-color-stripper';
 import { ALIGNMENT, COLOR } from './table-constants';
-
-export interface Column {
-  name: string;
-  alignment?: ALIGNMENT;
-  color?: COLOR;
-  max_ln?: number;
-}
-
-export interface Row {
-  color: COLOR;
-  text: any;
-}
 
 export interface RowOptionsRaw {
   color: string;
@@ -21,7 +12,7 @@ export interface RowOptions {
   color: COLOR;
 }
 
-export function convertRawRowOptionsToStanrd(
+export function convertRawRowOptionsToStandard(
   options?: RowOptionsRaw
 ): RowOptions | undefined {
   if (options) {
@@ -37,23 +28,21 @@ export function textWithPadding(
   alignment: ALIGNMENT,
   mxColumnLen: number
 ): string {
-  const curTextSize = wcwidth(text);
-
-  // Calc how much padding to the left when alignment is 'center'
-  const alignCenterPaddingLeft = Math.floor((mxColumnLen - curTextSize) / 2);
-
+  const curTextSize = wcwidth(stripAnsiColorCode(text)).length;
+  // alignments for center padding case
+  const leftPadding = Math.floor((mxColumnLen - curTextSize) / 2);
+  const rightPadding = mxColumnLen - leftPadding - curTextSize;
   switch (alignment) {
     case 'left':
-      return text + ' '.repeat(mxColumnLen - curTextSize);
+      return text.concat(' '.repeat(mxColumnLen - curTextSize));
     case 'center':
-      return (
-        ' '.repeat(alignCenterPaddingLeft) +
-        text +
-        ' '.repeat(mxColumnLen - curTextSize - alignCenterPaddingLeft)
-      );
+      return ' '
+        .repeat(leftPadding)
+        .concat(text)
+        .concat(' '.repeat(rightPadding));
     case 'right':
     default:
-      return ' '.repeat(mxColumnLen - curTextSize) + text;
+      return ' '.repeat(mxColumnLen - curTextSize).concat(text);
   }
 }
 
@@ -84,22 +73,26 @@ export function createTableHorizontalBorders(
 }
 
 export function createColum(name: string): Column {
-  return { name };
+  return { name, title: name };
 }
 
-export function createRow(color: COLOR, text: string): Row {
+export function createRow(color: COLOR, text: Dictionary): Row {
   return { color, text };
 }
 
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
-  const column_name = column.name;
-  let max_ln = wcwidth(`${column_name}`);
+  const columnTitle = column.title;
+  const columnId = column.name;
+  let maxLen = wcwidth(stripAnsiColorCode(`${columnTitle}`)).length;
 
   rows.forEach((row) => {
-    max_ln = Math.max(max_ln, wcwidth(`${row.text[column_name] || ''}`));
+    maxLen = Math.max(
+      maxLen,
+      stripAnsiColorCode(`${row.text[columnId] || ''}`).length
+    );
   });
 
-  return max_ln;
+  return maxLen;
 }
 
 export function renderTableHorizontalBorders(
@@ -111,10 +104,10 @@ export function renderTableHorizontalBorders(
 }
 
 export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
-  const headerBolor: COLOR = 'white_bold';
-  const row: Row = createRowFn(headerBolor, {});
+  const headerColor: COLOR = 'white_bold';
+  const row: Row = createRowFn(headerColor, {});
   columns.forEach((column) => {
-    row.text[column.name] = column.name;
+    row.text[column.name] = column.title;
   });
   return row;
 }
