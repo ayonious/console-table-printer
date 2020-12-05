@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
