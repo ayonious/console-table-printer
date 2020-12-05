@@ -87,13 +87,14 @@ p.printTable();
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
 
-You can also put properties based on columns (color/alignment)
+You can also put properties based on columns (color/alignment/title)
 
 ```javascript
 const p = new Table({
   columns: [
     { name: 'index', alignment: 'left', color: 'blue' }, //with alignment and color
     { name: 'text', alignment: 'right' },
+    { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
   ],
 });
 
@@ -110,7 +111,7 @@ p.addRow(
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-thin-border-column-props.2.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-column-props.png)
 
 ## CLI
 

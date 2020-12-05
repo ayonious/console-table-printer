@@ -1,22 +1,19 @@
-import { renderTable } from './internal-table-printer';
+import { Dictionary } from '../models/common';
+import { Column, Row } from '../models/internal-table';
 import {
+  ALIGNMENT,
   COLOR,
   DEFAULT_TABLE_STYLE,
-  TABLE_STYLE_DETAILS,
-  ALIGNMENT,
   defaultRowAlignment,
   defaultRowFontColor,
+  TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
-import {
-  Column,
-  createColum,
-  createRow,
-  Row,
-  RowOptions,
-} from '../utils/table-helpers';
+import { createColum, createRow, RowOptions } from '../utils/table-helpers';
+import { renderTable } from './internal-table-printer';
 
 interface ColumnOptionsRaw {
-  name: string;
+  name: string; // unique id
+  title?: string; // the value that will be printed, if not present this will be 'name'
   alignment?: ALIGNMENT;
   color?: COLOR;
 }
@@ -74,6 +71,7 @@ export class TableInternal {
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
+      title: column,
       alignment: defaultRowAlignment,
     }));
   }
@@ -89,6 +87,7 @@ export class TableInternal {
     this.columns =
       options.columns?.map((column: ColumnOptionsRaw) => ({
         name: column.name,
+        title: column.title || column.name,
         ...objIfExists('color', column.color as COLOR),
         alignment: column.alignment || defaultRowAlignment,
       })) || [];
@@ -113,7 +112,7 @@ export class TableInternal {
     }
   }
 
-  createColumnFromRow(text: any) {
+  createColumnFromRow(text: Dictionary) {
     const colNames = this.columns.map((col) => col.name);
     Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
@@ -132,12 +131,12 @@ export class TableInternal {
     });
   }
 
-  addRow(text: any, options?: RowOptions) {
+  addRow(text: Dictionary, options?: RowOptions) {
     this.createColumnFromRow(text);
     this.rows.push(createRow(options?.color || defaultRowFontColor, text));
   }
 
-  addRows(toBeInsertedRows: any[], options?: RowOptions) {
+  addRows(toBeInsertedRows: Dictionary[], options?: RowOptions) {
     toBeInsertedRows.forEach((toBeInsertedRow) => {
       this.addRow(toBeInsertedRow, options);
     });
