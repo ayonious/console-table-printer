@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/ayonious/console-table-printer/compare/v2.7.0...v2.7.1) (2020-12-05)
+
+
+### Bug Fixes
+
+* **docs:** readme update for Header title ([#321](https://github.com/ayonious/console-table-printer/issues/321)) ([572979f](https://github.com/ayonious/console-table-printer/commit/572979f7d5d8b9f83a69bc51020cbaebd83a3f93))
+
 # [2.7.0](https://github.com/ayonious/console-table-printer/compare/v2.6.0...v2.7.0) (2020-12-05)
 
 
