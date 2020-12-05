@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/ayonious/console-table-printer/compare/v2.6.0...v2.7.0) (2020-12-05)
+
+
+### Features
+
+* Header title - View Header Title in console instead of ugly header name ([#319](https://github.com/ayonious/console-table-printer/issues/319)) ([78bb5aa](https://github.com/ayonious/console-table-printer/commit/78bb5aa6a6cb76d09c63f115f37cb9f4ad02e315))
+
 # [2.6.0](https://github.com/ayonious/console-table-printer/compare/v2.5.1...v2.6.0) (2020-12-04)
 
 
