@@ -1,6 +1,5 @@
-import chalk from 'chalk';
-import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
+import { renderTable } from '../../src/internalTable/internal-table-printer';
 
 describe('Testing Title Of Column', () => {
   it('title is used in table printing', () => {
