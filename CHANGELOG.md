@@ -1,3 +1,10 @@
+## [2.7.3](https://github.com/ayonious/console-table-printer/compare/v2.7.2...v2.7.3) (2020-12-06)
+
+
+### Bug Fixes
+
+* revert wcwidth and special character support ([#329](https://github.com/ayonious/console-table-printer/issues/329)) ([d6e7847](https://github.com/ayonious/console-table-printer/commit/d6e78475f10fac718c2848483ac88611bd804b01))
+
 ## [2.7.2](https://github.com/ayonious/console-table-printer/compare/v2.7.1...v2.7.2) (2020-12-06)
 
 
