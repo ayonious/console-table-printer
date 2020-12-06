@@ -1,7 +1,6 @@
-import wcwidth from 'wcwidth';
 import { Dictionary } from '../models/common';
 import { Column, Row } from '../models/internal-table';
-import stripAnsiColorCode from './ansi-color-stripper';
+import findWidthInConsole from './console-utils';
 import { ALIGNMENT, COLOR } from './table-constants';
 
 export interface RowOptionsRaw {
@@ -28,7 +27,7 @@ export function textWithPadding(
   alignment: ALIGNMENT,
   mxColumnLen: number
 ): string {
-  const curTextSize = wcwidth(stripAnsiColorCode(text));
+  const curTextSize = findWidthInConsole(text);
   // alignments for center padding case
   const leftPadding = Math.floor((mxColumnLen - curTextSize) / 2);
   const rightPadding = mxColumnLen - leftPadding - curTextSize;
@@ -83,12 +82,12 @@ export function createRow(color: COLOR, text: Dictionary): Row {
 export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
   const columnTitle = column.title;
   const columnId = column.name;
-  let maxLen = wcwidth(stripAnsiColorCode(`${columnTitle}`));
+  let maxLen = findWidthInConsole(`${columnTitle}`);
 
   rows.forEach((row) => {
     maxLen = Math.max(
       maxLen,
-      stripAnsiColorCode(`${row.text[columnId] || ''}`).length
+      findWidthInConsole(`${row.text[columnId] || ''}`)
     );
   });
 
