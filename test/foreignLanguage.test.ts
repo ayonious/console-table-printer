@@ -19,11 +19,12 @@ describe('Example: Print a simple Table with cell colors', () => {
       },
       {
         Description: 'Description 这里是中文',
-        'Ticket No': chalk.blue('ISSUE-Foreign'),
+        'Ticket No': 'ISSUE-Foreign',
       },
     ]);
 
     // print
     p.printTable();
+    expect(p.render()).toMatchSnapshot();
   });
 });
