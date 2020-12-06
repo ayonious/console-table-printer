@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import { Table } from '../index';
 
 describe('Example: Print a simple Table with cell colors', () => {
