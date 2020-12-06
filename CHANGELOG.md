@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/ayonious/console-table-printer/compare/v2.7.1...v2.7.2) (2020-12-06)
+
+
+### Bug Fixes
+
+* column width calculation with special characters ([#303](https://github.com/ayonious/console-table-printer/issues/303)) ([5a288e7](https://github.com/ayonious/console-table-printer/commit/5a288e7e4e5ee3daa9a3da7befc450fea3adbea1))
+
 ## [2.7.1](https://github.com/ayonious/console-table-printer/compare/v2.7.0...v2.7.1) (2020-12-05)
 
 
