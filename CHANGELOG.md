@@ -1,3 +1,10 @@
+## [2.7.4](https://github.com/ayonious/console-table-printer/compare/v2.7.3...v2.7.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* Asian Languages width fixing with simple-wcswidth ([a14272f](https://github.com/ayonious/console-table-printer/commit/a14272f6738310cc21492c38adf71fac06b2a9dd))
+
 ## [2.7.3](https://github.com/ayonious/console-table-printer/compare/v2.7.2...v2.7.3) (2020-12-06)
 
 
