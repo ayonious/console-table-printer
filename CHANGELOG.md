@@ -1,3 +1,10 @@
+## [2.7.5](https://github.com/ayonious/console-table-printer/compare/v2.7.4...v2.7.5) (2020-12-08)
+
+
+### Bug Fixes
+
+* **technical:** migrate to yarn and fix deployment ([0a1babb](https://github.com/ayonious/console-table-printer/commit/0a1babb87ec404da68471517dcca9a5595a03e81))
+
 ## [2.7.4](https://github.com/ayonious/console-table-printer/compare/v2.7.3...v2.7.4) (2020-12-08)
 
 
