@@ -3,9 +3,9 @@ node_js:
   - stable
   - '--lts'
 before_script:
-  - npm run lint
-  - npm run setup
-  - npm run build
+  - yarn lint
+  - yarn
+  - yarn build
 deploy:
   provider: script
   edge: true
