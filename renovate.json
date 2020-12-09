@@ -1,5 +1,19 @@
 {
   "extends": ["config:base"],
+  "groupName": "all dependencies",
+  "separateMajorMinor": false,
+  "groupSlug": "all",
+  "packageRules": [
+    {
+      "packagePatterns": [ "*" ],
+      "groupName": "all dependencies",
+      "groupSlug": "all"    
+    }
+  ],
   "rangeStrategy": "bump",
-  "automerge": true
+  "automerge": false,
+  "schedule": "before 3am on Monday",
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
