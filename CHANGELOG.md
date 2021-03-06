@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/ayonious/console-table-printer/compare/v2.7.5...v2.8.0) (2021-03-06)
+
+
+### Features
+
+* Width Limit  ([#343](https://github.com/ayonious/console-table-printer/issues/343)) ([f5a541b](https://github.com/ayonious/console-table-printer/commit/f5a541ba39d22cbe37cbbd8100b3b740b4247ba3))
+
 ## [2.7.5](https://github.com/ayonious/console-table-printer/compare/v2.7.4...v2.7.5) (2020-12-08)
 
 
