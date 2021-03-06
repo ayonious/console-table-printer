@@ -63,25 +63,25 @@ export const createRow = (color: COLOR, text: Dictionary): Row => ({
 export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
   const columnId = column.name;
 
-  if (column.maxLen) {
-    // making sure the biggest word will fit in maxLen width
-    let ret = column.maxLen;
-    rows.forEach((row) => {
-      const strs = cellText(row.text[columnId]).split(' ');
-      const maxWordLen: number = strs.reduce(
-        (a, b) => Math.max(a, findWidthInConsole(b)),
-        0
-      );
-      ret = Math.max(ret, maxWordLen);
-    });
-    return ret;
-  }
   const columnTitle = column.title;
   let maxLen = findWidthInConsole(columnTitle);
 
   rows.forEach((row) => {
     maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));
   });
+
+  if (column.maxLen) {
+    // making sure the biggest word will fit in maxLen width
+    maxLen = Math.max(column.maxLen, maxLen);
+    rows.forEach((row) => {
+      const strs = cellText(row.text[columnId]).split(' ');
+      const maxWordLenForThisCol: number = strs.reduce(
+        (a, b) => Math.max(a, findWidthInConsole(b)),
+        0
+      );
+      maxLen = Math.max(maxLen, maxWordLenForThisCol);
+    });
+  }
 
   return maxLen;
 };
