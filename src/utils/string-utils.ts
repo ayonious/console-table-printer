@@ -1,6 +1,8 @@
 import findWidthInConsole from './console-utils';
 import { ALIGNMENT } from './table-constants';
 
+// ("How are you?",center, 20) => "    How are you?    "
+// ("How are you?",right, 20)  => "        How are you?"
 export const textWithPadding = (
   text: string,
   alignment: ALIGNMENT,
@@ -24,7 +26,8 @@ export const textWithPadding = (
   }
 };
 
-export const limitWidth = (input: string, width: number) => {
+// ("How are you?",10) => ["How are ", "you?"]
+export const limitWidth = (input: string, width: number): string[] => {
   const ret: string[] = [];
 
   let now = 0;

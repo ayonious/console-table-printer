@@ -20,7 +20,7 @@ import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 // ║ Bold  ║    text ║  value ║
 // ║ Index ║         ║        ║
-const renderLine = (
+const renderWidthLimitedLines = (
   tableStyle: TABLE_STYLE_DETAILS,
   columns: Column[],
   row: Row,
@@ -28,6 +28,8 @@ const renderLine = (
 ): string[] => {
   // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
   const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row);
+
+  console.log('widthLimitedColumnsArray', widthLimitedColumnsArray);
 
   const ret = [];
   let currentLineIndex = 0;
@@ -73,7 +75,9 @@ const renderLine = (
 // ║ 1     ║     I would like some red wine please ║ 10.212 ║
 const renderRow = (table: TableInternal, row: Row): string[] => {
   let ret: string[] = [];
-  ret = ret.concat(renderLine(table.tableStyle, table.columns, row));
+  ret = ret.concat(
+    renderWidthLimitedLines(table.tableStyle, table.columns, row)
+  );
   return ret;
 };
 
@@ -125,7 +129,9 @@ const renderTableHeaders = (table: TableInternal): string[] => {
 
   // ║ index ║                                  text ║  value ║
   const row = createHeaderAsRow(createRow, table.columns);
-  ret = ret.concat(renderLine(table.tableStyle, table.columns, row, true));
+  ret = ret.concat(
+    renderWidthLimitedLines(table.tableStyle, table.columns, row, true)
+  );
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
   ret.push(

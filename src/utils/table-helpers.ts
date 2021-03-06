@@ -113,7 +113,10 @@ export const getWidthLimitedColumnsArray = (
   const ret: { [key: string]: string[] } = {};
 
   columns.forEach((column) => {
-    ret[column.name] = limitWidth(row.text[column.name], column.maxLen || 20);
+    ret[column.name] = limitWidth(
+      `${row.text[column.name]}`,
+      column.maxLen || 20
+    );
   });
 
   return ret;
