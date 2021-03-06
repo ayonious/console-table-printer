@@ -1,7 +1,7 @@
 import { Dictionary } from '../models/common';
 import { Column, Row } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
-import { limitWidth } from './string-utils';
+import { biggestWordInSentence, limitWidth } from './string-utils';
 import { COLOR } from './table-constants';
 
 // takes any input that is given by user and converts to string
@@ -62,26 +62,24 @@ export const createRow = (color: COLOR, text: Dictionary): Row => ({
 
 export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
   const columnId = column.name;
-
   const columnTitle = column.title;
+
+  if (column.maxLen) {
+    // if customer input is mentioned a max width, lets see if all other can fit here
+    // if others cant fit find the max word length so that at least the table can be printed
+    const ret = Math.max(column.maxLen, biggestWordInSentence(columnTitle));
+    return rows.reduce(
+      (acc, row) =>
+        Math.max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
+      ret
+    );
+  }
+
   let maxLen = findWidthInConsole(columnTitle);
 
   rows.forEach((row) => {
     maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));
   });
-
-  if (column.maxLen) {
-    // making sure the biggest word will fit in maxLen width
-    maxLen = Math.max(column.maxLen, maxLen);
-    rows.forEach((row) => {
-      const strs = cellText(row.text[columnId]).split(' ');
-      const maxWordLenForThisCol: number = strs.reduce(
-        (a, b) => Math.max(a, findWidthInConsole(b)),
-        0
-      );
-      maxLen = Math.max(maxLen, maxWordLenForThisCol);
-    });
-  }
 
   return maxLen;
 };

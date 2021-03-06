@@ -1,5 +1,6 @@
 import findWidthInConsole from './console-utils';
 import { ALIGNMENT } from './table-constants';
+import { cellText } from './table-helpers';
 
 // ("How are you?",center, 20) => "    How are you?    "
 // ("How are you?",right, 20)  => "        How are you?"
@@ -49,3 +50,7 @@ export const limitWidth = (inpStr: string, width: number): string[] => {
 
   return ret;
 };
+
+// ("How are you?",10) => ["How are ", "you?"]
+export const biggestWordInSentence = (inpStr: string): number =>
+  inpStr.split(' ').reduce((a, b) => Math.max(a, findWidthInConsole(b)), 0);
