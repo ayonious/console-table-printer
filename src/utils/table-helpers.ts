@@ -102,8 +102,9 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   return row;
 };
 
-export const cellText = (text: string): string =>
-  text === undefined || text === null ? '' : text;
+// takes any input that is given by user and converts to string
+export const cellText = (text: string | number): string =>
+  text === undefined || text === null ? '' : `${text}`;
 
 // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
 export const getWidthLimitedColumnsArray = (
@@ -114,7 +115,7 @@ export const getWidthLimitedColumnsArray = (
 
   columns.forEach((column) => {
     ret[column.name] = limitWidth(
-      (row.text[column.name] && `${row.text[column.name]}`) || '',
+      cellText(row.text[column.name]),
       column.maxLen || 20
     );
   });
