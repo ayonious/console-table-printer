@@ -27,24 +27,25 @@ export const textWithPadding = (
 };
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const limitWidth = (input: string, width: number): string[] => {
+export const limitWidth = (inpStr: string, width: number): string[] => {
   const ret: string[] = [];
 
-  let now = 0;
-  while (now < input.length) {
-    let then = now + width;
+  const spaceSeparatedStrings = inpStr.split(' ');
 
-    if (then >= input.length) {
-      ret.push(input.substr(now));
-      break;
+  let now: string[] = [];
+  let cnt = 0;
+  spaceSeparatedStrings.forEach((strWithoutSpace) => {
+    const consoleWidth = findWidthInConsole(strWithoutSpace);
+    if (cnt + consoleWidth <= width) {
+      cnt += consoleWidth + 1; // 1 for the space
+      now.push(strWithoutSpace);
+    } else {
+      ret.push(now.join(' '));
+      now = [strWithoutSpace];
+      cnt = consoleWidth + 1;
     }
+  });
+  ret.push(now.join(' '));
 
-    while (input[then] !== ' ') {
-      then -= 1;
-    }
-    ret.push(input.substr(now, then - now));
-
-    now = then + 1;
-  }
   return ret;
 };
