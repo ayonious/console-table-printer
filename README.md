@@ -136,7 +136,7 @@ new Table({
   title: 'Title of the Table', // A text showsup on top of table (optoinal)
   columns: [
     { name: 'column1', alignment: 'left', color: 'red' }, // with alignment and color
-    { name: 'column2', alignment: 'right' },
+    { name: 'column2', alignment: 'right', maxLen: 30 }, // lines bigger than this will be splitted in multiple lines
     { name: 'column3', title: 'Column3' }, // Title is what will be shown while printing, by default title = name
   ],
   sort: (row1, row2) => row2.column1 - row1.column1, // sorting order of rows (optional), this is normal js sort function for Array.sort
@@ -174,7 +174,7 @@ table.addRows(rowsArray, { color: 'blue' });
 
 Check Docs: [alignment-vals](https://console-table.netlify.app/docs/doc-alignment)
 
-### Typesccript Support
+### Typescript Support
 
 You can get color / alignment as types. Check Docs: [types-docs](https://console-table.netlify.app/docs/doc-typescript)
 
