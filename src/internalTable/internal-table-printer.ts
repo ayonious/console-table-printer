@@ -1,6 +1,6 @@
 import { Column, Row } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
-import { textWithPadding } from '../utils/string-utils';
+import { textWithPadding, limitWidth } from '../utils/string-utils';
 import {
   defaultHeaderAlignment,
   defaultHeaderFontColor,
@@ -13,47 +13,75 @@ import {
   createHeaderAsRow,
   createRow,
   renderTableHorizontalBorders,
+  getWidthLimitedColumnsArray,
 } from '../utils/table-helpers';
 import { TableInternal } from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
-function renderLine(
+// ║ Bold  ║    text ║  value ║
+// ║ Index ║         ║        ║
+const renderLine = (
   tableStyle: TABLE_STYLE_DETAILS,
   columns: Column[],
   row: Row,
   isHeader?: boolean
-): string {
-  const line = new ColoredConsoleLine();
-  line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
+): string[] => {
+  // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
+  const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row);
 
-  columns.forEach((column) => {
-    line.addCharsWithColor(defaultRowFontColor, ' ');
-    line.addCharsWithColor(
-      (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
-      textWithPadding(
-        `${cellText(row.text[column.name])}`,
-        column.alignment || defaultRowAlignment,
-        column.maxLen || 20
-      )
-    );
-    line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
-  });
+  const ret = [];
+  let currentLineIndex = 0;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const line = new ColoredConsoleLine();
+    line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
 
-  return line.renderConsole();
-}
+    let atLeastOneLineHasText = false;
+    // eslint-disable-next-line no-loop-func
+    columns.forEach((column) => {
+      const thisLineHasText =
+        widthLimitedColumnsArray[column.name].length < currentLineIndex;
+      atLeastOneLineHasText = atLeastOneLineHasText || thisLineHasText;
+
+      const textForThisLine =
+        (thisLineHasText &&
+          widthLimitedColumnsArray[column.name][currentLineIndex]) ||
+        '';
+
+      line.addCharsWithColor(defaultRowFontColor, ' ');
+      line.addCharsWithColor(
+        (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
+        textWithPadding(
+          `${cellText(textForThisLine)}`,
+          column.alignment || defaultRowAlignment,
+          column.maxLen || 20
+        )
+      );
+      line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
+    });
+
+    ret.push(line.renderConsole());
+    currentLineIndex += 1;
+    if (!atLeastOneLineHasText) {
+      break;
+    }
+  }
+
+  return ret;
+};
 
 // ║ 1     ║     I would like some red wine please ║ 10.212 ║
-function renderRow(table: TableInternal, row: Row): string[] {
-  const ret: string[] = [];
-  ret.push(renderLine(table.tableStyle, table.columns, row));
+const renderRow = (table: TableInternal, row: Row): string[] => {
+  let ret: string[] = [];
+  ret = ret.concat(renderLine(table.tableStyle, table.columns, row));
   return ret;
-}
+};
 
 /*
                   The analysis Result
  ╔═══════╦═══════════════════════════════════════╦════════╗
 */
-function renderTableTitle(table: TableInternal): string[] {
+const renderTableTitle = (table: TableInternal): string[] => {
   const ret: string[] = [];
 
   if (table.title === undefined) {
@@ -77,15 +105,15 @@ function renderTableTitle(table: TableInternal): string[] {
   //                  The analysis Result
   ret.push(styledText.renderConsole());
   return ret;
-}
+};
 
 /*
  ╔═══════╦═══════════════════════════════════════╦════════╗
  ║ index ║                                  text ║  value ║
  ╟═══════╬═══════════════════════════════════════╬════════╢
 */
-function renderTableHeaders(table: TableInternal): string[] {
-  const ret: string[] = [];
+const renderTableHeaders = (table: TableInternal): string[] => {
+  let ret: string[] = [];
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
   ret.push(
@@ -97,7 +125,7 @@ function renderTableHeaders(table: TableInternal): string[] {
 
   // ║ index ║                                  text ║  value ║
   const row = createHeaderAsRow(createRow, table.columns);
-  ret.push(renderLine(table.tableStyle, table.columns, row, true));
+  ret = ret.concat(renderLine(table.tableStyle, table.columns, row, true));
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
   ret.push(
@@ -108,9 +136,9 @@ function renderTableHeaders(table: TableInternal): string[] {
   );
 
   return ret;
-}
+};
 
-function renderTableEnding(table: TableInternal): string[] {
+const renderTableEnding = (table: TableInternal): string[] => {
   const ret: string[] = [];
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret.push(
@@ -120,7 +148,7 @@ function renderTableEnding(table: TableInternal): string[] {
     )
   );
   return ret;
-}
+};
 
 export const renderTable = (table: TableInternal): string => {
   preProcessColumns(table); // enable / disable cols, find maxLn of each col/ computed Columns

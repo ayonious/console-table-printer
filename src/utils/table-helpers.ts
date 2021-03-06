@@ -1,6 +1,7 @@
 import { Dictionary } from '../models/common';
 import { Column, Row } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
+import { limitWidth } from './string-utils';
 import { COLOR } from './table-constants';
 
 export interface RowOptionsRaw {
@@ -103,3 +104,17 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
 
 export const cellText = (text: string): string =>
   text === undefined || text === null ? '' : text;
+
+// { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
+export const getWidthLimitedColumnsArray = (
+  columns: Column[],
+  row: Row
+): { [key: string]: string[] } => {
+  const ret: { [key: string]: string[] } = {};
+
+  columns.forEach((column) => {
+    ret[column.name] = limitWidth(row.text[column.name], column.maxLen || 20);
+  });
+
+  return ret;
+};
