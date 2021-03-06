@@ -1,7 +1,12 @@
 import { Dictionary } from '../models/common';
 import { Column, Row } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
-import { ALIGNMENT, COLOR } from './table-constants';
+import { biggestWordInSentence, limitWidth } from './string-utils';
+import { COLOR } from './table-constants';
+
+// takes any input that is given by user and converts to string
+export const cellText = (text: string | number): string =>
+  text === undefined || text === null ? '' : `${text}`;
 
 export interface RowOptionsRaw {
   color: string;
@@ -11,41 +16,18 @@ export interface RowOptions {
   color: COLOR;
 }
 
-export function convertRawRowOptionsToStandard(
+export const convertRawRowOptionsToStandard = (
   options?: RowOptionsRaw
-): RowOptions | undefined {
+): RowOptions | undefined => {
   if (options) {
     return {
       color: options.color as COLOR,
     };
   }
   return undefined;
-}
+};
 
-export function textWithPadding(
-  text: string,
-  alignment: ALIGNMENT,
-  mxColumnLen: number
-): string {
-  const curTextSize = findWidthInConsole(text);
-  // alignments for center padding case
-  const leftPadding = Math.floor((mxColumnLen - curTextSize) / 2);
-  const rightPadding = mxColumnLen - leftPadding - curTextSize;
-  switch (alignment) {
-    case 'left':
-      return text.concat(' '.repeat(mxColumnLen - curTextSize));
-    case 'center':
-      return ' '
-        .repeat(leftPadding)
-        .concat(text)
-        .concat(' '.repeat(rightPadding));
-    case 'right':
-    default:
-      return ' '.repeat(mxColumnLen - curTextSize).concat(text);
-  }
-}
-
-export function createTableHorizontalBorders(
+export const createTableHorizontalBorders = (
   {
     left,
     mid,
@@ -53,7 +35,7 @@ export function createTableHorizontalBorders(
     other,
   }: { left: string; mid: string; right: string; other: string },
   column_lengths: number[]
-) {
+) => {
   // ╚
   let ret = left;
 
@@ -69,48 +51,69 @@ export function createTableHorizontalBorders(
   // ╚═══════╩═══════════════════════════════════════╩════════╝
   ret += right;
   return ret;
-}
+};
 
-export function createColum(name: string): Column {
-  return { name, title: name };
-}
+export const createColum = (name: string): Column => ({ name, title: name });
 
-export function createRow(color: COLOR, text: Dictionary): Row {
-  return { color, text };
-}
+export const createRow = (color: COLOR, text: Dictionary): Row => ({
+  color,
+  text,
+});
 
-export function findMaxLenOfColumn(column: Column, rows: Row[]): number {
-  const columnTitle = column.title;
+export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
   const columnId = column.name;
-  let maxLen = findWidthInConsole(`${columnTitle}`);
+  const columnTitle = column.title;
+
+  if (column.maxLen) {
+    // if customer input is mentioned a max width, lets see if all other can fit here
+    // if others cant fit find the max word length so that at least the table can be printed
+    const ret = Math.max(column.maxLen, biggestWordInSentence(columnTitle));
+    return rows.reduce(
+      (acc, row) =>
+        Math.max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
+      ret
+    );
+  }
+
+  let maxLen = findWidthInConsole(columnTitle);
 
   rows.forEach((row) => {
-    maxLen = Math.max(
-      maxLen,
-      findWidthInConsole(`${row.text[columnId] || ''}`)
-    );
+    maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));
   });
 
   return maxLen;
-}
+};
 
-export function renderTableHorizontalBorders(
+export const renderTableHorizontalBorders = (
   style: any,
   column_lengths: number[]
-): string {
+): string => {
   const str = createTableHorizontalBorders(style, column_lengths);
   return str;
-}
+};
 
-export function createHeaderAsRow(createRowFn: any, columns: Column[]): Row {
+export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   const headerColor: COLOR = 'white_bold';
   const row: Row = createRowFn(headerColor, {});
   columns.forEach((column) => {
     row.text[column.name] = column.title;
   });
   return row;
-}
+};
 
-export function cellText(text: string): string {
-  return text === undefined || text === null ? '' : text;
-}
+// { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
+export const getWidthLimitedColumnsArray = (
+  columns: Column[],
+  row: Row
+): { [key: string]: string[] } => {
+  const ret: { [key: string]: string[] } = {};
+
+  columns.forEach((column) => {
+    ret[column.name] = limitWidth(
+      cellText(row.text[column.name]),
+      column.maxLen || 20
+    );
+  });
+
+  return ret;
+};

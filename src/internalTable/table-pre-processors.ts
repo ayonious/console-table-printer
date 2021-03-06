@@ -3,7 +3,7 @@ import { Column, Row } from '../models/internal-table';
 import { findMaxLenOfColumn } from '../utils/table-helpers';
 import { ComputedColumn, TableInternal } from './internal-table';
 
-function createComputedColumnsIfNecessary(table: TableInternal) {
+const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
       table.addColumn(computedColumn.name);
@@ -12,40 +12,40 @@ function createComputedColumnsIfNecessary(table: TableInternal) {
       });
     });
   }
-}
+};
 
-function disableColumnsIfNecessary(table: TableInternal) {
+const disableColumnsIfNecessary = (table: TableInternal) => {
   if (table.enabledColumns.length) {
     table.columns = table.columns.filter((col: Column) =>
       table.enabledColumns.includes(col.name)
     );
   }
-}
+};
 
-function enableColumnsIfNecessary(table: TableInternal) {
+const enableColumnsIfNecessary = (table: TableInternal) => {
   if (table.disabledColumns.length) {
     table.columns = table.columns.filter(
       (col: Column) => !table.disabledColumns.includes(col.name)
     );
   }
-}
+};
 
-function findMaxColumnLength(table: TableInternal) {
+const findMaxColumnLength = (table: TableInternal) => {
   table.columns.forEach((column) => {
-    column.max_ln = findMaxLenOfColumn(column, table.rows);
+    column.maxLen = findMaxLenOfColumn(column, table.rows);
   });
-}
+};
 
-export function preProcessColumns(table: TableInternal) {
+export const preProcessColumns = (table: TableInternal) => {
   createComputedColumnsIfNecessary(table);
   enableColumnsIfNecessary(table);
   disableColumnsIfNecessary(table);
   findMaxColumnLength(table);
-}
+};
 
-export function preProcessRows(table: TableInternal) {
+export const preProcessRows = (table: TableInternal) => {
   const newRows = table.rows
     .filter((r) => table.filterFunction(r.text))
     .sort((r1, r2) => table.sortFunction(r1.text, r2.text));
   table.rows = newRows;
-}
+};

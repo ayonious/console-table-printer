@@ -12,7 +12,7 @@ export interface Column {
   title: string;
   alignment?: ALIGNMENT;
   color?: COLOR;
-  max_ln?: number;
+  maxLen?: number;
 }
 
 export interface Row {

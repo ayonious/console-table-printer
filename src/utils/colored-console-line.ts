@@ -30,7 +30,7 @@ export default class ColoredConsoleLine {
     this.text = '';
   }
 
-  addWithColor(color: COLOR, text: string) {
+  addCharsWithColor(color: COLOR, text: string) {
     this.text += colorString(color, text);
   }
 
