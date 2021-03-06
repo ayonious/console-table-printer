@@ -29,32 +29,51 @@ const renderWidthLimitedLines = (
   // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
   const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row);
 
-  console.log('widthLimitedColumnsArray', widthLimitedColumnsArray);
+  const totalLines = Object.values(widthLimitedColumnsArray).reduce(
+    (a, b) => Math.max(a, b.length),
+    0
+  );
 
   const ret = [];
-  let currentLineIndex = 0;
+
   // eslint-disable-next-line no-constant-condition
-  while (true) {
+  for (
+    let currentLineIndex = 0;
+    currentLineIndex < totalLines;
+    currentLineIndex += 1
+  ) {
     const line = new ColoredConsoleLine();
     line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
 
-    let atLeastOneLineHasText = false;
     // eslint-disable-next-line no-loop-func
     columns.forEach((column) => {
       const thisLineHasText =
         widthLimitedColumnsArray[column.name].length < currentLineIndex;
-      atLeastOneLineHasText = atLeastOneLineHasText || thisLineHasText;
 
-      const textForThisLine =
-        (thisLineHasText &&
-          widthLimitedColumnsArray[column.name][currentLineIndex]) ||
-        '';
+      const textForThisLine: string = thisLineHasText
+        ? cellText(widthLimitedColumnsArray[column.name][currentLineIndex])
+        : '';
+
+      console.log(
+        'textForThisLine',
+        textForThisLine,
+        'currentLineIndex',
+        currentLineIndex,
+        'thisLineHasText',
+        thisLineHasText,
+        'column.name',
+        column.name,
+        'widthLimitedColumnsArray',
+        widthLimitedColumnsArray,
+        'textForThisLine',
+        textForThisLine
+      );
 
       line.addCharsWithColor(defaultRowFontColor, ' ');
       line.addCharsWithColor(
         (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
         textWithPadding(
-          `${cellText(textForThisLine)}`,
+          textForThisLine,
           column.alignment || defaultRowAlignment,
           column.maxLen || 20
         )
@@ -63,10 +82,6 @@ const renderWidthLimitedLines = (
     });
 
     ret.push(line.renderConsole());
-    currentLineIndex += 1;
-    if (!atLeastOneLineHasText) {
-      break;
-    }
   }
 
   return ret;
