@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/ayonious/console-table-printer/compare/v2.8.0...v2.8.1) (2021-03-06)
+
+
+### Bug Fixes
+
+* fixing deployment ([981d819](https://github.com/ayonious/console-table-printer/commit/981d819e552c60f7d1a4f9f24a83e33a97eb582c))
+
 # [2.8.0](https://github.com/ayonious/console-table-printer/compare/v2.7.5...v2.8.0) (2021-03-06)
 
 
