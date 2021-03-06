@@ -4,6 +4,10 @@ import findWidthInConsole from './console-utils';
 import { limitWidth } from './string-utils';
 import { COLOR } from './table-constants';
 
+// takes any input that is given by user and converts to string
+export const cellText = (text: string | number): string =>
+  text === undefined || text === null ? '' : `${text}`;
+
 export interface RowOptionsRaw {
   color: string;
 }
@@ -63,7 +67,7 @@ export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
     // making sure the biggest word will fit in maxLen width
     let ret = column.maxLen;
     rows.forEach((row) => {
-      const strs = `${row.text[columnId] || ''}`.split(' ');
+      const strs = cellText(row.text[columnId]).split(' ');
       const maxWordLen: number = strs.reduce(
         (a, b) => Math.max(a, findWidthInConsole(b)),
         0
@@ -73,13 +77,10 @@ export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
     return ret;
   }
   const columnTitle = column.title;
-  let maxLen = findWidthInConsole(`${columnTitle}`);
+  let maxLen = findWidthInConsole(columnTitle);
 
   rows.forEach((row) => {
-    maxLen = Math.max(
-      maxLen,
-      findWidthInConsole(`${row.text[columnId] || ''}`)
-    );
+    maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));
   });
 
   return maxLen;
@@ -101,10 +102,6 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   });
   return row;
 };
-
-// takes any input that is given by user and converts to string
-export const cellText = (text: string | number): string =>
-  text === undefined || text === null ? '' : `${text}`;
 
 // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
 export const getWidthLimitedColumnsArray = (
