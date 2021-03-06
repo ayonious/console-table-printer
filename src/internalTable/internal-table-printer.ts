@@ -18,6 +18,39 @@ import {
 import { TableInternal } from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
+// ║ Index ║         ║        ║
+const renderOneLine = (
+  tableStyle: TABLE_STYLE_DETAILS,
+  columns: Column[],
+  currentLineIndex: number,
+  widthLimitedColumnsArray: { [key: string]: string[] },
+  isHeader: boolean | undefined,
+  row: Row
+): string => {
+  const line = new ColoredConsoleLine();
+  line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
+  columns.forEach((column) => {
+    const thisLineHasText =
+      currentLineIndex < widthLimitedColumnsArray[column.name].length;
+
+    const textForThisLine: string = thisLineHasText
+      ? cellText(widthLimitedColumnsArray[column.name][currentLineIndex])
+      : '';
+
+    line.addCharsWithColor(defaultRowFontColor, ' ');
+    line.addCharsWithColor(
+      (isHeader && defaultHeaderFontColor) || column.color || row.color,
+      textWithPadding(
+        textForThisLine,
+        column.alignment || defaultRowAlignment,
+        column.maxLen || 20
+      )
+    );
+    line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
+  });
+  return line.renderConsole();
+};
+
 // ║ Bold  ║    text ║  value ║
 // ║ Index ║         ║        ║
 const renderWidthLimitedLines = (
@@ -35,53 +68,21 @@ const renderWidthLimitedLines = (
   );
 
   const ret = [];
-
-  // eslint-disable-next-line no-constant-condition
   for (
     let currentLineIndex = 0;
     currentLineIndex < totalLines;
     currentLineIndex += 1
   ) {
-    const line = new ColoredConsoleLine();
-    line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
+    const singleLine = renderOneLine(
+      tableStyle,
+      columns,
+      currentLineIndex,
+      widthLimitedColumnsArray,
+      isHeader,
+      row
+    );
 
-    // eslint-disable-next-line no-loop-func
-    columns.forEach((column) => {
-      const thisLineHasText =
-        widthLimitedColumnsArray[column.name].length < currentLineIndex;
-
-      const textForThisLine: string = thisLineHasText
-        ? cellText(widthLimitedColumnsArray[column.name][currentLineIndex])
-        : '';
-
-      console.log(
-        'textForThisLine',
-        textForThisLine,
-        'currentLineIndex',
-        currentLineIndex,
-        'thisLineHasText',
-        thisLineHasText,
-        'column.name',
-        column.name,
-        'widthLimitedColumnsArray',
-        widthLimitedColumnsArray,
-        'textForThisLine',
-        textForThisLine
-      );
-
-      line.addCharsWithColor(defaultRowFontColor, ' ');
-      line.addCharsWithColor(
-        (isHeader && defaultHeaderFontColor) || column.color || row.color, // column color is prioritized as row color
-        textWithPadding(
-          textForThisLine,
-          column.alignment || defaultRowAlignment,
-          column.maxLen || 20
-        )
-      );
-      line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
-    });
-
-    ret.push(line.renderConsole());
+    ret.push(singleLine);
   }
 
   return ret;
