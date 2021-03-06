@@ -65,7 +65,7 @@ export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
     rows.forEach((row) => {
       const strs = `${row.text[columnId] || ''}`.split(' ');
       const maxWordLen: number = strs.reduce(
-        (a, b) => Math.max(a, b.length),
+        (a, b) => Math.max(a, findWidthInConsole(b)),
         0
       );
       ret = Math.max(ret, maxWordLen);
