@@ -4,15 +4,15 @@ import findWidthInConsole from '../../src/utils/console-utils';
 describe('Console Width Calculation', () => {
   it('Simplest test: Colored Line', () => {
     const line = new ColoredConsoleLine();
-    line.addWithColor('red', 'red');
-    line.addWithColor('green', 'green');
-    line.addWithColor('white_bold', 'white');
+    line.addCharsWithColor('red', 'red');
+    line.addCharsWithColor('green', 'green');
+    line.addCharsWithColor('white_bold', 'white');
     expect(findWidthInConsole(line.renderConsole())).toBe(13);
   });
 
   it('Simplest test: Colored Foreign Language', () => {
     const line = new ColoredConsoleLine();
-    line.addWithColor('red', '한');
+    line.addCharsWithColor('red', '한');
     expect(findWidthInConsole(line.renderConsole())).toBe(2);
   });
 

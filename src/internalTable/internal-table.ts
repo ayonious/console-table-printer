@@ -16,6 +16,7 @@ interface ColumnOptionsRaw {
   title?: string; // the value that will be printed, if not present this will be 'name'
   alignment?: ALIGNMENT;
   color?: COLOR;
+  maxLen?: number;
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
@@ -89,6 +90,7 @@ export class TableInternal {
         name: column.name,
         title: column.title || column.name,
         ...objIfExists('color', column.color as COLOR),
+        ...objIfExists('maxLen', column.maxLen),
         alignment: column.alignment || defaultRowAlignment,
       })) || [];
   }
