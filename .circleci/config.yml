@@ -1,0 +1,21 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-hash-{{ checksum "yarn.lock" }}
+            - deps-hash- # used if checksum fails
+
+      - run: yarn install
+      - run: yarn test
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: deps-hash-{{ checksum "yarn.lock" }}
+
+      - run: yarn build
