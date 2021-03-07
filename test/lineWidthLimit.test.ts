@@ -73,4 +73,55 @@ describe('Testing column max Width', () => {
     expect(p.render()).toMatchSnapshot();
     p.printTable();
   });
+
+  it('Complex Line Limit', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        {
+          name: 'center_left_align_index',
+          alignment: 'center',
+          color: 'red',
+          title: 'Index',
+        },
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          maxLen: 10,
+          title: 'White Text',
+        },
+        {
+          name: 'green_center_align',
+          alignment: 'center',
+          color: 'green',
+          maxLen: 8,
+          title: 'Green Barret',
+        },
+      ],
+    });
+
+    // add rows with color
+    p.addRow({
+      center_left_align_index: 1,
+      right_align_text: 'This row is blue',
+      green_center_align: 'This row is green column',
+    });
+
+    p.addRow({
+      center_left_align_index: 10,
+      right_align_text: 'This row is blue but again another line',
+      green_center_align:
+        'This row is green column but a little longer to make life harder',
+    });
+
+    p.addRow({
+      center_left_align_index: 2,
+      right_align_text: 'The last one I dont know what the color is',
+      green_center_align: 'Thank god this is the last one',
+    });
+
+    // print
+    expect(p.render()).toMatchSnapshot();
+    p.printTable();
+  });
 });
