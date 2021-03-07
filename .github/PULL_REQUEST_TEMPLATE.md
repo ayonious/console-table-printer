@@ -13,8 +13,15 @@ Summary of what this is about
 
 ### Updated
 
-## 🖼 Screenshots 
+## 🖼 Screenshots
 
-| Before     | After      |
-| ---------- | ---------- |
-| 🧟 | 😎 |
+| Before | After |
+| ------ | ----- |
+| 🧟     | 😎    |
+
+## 👶 The naming of the PR
+
+chore(deps): some dependency update
+feat: Line Width is not limited, previously it was unlimited
+fix(technical): Deployment issue with npm is fixed
+fix: title names can be decorated
