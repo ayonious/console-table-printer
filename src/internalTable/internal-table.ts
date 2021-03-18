@@ -1,26 +1,16 @@
-import { Dictionary } from '../models/common';
-import { Column, Row } from '../models/internal-table';
+import { Dictionary, Column, Row, COLOR } from '../models/common';
+import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 import {
-  ALIGNMENT,
-  COLOR,
   DEFAULT_TABLE_STYLE,
   defaultRowAlignment,
   defaultRowFontColor,
-  TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import { createColum, createRow, RowOptions } from '../utils/table-helpers';
+import { objIfExists } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
-interface ColumnOptionsRaw {
-  name: string; // unique id
-  title?: string; // the value that will be printed, if not present this will be 'name'
-  alignment?: ALIGNMENT;
-  color?: COLOR;
-  maxLen?: number;
-}
-
 export interface ComputedColumn extends ColumnOptionsRaw {
-  function: (arg0: any) => any;
+  function(arg0: any): void;
 }
 
 export type RowSortFunction = (row1: any, row2: any) => number;
@@ -38,16 +28,6 @@ export interface ComplexOptions {
   enabledColumns?: string[];
   disabledColumns?: string[];
   computedColumns?: ComputedColumn[];
-}
-
-function objIfExists(key: string, val: any) {
-  if (!val) {
-    return {};
-  }
-
-  return {
-    [key]: val,
-  };
 }
 
 export class TableInternal {
@@ -123,8 +103,12 @@ export class TableInternal {
     });
   }
 
-  addColumn(text: string) {
-    this.columns.push(createColum(text));
+  addColumn(textOrObj: string | ColumnOptionsRaw) {
+    if (typeof textOrObj === 'string') {
+      this.columns.push(createColum(textOrObj));
+    } else {
+      this.columns.push(textOrObj);
+    }
   }
 
   addColumns(toBeInsertedColumns: string[]) {
