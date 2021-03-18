@@ -1,19 +1,19 @@
-import { Column, Row } from '../models/internal-table';
+import { Column, Row } from '../models/common';
+import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
-import { textWithPadding, limitWidth } from '../utils/string-utils';
+import { textWithPadding } from '../utils/string-utils';
 import {
   defaultHeaderAlignment,
   defaultHeaderFontColor,
   defaultRowAlignment,
   defaultRowFontColor,
-  TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
   cellText,
   createHeaderAsRow,
   createRow,
-  renderTableHorizontalBorders,
   getWidthLimitedColumnsArray,
+  renderTableHorizontalBorders,
 } from '../utils/table-helpers';
 import { TableInternal } from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';

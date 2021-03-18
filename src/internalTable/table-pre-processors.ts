@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { Column, Row } from '../models/internal-table';
+import { Column, Row } from '../models/common';
 import { findMaxLenOfColumn } from '../utils/table-helpers';
 import { ComputedColumn, TableInternal } from './internal-table';
 

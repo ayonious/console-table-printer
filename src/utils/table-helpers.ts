@@ -1,8 +1,6 @@
-import { Dictionary } from '../models/common';
-import { Column, Row } from '../models/internal-table';
+import { COLOR, Column, Dictionary, Row } from '../models/common';
 import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
-import { COLOR } from './table-constants';
 
 // takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>

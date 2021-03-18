@@ -6,10 +6,10 @@ import {
   defaultRowFontColor,
 } from '../utils/table-constants';
 import { createColum, createRow, RowOptions } from '../utils/table-helpers';
-import { objIfExists } from './input-converter';
+import { objIfExists, rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
-export interface ComputedColumn extends ColumnOptionsRaw {
+export interface ComputedColumn extends Column {
   function(arg0: any): void;
 }
 
@@ -22,7 +22,7 @@ const defaultRowFilterFunc = () => true;
 export interface ComplexOptions {
   style?: TABLE_STYLE_DETAILS;
   title?: string;
-  columns?: ColumnOptionsRaw[];
+  columns?: Column[];
   sort?: RowSortFunction;
   filter?: RowFilterFunction;
   enabledColumns?: string[];
@@ -65,14 +65,7 @@ export class TableInternal {
     this.enabledColumns = options?.enabledColumns || [];
     this.disabledColumns = options?.disabledColumns || [];
     this.computedColumns = options?.computedColumns || [];
-    this.columns =
-      options.columns?.map((column: ColumnOptionsRaw) => ({
-        name: column.name,
-        title: column.title || column.name,
-        ...objIfExists('color', column.color as COLOR),
-        ...objIfExists('maxLen', column.maxLen),
-        alignment: column.alignment || defaultRowAlignment,
-      })) || [];
+    this.columns = options.columns?.map(rawColumnToInternalColumn) || [];
   }
 
   constructor(options?: ComplexOptions | string[]) {
@@ -103,7 +96,7 @@ export class TableInternal {
     });
   }
 
-  addColumn(textOrObj: string | ColumnOptionsRaw) {
+  addColumn(textOrObj: string | Column) {
     if (typeof textOrObj === 'string') {
       this.columns.push(createColum(textOrObj));
     } else {

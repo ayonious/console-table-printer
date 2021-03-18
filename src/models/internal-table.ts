@@ -1,5 +1,3 @@
-import { Dictionary, ALIGNMENT, COLOR } from './common';
-
 /* 
 All the fields of Internal Table has to be mandatory
 These fields are generated based on user input 
