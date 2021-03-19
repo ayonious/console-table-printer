@@ -1,10 +1,10 @@
-import { Column, Dictionary, Row } from '../models/common';
+import { Dictionary, Row } from '../models/common';
 import {
   ComplexOptions,
   RowFilterFunction,
   RowSortFunction,
 } from '../models/external-table';
-import { TABLE_STYLE_DETAILS } from '../models/internal-table';
+import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import {
   DEFAULT_TABLE_STYLE,
   defaultRowAlignment,

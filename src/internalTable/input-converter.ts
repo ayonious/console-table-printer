@@ -1,4 +1,6 @@
-import { COLOR, Column } from '../models/common';
+import { COLOR } from '../models/common';
+import { ColumnOptionsRaw } from '../models/external-table';
+import { Column } from '../models/internal-table';
 import { defaultRowAlignment } from '../utils/table-constants';
 
 export const objIfExists = (key: string, val: any) => {

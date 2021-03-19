@@ -1,5 +1,5 @@
-import { Column, Row } from '../models/common';
-import { TABLE_STYLE_DETAILS } from '../models/internal-table';
+import { Row } from '../models/common';
+import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
@@ -14,8 +14,9 @@ import {
   createRow,
   getWidthLimitedColumnsArray,
   renderTableHorizontalBorders,
+  RowOptions,
 } from '../utils/table-helpers';
-import { TableInternal } from './internal-table';
+import TableInternal from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 // ║ Index ║         ║        ║
@@ -139,7 +140,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m: Column) => m.maxLen || 20)
     )
   );
 

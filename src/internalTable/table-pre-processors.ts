@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { Column, Row } from '../models/common';
+import { Row } from '../models/common';
+import { ComputedColumn } from '../models/external-table';
+import { Column } from '../models/internal-table';
 import { findMaxLenOfColumn } from '../utils/table-helpers';
-import { ComputedColumn, TableInternal } from './internal-table';
+import TableInternal from './internal-table';
 
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
