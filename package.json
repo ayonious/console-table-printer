@@ -27,7 +27,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^26.0.21",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "chalk": "^4.1.0",
@@ -41,7 +41,7 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "semantic-release": "^17.4.2",
-    "ts-jest": "^26.5.3",
+    "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
   },
   "homepage": "https://console-table.netlify.app",
