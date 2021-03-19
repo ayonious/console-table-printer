@@ -1,56 +1,30 @@
-import { Dictionary } from '../models/common';
-import { Column, Row } from '../models/internal-table';
+import { Dictionary, Row } from '../models/common';
 import {
-  ALIGNMENT,
-  COLOR,
+  ComplexOptions,
+  ComputedColumn,
+  RowFilterFunction,
+  RowSortFunction,
+} from '../models/external-table';
+import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
+import {
   DEFAULT_TABLE_STYLE,
   defaultRowAlignment,
   defaultRowFontColor,
-  TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
-import { createColum, createRow, RowOptions } from '../utils/table-helpers';
+import {
+  createColumFromComputedColumn,
+  createColumFromOnlyName,
+  createRow,
+  RowOptions,
+} from '../utils/table-helpers';
+import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
-interface ColumnOptionsRaw {
-  name: string; // unique id
-  title?: string; // the value that will be printed, if not present this will be 'name'
-  alignment?: ALIGNMENT;
-  color?: COLOR;
-  maxLen?: number;
-}
-
-export interface ComputedColumn extends ColumnOptionsRaw {
-  function: (arg0: any) => any;
-}
-
-export type RowSortFunction = (row1: any, row2: any) => number;
 const defaultRowSortFunc = () => 0;
 
-export type RowFilterFunction = (row: any) => Boolean;
 const defaultRowFilterFunc = () => true;
 
-export interface ComplexOptions {
-  style?: TABLE_STYLE_DETAILS;
-  title?: string;
-  columns?: ColumnOptionsRaw[];
-  sort?: RowSortFunction;
-  filter?: RowFilterFunction;
-  enabledColumns?: string[];
-  disabledColumns?: string[];
-  computedColumns?: ComputedColumn[];
-}
-
-function objIfExists(key: string, val: any) {
-  if (!val) {
-    return {};
-  }
-
-  return {
-    [key]: val,
-  };
-}
-
-export class TableInternal {
+class TableInternal {
   title?: string;
 
   tableStyle: TABLE_STYLE_DETAILS;
@@ -85,14 +59,7 @@ export class TableInternal {
     this.enabledColumns = options?.enabledColumns || [];
     this.disabledColumns = options?.disabledColumns || [];
     this.computedColumns = options?.computedColumns || [];
-    this.columns =
-      options.columns?.map((column: ColumnOptionsRaw) => ({
-        name: column.name,
-        title: column.title || column.name,
-        ...objIfExists('color', column.color as COLOR),
-        ...objIfExists('maxLen', column.maxLen),
-        alignment: column.alignment || defaultRowAlignment,
-      })) || [];
+    this.columns = options.columns?.map(rawColumnToInternalColumn) || [];
   }
 
   constructor(options?: ComplexOptions | string[]) {
@@ -118,13 +85,17 @@ export class TableInternal {
     const colNames = this.columns.map((col) => col.name);
     Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
-        this.columns.push(createColum(key));
+        this.columns.push(createColumFromOnlyName(key));
       }
     });
   }
 
-  addColumn(text: string) {
-    this.columns.push(createColum(text));
+  addColumn(textOrObj: string | ComputedColumn) {
+    if (typeof textOrObj === 'string') {
+      this.columns.push(createColumFromOnlyName(textOrObj));
+    } else {
+      this.columns.push(createColumFromComputedColumn(textOrObj));
+    }
   }
 
   addColumns(toBeInsertedColumns: string[]) {
@@ -148,3 +119,5 @@ export class TableInternal {
     return renderTable(this);
   }
 }
+
+export default TableInternal;

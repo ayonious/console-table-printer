@@ -1,15 +1,5 @@
-type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other';
-
-export type TABLE_LINE_DETAILS = {
-  [key in TABLE_LINE_DETAILS_KEYS]: string;
-};
-
-export type TABLE_STYLE_DETAILS = {
-  headerTop: TABLE_LINE_DETAILS;
-  headerBottom: TABLE_LINE_DETAILS;
-  tableBottom: TABLE_LINE_DETAILS;
-  vertical: string;
-};
+import { ALIGNMENT, COLOR } from '../models/common';
+import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 
 export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   /*
@@ -40,7 +30,7 @@ export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   vertical: '│',
 };
 
-const alignments = ['right', 'left', 'center'];
+export const alignments = ['right', 'left', 'center'];
 
 export const colors = [
   'red',
@@ -54,10 +44,6 @@ export const colors = [
   'white_bold',
   'reset',
 ];
-
-export type ALIGNMENT = typeof alignments[number];
-
-export type COLOR = typeof colors[number];
 
 export const defaultRowFontColor: COLOR = 'white';
 export const defaultHeaderFontColor: COLOR = 'white_bold';

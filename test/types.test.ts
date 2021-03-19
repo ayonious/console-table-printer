@@ -36,5 +36,6 @@ describe('Testing column alignment', () => {
     );
     // print
     p.printTable();
+    expect(p.render()).toMatchSnapshot();
   });
 });

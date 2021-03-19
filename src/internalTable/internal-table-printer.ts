@@ -1,21 +1,22 @@
-import { Column, Row } from '../models/internal-table';
+import { Row } from '../models/common';
+import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
-import { textWithPadding, limitWidth } from '../utils/string-utils';
+import { textWithPadding } from '../utils/string-utils';
 import {
   defaultHeaderAlignment,
   defaultHeaderFontColor,
   defaultRowAlignment,
   defaultRowFontColor,
-  TABLE_STYLE_DETAILS,
 } from '../utils/table-constants';
 import {
   cellText,
   createHeaderAsRow,
   createRow,
-  renderTableHorizontalBorders,
   getWidthLimitedColumnsArray,
+  renderTableHorizontalBorders,
+  RowOptions,
 } from '../utils/table-helpers';
-import { TableInternal } from './internal-table';
+import TableInternal from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 // ║ Index ║         ║        ║
@@ -139,7 +140,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m: Column) => m.maxLen || 20)
     )
   );
 

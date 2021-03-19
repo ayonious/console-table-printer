@@ -1,12 +1,14 @@
 /* eslint-disable no-param-reassign */
-import { Column, Row } from '../models/internal-table';
+import { Row } from '../models/common';
+import { ComputedColumn } from '../models/external-table';
+import { Column } from '../models/internal-table';
 import { findMaxLenOfColumn } from '../utils/table-helpers';
-import { ComputedColumn, TableInternal } from './internal-table';
+import TableInternal from './internal-table';
 
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
-      table.addColumn(computedColumn.name);
+      table.addColumn(computedColumn);
       table.rows.forEach((row: Row) => {
         row.text[computedColumn.name] = computedColumn.function(row.text);
       });

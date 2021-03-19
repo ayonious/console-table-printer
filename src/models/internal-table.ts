@@ -1,5 +1,4 @@
-import { ALIGNMENT, COLOR } from '../utils/table-constants';
-import { Dictionary } from './common';
+import { ALIGNMENT, COLOR } from './common';
 
 /* 
 All the fields of Internal Table has to be mandatory
@@ -15,7 +14,15 @@ export interface Column {
   maxLen?: number;
 }
 
-export interface Row {
-  color: COLOR;
-  text: Dictionary;
-}
+type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other';
+
+export type TABLE_LINE_DETAILS = {
+  [key in TABLE_LINE_DETAILS_KEYS]: string;
+};
+
+export type TABLE_STYLE_DETAILS = {
+  headerTop: TABLE_LINE_DETAILS;
+  headerBottom: TABLE_LINE_DETAILS;
+  tableBottom: TABLE_LINE_DETAILS;
+  vertical: string;
+};

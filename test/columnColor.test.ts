@@ -71,5 +71,6 @@ describe('Example: Print a simple Table with column colors', () => {
 
     // print
     p.printTable();
+    expect(p.render()).toMatchSnapshot();
   });
 });
