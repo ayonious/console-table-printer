@@ -1,4 +1,5 @@
-import { COLOR, Column, Dictionary, Row } from '../models/common';
+import { COLOR, Dictionary, Row } from '../models/common';
+import { Column } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
 

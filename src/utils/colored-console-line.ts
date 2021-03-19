@@ -1,4 +1,4 @@
-import { COLOR } from './table-constants';
+import { COLOR } from '../models/common';
 
 const COLOR_MAP: {
   [key in COLOR]?: string;

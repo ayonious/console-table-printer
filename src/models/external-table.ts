@@ -12,7 +12,7 @@ export interface ColumnOptionsRaw {
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
-  function(row: Dictionary): void;
+  function: (arg0: any) => any;
 }
 
 export type RowSortFunction = (row1: any, row2: any) => number;

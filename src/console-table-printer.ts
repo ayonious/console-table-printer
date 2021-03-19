@@ -1,5 +1,6 @@
-import { ComplexOptions, TableInternal } from './internalTable/internal-table';
+import TableInternal from './internalTable/internal-table';
 import { Dictionary } from './models/common';
+import { ComplexOptions } from './models/external-table';
 import {
   convertRawRowOptionsToStandard,
   RowOptionsRaw,
