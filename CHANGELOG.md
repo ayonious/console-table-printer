@@ -1,3 +1,11 @@
+## [2.8.2](https://github.com/ayonious/console-table-printer/compare/v2.8.1...v2.8.2) (2021-03-19)
+
+
+### Bug Fixes
+
+* added circle ci ([79e72eb](https://github.com/ayonious/console-table-printer/commit/79e72eba75763d9c5e964a3aafc1a83a36f75b5a))
+* Calculated Columns Title is shown ([#349](https://github.com/ayonious/console-table-printer/issues/349)) ([88ae550](https://github.com/ayonious/console-table-printer/commit/88ae55070818e7cc06d8a0872aeb45ffd3ed0299))
+
 ## [2.8.1](https://github.com/ayonious/console-table-printer/compare/v2.8.0...v2.8.1) (2021-03-06)
 
 
