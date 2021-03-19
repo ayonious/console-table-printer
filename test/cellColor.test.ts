@@ -17,5 +17,6 @@ describe('Example: Print a simple Table with cell colors', () => {
 
     // print
     p.printTable();
+    expect(p.render()).toMatchSnapshot();
   });
 });

@@ -1,6 +1,7 @@
 import { Dictionary, Row } from '../models/common';
 import {
   ComplexOptions,
+  ComputedColumn,
   RowFilterFunction,
   RowSortFunction,
 } from '../models/external-table';
@@ -10,7 +11,12 @@ import {
   defaultRowAlignment,
   defaultRowFontColor,
 } from '../utils/table-constants';
-import { createColum, createRow, RowOptions } from '../utils/table-helpers';
+import {
+  createColumFromComputedColumn,
+  createColumFromOnlyName,
+  createRow,
+  RowOptions,
+} from '../utils/table-helpers';
 import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
@@ -79,16 +85,16 @@ class TableInternal {
     const colNames = this.columns.map((col) => col.name);
     Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
-        this.columns.push(createColum(key));
+        this.columns.push(createColumFromOnlyName(key));
       }
     });
   }
 
-  addColumn(textOrObj: string | Column) {
+  addColumn(textOrObj: string | ComputedColumn) {
     if (typeof textOrObj === 'string') {
-      this.columns.push(createColum(textOrObj));
+      this.columns.push(createColumFromOnlyName(textOrObj));
     } else {
-      this.columns.push(textOrObj);
+      this.columns.push(createColumFromComputedColumn(textOrObj));
     }
   }
 

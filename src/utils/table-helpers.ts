@@ -1,7 +1,10 @@
+import { objIfExists } from '../internalTable/input-converter';
 import { COLOR, Dictionary, Row } from '../models/common';
+import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
+import { defaultRowAlignment } from './table-constants';
 
 // takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>
@@ -52,7 +55,19 @@ export const createTableHorizontalBorders = (
   return ret;
 };
 
-export const createColum = (name: string): Column => ({ name, title: name });
+export const createColumFromOnlyName = (name: string): Column => ({
+  name,
+  title: name,
+});
+export const createColumFromComputedColumn = (
+  column: ComputedColumn
+): Column => ({
+  name: column.name,
+  title: column.title || column.name,
+  ...objIfExists('color', column.color as COLOR),
+  ...objIfExists('maxLen', column.maxLen),
+  alignment: column.alignment || defaultRowAlignment,
+});
 
 export const createRow = (color: COLOR, text: Dictionary): Row => ({
   color,
