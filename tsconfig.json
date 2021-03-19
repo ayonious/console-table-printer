@@ -11,6 +11,5 @@
     "types": ["jest"],
     "esModuleInterop": true,
   },
-  "include": ["src/**/*", "index.ts"],
-  "exclude": ["test/**"]
+  "include": ["src/**/*", "index.ts"]
 }

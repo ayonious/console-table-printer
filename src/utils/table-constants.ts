@@ -1,8 +1,5 @@
-import {
-  TABLE_STYLE_DETAILS,
-  COLOR,
-  ALIGNMENT,
-} from '../models/internal-table';
+import { ALIGNMENT, COLOR } from '../models/common';
+import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 
 export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   /*
