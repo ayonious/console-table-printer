@@ -11,7 +11,9 @@ export const objIfExists = (key: string, val: any) => {
   };
 };
 
-export const rawColumnToInternalColumn = (column: Column): Column => ({
+export const rawColumnToInternalColumn = (
+  column: ColumnOptionsRaw
+): Column => ({
   name: column.name,
   title: column.title || column.name,
   ...objIfExists('color', column.color as COLOR),

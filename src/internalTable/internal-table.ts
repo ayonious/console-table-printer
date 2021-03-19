@@ -1,4 +1,9 @@
-import { Dictionary, Column, Row, COLOR } from '../models/common';
+import { Column, Dictionary, Row } from '../models/common';
+import {
+  ComplexOptions,
+  RowFilterFunction,
+  RowSortFunction,
+} from '../models/external-table';
 import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 import {
   DEFAULT_TABLE_STYLE,
@@ -6,31 +11,14 @@ import {
   defaultRowFontColor,
 } from '../utils/table-constants';
 import { createColum, createRow, RowOptions } from '../utils/table-helpers';
-import { objIfExists, rawColumnToInternalColumn } from './input-converter';
+import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
-export interface ComputedColumn extends Column {
-  function(arg0: any): void;
-}
-
-export type RowSortFunction = (row1: any, row2: any) => number;
 const defaultRowSortFunc = () => 0;
 
-export type RowFilterFunction = (row: any) => Boolean;
 const defaultRowFilterFunc = () => true;
 
-export interface ComplexOptions {
-  style?: TABLE_STYLE_DETAILS;
-  title?: string;
-  columns?: Column[];
-  sort?: RowSortFunction;
-  filter?: RowFilterFunction;
-  enabledColumns?: string[];
-  disabledColumns?: string[];
-  computedColumns?: ComputedColumn[];
-}
-
-export class TableInternal {
+class TableInternal {
   title?: string;
 
   tableStyle: TABLE_STYLE_DETAILS;
@@ -125,3 +113,5 @@ export class TableInternal {
     return renderTable(this);
   }
 }
+
+export default TableInternal;

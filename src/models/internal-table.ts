@@ -1,8 +1,18 @@
+import { ALIGNMENT, COLOR } from './common';
+
 /* 
 All the fields of Internal Table has to be mandatory
 These fields are generated based on user input 
 and during generated is some input is missing it is filled by default value.
 */
+
+export interface Column {
+  name: string;
+  title: string;
+  alignment?: ALIGNMENT;
+  color?: COLOR;
+  maxLen?: number;
+}
 
 type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other';
 
