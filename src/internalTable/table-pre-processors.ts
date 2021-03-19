@@ -8,7 +8,7 @@ import TableInternal from './internal-table';
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
-      table.addColumn(computedColumn.name);
+      table.addColumn(computedColumn);
       table.rows.forEach((row: Row) => {
         row.text[computedColumn.name] = computedColumn.function(row.text);
       });
