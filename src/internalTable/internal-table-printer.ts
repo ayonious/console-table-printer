@@ -3,10 +3,11 @@ import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
-  defaultHeaderAlignment,
-  defaultHeaderFontColor,
-  defaultRowAlignment,
-  defaultRowFontColor,
+  DEFAULT_COLUMN_LEN,
+  DEFAULT_HEADER_ALIGNMENT,
+  DEFAULT_HEADER_FONT_COLOR,
+  DEFAULT_ROW_ALIGNMENT,
+  DEFAULT_ROW_FONT_COLOR,
 } from '../utils/table-constants';
 import {
   cellText,
@@ -14,7 +15,6 @@ import {
   createRow,
   getWidthLimitedColumnsArray,
   renderTableHorizontalBorders,
-  RowOptions,
 } from '../utils/table-helpers';
 import TableInternal from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
@@ -29,7 +29,7 @@ const renderOneLine = (
   row: Row
 ): string => {
   const line = new ColoredConsoleLine();
-  line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
+  line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, tableStyle.vertical);
   columns.forEach((column) => {
     const thisLineHasText =
       currentLineIndex < widthLimitedColumnsArray[column.name].length;
@@ -38,16 +38,16 @@ const renderOneLine = (
       ? cellText(widthLimitedColumnsArray[column.name][currentLineIndex])
       : '';
 
-    line.addCharsWithColor(defaultRowFontColor, ' ');
+    line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, ' ');
     line.addCharsWithColor(
-      (isHeader && defaultHeaderFontColor) || column.color || row.color,
+      (isHeader && DEFAULT_HEADER_FONT_COLOR) || column.color || row.color,
       textWithPadding(
         textForThisLine,
-        column.alignment || defaultRowAlignment,
-        column.maxLen || 20
+        column.alignment || DEFAULT_ROW_ALIGNMENT,
+        column.maxLen || DEFAULT_COLUMN_LEN
       )
     );
-    line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
+    line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, ` ${tableStyle.vertical}`);
   });
   return line.renderConsole();
 };
@@ -113,16 +113,18 @@ const renderTableTitle = (table: TableInternal): string[] => {
     const reducer = (accumulator: number, currentValue: number) =>
       // ║ cell ║, 2 spaces + cellTextSize + one border on the left
       accumulator + currentValue + 2 + 1;
-    return table.columns.map((m) => m.maxLen || 20).reduce(reducer, 1);
+    return table.columns
+      .map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
+      .reduce(reducer, 1);
   };
 
   const titleWithPadding = textWithPadding(
     table.title as string,
-    defaultHeaderAlignment,
+    DEFAULT_HEADER_ALIGNMENT,
     getTableWidth()
   );
   const styledText = new ColoredConsoleLine();
-  styledText.addCharsWithColor(defaultHeaderFontColor, titleWithPadding);
+  styledText.addCharsWithColor(DEFAULT_HEADER_FONT_COLOR, titleWithPadding);
   //                  The analysis Result
   ret.push(styledText.renderConsole());
   return ret;
@@ -140,7 +142,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map((m: Column) => m.maxLen || 20)
+      table.columns.map((m: Column) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -154,7 +156,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -167,7 +169,7 @@ const renderTableEnding = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
   return ret;

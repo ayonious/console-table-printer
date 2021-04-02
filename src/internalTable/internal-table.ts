@@ -8,8 +8,8 @@ import {
 import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import {
   DEFAULT_TABLE_STYLE,
-  defaultRowAlignment,
-  defaultRowFontColor,
+  DEFAULT_ROW_ALIGNMENT,
+  DEFAULT_ROW_FONT_COLOR,
 } from '../utils/table-constants';
 import {
   createColumFromComputedColumn,
@@ -47,7 +47,7 @@ class TableInternal {
     this.columns = columns.map((column) => ({
       name: column,
       title: column,
-      alignment: defaultRowAlignment,
+      alignment: DEFAULT_ROW_ALIGNMENT,
     }));
   }
 
@@ -106,7 +106,7 @@ class TableInternal {
 
   addRow(text: Dictionary, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow(options?.color || defaultRowFontColor, text));
+    this.rows.push(createRow(options?.color || DEFAULT_ROW_FONT_COLOR, text));
   }
 
   addRows(toBeInsertedRows: Dictionary[], options?: RowOptions) {

@@ -1,6 +1,8 @@
 import { ALIGNMENT, COLOR } from '../models/common';
 import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 
+export const DEFAULT_COLUMN_LEN = 20;
+
 export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   /*
       Default Style
@@ -30,9 +32,9 @@ export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   vertical: '│',
 };
 
-export const alignments = ['right', 'left', 'center'];
+export const ALIGNMENTS = ['right', 'left', 'center'];
 
-export const colors = [
+export const COLORS = [
   'red',
   'green',
   'yellow',
@@ -45,8 +47,8 @@ export const colors = [
   'reset',
 ];
 
-export const defaultRowFontColor: COLOR = 'white';
-export const defaultHeaderFontColor: COLOR = 'white_bold';
+export const DEFAULT_ROW_FONT_COLOR: COLOR = 'white';
+export const DEFAULT_HEADER_FONT_COLOR: COLOR = 'white_bold';
 
-export const defaultRowAlignment: ALIGNMENT = 'right';
-export const defaultHeaderAlignment: ALIGNMENT = 'center';
+export const DEFAULT_ROW_ALIGNMENT: ALIGNMENT = 'right';
+export const DEFAULT_HEADER_ALIGNMENT: ALIGNMENT = 'center';

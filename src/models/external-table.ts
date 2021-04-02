@@ -1,4 +1,4 @@
-import { ALIGNMENT, COLOR, Dictionary } from './common';
+import { ALIGNMENT, COLOR } from './common';
 import { TABLE_STYLE_DETAILS } from './internal-table';
 
 export { ALIGNMENT, COLOR };

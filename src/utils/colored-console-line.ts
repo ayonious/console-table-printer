@@ -15,13 +15,8 @@ const COLOR_MAP: {
   reset: '\x1b[0m',
 };
 
-export const colorString = (color: COLOR, text: string) => {
-  let coloredText = '';
-  coloredText += color && COLOR_MAP[color];
-  coloredText += text;
-  coloredText += COLOR_MAP.reset;
-  return coloredText;
-};
+export const colorString = (color: COLOR, text: string) =>
+  `${color && COLOR_MAP[color]}${text}${COLOR_MAP.reset}`;
 
 export default class ColoredConsoleLine {
   text: string;
