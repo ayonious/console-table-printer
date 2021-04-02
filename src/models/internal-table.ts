@@ -14,15 +14,15 @@ export interface Column {
   maxLen?: number;
 }
 
-type TABLE_LINE_DETAILS_KEYS = 'left' | 'right' | 'mid' | 'other';
+type TableLineDetailsKeys = 'left' | 'right' | 'mid' | 'other';
 
-export type TABLE_LINE_DETAILS = {
-  [key in TABLE_LINE_DETAILS_KEYS]: string;
+export type TableLineDetails = {
+  [key in TableLineDetailsKeys]: string;
 };
 
-export type TABLE_STYLE_DETAILS = {
-  headerTop: TABLE_LINE_DETAILS;
-  headerBottom: TABLE_LINE_DETAILS;
-  tableBottom: TABLE_LINE_DETAILS;
+export type TableStyleDetails = {
+  headerTop: TableLineDetails;
+  headerBottom: TableLineDetails;
+  tableBottom: TableLineDetails;
   vertical: string;
 };

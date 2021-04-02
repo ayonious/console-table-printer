@@ -1,5 +1,5 @@
 import { ALIGNMENT, COLOR } from './common';
-import { TABLE_STYLE_DETAILS } from './internal-table';
+import { TableStyleDetails } from './internal-table';
 
 export { ALIGNMENT, COLOR };
 
@@ -20,7 +20,7 @@ export type RowSortFunction = (row1: any, row2: any) => number;
 export type RowFilterFunction = (row: any) => Boolean;
 
 export interface ComplexOptions {
-  style?: TABLE_STYLE_DETAILS;
+  style?: TableStyleDetails;
   title?: string;
   columns?: ColumnOptionsRaw[];
   sort?: RowSortFunction;
