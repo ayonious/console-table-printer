@@ -4,7 +4,7 @@ import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
-import { DEFAULT_COLUMN_LEN, defaultRowAlignment } from './table-constants';
+import { DEFAULT_COLUMN_LEN, DEFAULT_ROW_ALIGNMENT } from './table-constants';
 
 // takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>
@@ -66,7 +66,7 @@ export const createColumFromComputedColumn = (
   title: column.title || column.name,
   ...objIfExists('color', column.color as COLOR),
   ...objIfExists('maxLen', column.maxLen),
-  alignment: column.alignment || defaultRowAlignment,
+  alignment: column.alignment || DEFAULT_ROW_ALIGNMENT,
 });
 
 export const createRow = (color: COLOR, text: Dictionary): Row => ({

@@ -4,10 +4,10 @@ import ColoredConsoleLine from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
   DEFAULT_COLUMN_LEN,
-  defaultHeaderAlignment,
-  defaultHeaderFontColor,
-  defaultRowAlignment,
-  defaultRowFontColor,
+  DEFAULT_HEADER_ALIGNMENT,
+  DEFAULT_HEADER_FONT_COLOR,
+  DEFAULT_ROW_ALIGNMENT,
+  DEFAULT_ROW_FONT_COLOR,
 } from '../utils/table-constants';
 import {
   cellText,
@@ -29,7 +29,7 @@ const renderOneLine = (
   row: Row
 ): string => {
   const line = new ColoredConsoleLine();
-  line.addCharsWithColor(defaultRowFontColor, tableStyle.vertical);
+  line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, tableStyle.vertical);
   columns.forEach((column) => {
     const thisLineHasText =
       currentLineIndex < widthLimitedColumnsArray[column.name].length;
@@ -38,16 +38,16 @@ const renderOneLine = (
       ? cellText(widthLimitedColumnsArray[column.name][currentLineIndex])
       : '';
 
-    line.addCharsWithColor(defaultRowFontColor, ' ');
+    line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, ' ');
     line.addCharsWithColor(
-      (isHeader && defaultHeaderFontColor) || column.color || row.color,
+      (isHeader && DEFAULT_HEADER_FONT_COLOR) || column.color || row.color,
       textWithPadding(
         textForThisLine,
-        column.alignment || defaultRowAlignment,
+        column.alignment || DEFAULT_ROW_ALIGNMENT,
         column.maxLen || DEFAULT_COLUMN_LEN
       )
     );
-    line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
+    line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, ` ${tableStyle.vertical}`);
   });
   return line.renderConsole();
 };
@@ -120,11 +120,11 @@ const renderTableTitle = (table: TableInternal): string[] => {
 
   const titleWithPadding = textWithPadding(
     table.title as string,
-    defaultHeaderAlignment,
+    DEFAULT_HEADER_ALIGNMENT,
     getTableWidth()
   );
   const styledText = new ColoredConsoleLine();
-  styledText.addCharsWithColor(defaultHeaderFontColor, titleWithPadding);
+  styledText.addCharsWithColor(DEFAULT_HEADER_FONT_COLOR, titleWithPadding);
   //                  The analysis Result
   ret.push(styledText.renderConsole());
   return ret;
