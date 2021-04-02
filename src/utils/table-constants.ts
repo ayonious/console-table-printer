@@ -1,6 +1,8 @@
 import { ALIGNMENT, COLOR } from '../models/common';
 import { TABLE_STYLE_DETAILS } from '../models/internal-table';
 
+export const DEFAULT_COLUMN_LEN = 20;
+
 export const DEFAULT_TABLE_STYLE: TABLE_STYLE_DETAILS = {
   /*
       Default Style

@@ -1,6 +1,5 @@
 import { ALIGNMENT } from '../models/common';
 import findWidthInConsole from './console-utils';
-import { cellText } from './table-helpers';
 
 // ("How are you?",center, 20) => "    How are you?    "
 // ("How are you?",right, 20)  => "        How are you?"

@@ -3,6 +3,7 @@ import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
+  DEFAULT_COLUMN_LEN,
   defaultHeaderAlignment,
   defaultHeaderFontColor,
   defaultRowAlignment,
@@ -14,7 +15,6 @@ import {
   createRow,
   getWidthLimitedColumnsArray,
   renderTableHorizontalBorders,
-  RowOptions,
 } from '../utils/table-helpers';
 import TableInternal from './internal-table';
 import { preProcessColumns, preProcessRows } from './table-pre-processors';
@@ -44,7 +44,7 @@ const renderOneLine = (
       textWithPadding(
         textForThisLine,
         column.alignment || defaultRowAlignment,
-        column.maxLen || 20
+        column.maxLen || DEFAULT_COLUMN_LEN
       )
     );
     line.addCharsWithColor(defaultRowFontColor, ` ${tableStyle.vertical}`);
@@ -113,7 +113,9 @@ const renderTableTitle = (table: TableInternal): string[] => {
     const reducer = (accumulator: number, currentValue: number) =>
       // ║ cell ║, 2 spaces + cellTextSize + one border on the left
       accumulator + currentValue + 2 + 1;
-    return table.columns.map((m) => m.maxLen || 20).reduce(reducer, 1);
+    return table.columns
+      .map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
+      .reduce(reducer, 1);
   };
 
   const titleWithPadding = textWithPadding(
@@ -140,7 +142,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map((m: Column) => m.maxLen || 20)
+      table.columns.map((m: Column) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -154,7 +156,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -167,7 +169,7 @@ const renderTableEnding = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map((m) => m.maxLen || 20)
+      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
     )
   );
   return ret;
