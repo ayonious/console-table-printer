@@ -5,7 +5,7 @@ import {
   RowFilterFunction,
   RowSortFunction,
 } from '../models/external-table';
-import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
+import { Column, TableStyleDetails } from '../models/internal-table';
 import {
   DEFAULT_TABLE_STYLE,
   DEFAULT_ROW_ALIGNMENT,
@@ -20,14 +20,14 @@ import {
 import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
-const defaultRowSortFunc = () => 0;
+const DEFAULT_ROW_SORT_FUNC = () => 0;
 
-const defaultRowFilterFunc = () => true;
+const DEFAULT_ROW_FILTER_FUNC = () => true;
 
 class TableInternal {
   title?: string;
 
-  tableStyle: TABLE_STYLE_DETAILS;
+  tableStyle: TableStyleDetails;
 
   columns: Column[];
 
@@ -54,8 +54,8 @@ class TableInternal {
   initDetailed(options: ComplexOptions) {
     this.title = options.title || undefined;
     this.tableStyle = options?.style || DEFAULT_TABLE_STYLE;
-    this.sortFunction = options?.sort || defaultRowSortFunc;
-    this.filterFunction = options?.filter || defaultRowFilterFunc;
+    this.sortFunction = options?.sort || DEFAULT_ROW_SORT_FUNC;
+    this.filterFunction = options?.filter || DEFAULT_ROW_FILTER_FUNC;
     this.enabledColumns = options?.enabledColumns || [];
     this.disabledColumns = options?.disabledColumns || [];
     this.computedColumns = options?.computedColumns || [];
@@ -68,8 +68,8 @@ class TableInternal {
     this.columns = [];
     this.title = undefined;
     this.tableStyle = DEFAULT_TABLE_STYLE;
-    this.filterFunction = defaultRowFilterFunc;
-    this.sortFunction = defaultRowSortFunc;
+    this.filterFunction = DEFAULT_ROW_FILTER_FUNC;
+    this.sortFunction = DEFAULT_ROW_SORT_FUNC;
     this.enabledColumns = [];
     this.disabledColumns = [];
     this.computedColumns = [];

@@ -1,5 +1,5 @@
 import { Row } from '../models/common';
-import { Column, TABLE_STYLE_DETAILS } from '../models/internal-table';
+import { Column, TableStyleDetails } from '../models/internal-table';
 import ColoredConsoleLine from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
@@ -21,7 +21,7 @@ import { preProcessColumns, preProcessRows } from './table-pre-processors';
 
 // ║ Index ║         ║        ║
 const renderOneLine = (
-  tableStyle: TABLE_STYLE_DETAILS,
+  tableStyle: TableStyleDetails,
   columns: Column[],
   currentLineIndex: number,
   widthLimitedColumnsArray: { [key: string]: string[] },
@@ -55,7 +55,7 @@ const renderOneLine = (
 // ║ Bold  ║    text ║  value ║
 // ║ Index ║         ║        ║
 const renderWidthLimitedLines = (
-  tableStyle: TABLE_STYLE_DETAILS,
+  tableStyle: TableStyleDetails,
   columns: Column[],
   row: Row,
   isHeader?: boolean
