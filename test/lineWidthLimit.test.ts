@@ -130,16 +130,10 @@ describe('Testing column max Width', () => {
     const p = new Table({
       columns: [
         {
-          name: 'center_left_align_index',
-          alignment: 'center',
-          color: 'red',
-          title: 'Index',
-        },
-        {
           name: 'right_align_text',
           alignment: 'right',
-          minLen: 20,
-          title: 'MnWid:20,align:r',
+          minLen: 100,
+          title: 'MnWid:60,align:r',
         },
         {
           name: 'green_center_align',
@@ -153,21 +147,18 @@ describe('Testing column max Width', () => {
 
     // add rows with color
     p.addRow({
-      center_left_align_index: 1,
       right_align_text: 'This row is blue',
       green_center_align: 'This row is green column',
     });
 
     p.addRow({
-      center_left_align_index: 10,
-      right_align_text: 'This row is blue but again another line',
+      right_align_text: 'This row is blue',
       green_center_align:
         'This row is green column but a little longer to make life harder',
     });
 
     p.addRow({
-      center_left_align_index: 2,
-      right_align_text: 'The last one I dont know what the color is',
+      right_align_text: 'The last one',
       green_center_align: 'Thank god this is the last one',
     });
 
