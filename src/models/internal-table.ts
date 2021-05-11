@@ -12,6 +12,7 @@ export interface Column {
   alignment?: ALIGNMENT;
   color?: COLOR;
   maxLen?: number;
+  minLen?: number;
 }
 
 type TableLineDetailsKeys = 'left' | 'right' | 'mid' | 'other';

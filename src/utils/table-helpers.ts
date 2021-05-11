@@ -77,19 +77,24 @@ export const createRow = (color: COLOR, text: Dictionary): Row => ({
 export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
   const columnId = column.name;
   const columnTitle = column.title;
+  let maxLen = Math.max(0, column?.minLen || 0);
 
   if (column.maxLen) {
     // if customer input is mentioned a max width, lets see if all other can fit here
     // if others cant fit find the max word length so that at least the table can be printed
-    const ret = Math.max(column.maxLen, biggestWordInSentence(columnTitle));
-    return rows.reduce(
+    maxLen = Math.max(
+      maxLen,
+      Math.max(column.maxLen, biggestWordInSentence(columnTitle))
+    );
+    maxLen = rows.reduce(
       (acc, row) =>
         Math.max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
-      ret
+      maxLen
     );
+    return maxLen;
   }
 
-  let maxLen = findWidthInConsole(columnTitle);
+  maxLen = Math.max(maxLen, findWidthInConsole(columnTitle));
 
   rows.forEach((row) => {
     maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));

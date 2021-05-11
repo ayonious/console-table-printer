@@ -9,6 +9,7 @@ export interface ColumnOptionsRaw {
   alignment?: ALIGNMENT;
   color?: COLOR;
   maxLen?: number;
+  minLen?: number;
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
