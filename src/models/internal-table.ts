@@ -11,6 +11,8 @@ export interface Column {
   title: string;
   alignment?: ALIGNMENT;
   color?: COLOR;
+  length?: number;
+  minLen?: number;
   maxLen?: number;
 }
 

@@ -6,15 +6,17 @@ import findWidthInConsole from './console-utils';
 export const textWithPadding = (
   text: string,
   alignment: ALIGNMENT,
-  mxColumnLen: number
+  columnLen: number
 ): string => {
   const curTextSize = findWidthInConsole(text);
   // alignments for center padding case
-  const leftPadding = Math.floor((mxColumnLen - curTextSize) / 2);
-  const rightPadding = mxColumnLen - leftPadding - curTextSize;
+  const leftPadding = Math.floor((columnLen - curTextSize) / 2);
+  const rightPadding = columnLen - leftPadding - curTextSize;
+
+  // console.log(text, columnLen, curTextSize);
   switch (alignment) {
     case 'left':
-      return text.concat(' '.repeat(mxColumnLen - curTextSize));
+      return text.concat(' '.repeat(columnLen - curTextSize));
     case 'center':
       return ' '
         .repeat(leftPadding)
@@ -22,7 +24,7 @@ export const textWithPadding = (
         .concat(' '.repeat(rightPadding));
     case 'right':
     default:
-      return ' '.repeat(mxColumnLen - curTextSize).concat(text);
+      return ' '.repeat(columnLen - curTextSize).concat(text);
   }
 };
 

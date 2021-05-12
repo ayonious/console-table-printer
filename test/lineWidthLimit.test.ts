@@ -74,7 +74,7 @@ describe('Testing column max Width', () => {
     p.printTable();
   });
 
-  it('Complex Line Limit', () => {
+  it('Max Line Limit', () => {
     // Create a table
     const p = new Table({
       columns: [
@@ -88,14 +88,108 @@ describe('Testing column max Width', () => {
           name: 'right_align_text',
           alignment: 'right',
           maxLen: 10,
-          title: 'White Text',
+          title: 'maxLen:10',
         },
         {
           name: 'green_center_align',
           alignment: 'center',
           color: 'green',
           maxLen: 8,
-          title: 'Green Barret',
+          title: 'maxLen:8',
+        },
+      ],
+    });
+
+    // add rows with color
+    p.addRow({
+      center_left_align_index: 1,
+      right_align_text: 'This row is blue',
+      green_center_align: 'This row is green column',
+    });
+
+    p.addRow({
+      center_left_align_index: 10,
+      right_align_text: 'This row is blue but again another line',
+      green_center_align:
+        'This row is green column but a little longer to make life harder',
+    });
+
+    p.addRow({
+      center_left_align_index: 2,
+      right_align_text: 'The last one I dont know what the color is',
+      green_center_align: 'Thank god this is the last one',
+    });
+
+    // print
+    expect(p.render()).toMatchSnapshot();
+    p.printTable();
+  });
+
+  it('Min Line Limit', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          minLen: 100,
+          title: 'MnWid:100,align:r',
+        },
+        {
+          name: 'green_center_align',
+          alignment: 'center',
+          color: 'green',
+          minLen: 20,
+          title: 'MnWid:20,align:c',
+        },
+      ],
+    });
+
+    // add rows with color
+    p.addRow({
+      right_align_text: 'This row is blue',
+      green_center_align: 'This row is green column',
+    });
+
+    p.addRow({
+      right_align_text: 'This row is blue',
+      green_center_align:
+        'This row is green column but a little longer to make life harder',
+    });
+
+    p.addRow({
+      right_align_text: 'The last one',
+      green_center_align: 'Thank god this is the last one',
+    });
+
+    // print
+    expect(p.render()).toMatchSnapshot();
+    p.printTable();
+  });
+
+  it('Min/Max Line Limit', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        {
+          name: 'center_left_align_index',
+          alignment: 'center',
+          color: 'red',
+          title: 'Index',
+        },
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          minLen: 20,
+          title: 'MinWidth:20',
+        },
+        {
+          name: 'green_center_align',
+          alignment: 'center',
+          color: 'green',
+          minLen: 10,
+          maxLen: 15,
+          title: 'MinWidth:10,max:15',
         },
       ],
     });
