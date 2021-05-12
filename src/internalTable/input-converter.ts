@@ -20,5 +20,7 @@ export const rawColumnToInternalColumn = (
   title: column.title || column.name,
   ...objIfExists('color', column.color as COLOR),
   ...objIfExists('maxLen', column.maxLen),
+  ...objIfExists('minLen', column.minLen),
+  ...objIfExists('length', column.length),
   alignment: column.alignment || DEFAULT_ROW_ALIGNMENT,
 });

@@ -44,7 +44,7 @@ const renderOneLine = (
       textWithPadding(
         textForThisLine,
         column.alignment || DEFAULT_ROW_ALIGNMENT,
-        column.maxLen || DEFAULT_COLUMN_LEN
+        column.length || DEFAULT_COLUMN_LEN
       )
     );
     line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, ` ${tableStyle.vertical}`);
@@ -114,7 +114,7 @@ const renderTableTitle = (table: TableInternal): string[] => {
       // ║ cell ║, 2 spaces + cellTextSize + one border on the left
       accumulator + currentValue + 2 + 1;
     return table.columns
-      .map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
+      .map((m) => m.length || DEFAULT_COLUMN_LEN)
       .reduce(reducer, 1);
   };
 
@@ -142,7 +142,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerTop,
-      table.columns.map((m: Column) => m.maxLen || DEFAULT_COLUMN_LEN)
+      table.columns.map((m: Column) => m.length || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -156,7 +156,7 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.headerBottom,
-      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
+      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
     )
   );
 
@@ -169,7 +169,7 @@ const renderTableEnding = (table: TableInternal): string[] => {
   ret.push(
     renderTableHorizontalBorders(
       table.tableStyle.tableBottom,
-      table.columns.map((m) => m.maxLen || DEFAULT_COLUMN_LEN)
+      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
     )
   );
   return ret;

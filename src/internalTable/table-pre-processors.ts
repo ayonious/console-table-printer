@@ -2,7 +2,7 @@
 import { Row } from '../models/common';
 import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
-import { findMaxLenOfColumn } from '../utils/table-helpers';
+import { findLenOfColumn } from '../utils/table-helpers';
 import TableInternal from './internal-table';
 
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
@@ -32,9 +32,9 @@ const enableColumnsIfNecessary = (table: TableInternal) => {
   }
 };
 
-const findMaxColumnLength = (table: TableInternal) => {
+const findColumnWidth = (table: TableInternal) => {
   table.columns.forEach((column) => {
-    column.maxLen = findMaxLenOfColumn(column, table.rows);
+    column.length = findLenOfColumn(column, table.rows);
   });
 };
 
@@ -42,7 +42,7 @@ export const preProcessColumns = (table: TableInternal) => {
   createComputedColumnsIfNecessary(table);
   enableColumnsIfNecessary(table);
   disableColumnsIfNecessary(table);
-  findMaxColumnLength(table);
+  findColumnWidth(table);
 };
 
 export const preProcessRows = (table: TableInternal) => {

@@ -8,6 +8,7 @@ export interface ColumnOptionsRaw {
   title?: string; // the value that will be printed, if not present this will be 'name'
   alignment?: ALIGNMENT;
   color?: COLOR;
+  length?: number;
   maxLen?: number;
   minLen?: number;
 }

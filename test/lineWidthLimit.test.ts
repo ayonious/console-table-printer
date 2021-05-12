@@ -133,7 +133,7 @@ describe('Testing column max Width', () => {
           name: 'right_align_text',
           alignment: 'right',
           minLen: 100,
-          title: 'MnWid:60,align:r',
+          title: 'MnWid:100,align:r',
         },
         {
           name: 'green_center_align',

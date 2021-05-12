@@ -6,6 +6,8 @@ import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
 import { DEFAULT_COLUMN_LEN, DEFAULT_ROW_ALIGNMENT } from './table-constants';
 
+const max = (a: number, b: number) => Math.max(a, b);
+
 // takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>
   text === undefined || text === null ? '' : `${text}`;
@@ -66,6 +68,8 @@ export const createColumFromComputedColumn = (
   title: column.title || column.name,
   ...objIfExists('color', column.color as COLOR),
   ...objIfExists('maxLen', column.maxLen),
+  ...objIfExists('minLen', column.minLen),
+  ...objIfExists('length', column.length),
   alignment: column.alignment || DEFAULT_ROW_ALIGNMENT,
 });
 
@@ -74,33 +78,33 @@ export const createRow = (color: COLOR, text: Dictionary): Row => ({
   text,
 });
 
-export const findMaxLenOfColumn = (column: Column, rows: Row[]): number => {
+export const findLenOfColumn = (column: Column, rows: Row[]): number => {
   const columnId = column.name;
   const columnTitle = column.title;
-  let maxLen = Math.max(0, column?.minLen || 0);
+  let length = max(0, column?.minLen || 0);
 
   if (column.maxLen) {
     // if customer input is mentioned a max width, lets see if all other can fit here
     // if others cant fit find the max word length so that at least the table can be printed
-    maxLen = Math.max(
-      maxLen,
-      Math.max(column.maxLen, biggestWordInSentence(columnTitle))
+    length = max(
+      length,
+      max(column.maxLen, biggestWordInSentence(columnTitle))
     );
-    maxLen = rows.reduce(
+    length = rows.reduce(
       (acc, row) =>
-        Math.max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
-      maxLen
+        max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
+      length
     );
-    return maxLen;
+    return length;
   }
 
-  maxLen = Math.max(maxLen, findWidthInConsole(columnTitle));
+  length = max(length, findWidthInConsole(columnTitle));
 
   rows.forEach((row) => {
-    maxLen = Math.max(maxLen, findWidthInConsole(cellText(row.text[columnId])));
+    length = max(length, findWidthInConsole(cellText(row.text[columnId])));
   });
 
-  return maxLen;
+  return length;
 };
 
 export const renderTableHorizontalBorders = (
@@ -130,7 +134,7 @@ export const getWidthLimitedColumnsArray = (
   columns.forEach((column) => {
     ret[column.name] = limitWidth(
       cellText(row.text[column.name]),
-      column.maxLen || DEFAULT_COLUMN_LEN
+      column.length || DEFAULT_COLUMN_LEN
     );
   });
 
