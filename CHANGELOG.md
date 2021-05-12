@@ -1,3 +1,15 @@
+# [2.9.0](https://github.com/ayonious/console-table-printer/compare/v2.8.2...v2.9.0) (2021-05-12)
+
+
+### Bug Fixes
+
+* **technical:** fixing types error for compilation ([68a8bf7](https://github.com/ayonious/console-table-printer/commit/68a8bf7fdd6234702adbf7209e63e4d1b3bdcd4a))
+
+
+### Features
+
+* min width ([#363](https://github.com/ayonious/console-table-printer/issues/363)) ([3a1b4e8](https://github.com/ayonious/console-table-printer/commit/3a1b4e8fff70033d2391fc58bd0c4258f18efffa))
+
 ## [2.8.2](https://github.com/ayonious/console-table-printer/compare/v2.8.1...v2.8.2) (2021-03-19)
 
 
