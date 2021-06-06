@@ -3,6 +3,8 @@ import { TableStyleDetails } from '../models/internal-table';
 
 export const DEFAULT_COLUMN_LEN = 20;
 
+export const DEFAULT_ROW_BOTTOM_BORDER = false;
+
 export const DEFAULT_TABLE_STYLE: TableStyleDetails = {
   /*
       Default Style
@@ -30,6 +32,12 @@ export const DEFAULT_TABLE_STYLE: TableStyleDetails = {
     other: '─',
   },
   vertical: '│',
+  rowBottom: {
+    left: '├',
+    mid: '┼',
+    right: '┤',
+    other: '─',
+  },
 };
 
 export const ALIGNMENTS = ['right', 'left', 'center'];

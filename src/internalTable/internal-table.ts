@@ -10,6 +10,7 @@ import {
   DEFAULT_TABLE_STYLE,
   DEFAULT_ROW_ALIGNMENT,
   DEFAULT_ROW_FONT_COLOR,
+  DEFAULT_ROW_BOTTOM_BORDER,
 } from '../utils/table-constants';
 import {
   createColumFromComputedColumn,
@@ -106,7 +107,13 @@ class TableInternal {
 
   addRow(text: Dictionary, options?: RowOptions) {
     this.createColumnFromRow(text);
-    this.rows.push(createRow(options?.color || DEFAULT_ROW_FONT_COLOR, text));
+    this.rows.push(
+      createRow(
+        options?.color || DEFAULT_ROW_FONT_COLOR,
+        options?.bottomBorder || DEFAULT_ROW_BOTTOM_BORDER,
+        text
+      )
+    );
   }
 
   addRows(toBeInsertedRows: Dictionary[], options?: RowOptions) {

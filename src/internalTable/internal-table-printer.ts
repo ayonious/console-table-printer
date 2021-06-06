@@ -184,8 +184,15 @@ export const renderTable = (table: TableInternal): string => {
 
   renderTableHeaders(table).forEach((row) => ret.push(row));
 
-  table.rows.forEach((row) => {
+  const lastRowIndex = table.rows.length - 1;
+  table.rows.forEach((row, rowIndex) => {
     renderRow(table, row).forEach((row_) => ret.push(row_));
+    if (row.bottomBorder && rowIndex < lastRowIndex) {
+      ret.push(renderTableHorizontalBorders(
+        table.tableStyle.rowBottom,
+        table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
+      ));
+    }
   });
   renderTableEnding(table).forEach((row) => ret.push(row));
   return ret.join('\n');

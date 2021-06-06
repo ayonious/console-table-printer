@@ -4,7 +4,11 @@ import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
-import { DEFAULT_COLUMN_LEN, DEFAULT_ROW_ALIGNMENT } from './table-constants';
+import {
+  DEFAULT_COLUMN_LEN,
+  DEFAULT_ROW_ALIGNMENT,
+  DEFAULT_ROW_BOTTOM_BORDER,
+} from './table-constants';
 
 const max = (a: number, b: number) => Math.max(a, b);
 
@@ -13,11 +17,13 @@ export const cellText = (text: string | number): string =>
   text === undefined || text === null ? '' : `${text}`;
 
 export interface RowOptionsRaw {
-  color: string;
+  color?: string;
+  bottomBorder?: boolean;
 }
 
 export interface RowOptions {
   color: COLOR;
+  bottomBorder: boolean;
 }
 
 export const convertRawRowOptionsToStandard = (
@@ -26,6 +32,7 @@ export const convertRawRowOptionsToStandard = (
   if (options) {
     return {
       color: options.color as COLOR,
+      bottomBorder: options.bottomBorder || DEFAULT_ROW_BOTTOM_BORDER,
     };
   }
   return undefined;
@@ -72,8 +79,13 @@ export const createColumFromComputedColumn = (
   alignment: column.alignment || DEFAULT_ROW_ALIGNMENT,
 });
 
-export const createRow = (color: COLOR, text: Dictionary): Row => ({
+export const createRow = (
+  color: COLOR,
+  bottomBorder: boolean,
+  text: Dictionary
+): Row => ({
   color,
+  bottomBorder,
   text,
 });
 
@@ -116,7 +128,7 @@ export const renderTableHorizontalBorders = (
 
 export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   const headerColor: COLOR = 'white_bold';
-  const row: Row = createRowFn(headerColor, {});
+  const row: Row = createRowFn(headerColor, false, {});
   columns.forEach((column) => {
     row.text[column.name] = column.title;
   });
