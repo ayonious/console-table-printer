@@ -8,5 +8,6 @@ export interface Dictionary {
 }
 export interface Row {
   color: COLOR;
+  bottomBorder: boolean;
   text: Dictionary;
 }
