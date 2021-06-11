@@ -175,6 +175,21 @@ const renderTableEnding = (table: TableInternal): string[] => {
   return ret;
 };
 
+const renderRowSeparator = (table: TableInternal, row: Row): string[] => {
+  const ret: string[] = [];
+  let lastRowIndex = table.rows.length - 1;
+  let rowIndex = table.rows.indexOf(row);
+  let addSeparator = row.separator !== undefined ? row.separator : table.rowSeparator;
+
+  if (rowIndex > -1 && rowIndex < lastRowIndex && addSeparator) {
+    ret.push(renderTableHorizontalBorders(
+      table.tableStyle.rowSeparator,
+      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
+    ));
+  }
+  return ret;
+}
+
 export const renderTable = (table: TableInternal): string => {
   preProcessColumns(table); // enable / disable cols, find maxLn of each col/ computed Columns
   preProcessRows(table); // sort and filter
@@ -185,14 +200,9 @@ export const renderTable = (table: TableInternal): string => {
   renderTableHeaders(table).forEach((row) => ret.push(row));
 
   const lastRowIndex = table.rows.length - 1;
-  table.rows.forEach((row, rowIndex) => {
+  table.rows.forEach((row) => {
     renderRow(table, row).forEach((row_) => ret.push(row_));
-    if (row.bottomBorder && rowIndex < lastRowIndex) {
-      ret.push(renderTableHorizontalBorders(
-        table.tableStyle.rowBottom,
-        table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
-      ));
-    }
+    renderRowSeparator(table, row).forEach((row_) => ret.push(row_));
   });
   renderTableEnding(table).forEach((row) => ret.push(row));
   return ret.join('\n');

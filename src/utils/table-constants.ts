@@ -3,7 +3,7 @@ import { TableStyleDetails } from '../models/internal-table';
 
 export const DEFAULT_COLUMN_LEN = 20;
 
-export const DEFAULT_ROW_BOTTOM_BORDER = false;
+export const DEFAULT_ROW_SEPARATOR = false;
 
 export const DEFAULT_TABLE_STYLE: TableStyleDetails = {
   /*
@@ -32,7 +32,7 @@ export const DEFAULT_TABLE_STYLE: TableStyleDetails = {
     other: '─',
   },
   vertical: '│',
-  rowBottom: {
+  rowSeparator: {
     left: '├',
     mid: '┼',
     right: '┤',

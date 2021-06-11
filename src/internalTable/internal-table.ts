@@ -10,7 +10,7 @@ import {
   DEFAULT_TABLE_STYLE,
   DEFAULT_ROW_ALIGNMENT,
   DEFAULT_ROW_FONT_COLOR,
-  DEFAULT_ROW_BOTTOM_BORDER,
+  DEFAULT_ROW_SEPARATOR
 } from '../utils/table-constants';
 import {
   createColumFromComputedColumn,
@@ -44,6 +44,8 @@ class TableInternal {
 
   computedColumns: any[];
 
+  rowSeparator: boolean;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -53,14 +55,15 @@ class TableInternal {
   }
 
   initDetailed(options: ComplexOptions) {
-    this.title = options.title || undefined;
-    this.tableStyle = options?.style || DEFAULT_TABLE_STYLE;
-    this.sortFunction = options?.sort || DEFAULT_ROW_SORT_FUNC;
-    this.filterFunction = options?.filter || DEFAULT_ROW_FILTER_FUNC;
-    this.enabledColumns = options?.enabledColumns || [];
-    this.disabledColumns = options?.disabledColumns || [];
-    this.computedColumns = options?.computedColumns || [];
-    this.columns = options.columns?.map(rawColumnToInternalColumn) || [];
+    this.title = options?.title || this.title;
+    this.tableStyle = options?.style || this.tableStyle;
+    this.sortFunction = options?.sort || this.sortFunction;
+    this.filterFunction = options?.filter || this.filterFunction;
+    this.enabledColumns = options?.enabledColumns || this.enabledColumns;
+    this.disabledColumns = options?.disabledColumns || this.disabledColumns;
+    this.computedColumns = options?.computedColumns || this.computedColumns;
+    this.columns = options?.columns?.map(rawColumnToInternalColumn) || this.columns;
+    this.rowSeparator = options?.rowSeparator || this.rowSeparator;
   }
 
   constructor(options?: ComplexOptions | string[]) {
@@ -74,6 +77,7 @@ class TableInternal {
     this.enabledColumns = [];
     this.disabledColumns = [];
     this.computedColumns = [];
+    this.rowSeparator = DEFAULT_ROW_SEPARATOR;
 
     if (options instanceof Array) {
       this.initSimple(options);
@@ -110,8 +114,8 @@ class TableInternal {
     this.rows.push(
       createRow(
         options?.color || DEFAULT_ROW_FONT_COLOR,
-        options?.bottomBorder || DEFAULT_ROW_BOTTOM_BORDER,
-        text
+        text,
+        options?.separator
       )
     );
   }
