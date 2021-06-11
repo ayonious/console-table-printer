@@ -199,7 +199,6 @@ export const renderTable = (table: TableInternal): string => {
 
   renderTableHeaders(table).forEach((row) => ret.push(row));
 
-  const lastRowIndex = table.rows.length - 1;
   table.rows.forEach((row) => {
     renderRow(table, row).forEach((row_) => ret.push(row_));
     renderRowSeparator(table, row).forEach((row_) => ret.push(row_));
