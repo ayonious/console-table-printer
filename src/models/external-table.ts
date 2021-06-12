@@ -29,4 +29,5 @@ export interface ComplexOptions {
   enabledColumns?: string[];
   disabledColumns?: string[];
   computedColumns?: ComputedColumn[];
+  rowSeparator?: boolean;
 }
