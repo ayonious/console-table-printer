@@ -33,12 +33,6 @@ describe('Example: Check if borders are styled properly', () => {
           other: '═',
         },
         vertical: '║',
-        rowSeparator: {
-          left: '╟',
-          mid: '╬',
-          right: '╢',
-          other: '═',
-        },
       },
       columns: [
         { name: 'index', alignment: 'left' },
@@ -107,12 +101,6 @@ describe('Example: Check if borders are styled properly', () => {
           other: '\x1b[31m═\x1b[0m',
         },
         vertical: '\x1b[31m║\x1b[0m',
-        rowSeparator: {
-          left: '\x1b[31m╟\x1b[0m',
-          mid: '\x1b[31m╬\x1b[0m',
-          right: '\x1b[31m╢\x1b[0m',
-          other: '\x1b[31m═\x1b[0m',
-        },
       },
       columns: [
         { name: 'index', alignment: 'left' },

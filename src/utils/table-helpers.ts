@@ -8,6 +8,7 @@ import {
   DEFAULT_COLUMN_LEN,
   DEFAULT_ROW_ALIGNMENT,
   DEFAULT_ROW_SEPARATOR,
+  DEFAULT_HEADER_FONT_COLOR,
 } from './table-constants';
 
 const max = (a: number, b: number) => Math.max(a, b);
@@ -82,7 +83,7 @@ export const createColumFromComputedColumn = (
 export const createRow = (
   color: COLOR,
   text: Dictionary,
-  separator?: boolean
+  separator: boolean
 ): Row => ({
   color,
   separator,
@@ -127,7 +128,7 @@ export const renderTableHorizontalBorders = (
 };
 
 export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
-  const headerColor: COLOR = 'white_bold';
+  const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {
     row.text[column.name] = column.title;
