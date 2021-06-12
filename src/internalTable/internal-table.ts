@@ -10,7 +10,7 @@ import {
   DEFAULT_TABLE_STYLE,
   DEFAULT_ROW_ALIGNMENT,
   DEFAULT_ROW_FONT_COLOR,
-  DEFAULT_ROW_SEPARATOR
+  DEFAULT_ROW_SEPARATOR,
 } from '../utils/table-constants';
 import {
   createColumFromComputedColumn,
@@ -62,7 +62,8 @@ class TableInternal {
     this.enabledColumns = options?.enabledColumns || this.enabledColumns;
     this.disabledColumns = options?.disabledColumns || this.disabledColumns;
     this.computedColumns = options?.computedColumns || this.computedColumns;
-    this.columns = options?.columns?.map(rawColumnToInternalColumn) || this.columns;
+    this.columns =
+      options?.columns?.map(rawColumnToInternalColumn) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
   }
 
@@ -115,7 +116,9 @@ class TableInternal {
       createRow(
         options?.color || DEFAULT_ROW_FONT_COLOR,
         text,
-        options?.separator
+        options?.separator !== undefined
+          ? options?.separator
+          : this.rowSeparator
       )
     );
   }
