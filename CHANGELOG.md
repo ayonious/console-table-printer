@@ -1,3 +1,15 @@
+# [2.10.0](https://github.com/ayonious/console-table-printer/compare/v2.9.0...v2.10.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* **row-separator:** make row separator optional ([#373](https://github.com/ayonious/console-table-printer/issues/373)) ([325db51](https://github.com/ayonious/console-table-printer/commit/325db51118e2027877205c973747b32e043d0a06))
+
+
+### Features
+
+* **row separator:** Added row separator option ([#372](https://github.com/ayonious/console-table-printer/issues/372)) ([63855ae](https://github.com/ayonious/console-table-printer/commit/63855aee0da731063cc6b5e2034ecdbe252d5935))
+
 # [2.9.0](https://github.com/ayonious/console-table-printer/compare/v2.8.2...v2.9.0) (2021-05-12)
 
 
