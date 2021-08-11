@@ -1,3 +1,4 @@
+import { ColorMap } from '../utils/colored-console-line';
 import { ALIGNMENT, COLOR } from './common';
 
 /* 
