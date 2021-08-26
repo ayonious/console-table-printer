@@ -38,4 +38,15 @@ describe('Testing column alignment', () => {
     p.printTable();
     expect(p.render()).toMatchSnapshot();
   });
+
+  it('should allow chaining add methods', () => {
+    const p = new Table()
+      .addColumn('foo')
+      .addColumns(['bar'])
+      .addRow({ foo: '1' })
+      .addRows([{ bar: '2' }]);
+
+    p.printTable();
+    expect(p.render()).toMatchSnapshot();
+  });
 });

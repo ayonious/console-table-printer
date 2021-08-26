@@ -1,4 +1,4 @@
-import { ALIGNMENT, COLOR } from './common';
+import { ALIGNMENT, COLOR, Dictionary } from './common';
 import { TableStyleDetails } from './internal-table';
 
 export { ALIGNMENT, COLOR };
@@ -24,6 +24,7 @@ export interface ComplexOptions {
   style?: TableStyleDetails;
   title?: string;
   columns?: ColumnOptionsRaw[];
+  rows?: Dictionary[];
   sort?: RowSortFunction;
   filter?: RowFilterFunction;
   enabledColumns?: string[];
