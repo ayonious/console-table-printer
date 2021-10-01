@@ -65,6 +65,10 @@ class TableInternal {
     this.columns =
       options?.columns?.map(rawColumnToInternalColumn) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
+
+    if (options.rows !== undefined) {
+      this.addRows(options.rows);
+    }
   }
 
   constructor(options?: ComplexOptions | string[]) {
