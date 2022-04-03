@@ -1,3 +1,11 @@
+# [2.11.0](https://github.com/ayonious/console-table-printer/compare/v2.10.0...v2.11.0) (2022-04-03)
+
+
+### Features
+
+* add option to specify initial rows, make add methods chainable, export renderSimpleTable ([#396](https://github.com/ayonious/console-table-printer/issues/396)) ([6e6d8f3](https://github.com/ayonious/console-table-printer/commit/6e6d8f30d2bb2b7176255ef3c2ef330ab8bbfe7f))
+* allow specifying custom color map ([#394](https://github.com/ayonious/console-table-printer/issues/394)) ([4c6eecd](https://github.com/ayonious/console-table-printer/commit/4c6eecdc29a4850e70abb6432ed0c357471a9690))
+
 # [2.10.0](https://github.com/ayonious/console-table-printer/compare/v2.9.0...v2.10.0) (2021-08-04)
 
 
