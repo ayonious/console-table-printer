@@ -68,7 +68,11 @@ class TableInternal {
     this.columns =
       options?.columns?.map(rawColumnToInternalColumn) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
-    this.colorMap = options?.colorMap || this.colorMap;
+  
+    if(options?.colorMap) {
+      this.colorMap = { ...this.colorMap, ...options.colorMap };  
+    }
+    
 
     if (options.rows !== undefined) {
       this.addRows(options.rows);
