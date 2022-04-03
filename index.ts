@@ -7,4 +7,4 @@ import {
 import { COLOR, ALIGNMENT } from './src/models/external-table';
 import { ColorMap, DEFAULT_COLOR_MAP } from './src/utils/colored-console-line';
 
-export { Table, printTable, renderTable, COLOR, ALIGNMENT, ColorMap, DEFAULT_COLOR_MAP };
+export { Table, printTable, renderTable, COLOR, ALIGNMENT };
