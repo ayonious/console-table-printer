@@ -10,18 +10,18 @@ describe('Example: Print a simple Table with Custom column colors', () => {
         { name: 'green_value', color: 'green' },
       ],
       colorMap: {
-        red: '\x1b[32m', // actually its green
+        custom_green: '\x1b[32m', // define customized color
       },
     });
 
-    // add rows with color
+    // add rows with custom color
     p.addRow(
       {
         red_left_align_index: 2,
-        right_align_text: 'This is looking green, but thats what I call red',
+        right_align_text: 'This is my defined Green',
         green_value: 10.212,
       },
-      { color: 'red' }
+      { color: 'custom_green' } // custom color
     );
     p.addRow(
       {

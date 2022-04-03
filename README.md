@@ -92,6 +92,7 @@ const p = new Table({
     { name: 'index', alignment: 'left', color: 'blue' }, //with alignment and color
     { name: 'text', alignment: 'right' },
     { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
+    { name: 'is_priority_today', color: 'green' }, // this green color is glowing because of the colorMap props 
   ],
 });
 
