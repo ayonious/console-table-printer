@@ -1,8 +1,10 @@
 import { COLOR } from '../models/common';
 
-const COLOR_MAP: {
+export type ColorMap = {
   [key in COLOR]?: string;
-} = {
+};
+
+export const DEFAULT_COLOR_MAP: ColorMap = {
   red: '\x1b[31m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
@@ -15,18 +17,22 @@ const COLOR_MAP: {
   reset: '\x1b[0m',
 };
 
-export const colorString = (color: COLOR, text: string) =>
-  `${color && COLOR_MAP[color]}${text}${COLOR_MAP.reset}`;
-
 export default class ColoredConsoleLine {
   text: string;
 
-  constructor() {
+  colorMap: ColorMap;
+
+  constructor(colorMap = DEFAULT_COLOR_MAP) {
     this.text = '';
+    this.colorMap = colorMap;
   }
 
   addCharsWithColor(color: COLOR, text: string) {
-    this.text += colorString(color, text);
+    const colorAnsi = this.colorMap[color];
+    this.text +=
+      colorAnsi !== undefined
+        ? `${colorAnsi}${text}${this.colorMap.reset}`
+        : text;
   }
 
   renderConsole(): string {

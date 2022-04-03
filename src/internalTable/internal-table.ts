@@ -6,6 +6,7 @@ import {
   RowSortFunction,
 } from '../models/external-table';
 import { Column, TableStyleDetails } from '../models/internal-table';
+import { ColorMap, DEFAULT_COLOR_MAP } from '../utils/colored-console-line';
 import {
   DEFAULT_TABLE_STYLE,
   DEFAULT_ROW_ALIGNMENT,
@@ -46,6 +47,8 @@ class TableInternal {
 
   rowSeparator: boolean;
 
+  colorMap: ColorMap;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -65,6 +68,11 @@ class TableInternal {
     this.columns =
       options?.columns?.map(rawColumnToInternalColumn) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
+  
+    if(options?.colorMap) {
+      this.colorMap = { ...this.colorMap, ...options.colorMap };  
+    }
+    
 
     if (options.rows !== undefined) {
       this.addRows(options.rows);
@@ -83,6 +91,7 @@ class TableInternal {
     this.disabledColumns = [];
     this.computedColumns = [];
     this.rowSeparator = DEFAULT_ROW_SEPARATOR;
+    this.colorMap = DEFAULT_COLOR_MAP;
 
     if (options instanceof Array) {
       this.initSimple(options);

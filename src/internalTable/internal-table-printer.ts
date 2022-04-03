@@ -1,6 +1,6 @@
 import { Row } from '../models/common';
 import { Column, TableStyleDetails } from '../models/internal-table';
-import ColoredConsoleLine from '../utils/colored-console-line';
+import ColoredConsoleLine, { ColorMap } from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
 import {
   DEFAULT_COLUMN_LEN,
@@ -26,9 +26,10 @@ const renderOneLine = (
   currentLineIndex: number,
   widthLimitedColumnsArray: { [key: string]: string[] },
   isHeader: boolean | undefined,
-  row: Row
+  row: Row,
+  colorMap: ColorMap
 ): string => {
-  const line = new ColoredConsoleLine();
+  const line = new ColoredConsoleLine(colorMap);
   line.addCharsWithColor(DEFAULT_ROW_FONT_COLOR, tableStyle.vertical);
   columns.forEach((column) => {
     const thisLineHasText =
@@ -58,6 +59,7 @@ const renderWidthLimitedLines = (
   tableStyle: TableStyleDetails,
   columns: Column[],
   row: Row,
+  colorMap: ColorMap,
   isHeader?: boolean
 ): string[] => {
   // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
@@ -80,7 +82,8 @@ const renderWidthLimitedLines = (
       currentLineIndex,
       widthLimitedColumnsArray,
       isHeader,
-      row
+      row,
+      colorMap
     );
 
     ret.push(singleLine);
@@ -93,7 +96,12 @@ const renderWidthLimitedLines = (
 const renderRow = (table: TableInternal, row: Row): string[] => {
   let ret: string[] = [];
   ret = ret.concat(
-    renderWidthLimitedLines(table.tableStyle, table.columns, row)
+    renderWidthLimitedLines(
+      table.tableStyle,
+      table.columns,
+      row,
+      table.colorMap
+    )
   );
   return ret;
 };
@@ -123,7 +131,7 @@ const renderTableTitle = (table: TableInternal): string[] => {
     DEFAULT_HEADER_ALIGNMENT,
     getTableWidth()
   );
-  const styledText = new ColoredConsoleLine();
+  const styledText = new ColoredConsoleLine(table.colorMap);
   styledText.addCharsWithColor(DEFAULT_HEADER_FONT_COLOR, titleWithPadding);
   //                  The analysis Result
   ret.push(styledText.renderConsole());
@@ -149,7 +157,13 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   // ║ index ║                                  text ║  value ║
   const row = createHeaderAsRow(createRow, table.columns);
   ret = ret.concat(
-    renderWidthLimitedLines(table.tableStyle, table.columns, row, true)
+    renderWidthLimitedLines(
+      table.tableStyle,
+      table.columns,
+      row,
+      table.colorMap,
+      true
+    )
   );
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
