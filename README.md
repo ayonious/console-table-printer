@@ -47,7 +47,7 @@ printTable(testCases);
 
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/quick-print.png)
 
-### 🚨 !!!Announcement Official Documentation is moved [Here](https://console-table.netlify.app/docs)
+## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
 
 You can also create a Table instance and print it:
 
