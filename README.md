@@ -45,9 +45,9 @@ const testCases = [
 printTable(testCases);
 ```
 
-Output:
-
 ![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/quick-print.png)
+
+## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
 
 You can also create a Table instance and print it:
 
@@ -147,12 +147,15 @@ new Table({
   filter: (row) => row.column1 < 3, // filtering rows (optional)
   enabledColumns: ['column1'], // array of columns that you want to see, all other will be ignored (optional)
   disabledColumns: ['column2'], // array of columns that you DONT want to see, these will always be hidden
+  colorMap: {
+    custom_green: '\x1b[32m', // define customized color
+  },
 });
 ```
 
 ### Functions
 
-- `addRow(rowObjet, options)` adding single row.
+- `addRow(rowObjet, options)` adding single row. This can be chained
 - `addRows(rowObjects, options)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
 - `addColumn(columnObject)` adding single column
 - `addColumns(columnObjects)` adding multiple columns
