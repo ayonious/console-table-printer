@@ -13,6 +13,11 @@ export const textWithPadding = (
   const leftPadding = Math.floor((columnLen - curTextSize) / 2);
   const rightPadding = columnLen - leftPadding - curTextSize;
 
+  // handle edge cases where the text size is larger than the column length
+  if (columnLen < curTextSize) {
+    return text;
+  }
+
   // console.log(text, columnLen, curTextSize);
   switch (alignment) {
     case 'left':

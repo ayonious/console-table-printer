@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { limitWidth } from '../../src/utils/string-utils';
+import { textWithPadding, limitWidth } from '../../src/utils/string-utils';
 
 describe('Example: Print a simple Table with cell colors', () => {
   it('cell colors are working', () => {
@@ -9,5 +9,9 @@ describe('Example: Print a simple Table with cell colors', () => {
     expect(
       limitWidth(chalk.bgMagenta('magenta'), chalk.bgMagenta('magenta').length)
     ).toMatchObject([chalk.bgMagenta('magenta')]);
+  });
+
+  it('should not pass negative numbers into string.repeat', () => {
+    expect(textWithPadding('How are you?', 'right', 8)).toEqual('How are you?');
   });
 });
