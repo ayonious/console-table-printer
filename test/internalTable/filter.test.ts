@@ -73,15 +73,6 @@ describe('Testing column alignment', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        right_align_text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value_center\u001b[0m\u001b[37m │\u001b[0m',
-      '├──────────────────────┼──────────────────────────────────────────┼────────────────────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[34m2                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m                        This row is blue\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m       I would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m      10.212      \u001b[0m\u001b[37m │\u001b[0m',
-      '└──────────────────────┴──────────────────────────────────────────┴────────────────────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 });

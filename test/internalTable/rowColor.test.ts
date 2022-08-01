@@ -18,16 +18,7 @@ describe('Testing Row coloring', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌───────┬───────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m             text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 
   it('Batch Row default coloring is working', () => {
@@ -42,16 +33,7 @@ describe('Testing Row coloring', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌───────┬───────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m             text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mgreen color text1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 
   it('Batch Row coloring is working', () => {
@@ -69,15 +51,6 @@ describe('Testing Row coloring', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌───────┬───────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m             text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[32m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32mgreen color text2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 });

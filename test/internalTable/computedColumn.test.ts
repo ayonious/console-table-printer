@@ -41,15 +41,6 @@ describe('Testing Computed Column', () => {
 
     // print
     const returned = renderTable(p.table);
-    const expected = [
-      '┌────────────┬─────────────┬─────┬─────────────┬──────────────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_amount\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mblue_amount\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01msum\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_percent\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mblue_percent\u001b[0m\u001b[37m │\u001b[0m',
-      '├────────────┼─────────────┼─────┼─────────────┼──────────────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m         2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m          3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  5\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m      40.00\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m       60.00\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m         1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m          1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m      50.00\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m       50.00\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m         5\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m          6\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m 11\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m      45.45\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m       54.55\u001b[0m\u001b[37m │\u001b[0m',
-      '└────────────┴─────────────┴─────┴─────────────┴──────────────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 });

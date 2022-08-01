@@ -18,17 +18,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
 
-    const expected = [
-      '┌───────┬───────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                 text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow without separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m   row with separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    5\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow without separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
     p.printTable();
   });
 
@@ -44,16 +34,7 @@ describe('Testing Row separator', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌───────┬───────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                 text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow default separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow default separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
     p.printTable();
   });
 
@@ -70,17 +51,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
 
-    const expected = [
-      '┌───────┬─────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m               text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼─────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mtable row separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼─────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mtable row separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴─────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
-    p.printTable();
+    expect(returned).toMatchSnapshot();
   });
 
   it('Batch Row table separator override is working', () => {
@@ -99,15 +70,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
 
-    const expected = [
-      '┌───────┬──────────────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼──────────────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37moverride table row separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37moverride table row separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴──────────────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
     p.printTable();
   });
 
@@ -126,17 +89,7 @@ describe('Testing Row separator', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌───────┬────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m              text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow with separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow with separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  300\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 
   it('Batch Row separator combined with sorting', () => {
@@ -169,20 +122,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
 
-    const expected = [
-      '┌───────┬───────────────────────┬───────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                 text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mvalue\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    1\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow inherit separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    2\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m   row with separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '├───────┼───────────────────────┼───────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    3\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow without separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    4\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37mrow without separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[37m    5\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m   row with separator\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[37m  100\u001b[0m\u001b[37m │\u001b[0m',
-      '└───────┴───────────────────────┴───────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
     p.printTable();
   });
 });

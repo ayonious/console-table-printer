@@ -57,17 +57,7 @@ describe('Example: Check if borders are styled properly', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '╔═══════╦═══════════════════════════════════════╦════════╗',
-      '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[01m                                 text\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[01m value\u001b[0m\u001b[37m ║\u001b[0m',
-      '╟═══════╬═══════════════════════════════════════╬════════╢',
-      '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[31m1    \u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[31m    I would like some red wine please\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[31m10.212\u001b[0m\u001b[37m ║\u001b[0m',
-      '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[32m2    \u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[32mI would like some green gemuse please\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[32m    20\u001b[0m\u001b[37m ║\u001b[0m',
-      '\u001b[37m║\u001b[0m\u001b[37m \u001b[0m\u001b[33m3    \u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[33m I would like some gelb bananen bitte\u001b[0m\u001b[37m ║\u001b[0m\u001b[37m \u001b[0m\u001b[33m   100\u001b[0m\u001b[37m ║\u001b[0m',
-      '╚═══════╩═══════════════════════════════════════╩════════╝',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 
   it('print a RED table', () => {
@@ -125,16 +115,6 @@ describe('Example: Check if borders are styled properly', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '\u001b[31m╔\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╦\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╦\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╗\u001b[0m',
-      '\u001b[37m\u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[01mindex\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[01m                                 text\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[01m value\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m',
-      '\u001b[31m╟\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╬\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╬\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╢\u001b[0m',
-      '\u001b[37m\u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[31m1    \u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[31m    I would like some red wine please\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[31m10.212\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m',
-      '\u001b[37m\u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[32m2    \u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[32mI would like some green gemuse please\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[32m    20\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m',
-      '\u001b[37m\u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m3    \u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m I would like some gelb bananen bitte\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m\u001b[37m \u001b[0m\u001b[33m   100\u001b[0m\u001b[37m \u001b[31m║\u001b[0m\u001b[0m',
-      '\u001b[31m╚\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╩\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╩\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m═\u001b[0m\u001b[31m╝\u001b[0m',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 });

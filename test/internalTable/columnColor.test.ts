@@ -72,20 +72,6 @@ describe('Example: Print a simple Table with column colors', () => {
 
     // print
     const returned = renderTable(p.table);
-
-    const expected = [
-      '┌──────────────────────┬──────────────────────────────────────────┬─────────────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mred_left_align_index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                        right_align_text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mgreen_value\u001b[0m\u001b[37m │\u001b[0m',
-      '├──────────────────────┼──────────────────────────────────────────┼─────────────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m2                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m                        This row is blue\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m     10.212\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m       I would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m     10.212\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m4                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[36m      I would like some cyan wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m     10.212\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m5                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mI would like some white_bold wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m     10.212\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m6                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[38m    I would like some crimson sky please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m     10.212\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m7                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m   I would like some green gemuse please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m         20\u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m8                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[33m    I would like some gelb bananen bitte\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[32m        100\u001b[0m\u001b[37m │\u001b[0m',
-      '└──────────────────────┴──────────────────────────────────────────┴─────────────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
   });
 });
