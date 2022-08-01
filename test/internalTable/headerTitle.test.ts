@@ -46,14 +46,7 @@ describe('Testing Title Of Column', () => {
     const returned = renderTable(p.table);
 
     console.log(returned);
-    const expected = [
-      '┌──────────────────────┬───────────────────────────────────┬────────────────────────┐',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[01mRed Left Align Index\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01m                 Right Align Text\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[01mBig Green Value Center\u001b[0m\u001b[37m │\u001b[0m',
-      '├──────────────────────┼───────────────────────────────────┼────────────────────────┤',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[34m2                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m                 This row is blue\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[34m        10.212        \u001b[0m\u001b[37m │\u001b[0m',
-      '\u001b[37m│\u001b[0m\u001b[37m \u001b[0m\u001b[31m3                   \u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31mI would like some red wine please\u001b[0m\u001b[37m │\u001b[0m\u001b[37m \u001b[0m\u001b[31m        10.212        \u001b[0m\u001b[37m │\u001b[0m',
-      '└──────────────────────┴───────────────────────────────────┴────────────────────────┘',
-    ];
-    expect(returned).toBe(expected.join('\n'));
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });
