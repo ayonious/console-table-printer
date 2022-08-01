@@ -42,5 +42,6 @@ describe('Testing Computed Column', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

@@ -19,6 +19,7 @@ describe('Testing Row coloring', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('Batch Row default coloring is working', () => {
@@ -34,6 +35,7 @@ describe('Testing Row coloring', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('Batch Row coloring is working', () => {
@@ -52,5 +54,6 @@ describe('Testing Row coloring', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

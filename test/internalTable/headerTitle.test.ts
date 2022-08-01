@@ -47,5 +47,6 @@ describe('Testing Title Of Column', () => {
 
     console.log(returned);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

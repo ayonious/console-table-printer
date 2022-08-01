@@ -73,5 +73,6 @@ describe('Example: Print a simple Table with column colors', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

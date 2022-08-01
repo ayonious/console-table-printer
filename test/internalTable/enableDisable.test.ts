@@ -71,6 +71,7 @@ describe('Testing column Enable and Disable', () => {
 
     console.log(returned);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('disable basic example', () => {
@@ -142,5 +143,6 @@ describe('Testing column Enable and Disable', () => {
 
     console.log(returned);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

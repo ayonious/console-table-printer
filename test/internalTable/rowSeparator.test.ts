@@ -19,6 +19,7 @@ describe('Testing Row separator', () => {
     const returned = renderTable(p.table);
 
     expect(returned).toMatchSnapshot();
+    console.log(returned);
     p.printTable();
   });
 
@@ -35,6 +36,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
     p.printTable();
   });
 
@@ -52,6 +54,7 @@ describe('Testing Row separator', () => {
     const returned = renderTable(p.table);
 
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('Batch Row table separator override is working', () => {
@@ -71,6 +74,7 @@ describe('Testing Row separator', () => {
     const returned = renderTable(p.table);
 
     expect(returned).toMatchSnapshot();
+    console.log(returned);
     p.printTable();
   });
 
@@ -90,6 +94,7 @@ describe('Testing Row separator', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('Batch Row separator combined with sorting', () => {
@@ -123,6 +128,7 @@ describe('Testing Row separator', () => {
     const returned = renderTable(p.table);
 
     expect(returned).toMatchSnapshot();
+    console.log(returned);
     p.printTable();
   });
 });

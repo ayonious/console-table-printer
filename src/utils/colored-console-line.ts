@@ -28,7 +28,7 @@ export default class ColoredConsoleLine {
   }
 
   addCharsWithColor(color: COLOR, text: string) {
-    const colorAnsi = color === 'somethit' ? undefined : this.colorMap[color];
+    const colorAnsi = this.colorMap[color];
     this.text +=
       colorAnsi !== undefined
         ? `${colorAnsi}${text}${this.colorMap.reset}`

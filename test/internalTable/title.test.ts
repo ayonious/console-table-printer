@@ -74,6 +74,7 @@ describe('Testing column alignment', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('Simpler title test', () => {
@@ -106,5 +107,6 @@ describe('Testing column alignment', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

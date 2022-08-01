@@ -58,6 +58,7 @@ describe('Example: Check if borders are styled properly', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 
   it('print a RED table', () => {
@@ -116,5 +117,6 @@ describe('Example: Check if borders are styled properly', () => {
     // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
+    console.log(returned);
   });
 });

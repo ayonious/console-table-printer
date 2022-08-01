@@ -30,7 +30,7 @@ const renderOneLine = (
   colorMap: ColorMap
 ): string => {
   const line = new ColoredConsoleLine(colorMap);
-  line.addCharsWithColor('someshit', tableStyle.vertical); // dont Color the Column borders
+  line.addCharsWithColor('', tableStyle.vertical); // dont Color the Column borders
   columns.forEach((column) => {
     const thisLineHasText =
       currentLineIndex < widthLimitedColumnsArray[column.name].length;
@@ -48,7 +48,7 @@ const renderOneLine = (
         column.length || DEFAULT_COLUMN_LEN
       )
     );
-    line.addCharsWithColor('someshit', ` ${tableStyle.vertical}`); // dont Color the Column borders
+    line.addCharsWithColor('', ` ${tableStyle.vertical}`); // dont Color the Column borders
   });
   return line.renderConsole();
 };
