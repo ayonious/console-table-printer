@@ -1,5 +1,5 @@
 import { objIfExists } from '../internalTable/input-converter';
-import { COLOR, Dictionary, Row } from '../models/common';
+import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
 import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import findWidthInConsole from './console-utils';
@@ -90,7 +90,7 @@ export const createRow = (
   text,
 });
 
-export const findLenOfColumn = (column: Column, rows: Row[]): number => {
+export const findLenOfColumn = (column: Column, rows: Row[], charLength?: CharLengthDict): number => {
   const columnId = column.name;
   const columnTitle = column.title;
   let length = max(0, column?.minLen || 0);
@@ -100,20 +100,20 @@ export const findLenOfColumn = (column: Column, rows: Row[]): number => {
     // if others cant fit find the max word length so that at least the table can be printed
     length = max(
       length,
-      max(column.maxLen, biggestWordInSentence(columnTitle))
+      max(column.maxLen, biggestWordInSentence(columnTitle, charLength))
     );
     length = rows.reduce(
       (acc, row) =>
-        max(acc, biggestWordInSentence(cellText(row.text[columnId]))),
+        max(acc, biggestWordInSentence(cellText(row.text[columnId]), charLength)),
       length
     );
     return length;
   }
 
-  length = max(length, findWidthInConsole(columnTitle));
+  length = max(length, findWidthInConsole(columnTitle, charLength));
 
   rows.forEach((row) => {
-    length = max(length, findWidthInConsole(cellText(row.text[columnId])));
+    length = max(length, findWidthInConsole(cellText(row.text[columnId]), charLength));
   });
 
   return length;
@@ -139,14 +139,16 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
 // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
 export const getWidthLimitedColumnsArray = (
   columns: Column[],
-  row: Row
+  row: Row,
+  charLength?: CharLengthDict
 ): { [key: string]: string[] } => {
   const ret: { [key: string]: string[] } = {};
 
   columns.forEach((column) => {
     ret[column.name] = limitWidth(
       cellText(row.text[column.name]),
-      column.length || DEFAULT_COLUMN_LEN
+      column.length || DEFAULT_COLUMN_LEN,
+      charLength
     );
   });
 

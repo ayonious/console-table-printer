@@ -1,4 +1,4 @@
-import { Row } from '../models/common';
+import { CharLengthDict, Row } from '../models/common';
 import { Column, TableStyleDetails } from '../models/internal-table';
 import ColoredConsoleLine, { ColorMap } from '../utils/colored-console-line';
 import { textWithPadding } from '../utils/string-utils';
@@ -27,7 +27,8 @@ const renderOneLine = (
   widthLimitedColumnsArray: { [key: string]: string[] },
   isHeader: boolean | undefined,
   row: Row,
-  colorMap: ColorMap
+  colorMap: ColorMap,
+  charLength?: CharLengthDict
 ): string => {
   const line = new ColoredConsoleLine(colorMap);
   line.addCharsWithColor('', tableStyle.vertical); // dont Color the Column borders
@@ -45,7 +46,8 @@ const renderOneLine = (
       textWithPadding(
         textForThisLine,
         column.alignment || DEFAULT_ROW_ALIGNMENT,
-        column.length || DEFAULT_COLUMN_LEN
+        column.length || DEFAULT_COLUMN_LEN,
+        charLength
       )
     );
     line.addCharsWithColor('', ` ${tableStyle.vertical}`); // dont Color the Column borders
@@ -60,10 +62,11 @@ const renderWidthLimitedLines = (
   columns: Column[],
   row: Row,
   colorMap: ColorMap,
-  isHeader?: boolean
+  isHeader?: boolean,
+  charLength?: CharLengthDict
 ): string[] => {
   // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
-  const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row);
+  const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row, charLength);
 
   const totalLines = Object.values(widthLimitedColumnsArray).reduce(
     (a, b) => Math.max(a, b.length),
@@ -83,7 +86,8 @@ const renderWidthLimitedLines = (
       widthLimitedColumnsArray,
       isHeader,
       row,
-      colorMap
+      colorMap,
+      charLength
     );
 
     ret.push(singleLine);
@@ -100,7 +104,9 @@ const renderRow = (table: TableInternal, row: Row): string[] => {
       table.tableStyle,
       table.columns,
       row,
-      table.colorMap
+      table.colorMap,
+      undefined,
+      table.charLength
     )
   );
   return ret;
