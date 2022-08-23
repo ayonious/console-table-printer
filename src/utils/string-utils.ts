@@ -35,7 +35,11 @@ export const textWithPadding = (
 };
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const limitWidth = (inpStr: string, width: number, charLength?: CharLengthDict): string[] => {
+export const limitWidth = (
+  inpStr: string,
+  width: number,
+  charLength?: CharLengthDict
+): string[] => {
   const ret: string[] = [];
 
   const spaceSeparatedStrings = inpStr.split(' ');
@@ -59,5 +63,10 @@ export const limitWidth = (inpStr: string, width: number, charLength?: CharLengt
 };
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const biggestWordInSentence = (inpStr: string, charLength?: CharLengthDict): number =>
-  inpStr.split(' ').reduce((a, b) => Math.max(a, findWidthInConsole(b, charLength)), 0);
+export const biggestWordInSentence = (
+  inpStr: string,
+  charLength?: CharLengthDict
+): number =>
+  inpStr
+    .split(' ')
+    .reduce((a, b) => Math.max(a, findWidthInConsole(b, charLength)), 0);

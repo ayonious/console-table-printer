@@ -90,7 +90,11 @@ export const createRow = (
   text,
 });
 
-export const findLenOfColumn = (column: Column, rows: Row[], charLength?: CharLengthDict): number => {
+export const findLenOfColumn = (
+  column: Column,
+  rows: Row[],
+  charLength?: CharLengthDict
+): number => {
   const columnId = column.name;
   const columnTitle = column.title;
   let length = max(0, column?.minLen || 0);
@@ -104,7 +108,10 @@ export const findLenOfColumn = (column: Column, rows: Row[], charLength?: CharLe
     );
     length = rows.reduce(
       (acc, row) =>
-        max(acc, biggestWordInSentence(cellText(row.text[columnId]), charLength)),
+        max(
+          acc,
+          biggestWordInSentence(cellText(row.text[columnId]), charLength)
+        ),
       length
     );
     return length;
@@ -113,7 +120,10 @@ export const findLenOfColumn = (column: Column, rows: Row[], charLength?: CharLe
   length = max(length, findWidthInConsole(columnTitle, charLength));
 
   rows.forEach((row) => {
-    length = max(length, findWidthInConsole(cellText(row.text[columnId]), charLength));
+    length = max(
+      length,
+      findWidthInConsole(cellText(row.text[columnId]), charLength)
+    );
   });
 
   return length;

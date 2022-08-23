@@ -66,7 +66,11 @@ const renderWidthLimitedLines = (
   charLength?: CharLengthDict
 ): string[] => {
   // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
-  const widthLimitedColumnsArray = getWidthLimitedColumnsArray(columns, row, charLength);
+  const widthLimitedColumnsArray = getWidthLimitedColumnsArray(
+    columns,
+    row,
+    charLength
+  );
 
   const totalLines = Object.values(widthLimitedColumnsArray).reduce(
     (a, b) => Math.max(a, b.length),

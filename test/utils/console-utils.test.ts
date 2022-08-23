@@ -18,11 +18,11 @@ describe('Console Width Calculation', () => {
 
   it('Character length test: No character substitution', () => {
     expect(findWidthInConsole('abc')).toBe(3);
-  })
+  });
 
   it('Character length test: Character length substitution', () => {
-    expect(findWidthInConsole('abc', {'a': 2})).toBe(4);
-  })
+    expect(findWidthInConsole('abc', { a: 2 })).toBe(4);
+  });
 
   /* these fail on travis bcs travis has another kind of console
   it('Simplest test: chalk', () => {
