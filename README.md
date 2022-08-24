@@ -150,6 +150,10 @@ new Table({
   colorMap: {
     custom_green: '\x1b[32m', // define customized color
   },
+  charLength: {
+    '👋': 2,
+    '😅': 2,
+  }, // custom len of chars in console
 });
 ```
 
