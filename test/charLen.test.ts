@@ -1,7 +1,7 @@
 import { Table } from '../index';
 
-describe('Example: Print a simple Table with cell colors', () => {
-  it('foreign alphabets are working', () => {
+describe('Example: Print a simple Table with Custom char len', () => {
+  it('Custom char len is working', () => {
     // Create a table
     const p = new Table({
       charLength: {
