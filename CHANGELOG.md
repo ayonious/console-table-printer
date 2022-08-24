@@ -1,3 +1,12 @@
+## [2.11.1](https://github.com/ayonious/console-table-printer/compare/v2.11.0...v2.11.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* add character length dictionary for string length computation in console  ([#431](https://github.com/ayonious/console-table-printer/issues/431)) ([89f6db2](https://github.com/ayonious/console-table-printer/commit/89f6db2cc455d46efecdf32a269c024fe99b5789))
+* dont allow negative numbers in string.repeat ([#422](https://github.com/ayonious/console-table-printer/issues/422)) ([c9e8994](https://github.com/ayonious/console-table-printer/commit/c9e8994858b426276407d5a96bf40abb83b58d6c))
+* Fix color resetting for borders ([#428](https://github.com/ayonious/console-table-printer/issues/428)) ([bcb6e8c](https://github.com/ayonious/console-table-printer/commit/bcb6e8c4448e444f103e0f561528cd71cca1fcc7))
+
 # [2.11.0](https://github.com/ayonious/console-table-printer/compare/v2.10.0...v2.11.0) (2022-04-03)
 
 
