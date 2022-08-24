@@ -1,4 +1,4 @@
-import { ALIGNMENT } from '../models/common';
+import { ALIGNMENT, CharLengthDict } from '../models/common';
 import findWidthInConsole from './console-utils';
 
 // ("How are you?",center, 20) => "    How are you?    "
@@ -6,9 +6,10 @@ import findWidthInConsole from './console-utils';
 export const textWithPadding = (
   text: string,
   alignment: ALIGNMENT,
-  columnLen: number
+  columnLen: number,
+  charLength?: CharLengthDict
 ): string => {
-  const curTextSize = findWidthInConsole(text);
+  const curTextSize = findWidthInConsole(text, charLength);
   // alignments for center padding case
   const leftPadding = Math.floor((columnLen - curTextSize) / 2);
   const rightPadding = columnLen - leftPadding - curTextSize;
@@ -34,7 +35,11 @@ export const textWithPadding = (
 };
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const limitWidth = (inpStr: string, width: number): string[] => {
+export const limitWidth = (
+  inpStr: string,
+  width: number,
+  charLength?: CharLengthDict
+): string[] => {
   const ret: string[] = [];
 
   const spaceSeparatedStrings = inpStr.split(' ');
@@ -42,7 +47,7 @@ export const limitWidth = (inpStr: string, width: number): string[] => {
   let now: string[] = [];
   let cnt = 0;
   spaceSeparatedStrings.forEach((strWithoutSpace) => {
-    const consoleWidth = findWidthInConsole(strWithoutSpace);
+    const consoleWidth = findWidthInConsole(strWithoutSpace, charLength);
     if (cnt + consoleWidth <= width) {
       cnt += consoleWidth + 1; // 1 for the space
       now.push(strWithoutSpace);
@@ -58,5 +63,10 @@ export const limitWidth = (inpStr: string, width: number): string[] => {
 };
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const biggestWordInSentence = (inpStr: string): number =>
-  inpStr.split(' ').reduce((a, b) => Math.max(a, findWidthInConsole(b)), 0);
+export const biggestWordInSentence = (
+  inpStr: string,
+  charLength?: CharLengthDict
+): number =>
+  inpStr
+    .split(' ')
+    .reduce((a, b) => Math.max(a, findWidthInConsole(b, charLength)), 0);

@@ -1,4 +1,4 @@
-import { Dictionary, Row } from '../models/common';
+import { CharLengthDict, Dictionary, Row } from '../models/common';
 import {
   ComplexOptions,
   ComputedColumn,
@@ -49,6 +49,8 @@ class TableInternal {
 
   colorMap: ColorMap;
 
+  charLength: CharLengthDict;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -68,11 +70,11 @@ class TableInternal {
     this.columns =
       options?.columns?.map(rawColumnToInternalColumn) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
-  
-    if(options?.colorMap) {
-      this.colorMap = { ...this.colorMap, ...options.colorMap };  
+    this.charLength = options?.charLength || this.charLength;
+
+    if (options?.colorMap) {
+      this.colorMap = { ...this.colorMap, ...options.colorMap };
     }
-    
 
     if (options.rows !== undefined) {
       this.addRows(options.rows);
@@ -92,6 +94,7 @@ class TableInternal {
     this.computedColumns = [];
     this.rowSeparator = DEFAULT_ROW_SEPARATOR;
     this.colorMap = DEFAULT_COLOR_MAP;
+    this.charLength = {};
 
     if (options instanceof Array) {
       this.initSimple(options);

@@ -34,7 +34,7 @@ const enableColumnsIfNecessary = (table: TableInternal) => {
 
 const findColumnWidth = (table: TableInternal) => {
   table.columns.forEach((column) => {
-    column.length = findLenOfColumn(column, table.rows);
+    column.length = findLenOfColumn(column, table.rows, table.charLength);
   });
 };
 

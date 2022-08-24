@@ -1,5 +1,5 @@
 import { ColorMap } from '../utils/colored-console-line';
-import { ALIGNMENT, COLOR, Dictionary } from './common';
+import { ALIGNMENT, CharLengthDict, COLOR, Dictionary } from './common';
 import { TableStyleDetails } from './internal-table';
 
 export { ALIGNMENT, COLOR };
@@ -33,4 +33,5 @@ export interface ComplexOptions {
   computedColumns?: ComputedColumn[];
   rowSeparator?: boolean;
   colorMap?: ColorMap;
+  charLength?: CharLengthDict;
 }
