@@ -46,6 +46,7 @@
   },
   "homepage": "https://console-table.netlify.app",
   "dependencies": {
-    "simple-wcswidth": "^1.0.1"
+    "simple-wcswidth": "^1.0.1",
+    "strip-ansi": "^7.0.1"
   }
 }
