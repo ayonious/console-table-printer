@@ -26,6 +26,11 @@ describe('Console Width Calculation', () => {
     expect(findWidthInConsole('abc', { a: 2 })).toBe(4);
   });
 
+  it('Character length test: Hard coded ansi codes', () => {
+    expect(stripAnsi('\x1b[38;5mtext')).toBe('text');
+    expect(stripAnsi('\x1b[38mtext')).toBe('text');
+  });
+
   // these fail on travis bcs travis has another kind of console
 
   it('Simplest test: chalk', () => {
