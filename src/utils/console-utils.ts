@@ -2,7 +2,7 @@ import { wcswidth } from 'simple-wcswidth';
 import { CharLengthDict } from '../models/common';
 
 /* eslint-disable no-control-regex */
-const colorRegex = /\x1b\[\d{1,3}(;\d+)*m/g; // \x1b[30m  \x1b[305m
+const colorRegex = /\x1b\[\d{1,3}(;\d{1,3})*m/g; // \x1b[30m \x1b[305m \x1b[38;5m
 
 const stripAnsi = (str: string): string => str.replace(colorRegex, '');
 
