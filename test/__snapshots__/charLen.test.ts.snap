@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Example: Print a simple Table with Custom char len Custom char len is working 1`] = `
+"┌─────────────┬───────┐
+│[37m [0m[01mDescription[0m │[37m [0m[01memoji[0m │
+├─────────────┼───────┤
+│[37m [0m[37m         👩‍👩‍👧[0m │[37m [0m[37m   😅[0m │
+└─────────────┴───────┘"
+`;
+
 exports[`Example: Print a simple Table with cell colors foreign alphabets are working 1`] = `
 "┌─────────────┬───────┐
 │[37m [0m[01mDescription[0m │[37m [0m[01memoji[0m │
