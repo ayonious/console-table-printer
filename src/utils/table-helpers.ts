@@ -2,7 +2,7 @@ import { objIfExists } from '../internalTable/input-converter';
 import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
 import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
-import findWidthInConsole from './console-utils';
+import { findWidthInConsole } from './console-utils';
 import { biggestWordInSentence, limitWidth } from './string-utils';
 import {
   DEFAULT_COLUMN_LEN,

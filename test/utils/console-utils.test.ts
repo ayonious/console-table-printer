@@ -1,5 +1,7 @@
+import chalk from 'chalk';
+
 import ColoredConsoleLine from '../../src/utils/colored-console-line';
-import findWidthInConsole from '../../src/utils/console-utils';
+import { findWidthInConsole, stripAnsi } from '../../src/utils/console-utils';
 
 describe('Console Width Calculation', () => {
   it('Simplest test: Colored Line', () => {
@@ -24,20 +26,28 @@ describe('Console Width Calculation', () => {
     expect(findWidthInConsole('abc', { a: 2 })).toBe(4);
   });
 
-  /* these fail on travis bcs travis has another kind of console
+  // these fail on travis bcs travis has another kind of console
+
   it('Simplest test: chalk', () => {
     const testFunction = (Fn: any) => {
-      expect(stripAnsiColor(Fn('text'))).toBe('text');
+      expect(stripAnsi(Fn('text'))).toBe('text');
     };
-    testFunction(chalk.black);
-    testFunction(chalk.redBright);
-    testFunction(chalk.strikethrough);
-    testFunction(chalk.bgMagentaBright);
-    testFunction(chalk.bold);
-    testFunction(chalk.magentaBright);
-    testFunction(chalk.visible);
-    testFunction(chalk.hidden);
-    testFunction(chalk.dim);
+    [
+      chalk.bgMagentaBright,
+      chalk.black,
+      chalk.bold,
+      chalk.dim,
+      chalk.hidden,
+      chalk.inverse,
+      chalk.italic,
+      chalk.magentaBright,
+      chalk.redBright,
+      chalk.reset,
+      chalk.strikethrough,
+      chalk.underline,
+      chalk.visible,
+    ].forEach((fn) => {
+      testFunction(fn);
+    });
   });
-  */
 });
