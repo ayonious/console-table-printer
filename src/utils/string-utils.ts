@@ -1,5 +1,5 @@
 import { ALIGNMENT, CharLengthDict } from '../models/common';
-import findWidthInConsole from './console-utils';
+import { findWidthInConsole } from './console-utils';
 
 // ("How are you?",center, 20) => "    How are you?    "
 // ("How are you?",right, 20)  => "        How are you?"
