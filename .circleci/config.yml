@@ -19,3 +19,6 @@ jobs:
           key: deps-hash-{{ checksum "yarn.lock" }}
 
       - run: yarn build
+      - run:
+          name: 'Upload codecov report'
+          command: yarn codecov
