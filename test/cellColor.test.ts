@@ -1,8 +1,10 @@
 import chalk from 'chalk';
 import { Table } from '../index';
 
+const itOrSkip = () => (process.env.SKIP_CHALK_TESTS ? it.skip : it);
+
 describe('Example: Print a simple Table with cell colors', () => {
-  it('cell colors are working', () => {
+  itOrSkip()('cell colors are working', () => {
     // Create a table
     const p = new Table();
 
