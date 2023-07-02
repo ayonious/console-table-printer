@@ -47,6 +47,52 @@ describe('Testing Title Of Column', () => {
 
     console.log(returned);
     expect(returned).toMatchSnapshot();
+  });
+
+  it('Empty string title means blank title', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        {
+          name: 'red_left_align_index',
+          alignment: 'left',
+          title: '',
+        },
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          title: '',
+        },
+        {
+          name: 'green_value_center',
+          alignment: 'center',
+          title: 'Other two should be blank',
+        },
+      ],
+    });
+
+    // add rows with color
+    p.addRow(
+      {
+        red_left_align_index: 2,
+        right_align_text: 'This row is blue',
+        green_value_center: 10.212,
+      },
+      { color: 'blue' }
+    );
+    p.addRow(
+      {
+        red_left_align_index: 3,
+        right_align_text: 'I would like some red wine please',
+        green_value_center: 10.212,
+      },
+      { color: 'red' }
+    );
+
+    // print
+    const returned = renderTable(p.table);
+
     console.log(returned);
+    expect(returned).toMatchSnapshot();
   });
 });
