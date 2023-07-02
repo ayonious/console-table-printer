@@ -84,7 +84,40 @@ describe('Example: 1', () => {
       { color: 'white_bold' }
     );
     p.addRow(
-      { index: 6, text: 'I would like some crimson sky please', value: 10.212 },
+      { index: 7, text: 'I would like some green gemuse please', value: 20.0 },
+      { color: 'green' }
+    );
+    p.addRow(
+      { index: 8, text: 'I would like some gelb bananen bitte', value: 100 },
+      { color: 'yellow' }
+    );
+
+    // print
+    const returned = p.printTable();
+    expect(returned).toBeUndefined();
+  });
+
+  it('table With all colored rows', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        { name: 'index', alignment: 'left' },
+        { name: 'text', alignment: 'right' },
+        { name: 'value' },
+      ],
+    });
+
+    // add rows with color
+    p.addRow(
+      { index: 2, text: 'I would like some Color I dont know', value: 10.212 },
+      { color: 'some Color' }
+    );
+    p.addRow(
+      {
+        index: 6,
+        text: 'I would like some crimson I dont know the color sky please',
+        value: 10.212,
+      },
       { color: 'crimson' }
     );
     p.addRow(
