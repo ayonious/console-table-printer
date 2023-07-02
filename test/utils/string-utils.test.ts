@@ -12,6 +12,8 @@ describe('Example: Print a simple Table with cell colors', () => {
   });
 
   it('should not pass negative numbers into string.repeat', () => {
-    expect(textWithPadding('How are you?', 'right', 8)).toEqual('How are you?');
+    expect(textWithPadding('How are you?', 'right', 8)).toEqual(
+      ' How are\n    you?'
+    );
   });
 });
