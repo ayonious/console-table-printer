@@ -17,7 +17,7 @@ export const rawColumnToInternalColumn = (
   column: ColumnOptionsRaw
 ): Column => ({
   name: column.name,
-  title: column.title || column.name,
+  title: column.title ?? column.name,
   ...objIfExists('color', column.color as COLOR),
   ...objIfExists('maxLen', column.maxLen),
   ...objIfExists('minLen', column.minLen),
