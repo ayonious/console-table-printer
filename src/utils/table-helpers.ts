@@ -3,7 +3,10 @@ import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
 import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import { findWidthInConsole } from './console-utils';
-import { biggestWordInSentence, limitWidth } from './string-utils';
+import {
+  biggestWordInSentence,
+  splitTextIntoTextsOfMinLen,
+} from './string-utils';
 import {
   DEFAULT_COLUMN_LEN,
   DEFAULT_ROW_ALIGNMENT,
@@ -155,7 +158,7 @@ export const getWidthLimitedColumnsArray = (
   const ret: { [key: string]: string[] } = {};
 
   columns.forEach((column) => {
-    ret[column.name] = limitWidth(
+    ret[column.name] = splitTextIntoTextsOfMinLen(
       cellText(row.text[column.name]),
       column.length || DEFAULT_COLUMN_LEN,
       charLength

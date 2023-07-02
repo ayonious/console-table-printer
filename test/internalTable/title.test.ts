@@ -2,17 +2,7 @@ import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column alignment', () => {
-  it('all kind of alignments are working', () => {
-    // Create a table
-    const p = new Table({
-      title: 'Some Random Title',
-      columns: [
-        { name: 'red_left_align_index', alignment: 'left', color: 'red' },
-        { name: 'right_align_text', alignment: 'right' },
-        { name: 'green_value_center', alignment: 'center', color: 'green' },
-      ],
-    });
-
+  const addRowsInTable = (p: Table) => {
     // add rows with color
     p.addRow(
       {
@@ -67,6 +57,19 @@ describe('Testing column alignment', () => {
       },
       { color: 'yellow' }
     );
+  };
+  it('all kind of alignments are working', () => {
+    // Create a table
+    const p = new Table({
+      title: 'Some Random Title',
+      columns: [
+        { name: 'red_left_align_index', alignment: 'left', color: 'red' },
+        { name: 'right_align_text', alignment: 'right' },
+        { name: 'green_value_center', alignment: 'center', color: 'green' },
+      ],
+    });
+
+    addRowsInTable(p);
 
     // print
     const returned = renderTable(p.table);
@@ -87,19 +90,31 @@ describe('Testing column alignment', () => {
       ],
     });
 
-    // add rows with color
-    p.addRow({
-      red_left_align_index: 3,
-      green_value_center: 10.212,
+    addRowsInTable(p);
+
+    // print
+    const returned = renderTable(p.table);
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
+  });
+
+  it('A very big title', () => {
+    // Create a table
+    const p = new Table({
+      title:
+        'Some Random Title which is a quick brown fox jumps over the lazy dog and then the dog bites the fox. But the fox is a good fox and it does not bite the dog. The dog is a good dog and it does not bite the fox',
+      columns: [
+        { name: 'red_left_align_index', alignment: 'left' },
+        {
+          name: 'green_value_center',
+          alignment: 'center',
+          color: 'green',
+          title: 'GREEN CENTR',
+        },
+      ],
     });
-    p.addRow({
-      red_left_align_index: 4,
-      green_value_center: 10.212,
-    });
-    p.addRow({
-      red_left_align_index: 5,
-      green_value_center: 10.212,
-    });
+
+    addRowsInTable(p);
 
     // print
     const returned = renderTable(p.table);
