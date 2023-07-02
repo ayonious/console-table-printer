@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { stripAnsi } from '../src/utils/console-utils';
 
 describe('Testing rendering column alignment', () => {
   it('render function gives output the same as print function', () => {
@@ -72,5 +73,45 @@ describe('Testing rendering column alignment', () => {
 
     // print
     p.printTable();
+  });
+
+  it('render without any special Symbols', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        { name: 'red_left_align_index' },
+        { name: 'right_align_text' },
+        { name: 'green_value_center' },
+      ],
+    });
+
+    // add rows with color
+    p.addRow({
+      red_left_align_index: 2,
+      right_align_text: 'This row is blue',
+      green_value_center: 10.212,
+    });
+    p.addRow({
+      red_left_align_index: 3,
+      right_align_text: 'I would like some red wine please',
+      green_value_center: 10.212,
+    });
+    p.addRow({
+      red_left_align_index: 4,
+      right_align_text: 'I would like some cyan wine please',
+      green_value_center: 10.212,
+    });
+    p.addRow({
+      red_left_align_index: 5,
+      right_align_text: 'I would like some white_bold wine please',
+      green_value_center: 10.212,
+    });
+
+    // render and print
+    const rendered = stripAnsi(p.render());
+    console.log(rendered);
+
+    // print
+    expect(rendered).toMatchSnapshot();
   });
 });

@@ -11,15 +11,15 @@ export const findWidthInConsole = (
   charLength?: CharLengthDict
 ): number => {
   let strLen = 0;
-  str = stripAnsi(str);
+  let ansiStrippedStr = stripAnsi(str);
   if (charLength) {
     Object.entries(charLength).forEach(([key, value]) => {
       // count appearance of the key in the string and remove from original string
-      let regex = new RegExp(key, 'g');
-      strLen += (str.match(regex) || []).length * value;
-      str = str.replace(key, '');
+      const regex = new RegExp(key, 'g');
+      strLen += (ansiStrippedStr.match(regex) || []).length * value;
+      ansiStrippedStr = ansiStrippedStr.replace(key, '');
     });
   }
-  strLen += wcswidth(str);
+  strLen += wcswidth(ansiStrippedStr);
   return strLen;
 };

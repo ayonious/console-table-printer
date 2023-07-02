@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing rendering column alignment render without any special Symbols 1`] = `
+"┌──────────────────────┬──────────────────────────────────────────┬────────────────────┐
+│ red_left_align_index │                         right_align_text │ green_value_center │
+├──────────────────────┼──────────────────────────────────────────┼────────────────────┤
+│                    2 │                         This row is blue │             10.212 │
+│                    3 │        I would like some red wine please │             10.212 │
+│                    4 │       I would like some cyan wine please │             10.212 │
+│                    5 │ I would like some white_bold wine please │             10.212 │
+└──────────────────────┴──────────────────────────────────────────┴────────────────────┘"
+`;

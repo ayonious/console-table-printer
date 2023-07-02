@@ -4,7 +4,7 @@ import {
   renderSimpleTable as renderTable,
 } from './src/internalTable/internal-table-printer';
 
-import { COLOR, ALIGNMENT } from './src/models/external-table';
-import { ColorMap, DEFAULT_COLOR_MAP } from './src/utils/colored-console-line';
+import { ALIGNMENT, COLOR } from './src/models/external-table';
+import { stripAnsi } from './src/utils/console-utils';
 
-export { Table, printTable, renderTable, COLOR, ALIGNMENT };
+export { ALIGNMENT, COLOR, Table, printTable, renderTable, stripAnsi };
