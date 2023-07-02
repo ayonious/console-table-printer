@@ -12,7 +12,6 @@ export const DEFAULT_COLOR_MAP: ColorMap = {
   magenta: '\x1b[35m',
   cyan: '\x1b[36m',
   white: '\x1b[37m',
-  crimson: '\x1b[38m',
   white_bold: '\x1b[01m',
   reset: '\x1b[0m',
 };

@@ -46,14 +46,11 @@ describe('Testing column alignment', () => {
       },
       { color: 'white_bold' }
     );
-    p.addRow(
-      {
-        red_left_align_index: 6,
-        right_align_text: 'I would like some crimson sky please',
-        green_value_center: 10.212,
-      },
-      { color: 'crimson' }
-    );
+    p.addRow({
+      red_left_align_index: 6,
+      right_align_text: 'I would like some crimson sky please',
+      green_value_center: 10.212,
+    });
     p.addRow(
       {
         red_left_align_index: 7,

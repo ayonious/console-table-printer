@@ -46,14 +46,6 @@ describe('Testing column max Width', () => {
     );
     p.addRow(
       {
-        red_left_align_index: 6,
-        right_align_text: 'I would like some crimson sky please',
-        green: 10.212,
-      },
-      { color: 'crimson' }
-    );
-    p.addRow(
-      {
         red_left_align_index: 7,
         right_align_text: 'I would like some green gemuse please',
         green: 20.0,

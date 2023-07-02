@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Example: Print a simple Table with cell colors cell colors are working 1`] = `
+exports[`Example: Print a simple Table with cell colors cell colors are working: ++++Might Fail on CI++++++++ 1`] = `
 "┌───────┬─────────┬────────┐
 │[37m [0m[01mindex[0m │[37m [0m[01m   text[0m │[37m [0m[01m value[0m │
 ├───────┼─────────┼────────┤

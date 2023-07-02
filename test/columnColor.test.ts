@@ -46,14 +46,6 @@ describe('Example: Print a simple Table with column colors', () => {
     );
     p.addRow(
       {
-        red_left_align_index: 6,
-        right_align_text: 'I would like some crimson sky please',
-        green_value: 10.212,
-      },
-      { color: 'crimson' }
-    );
-    p.addRow(
-      {
         red_left_align_index: 7,
         right_align_text: 'I would like some green gemuse please',
         green_value: 20.0,

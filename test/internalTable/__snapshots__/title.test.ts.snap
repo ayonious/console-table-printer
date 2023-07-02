@@ -20,7 +20,7 @@ exports[`Testing column alignment all kind of alignments are working 1`] = `
 │[37m [0m[31m3                   [0m │[37m [0m[31m       I would like some red wine please[0m │[37m [0m[32m      10.212      [0m │
 │[37m [0m[31m4                   [0m │[37m [0m[36m      I would like some cyan wine please[0m │[37m [0m[32m      10.212      [0m │
 │[37m [0m[31m5                   [0m │[37m [0m[01mI would like some white_bold wine please[0m │[37m [0m[32m      10.212      [0m │
-│[37m [0m[31m6                   [0m │[37m [0m[38m    I would like some crimson sky please[0m │[37m [0m[32m      10.212      [0m │
+│[37m [0m[31m6                   [0m │[37m [0m[37m    I would like some crimson sky please[0m │[37m [0m[32m      10.212      [0m │
 │[37m [0m[31m7                   [0m │[37m [0m[32m   I would like some green gemuse please[0m │[37m [0m[32m        20        [0m │
 │[37m [0m[31m8                   [0m │[37m [0m[33m    I would like some gelb bananen bitte[0m │[37m [0m[32m       100        [0m │
 └──────────────────────┴──────────────────────────────────────────┴────────────────────┘"

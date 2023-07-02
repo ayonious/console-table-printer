@@ -50,7 +50,6 @@ export const COLORS = [
   'blue',
   'magenta',
   'cyan',
-  'crimson',
   'white_bold',
   'reset',
 ];
