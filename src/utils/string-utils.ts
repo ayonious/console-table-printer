@@ -2,7 +2,7 @@ import { ALIGNMENT, CharLengthDict } from '../models/common';
 import { findWidthInConsole } from './console-utils';
 
 // ("How are you?",10) => ["How are ", "you?"]
-export const limitWidth = (
+export const splitTextIntoTextsOfMinLen = (
   inpStr: string,
   width: number,
   charLength?: CharLengthDict
@@ -45,7 +45,7 @@ export const textWithPadding = (
 
   // handle edge cases where the text size is larger than the column length
   if (columnLen < curTextSize) {
-    const splittedLines = limitWidth(text, columnLen);
+    const splittedLines = splitTextIntoTextsOfMinLen(text, columnLen);
     if (splittedLines.length === 1) {
       return text;
     }
