@@ -1,3 +1,12 @@
+## [2.11.2](https://github.com/ayonious/console-table-printer/compare/v2.11.1...v2.11.2) (2023-07-02)
+
+
+### Bug Fixes
+
+* Adding Better regex for ansi codes stripping from the string ([#435](https://github.com/ayonious/console-table-printer/issues/435)) ([a90525f](https://github.com/ayonious/console-table-printer/commit/a90525fd05efefcd47821b89ac4811831b9d4ea5))
+* Allow empty Column Title ([#451](https://github.com/ayonious/console-table-printer/issues/451)) ([4323d60](https://github.com/ayonious/console-table-printer/commit/4323d60549b20822129b6f20577c8678a9877335))
+* Remove Crimson as basic color ([#450](https://github.com/ayonious/console-table-printer/issues/450)) ([ec89482](https://github.com/ayonious/console-table-printer/commit/ec8948229c20aec5670bfafdb55cebae7bc53940))
+
 ## [2.11.1](https://github.com/ayonious/console-table-printer/compare/v2.11.0...v2.11.1) (2022-08-24)
 
 
