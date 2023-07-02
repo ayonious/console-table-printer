@@ -63,9 +63,6 @@ exports[`Testing column max Width Simple Line Limit 1`] = `
 │[37m [0m[31m5                   [0m │[37m [0m[01m    I would like[0m │[37m [0m[32m10.212[0m │
 │[37m [0m[31m                    [0m │[37m [0m[01m some white_bold[0m │[37m [0m[32m      [0m │
 │[37m [0m[31m                    [0m │[37m [0m[01m     wine please[0m │[37m [0m[32m      [0m │
-│[37m [0m[31m6                   [0m │[37m [0m[38m    I would like[0m │[37m [0m[32m10.212[0m │
-│[37m [0m[31m                    [0m │[37m [0m[38msome crimson sky[0m │[37m [0m[32m      [0m │
-│[37m [0m[31m                    [0m │[37m [0m[38m          please[0m │[37m [0m[32m      [0m │
 │[37m [0m[31m7                   [0m │[37m [0m[32m    I would like[0m │[37m [0m[32m  20  [0m │
 │[37m [0m[31m                    [0m │[37m [0m[32m      some green[0m │[37m [0m[32m      [0m │
 │[37m [0m[31m                    [0m │[37m [0m[32m   gemuse please[0m │[37m [0m[32m      [0m │

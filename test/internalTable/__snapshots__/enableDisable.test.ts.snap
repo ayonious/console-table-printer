@@ -8,7 +8,7 @@ exports[`Testing column Enable and Disable disable basic example 1`] = `
 │[37m [0m[31m            10.212[0m │
 │[37m [0m[36m            10.212[0m │
 │[37m [0m[01m            10.212[0m │
-│[37m [0m[38m            10.212[0m │
+│[37m [0m            10.212 │
 │[37m [0m[32m                20[0m │
 │[37m [0m[33m               100[0m │
 └────────────────────┘"
@@ -22,7 +22,7 @@ exports[`Testing column Enable and Disable enable basic example 1`] = `
 │[37m [0m[31m                   3[0m │[37m [0m[31m       I would like some red wine please[0m │
 │[37m [0m[36m                   4[0m │[37m [0m[36m      I would like some cyan wine please[0m │
 │[37m [0m[01m                   5[0m │[37m [0m[01mI would like some white_bold wine please[0m │
-│[37m [0m[38m                   6[0m │[37m [0m[38m    I would like some crimson sky please[0m │
+│[37m [0m                   6 │[37m [0m    I would like some crimson sky please │
 │[37m [0m[32m                   7[0m │[37m [0m[32m   I would like some green gemuse please[0m │
 │[37m [0m[33m                   8[0m │[37m [0m[33m    I would like some gelb bananen bitte[0m │
 └──────────────────────┴──────────────────────────────────────────┘"
