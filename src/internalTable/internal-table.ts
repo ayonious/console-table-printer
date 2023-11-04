@@ -72,7 +72,9 @@ class TableInternal {
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
 
-    if (options?.colorMap) {
+    if (options?.color === false) {
+      this.colorMap = {};
+    } else if (options?.colorMap) {
       this.colorMap = { ...this.colorMap, ...options.colorMap };
     }
 
