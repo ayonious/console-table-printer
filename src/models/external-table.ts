@@ -32,6 +32,7 @@ export interface ComplexOptions {
   disabledColumns?: string[];
   computedColumns?: ComputedColumn[];
   rowSeparator?: boolean;
+  shouldDisableColors? : boolean;
   colorMap?: ColorMap;
   charLength?: CharLengthDict;
 }
