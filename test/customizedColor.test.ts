@@ -53,7 +53,7 @@ describe('Example: Print a simple Table with Custom column colors', () => {
         { name: 'right_align_text', alignment: 'right' },
         { name: 'green_value' },
       ],
-      color: false,
+      shouldDisableColors: true,
     });
 
     // add rows with custom color
