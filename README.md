@@ -37,15 +37,15 @@ const { printTable } = require('console-table-printer');
 
 //Create a table
 const testCases = [
-  { index: 3, text: 'I would like some gelb bananen bitte', value: 100 },
-  { index: 4, text: 'I hope batch update is working', value: 300 },
+  { Rank: 3, text: 'I would like some Yellow', value: 100 },
+  { Rank: 4, text: 'I hope batch update is working', value: 300 },
 ];
 
 //print
 printTable(testCases);
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/quick-print.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-quick-1.png)
 
 ## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
 
@@ -57,39 +57,39 @@ const { Table } = require('console-table-printer');
 //Create a table
 const p = new Table();
 
-//add rows with color
-p.addRow({ index: 1, text: 'red wine please', value: 10.212 });
-p.addRow({ index: 2, text: 'green gemuse please', value: 20.0 });
+// add rows with color
+p.addRow({ Record: 'a', text: 'red wine please', value: 10.212 });
+p.addRow({ Record: 'b', text: 'green gemuse please', value: 20.0 });
 p.addRows([
-  //adding multiple rows are possible
-  { index: 3, text: 'gelb bananen bitte', value: 100 },
-  { index: 4, text: 'update is working', value: 300 },
+  // adding multiple rows are possible
+  { Record: 'c', text: 'gelb bananen bitte', value: 100 },
+  { Record: 'd', text: 'update is working', value: 300 },
 ]);
 
 //print
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-simple.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-instance-1.png)
 
 You can also put some color to your table like this:
 
 ```javascript
 const p = new Table();
-p.addRow({ index: 1, text: 'red wine', value: 10.212 }, { color: 'red' });
-p.addRow({ index: 2, text: 'green gemuse', value: 20.0 }, { color: 'green' });
-p.addRow({ index: 3, text: 'gelb bananen', value: 100 }, { color: 'yellow' });
+p.addRow({ description: 'red wine', value: 10.212 }, { color: 'red' });
+p.addRow({ description: 'green gemuse', value: 20.0 }, { color: 'green' });
+p.addRow({ description: 'gelb bananen', value: 100 }, { color: 'yellow' });
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-colored.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-color-1.png)
 
 You can also put properties based on columns (color/alignment/title)
 
 ```javascript
 const p = new Table({
   columns: [
-    { name: 'index', alignment: 'left', color: 'blue' }, // with alignment and color
+    { name: 'id', alignment: 'left', color: 'blue' }, // with alignment and color
     { name: 'text', alignment: 'right' },
     { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
   ],
@@ -98,23 +98,21 @@ const p = new Table({
   },
 });
 
-p.addRow({ index: 1, text: 'red wine', value: 10.212 }, { color: 'green' });
+p.addRow({ id: 1, text: 'red wine', value: 10.212 }, { color: 'green' });
 p.addRow(
-  { index: 2, text: 'green gemuse', value: 20.0 },
+  { id: 2, text: 'green gemuse', value: 20.0 },
   { color: 'custom_green' } // your green
 );
 p.addRow(
-  { index: 3, text: 'gelb bananen', value: 100, is_priority_today: 'Y' },
+  { id: 3, text: 'gelb bananen', value: 100, is_priority_today: 'Y' },
   { color: 'yellow' }
 );
-p.addRow(
-  { index: 3, text: 'rosa hemd wie immer', value: 100 },
-  { color: 'cyan' }
-);
+p.addRow({ id: 3, text: 'rosa hemd wie immer', value: 100 }, { color: 'cyan' });
+
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/screenshot-column-props-2.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-columns-1.png)
 
 ## CLI
 
