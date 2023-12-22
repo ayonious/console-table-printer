@@ -1,3 +1,16 @@
+# [2.12.0](https://github.com/ayonious/console-table-printer/compare/v2.11.2...v2.12.0) (2023-12-22)
+
+
+### Bug Fixes
+
+* Multiple line Title ([#453](https://github.com/ayonious/console-table-printer/issues/453)) ([4876a92](https://github.com/ayonious/console-table-printer/commit/4876a92b43c0ef1f8f622d585fe873ae30a3a6c6))
+* Updating docs to include better examples ([#458](https://github.com/ayonious/console-table-printer/issues/458)) ([15ce90a](https://github.com/ayonious/console-table-printer/commit/15ce90a28e3952d92dcfba751ecb6ce933ca4f0c))
+
+
+### Features
+
+* Allow for color: false to wipe the colorMap. ([#455](https://github.com/ayonious/console-table-printer/issues/455)) ([9405d83](https://github.com/ayonious/console-table-printer/commit/9405d83675fa38780e61728431f0cb73cb4e9cab))
+
 ## [2.11.2](https://github.com/ayonious/console-table-printer/compare/v2.11.1...v2.11.2) (2023-07-02)
 
 
