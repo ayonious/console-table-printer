@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing column max Width Max Line Limit 1`] = `
+exports[`Testing column max Width Max Line Limit with small words 1`] = `
 "┌───────┬────────────┬──────────┐
 │[37m [0m[01mIndex[0m │[37m [0m[01m maxLen:10[0m │[37m [0m[01mmaxLen:8[0m │
 ├───────┼────────────┼──────────┤

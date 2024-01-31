@@ -66,7 +66,7 @@ describe('Testing column max Width', () => {
     p.printTable();
   });
 
-  it('Max Line Limit', () => {
+  it('Max Line Limit with small words', () => {
     // Create a table
     const p = new Table({
       columns: [
