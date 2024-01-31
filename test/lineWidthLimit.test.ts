@@ -117,6 +117,58 @@ describe('Testing column max Width', () => {
     p.printTable();
   });
 
+  it('Max Line Limit with large words', () => {
+    // Create a table
+    const p = new Table({
+      columns: [
+        {
+          name: 'center_left_align_index',
+          alignment: 'center',
+          color: 'red',
+          title: 'Index',
+        },
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          maxLen: 10,
+          title: 'maxLen:10',
+        },
+        {
+          name: 'green_center_align',
+          alignment: 'center',
+          color: 'green',
+          maxLen: 8,
+          title: 'maxLen:8',
+        },
+      ],
+      title: "large words",
+    });
+
+    // add rows with color
+    p.addRow({
+      center_left_align_index: 1,
+      right_align_text: 'Thisrowisblue',
+      green_center_align: 'Thisrowisgreencolumn',
+    });
+
+    p.addRow({
+      center_left_align_index: 10,
+      right_align_text: 'Thisrowisblue butagainanotherline',
+      green_center_align:
+        'Thisrowisgreencolumn butalittlelongertomakelifeharder',
+    });
+
+    p.addRow({
+      center_left_align_index: 2,
+      right_align_text: 'ThelastoneIdont knowwhatthecoloris',
+      green_center_align: 'Thankgodthisis thelastone',
+    });
+
+    // print
+    expect(p.render()).toMatchSnapshot();
+    p.printTable();
+  });
+
   it('Min Line Limit', () => {
     // Create a table
     const p = new Table({
