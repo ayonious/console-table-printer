@@ -9,8 +9,9 @@ const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
       table.addColumn(computedColumn);
-      table.rows.forEach((row: Row) => {
-        row.text[computedColumn.name] = computedColumn.function(row.text);
+      table.rows.forEach((row: Row, index: number, array: Row[]) => {
+        const rowValues = array.map( () => row.text);
+        row.text[computedColumn.name] = computedColumn.function(row.text, index, rowValues);
       });
     });
   }
