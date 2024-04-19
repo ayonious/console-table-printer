@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing line breaks in table cells does not break the table 1`] = `
+"┌────────────┬──────────────────────────────────────────┬──────────────────────────────────────────┐
+│[37m [0m[01m       foo[0m │[37m [0m[01m                  bar                   [0m │[37m [0m[01mbaz                                     [0m │
+├────────────┼──────────────────────────────────────────┼──────────────────────────────────────────┤
+│[37m [0m[37mSed dictum[0m │[37m [0m[37m              Pellentesque              [0m │[37m [0m[37m* Cras ac ligula aliquet, ultrices erat [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m  habitant morbi tristique senectus et  [0m │[37m [0m[37mquis, laoreet lorem.                    [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m   netus et malesuada fames ac turpis   [0m │[37m [0m[37m* Mauris rutrum nisi et nisl            [0m │
+│[37m [0m[37m          [0m │[37m [0m[37megestas. Maecenas ut scelerisque felis. [0m │[37m [0m[37msollicitudin semper.                    [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m  Etiam ut leo fringilla lacus posuere  [0m │[37m [0m[37m* Nunc laoreet felis auctor diam aliquet[0m │
+│[37m [0m[37m          [0m │[37m [0m[37m      dignissim aliquet eu nulla.       [0m │[37m [0m[37msemper.                                 [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m                                        [0m │[37m [0m[37m* Integer aliquet urna imperdiet orci   [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m Etiam placerat ultricies sollicitudin. [0m │[37m [0m[37mpulvinar, at vulputate ante consectetur.[0m │
+│[37m [0m[37m          [0m │[37m [0m[37m Maecenas ultrices feugiat tempor. Nam  [0m │[37m [0m[37m* Pellentesque a lectus porttitor,      [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m  non nisi vel diam tristique commodo.  [0m │[37m [0m[37mcondimentum lacus non, venenatis lacus. [0m │
+│[37m [0m[37m          [0m │[37m [0m[37mEtiam sit amet nisi sagittis, fringilla [0m │[37m [0m[37m                                        [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m  tortor sed, efficitur nisl. Maecenas  [0m │[37m [0m[37m                                        [0m │
+│[37m [0m[37m          [0m │[37m [0m[37m      tincidunt lobortis dapibus.       [0m │[37m [0m[37m                                        [0m │
+└────────────┴──────────────────────────────────────────┴──────────────────────────────────────────┘"
+`;

@@ -9,23 +9,26 @@ export const splitTextIntoTextsOfMinLen = (
 ): string[] => {
   const ret: string[] = [];
 
-  const spaceSeparatedStrings = inpStr.split(' ');
+  const lines = inpStr.split(/[\n\r]/);
 
-  let now: string[] = [];
-  let cnt = 0;
-  spaceSeparatedStrings.forEach((strWithoutSpace) => {
-    const consoleWidth = findWidthInConsole(strWithoutSpace, charLength);
-    if (cnt + consoleWidth <= width) {
-      cnt += consoleWidth + 1; // 1 for the space
-      now.push(strWithoutSpace);
-    } else {
-      ret.push(now.join(' '));
-      now = [strWithoutSpace];
-      cnt = consoleWidth + 1;
-    }
+  lines.forEach((line) => {
+    const spaceSeparatedStrings = line.split(' ');
+
+    let now: string[] = [];
+    let cnt = 0;
+    spaceSeparatedStrings.forEach((strWithoutSpace) => {
+      const consoleWidth = findWidthInConsole(strWithoutSpace, charLength);
+      if (cnt + consoleWidth <= width) {
+        cnt += consoleWidth + 1; // 1 for the space
+        now.push(strWithoutSpace);
+      } else {
+        if (now.length > 0) ret.push(now.join(' '));
+        now = [strWithoutSpace];
+        cnt = consoleWidth + 1;
+      }
+    });
+    ret.push(now.join(' '));
   });
-  ret.push(now.join(' '));
-
   return ret;
 };
 
