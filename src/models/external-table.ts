@@ -14,7 +14,7 @@ export interface ColumnOptionsRaw {
 }
 
 export interface ComputedColumn extends ColumnOptionsRaw {
-  function: (arg0: any) => any;
+  function: (arg0: any, index: number, array: any[]) => any;
 }
 
 export type RowSortFunction = (row1: any, row2: any) => number;
