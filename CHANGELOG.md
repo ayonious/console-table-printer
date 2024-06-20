@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/ayonious/console-table-printer/compare/v2.12.0...v2.12.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* new lines in cells broke table format ([#466](https://github.com/ayonious/console-table-printer/issues/466)) ([6b28738](https://github.com/ayonious/console-table-printer/commit/6b287389b871e76b3433b5a98561482949176e94)), closes [#438](https://github.com/ayonious/console-table-printer/issues/438)
+
 # [2.12.0](https://github.com/ayonious/console-table-printer/compare/v2.11.2...v2.12.0) (2023-12-22)
 
 
