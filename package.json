@@ -28,9 +28,9 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "eslint": "^9.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "eslint": "^9.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -41,7 +41,7 @@
     "pretty-quick": "^4.0.0",
     "semantic-release": "^24.0.0",
     "ts-jest": "^29.1.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   },
   "homepage": "https://console-table.netlify.app",
   "dependencies": {
