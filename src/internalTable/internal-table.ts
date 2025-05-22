@@ -1,5 +1,6 @@
 import { CharLengthDict, Dictionary, Row } from '../models/common';
 import {
+  ColumnOptionsRaw,
   ComplexOptions,
   ComputedColumn,
   RowFilterFunction,
@@ -114,15 +115,17 @@ class TableInternal {
     });
   }
 
-  addColumn(textOrObj: string | ComputedColumn) {
+  addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
     if (typeof textOrObj === 'string') {
       this.columns.push(createColumFromOnlyName(textOrObj));
+    } else if ('function' in textOrObj) { // Only way to know if this is a computed column
+      this.columns.push(createColumFromComputedColumn(textOrObj as ComputedColumn));
     } else {
-      this.columns.push(createColumFromComputedColumn(textOrObj));
+      this.columns.push(rawColumnToInternalColumn(textOrObj as ColumnOptionsRaw));
     }
   }
 
-  addColumns(toBeInsertedColumns: string[]) {
+  addColumns(toBeInsertedColumns: string[] | ColumnOptionsRaw[]) {
     toBeInsertedColumns.forEach((toBeInsertedColumn) => {
       this.addColumn(toBeInsertedColumn);
     });
