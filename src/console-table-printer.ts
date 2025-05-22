@@ -1,6 +1,6 @@
 import TableInternal from './internalTable/internal-table';
 import { Dictionary } from './models/common';
-import { ComplexOptions } from './models/external-table';
+import { ColumnOptionsRaw, ComplexOptions } from './models/external-table';
 import {
   convertRawRowOptionsToStandard,
   RowOptionsRaw,
@@ -13,12 +13,12 @@ export default class Table {
     this.table = new TableInternal(options);
   }
 
-  addColumn(column: string) {
+  addColumn(column: string | ColumnOptionsRaw) {
     this.table.addColumn(column);
     return this;
   }
 
-  addColumns(columns: string[]) {
+  addColumns(columns: string[] | ColumnOptionsRaw[]) {
     this.table.addColumns(columns);
     return this;
   }
