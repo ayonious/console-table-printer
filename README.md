@@ -152,6 +152,12 @@ new Table({
     '👋': 2,
     '😅': 2,
   }, // custom len of chars in console
+  defaultColumnOptions: {
+    alignment: 'center',
+    color: 'red',
+    maxLen: 40,
+    minLen: 20,
+  },
 });
 ```
 
