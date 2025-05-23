@@ -10,7 +10,7 @@ const createComputedColumnsIfNecessary = (table: TableInternal) => {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
       table.addColumn(computedColumn);
       table.rows.forEach((row: Row, index: number, array: Row[]) => {
-        const rowValues = array.map( () => row.text);
+        const rowValues = array.map(() => row.text);
         row.text[computedColumn.name] = computedColumn.function(row.text, index, rowValues);
       });
     });
