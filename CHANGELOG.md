@@ -1,3 +1,16 @@
+# [2.13.0](https://github.com/ayonious/console-table-printer/compare/v2.12.1...v2.13.0) (2025-05-23)
+
+
+### Bug Fixes
+
+* Allow Column object adding for Table instance creation ([#478](https://github.com/ayonious/console-table-printer/issues/478)) ([3bd08df](https://github.com/ayonious/console-table-printer/commit/3bd08df62b55524e7818a54de1e335fe58a9bab5))
+
+
+### Features
+
+* Allow configurable Default styles for columns ([#479](https://github.com/ayonious/console-table-printer/issues/479)) ([51bc334](https://github.com/ayonious/console-table-printer/commit/51bc3348d10f6c29b7e5e407452a987493b4662c))
+* The Computed Column function is passed `row`, `index`, and `array` ([#464](https://github.com/ayonious/console-table-printer/issues/464)) ([d6793c6](https://github.com/ayonious/console-table-printer/commit/d6793c667843d5ab4956b1263bab389642604f90))
+
 ## [2.12.1](https://github.com/ayonious/console-table-printer/compare/v2.12.0...v2.12.1) (2024-06-20)
 
 
