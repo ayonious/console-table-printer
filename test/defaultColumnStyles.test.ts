@@ -1,6 +1,6 @@
 import { Table } from '../index';
 
-describe('Testing defaultColumnStyles in Table', () => {
+describe('Testing defaultColumnOptions in Table', () => {
   it('should apply default styles to columns when not specified', () => {
     const defaultStyles = { alignment: 'center', color: 'blue', maxLen: 50 };
     const p = new Table({
@@ -8,7 +8,7 @@ describe('Testing defaultColumnStyles in Table', () => {
         { name: 'col1' },
         { name: 'col2', alignment: 'left' },
       ],
-      defaultColumnStyles: defaultStyles,
+      defaultColumnOptions: defaultStyles,
     });
 
     p.addRow({ col1: 'value1', col2: 'value2' });
