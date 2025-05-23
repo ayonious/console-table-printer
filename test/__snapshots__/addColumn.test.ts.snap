@@ -25,6 +25,15 @@ exports[`Testing adding columns should allow adding a single column 1`] = `
 └──────────────┘"
 `;
 
+exports[`Testing adding columns should allow adding columns after rows are added 1`] = `
+"┌────────┬───────┐
+│[37m [0m[01m  col1[0m │[37m [0m[01m col2[0m │
+├────────┼───────┤
+│[37m [0m[37mvalue1[0m │[37m [0m[37m     [0m │
+│[37m [0m[37mvalue2[0m │[37m [0m[37madded[0m │
+└────────┴───────┘"
+`;
+
 exports[`Testing adding columns should allow adding columns with colors 1`] = `
 "┌───────────────┐
 │[37m [0m[01mcoloredColumn[0m │
@@ -47,4 +56,13 @@ exports[`Testing adding columns should allow adding multiple columns 1`] = `
 ├────────┼────────┤
 │[37m [0m[37mvalue1[0m │[37m [0m[37mvalue2[0m │
 └────────┴────────┘"
+`;
+
+exports[`Testing adding columns should preserve column order when adding multiple columns 1`] = `
+"┌──────┬──────┬──────┐
+│[37m [0m[01mcol1[0m │[37m [0m[01mcol2[0m │[37m [0m[01mcol3[0m │
+├──────┼──────┼──────┤
+│[37m [0m[37m   1[0m │[37m [0m[37m   2[0m │[37m [0m[37m   3[0m │
+│[37m [0m[37m   4[0m │[37m [0m[37m   5[0m │[37m [0m[37m   6[0m │
+└──────┴──────┴──────┘"
 `;
