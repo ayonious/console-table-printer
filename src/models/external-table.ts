@@ -35,7 +35,7 @@ export interface ComplexOptions {
   shouldDisableColors? : boolean;
   colorMap?: ColorMap;
   charLength?: CharLengthDict;
-  defaultColumnStyles?: {
+  defaultColumnOptions?: {
     alignment?: ALIGNMENT;
     color?: COLOR;
     title?: string;

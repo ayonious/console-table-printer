@@ -69,7 +69,7 @@ class TableInternal {
     this.disabledColumns = options?.disabledColumns || this.disabledColumns;
     this.computedColumns = options?.computedColumns || this.computedColumns;
     this.columns =
-      options?.columns?.map((column) => rawColumnToInternalColumn(column, options?.defaultColumnStyles)) || this.columns;
+      options?.columns?.map((column) => rawColumnToInternalColumn(column, options?.defaultColumnOptions)) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
 
