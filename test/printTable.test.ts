@@ -29,7 +29,8 @@ describe('Testing printTable function', () => {
     const result = printTable(testData, {
       defaultColumnOptions: {
         minLen: 10,
-        maxLen: 15
+        maxLen: 15,
+        color: 'red'
       }
     });
     expect(result).toBeUndefined();
