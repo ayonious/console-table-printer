@@ -1,7 +1,114 @@
 import { Table } from '../index';
 
 describe('Testing column alignment', () => {
-  it('all kind of alignments are working', () => {
+  it('should handle basic left, right, and center alignments', () => {
+    const p = new Table()
+      .addColumn({ name: 'left', alignment: 'left' })
+      .addColumn({ name: 'right', alignment: 'right' })
+      .addColumn({ name: 'center', alignment: 'center' });
+
+    p.addRow({
+      left: 'left-aligned',
+      right: 'right-aligned',
+      center: 'centered'
+    });
+
+    const rendered = p.render();
+    expect(rendered).toMatchSnapshot();
+
+    // Verify alignment visually in console
+    p.printTable();
+  });
+
+  it('should maintain alignment with varying content lengths', () => {
+    const p = new Table()
+      .addColumn({ name: 'left', alignment: 'left' })
+      .addColumn({ name: 'right', alignment: 'right' })
+      .addColumn({ name: 'center', alignment: 'center' });
+
+    // Add rows with different content lengths
+    p.addRow({
+      left: 'short',
+      right: 'short',
+      center: 'short'
+    });
+    p.addRow({
+      left: 'medium length',
+      right: 'medium length',
+      center: 'medium length'
+    });
+    p.addRow({
+      left: 'this is a very long text',
+      right: 'this is a very long text',
+      center: 'this is a very long text'
+    });
+
+    const rendered = p.render();
+    expect(rendered).toMatchSnapshot();
+
+    // Verify alignment visually in console
+    p.printTable();
+  });
+
+  it('should handle alignment with special characters and numbers', () => {
+    const p = new Table()
+      .addColumn({ name: 'leftNum', alignment: 'left' })
+      .addColumn({ name: 'rightNum', alignment: 'right' })
+      .addColumn({ name: 'centerSpecial', alignment: 'center' });
+
+    p.addRows([
+      {
+        leftNum: 12345,
+        rightNum: 67890,
+        centerSpecial: '!@#$%'
+      },
+      {
+        leftNum: -123.45,
+        rightNum: 678.90,
+        centerSpecial: '    spaces    '
+      },
+      {
+        leftNum: '0000',
+        rightNum: '9999',
+        centerSpecial: '~~middle~~'
+      }
+    ]);
+
+    const rendered = p.render();
+    expect(rendered).toMatchSnapshot();
+
+    // Verify alignment visually in console
+    p.printTable();
+  });
+
+  it('should combine alignment with colors and maintain formatting', () => {
+    const p = new Table()
+      .addColumn({ name: 'leftRed', alignment: 'left', color: 'red' })
+      .addColumn({ name: 'rightBlue', alignment: 'right', color: 'blue' })
+      .addColumn({ name: 'centerGreen', alignment: 'center', color: 'green' });
+
+    p.addRows([
+      {
+        leftRed: 'Red Left',
+        rightBlue: 'Blue Right',
+        centerGreen: 'Green Center'
+      },
+      {
+        leftRed: 'Short',
+        rightBlue: 'Medium Text',
+        centerGreen: 'Very Long Center Text'
+      }
+    ]);
+
+    const rendered = p.render();
+    expect(rendered).toMatchSnapshot();
+
+    // Verify alignment and colors visually in console
+    p.printTable();
+  });
+
+  // Keep the original comprehensive test but rename it for clarity
+  it('should handle complex alignment scenarios with mixed colors and row colors', () => {
     // Create a table
     const p = new Table({
       columns: [
