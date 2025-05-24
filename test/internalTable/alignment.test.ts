@@ -2,8 +2,130 @@ import { renderTable } from '../../src/internalTable/internal-table-printer';
 import { Table } from '../../index';
 
 describe('Testing column alignment', () => {
-  it('all kind of alignments are working', () => {
-    // Create a table
+  it('should handle basic alignment with mixed content types', () => {
+    const p = new Table({
+      columns: [
+        { name: 'numbers', alignment: 'right' },
+        { name: 'text', alignment: 'left' },
+        { name: 'mixed', alignment: 'center' },
+      ],
+    });
+
+    p.addRows([
+      {
+        numbers: 12345.67,
+        text: 'Regular text',
+        mixed: '!@#$%',
+      },
+      {
+        numbers: -987.65,
+        text: 'Left aligned',
+        mixed: '12ABC',
+      },
+      {
+        numbers: 0,
+        text: 'Simple',
+        mixed: '✓✗',
+      },
+    ]);
+
+    const returned = renderTable(p.table);
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
+  });
+
+  it('should handle alignment with Unicode and emojis', () => {
+    const p = new Table({
+      columns: [
+        { name: 'leftEmoji', alignment: 'left', color: 'yellow' },
+        { name: 'centerUnicode', alignment: 'center', color: 'cyan' },
+        { name: 'rightMixed', alignment: 'right', color: 'green' },
+      ],
+    });
+
+    p.addRows([
+      {
+        leftEmoji: '👋 Hello',
+        centerUnicode: '♠♣♥♦',
+        rightMixed: 'End 🎉',
+      },
+      {
+        leftEmoji: '🌟 Star',
+        centerUnicode: '→←↑↓',
+        rightMixed: '⚡ Flash',
+      },
+      {
+        leftEmoji: '🎨 Art',
+        centerUnicode: '❤️💔💖',
+        rightMixed: 'Done ✅',
+      },
+    ]);
+
+    const returned = renderTable(p.table);
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
+  });
+
+  it('should handle alignment with dynamic width columns', () => {
+    const p = new Table({
+      columns: [
+        { name: 'narrow', alignment: 'left', maxLen: 10 },
+        { name: 'wide', alignment: 'center', minLen: 30 },
+        { name: 'adaptive', alignment: 'right' },
+      ],
+    });
+
+    p.addRows([
+      {
+        narrow: 'Short',
+        wide: 'This is centered in a wide column',
+        adaptive: 'Right',
+      },
+      {
+        narrow: 'Truncated Text',
+        wide: 'Center',
+        adaptive: 'This will push column width',
+      },
+      {
+        narrow: 'ABC',
+        wide: 'Wide center',
+        adaptive: '12345',
+      },
+    ]);
+
+    const returned = renderTable(p.table);
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
+  });
+
+  it('should handle alignment with multi-line content', () => {
+    const p = new Table({
+      columns: [
+        { name: 'leftList', alignment: 'left' },
+        { name: 'centerParagraph', alignment: 'center' },
+        { name: 'rightCode', alignment: 'right' },
+      ],
+    });
+
+    p.addRows([
+      {
+        leftList: '• First\n• Second\n• Third',
+        centerParagraph: 'Title\nContent\nFooter',
+        rightCode: 'function() {\n  return;\n}',
+      },
+      {
+        leftList: '1. One\n2. Two',
+        centerParagraph: 'Start\nEnd',
+        rightCode: 'x = 1;\ny = 2;',
+      },
+    ]);
+
+    const returned = renderTable(p.table);
+    expect(returned).toMatchSnapshot();
+    console.log(returned);
+  });
+
+  it('should handle alignment with mixed colors and styles', () => {
     const p = new Table({
       columns: [
         { name: 'red_left_align_index', alignment: 'left', color: 'red' },
@@ -62,7 +184,6 @@ describe('Testing column alignment', () => {
       { color: 'yellow' }
     );
 
-    // print
     const returned = renderTable(p.table);
     expect(returned).toMatchSnapshot();
     console.log(returned);

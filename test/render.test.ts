@@ -1,76 +1,134 @@
 import { Table } from '../index';
 
-describe('Testing rendering column alignment', () => {
-  it('render function gives output the same as print function', () => {
-    // Create a table
-    const p = new Table({
+describe('Table Rendering Tests', () => {
+  it('should render basic table correctly', () => {
+    const table = new Table()
+      .addColumn('id')
+      .addColumn('name')
+      .addColumn('score');
+
+    table.addRows([
+      { id: 1, name: 'John', score: 85 },
+      { id: 2, name: 'Jane', score: 92 },
+      { id: 3, name: 'Bob', score: 78 }
+    ]);
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
+
+  it('should render table with different alignments', () => {
+    const table = new Table({
       columns: [
-        { name: 'red_left_align_index', alignment: 'left', color: 'red' },
-        { name: 'right_align_text', alignment: 'right' },
-        { name: 'green_value_center', alignment: 'center', color: 'green' },
-      ],
+        { name: 'left_col', alignment: 'left' },
+        { name: 'center_col', alignment: 'center' },
+        { name: 'right_col', alignment: 'right' }
+      ]
     });
 
-    // add rows with color
-    p.addRow(
-      {
-        red_left_align_index: 2,
-        right_align_text: 'This row is blue',
-        green_value_center: 10.212,
-      },
-      { color: 'blue' }
-    );
-    p.addRow(
-      {
-        red_left_align_index: 3,
-        right_align_text: 'I would like some red wine please',
-        green_value_center: 10.212,
-      },
-      { color: 'red' }
-    );
-    p.addRow(
-      {
-        red_left_align_index: 4,
-        right_align_text: 'I would like some cyan wine please',
-        green_value_center: 10.212,
-      },
-      { color: 'cyan' }
-    );
-    p.addRow(
-      {
-        red_left_align_index: 5,
-        right_align_text: 'I would like some white_bold wine please',
-        green_value_center: 10.212,
-      },
-      { color: 'white_bold' }
-    );
-    p.addRow({
-      red_left_align_index: 6,
-      right_align_text: 'I would like some crimson sky please',
-      green_value_center: 10.212,
+    table.addRows([
+      { left_col: 'Left', center_col: 'Center', right_col: 'Right' },
+      { left_col: '111', center_col: '222', right_col: '333' }
+    ]);
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
+
+  it('should render table with colors', () => {
+    const table = new Table({
+      columns: [
+        { name: 'red_col', color: 'red' },
+        { name: 'green_col', color: 'green' },
+        { name: 'blue_col', color: 'blue' }
+      ]
     });
-    p.addRow(
-      {
-        red_left_align_index: 7,
-        right_align_text: 'I would like some green gemuse please',
-        green_value_center: 20.0,
-      },
+
+    table.addRows([
+      { red_col: 'Red text', green_col: 'Green text', blue_col: 'Blue text' },
+      { red_col: '111', green_col: '222', blue_col: '333' }
+    ]);
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
+
+  it('should render table with row colors', () => {
+    const table = new Table()
+      .addColumn('name')
+      .addColumn('status')
+      .addColumn('score');
+
+    table.addRow(
+      { name: 'John', status: 'Pass', score: 95 },
       { color: 'green' }
     );
-    p.addRow(
-      {
-        red_left_align_index: 8,
-        right_align_text: 'I would like some gelb bananen bitte',
-        green_value_center: 100,
-      },
-      { color: 'yellow' }
+    table.addRow(
+      { name: 'Jane', status: 'Fail', score: 45 },
+      { color: 'red' }
+    );
+    table.addRow(
+      { name: 'Bob', status: 'Pass', score: 85 },
+      { color: 'green' }
     );
 
-    // render and print
-    const render = p.render();
-    console.log(render);
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
 
-    // print
-    p.printTable();
+  it('should render table with mixed styling', () => {
+    const table = new Table({
+      columns: [
+        { name: 'id', alignment: 'right', color: 'blue' },
+        { name: 'name', alignment: 'left' },
+        { name: 'status', alignment: 'center', color: 'green' }
+      ]
+    });
+
+    table.addRow(
+      { id: 1, name: 'John', status: 'Active' },
+      { color: 'yellow' }
+    );
+    table.addRow(
+      { id: 2, name: 'Jane', status: 'Inactive' },
+      { color: 'gray' }
+    );
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
+
+  it('should render empty table correctly', () => {
+    const table = new Table({
+      columns: [
+        { name: 'col1' },
+        { name: 'col2' }
+      ]
+    });
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
+  });
+
+  it('should render table with special characters', () => {
+    const table = new Table()
+      .addColumn('symbols')
+      .addColumn('description');
+
+    table.addRows([
+      { symbols: '!@#$%^&*()', description: 'Special characters' },
+      { symbols: '│─┌┐└┘├┤┬┴┼', description: 'Box drawing characters' },
+      { symbols: '♠♣♥♦', description: 'Card suits' }
+    ]);
+
+    const rendered = table.render();
+    expect(rendered).toMatchSnapshot();
+    table.printTable();
   });
 });
