@@ -8,9 +8,14 @@ import TableInternal from './internal-table';
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
+      // This can happen if renderTable/printTable is called multiple times
+      const isColumnAlreadyExists = table.columns.some((col: Column) => col.name === computedColumn.name);
+      if (isColumnAlreadyExists) {
+        return;
+      }
       table.addColumn(computedColumn);
-      table.rows.forEach((row: Row, index: number, array: Row[]) => {
-        const arrayRowText = array.map(() => row.text);
+      table.rows.forEach((row: Row, index: number, rowsArray: Row[]) => {
+        const arrayRowText = rowsArray.map((elemInRowsArray) => elemInRowsArray.text);
         row.text[computedColumn.name] = computedColumn.function(row.text, index, arrayRowText);
       });
     });
