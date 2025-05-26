@@ -1,8 +1,8 @@
 <h1 align="center">console-table-printer</h1>
 <h3 align="center">🖥️🍭Printing Pretty Tables on your console</h3>
 <p align="center">
-  <a href="https://codecov.io/gh/ayonious/console-table-printer">
-    <img alt="codecov" src="https://codecov.io/gh/ayonious/console-table-printer/branch/master/graph/badge.svg">
+  <a href="https://codecov.io/gh/console-table-printer/console-table-printer">
+    <img alt="codecov" src="https://codecov.io/gh/console-table-printer/console-table-printer/branch/master/graph/badge.svg">
   </a>
   <a href="https://badge.fury.io/js/console-table-printer">
     <img alt="npm version" src="https://badge.fury.io/js/console-table-printer.svg">
@@ -12,9 +12,6 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/prettier/prettier">
-    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=plastic">
-  </a>
   <a href="https://github.com/semantic-release/semantic-release">
     <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
   </a>
