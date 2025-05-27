@@ -4,8 +4,10 @@
 
 ![NPM Downloads](https://img.shields.io/npm/dw/console-table-printer)
 [![install size](https://packagephobia.com/badge?p=console-table-printer)](https://packagephobia.com/result?p=console-table-printer)
+[![GitHub stars](https://img.shields.io/github/stars/console-table-printer/console-table-printe.svg?style=social&label=Star)](https://github.com/console-table-printer/console-table-printe)
 [![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
 [![codecov](https://codecov.io/gh/console-table-printer/console-table-printer/graph/badge.svg?token=SWX9VBuYUs)](https://codecov.io/gh/console-table-printer/console-table-printer)
+[![GitHub contributors](https://img.shields.io/github/contributors/console-table-printer/console-table-printe.svg)](https://github.com/console-table-printer/console-table-printe/graphs/contributors)
 
 ## Synopsis
 
