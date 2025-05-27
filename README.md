@@ -1,21 +1,10 @@
 <h1 align="center">console-table-printer</h1>
 <h3 align="center">🖥️🍭Printing Pretty Tables on your console</h3>
-<p align="center">
-  <a href="https://codecov.io/gh/console-table-printer/console-table-printer">
-    <img alt="codecov" src="https://codecov.io/gh/console-table-printer/console-table-printer/branch/master/graph/badge.svg">
-  </a>
-  <a href="https://badge.fury.io/js/console-table-printer">
-    <img alt="npm version" src="https://badge.fury.io/js/console-table-printer.svg">
-  </a>
-  <a href="https://packagephobia.now.sh/result?p=console-table-printer">
-    <img alt="install size" src="https://packagephobia.now.sh/badge?p=console-table-printer@latest">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/semantic-release/semantic-release">
-    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
-  </a>
-</p>
+
+[![codecov](https://codecov.io/gh/console-table-printer/console-table-printer/branch/master/graph/badge.svg)](https://codecov.io/gh/console-table-printer/console-table-printer)
+[![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
+[![install size](https://packagephobia.now.sh/badge?p=console-table-printer@latest)](https://packagephobia.now.sh/result?p=console-table-printer)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Synopsis
 
