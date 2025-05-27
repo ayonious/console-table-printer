@@ -7,11 +7,12 @@
     {
       "packagePatterns": [ "*" ],
       "groupName": "all dependencies",
-      "groupSlug": "all"    
+      "groupSlug": "all"
     }
   ],
   "rangeStrategy": "bump",
-  "automerge": false,
+  "automerge": true,
+  "automergeType": "pr",
   "schedule": "before 3am on Monday",
   "lockFileMaintenance": {
     "enabled": true
