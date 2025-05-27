@@ -33,7 +33,7 @@ const testCases = [
 printTable(testCases);
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-quick-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-quick-1.png)
 
 ## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
 
@@ -58,7 +58,7 @@ p.addRows([
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-instance-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-instance-1.png)
 
 You can also put some color to your table like this:
 
@@ -70,7 +70,7 @@ p.addRow({ description: 'gelb bananen', value: 100 }, { color: 'yellow' });
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-color-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-color-1.png)
 
 You can also put properties based on columns (color/alignment/title)
 
@@ -100,7 +100,7 @@ p.addRow({ id: 3, text: 'rosa hemd wie immer', value: 100 }, { color: 'cyan' });
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/ayonious/console-table-printer@master/static-resources/readme-columns-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-columns-1.png)
 
 ## CLI
 
@@ -183,4 +183,4 @@ You can get color / alignment as types. Check Docs: [types-docs](https://console
 
 ## License
 
-[MIT](https://github.com/ayonious/console-table-printer/blob/master/LICENSE)
+[MIT](https://github.com/console-table-printer/console-table-printer/blob/master/LICENSE)
