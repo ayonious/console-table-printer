@@ -1,3 +1,16 @@
+# [2.14.0](https://github.com/console-table-printer/console-table-printer/compare/v2.13.0...v2.14.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* Computer column array bug ([#494](https://github.com/console-table-printer/console-table-printer/issues/494)) ([37c7d85](https://github.com/console-table-printer/console-table-printer/commit/37c7d85f692f9f0988006b050c99e0ced66ccb24))
+* Update badges Update README.md ([#497](https://github.com/console-table-printer/console-table-printer/issues/497)) ([6f58f2c](https://github.com/console-table-printer/console-table-printer/commit/6f58f2c9b707e95aad569584cd6448522f799a30))
+
+
+### Features
+
+* allow options with printTable function ([#485](https://github.com/console-table-printer/console-table-printer/issues/485)) ([74c96ea](https://github.com/console-table-printer/console-table-printer/commit/74c96ea73f26df0d0189db685a2fb62f4785b929))
+
 # [2.13.0](https://github.com/ayonious/console-table-printer/compare/v2.12.1...v2.13.0) (2025-05-23)
 
 
