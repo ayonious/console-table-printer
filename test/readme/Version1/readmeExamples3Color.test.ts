@@ -1,4 +1,4 @@
-import { Table } from '../../index';
+import { Table } from '../../../index';
 
 describe('Example: 3', () => {
   it('Coloring', () => {

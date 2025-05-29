@@ -1,186 +1,190 @@
-<h1 align="center">console-table-printer</h1>
+# console-table-printer
 
-> 🖥️🍭Printing Pretty Tables on your console</h3>
+> 🖥️🍭 Making your console output beautiful with colorful tables!
 
 ![NPM Downloads](https://img.shields.io/npm/dw/console-table-printer)
 [![install size](https://packagephobia.com/badge?p=console-table-printer)](https://packagephobia.com/result?p=console-table-printer)
 [![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
 [![codecov](https://codecov.io/gh/console-table-printer/console-table-printer/graph/badge.svg?token=SWX9VBuYUs)](https://codecov.io/gh/console-table-printer/console-table-printer)
 
+## 📢 Important Notice
 
-## Synopsis
+> **The official documentation has moved!**  
+> Visit our new documentation site at [console-table.netlify.app/docs](https://console-table.netlify.app/docs) for:
+> - Complete API reference
+> - Advanced usage examples
+> - Configuration options
+> - Styling guide
+> - TypeScript support
+> - And more!
 
-Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console using js.
+This README provides quick examples to get you started. For detailed documentation, please visit our [new documentation site](https://console-table.netlify.app/docs).
 
-## Installation
+## 📦 Installation
 
 ```bash
 npm install console-table-printer --save
 ```
 
-## Basic Example
+## 🚀 Quick Start
+
+### The Simple Way
 
 ```javascript
 const { printTable } = require('console-table-printer');
 
-//Create a table
-const testCases = [
-  { Rank: 3, text: 'I would like some Yellow', value: 100 },
-  { Rank: 4, text: 'I hope batch update is working', value: 300 },
+// Let's track our favorite ice cream flavors!
+const iceCreamRankings = [
+  { rank: 1, flavor: 'Chocolate', rating: '5/5', votes: 123 },
+  { rank: 2, flavor: 'Vanilla', rating: '4/5', votes: 92 },
+  { rank: 3, flavor: 'Cookie Dough', rating: '4/5', votes: 89 },
+  { rank: 4, flavor: 'Blueberry', rating: '3/5', votes: 45 },
 ];
 
-//print
-printTable(testCases);
+printTable(iceCreamRankings);
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-quick-1.png)
+Output:
 
-## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
+![Ice Cream Rankings Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-ice-cream.png)
 
-You can also create a Table instance and print it:
+### The Fancy Way
 
 ```javascript
 const { Table } = require('console-table-printer');
 
-//Create a table
-const p = new Table();
+// Create a todo list with style!
+const todos = new Table();
 
-// add rows with color
-p.addRow({ Record: 'a', text: 'red wine please', value: 10.212 });
-p.addRow({ Record: 'b', text: 'green gemuse please', value: 20.0 });
-p.addRows([
-  // adding multiple rows are possible
-  { Record: 'c', text: 'gelb bananen bitte', value: 100 },
-  { Record: 'd', text: 'update is working', value: 300 },
-]);
-
-//print
-p.printTable();
-```
-
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-instance-1.png)
-
-You can also put some color to your table like this:
-
-```javascript
-const p = new Table();
-p.addRow({ description: 'red wine', value: 10.212 }, { color: 'red' });
-p.addRow({ description: 'green gemuse', value: 20.0 }, { color: 'green' });
-p.addRow({ description: 'gelb bananen', value: 100 }, { color: 'yellow' });
-p.printTable();
-```
-
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-color-1.png)
-
-You can also put properties based on columns (color/alignment/title)
-
-```javascript
-const p = new Table({
-  columns: [
-    { name: 'id', alignment: 'left', color: 'blue' }, // with alignment and color
-    { name: 'text', alignment: 'right' },
-    { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
-  ],
-  colorMap: {
-    custom_green: '\x1b[32m', // define customized color
-  },
-});
-
-p.addRow({ id: 1, text: 'red wine', value: 10.212 }, { color: 'green' });
-p.addRow(
-  { id: 2, text: 'green gemuse', value: 20.0 },
-  { color: 'custom_green' } // your green
+// Add some colorful tasks
+todos.addRow(
+  { priority: 'HIGH', task: 'Morning run', status: 'DONE' },
+  { color: 'red' }
 );
-p.addRow(
-  { id: 3, text: 'gelb bananen', value: 100, is_priority_today: 'Y' },
+todos.addRow(
+  { priority: 'MED', task: 'Read a chapter', status: 'PENDING' },
   { color: 'yellow' }
 );
-p.addRow({ id: 3, text: 'rosa hemd wie immer', value: 100 }, { color: 'cyan' });
+todos.addRow(
+  { priority: 'LOW', task: 'Play video games', status: 'DONE' },
+  { color: 'green' }
+);
 
-p.printTable();
+todos.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-columns-1.png)
+Output:
 
-## CLI
+![Colored Todo List](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-todos.png)
 
-There is also a CLI tool for printing Tables on Terminal directly [table-printer-cli](https://www.npmjs.com/package/table-printer-cli)
-
-## Documentation
-
-Official documentation has been moved here: [console-table-documentation](https://console-table.netlify.app)
-
-### Table instance creation
-
-3 ways to Table Instance creation:
-
-1. Simplest way `new Table()`
-
-2. Only with column names: `new Table(['column1', 'column2', 'column3'])`
-
-3. Detailed way of creating table instance
+### The Super Fancy Way
 
 ```javascript
-new Table({
-  title: 'Title of the Table', // A text showsup on top of table (optoinal)
+const { Table } = require('console-table-printer');
+
+// Let's track our superhero team!
+const team = new Table({
+  title: '🦸‍♂️ Superhero Squad Status',
   columns: [
-    { name: 'column1', alignment: 'left', color: 'red' }, // with alignment and color
-    { name: 'column2', alignment: 'right', maxLen: 30 }, // lines bigger than this will be splitted in multiple lines
-    { name: 'column3', title: 'Column3' }, // Title is what will be shown while printing, by default title = name
+    { name: 'hero', title: 'Superhero', alignment: 'left', color: 'cyan' },
+    { name: 'power', title: 'Superpower', alignment: 'center' },
+    { name: 'status', title: 'Mission Status', alignment: 'right' },
   ],
-  rows: [{ column1: 'row1' }, { column2: 'row2' }, { column3: 'row3' }],
-  sort: (row1, row2) => row2.column1 - row1.column1, // sorting order of rows (optional), this is normal js sort function for Array.sort
-  filter: (row) => row.column1 < 3, // filtering rows (optional)
-  enabledColumns: ['column1'], // array of columns that you want to see, all other will be ignored (optional)
-  disabledColumns: ['column2'], // array of columns that you DONT want to see, these will always be hidden
-  colorMap: {
-    custom_green: '\x1b[32m', // define customized color
-  },
-  charLength: {
-    '👋': 2,
-    '😅': 2,
-  }, // custom len of chars in console
-  defaultColumnOptions: {
-    alignment: 'center',
-    color: 'red',
-    maxLen: 40,
-    minLen: 20,
-  },
 });
+
+team.addRow(
+  { hero: 'Spider-Woman', power: 'Web Slinging', status: 'Active' },
+  { color: 'red' }
+);
+team.addRow(
+  { hero: 'Captain Coffee', power: 'Never Sleeps', status: 'On Break' },
+  { color: 'yellow' }
+);
+team.addRow(
+  { hero: 'The Debugger', power: 'Finds All Bugs', status: 'Working' },
+  { color: 'green' }
+);
+team.addRow(
+  { hero: 'Binary Warrior', power: 'Speed Coding', status: 'Active' },
+  { color: 'blue' }
+);
+
+team.printTable();
 ```
 
-### Functions
+Output:
 
-- `addRow(rowObjet, options)` adding single row. This can be chained
-- `addRows(rowObjects, options)` adding multiple rows. array of row object. This case options will be applied to all the objects in row
-- `addColumn(columnObject)` adding single column
-- `addColumns(columnObjects)` adding multiple columns
-- `printTable()` Prints the table on your console
+![Superhero Squad Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-heroes.png)
 
-### possible `color` values for rows
+### Column Properties
 
-Check Docs: [color-vals](https://console-table.netlify.app/docs/doc-color)
+```javascript
+const { Table } = require('console-table-printer');
 
-Example usage: To Create a row of color blue
+// Track your pet's daily schedule!
+const petSchedule = new Table({
+  columns: [
+    { name: 'time', title: 'Time', alignment: 'left', color: 'blue' },
+    { name: 'activity', title: 'Activity', alignment: 'center' },
+    { name: 'status', title: 'Status', maxLen: 20 },
+  ],
+  title: '🐕 Pet Daily Routine',
+});
 
-```js
-table.addRow(rowObject, { color: 'blue' });
+petSchedule.addRows([
+  { time: '7:00 AM', activity: 'Morning Walk', status: 'Done' },
+  { time: '8:00 AM', activity: 'Breakfast', status: 'In Progress' },
+  { time: '2:00 PM', activity: 'Play Time', status: 'Waiting' },
+  { time: '6:00 PM', activity: 'Evening Walk', status: 'Pending' },
+], { color: 'cyan' });
+
+petSchedule.printTable();
 ```
 
-Example usage: To apply blue for all rows
+Output:
 
-```js
-table.addRows(rowsArray, { color: 'blue' });
-```
+![Pet Schedule Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-pets.png)
 
-### possible `alignment` values for columns
+## 📚 Complete Documentation
 
-Check Docs: [alignment-vals](https://console-table.netlify.app/docs/doc-alignment)
+The examples above are just the beginning! For comprehensive documentation, visit our official documentation site:
 
-### Typescript Support
+🔗 [console-table.netlify.app/docs](https://console-table.netlify.app/docs)
 
-You can get color / alignment as types. Check Docs: [types-docs](https://console-table.netlify.app/docs/doc-typescript)
+There you'll find:
+- Complete API reference
+- Advanced configuration options
+- Custom styling guides
+- More complex examples
+- TypeScript usage
+- Best practices
+- Troubleshooting guide
 
-## License
+### Quick Reference
+
+Here's a quick overview of commonly used features:
+
+#### 🎨 Available Colors
+- 'red' - For urgent or error items
+- 'green' - For success or completed items
+- 'yellow' - For warnings or in-progress items
+- 'blue' - For information or neutral items
+- 'magenta' - For special highlights
+- 'cyan' - For system or technical items
+
+[View all color options →](https://console-table.netlify.app/docs/doc-color)
+
+#### ↔️ Column Alignments
+- 'left' - Left-aligned text (default)
+- 'right' - Right-aligned text (great for numbers)
+- 'center' - Centered text (perfect for status indicators)
+
+[Learn more about alignments →](https://console-table.netlify.app/docs/doc-alignment)
+
+#### 🛠️ TypeScript Support
+Full TypeScript support with type definitions for colors and alignments.
+[TypeScript documentation →](https://console-table.netlify.app/docs/doc-typescript)
+
+## 📜 License
 
 [MIT](https://github.com/console-table-printer/console-table-printer/blob/master/LICENSE)
