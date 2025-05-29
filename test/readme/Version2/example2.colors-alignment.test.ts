@@ -1,5 +1,5 @@
 import { Table } from '../../..';
-import { getTableBody } from '../../testUtils/getTableBody';
+import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('README Example 2: Colors and Alignment', () => {
   test('should demonstrate colors and alignment features', () => {
@@ -58,13 +58,13 @@ describe('README Example 2: Colors and Alignment', () => {
       { color: 'blue' }
     );
 
-    table.printTable();
-    const rendered = getTableBody(table);
-    expect(rendered).toEqual([
+    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    expect(renderedHeader).toEqual('│ FEATURE      │    EXAMPLE    │                   DESCRIPTION │');
+    expect(renderedBody).toEqual([
       '│ RED_COLOR    │  Error State  │      Used for errors/warnings │',
       '│ GREEN_COLOR  │ Success State │       Used for success states │',
       '│ CENTER_ALIGN │ I AM CENTERED │ This column is center-aligned │',
-      '│ RIGHT_ALIGN  │     12345     │  This column is right-aligned │',
+      '│ RIGHT_ALIGN  │     12345     │  This column is right-aligned │'
     ]);
   });
 }); 

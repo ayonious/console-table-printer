@@ -1,5 +1,5 @@
 import { Table } from '../../..';
-import { getTableBody } from '../../testUtils/getTableBody';
+import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('README Example 3: Advanced Features', () => {
   test('should demonstrate advanced table features', () => {
@@ -72,16 +72,16 @@ describe('README Example 3: Advanced Features', () => {
       },
     ], { color: 'magenta' });
 
-    advancedTable.printTable();
-    const rendered = getTableBody(advancedTable);
-    expect(rendered).toEqual([
+    const [renderedHeader, renderedBody] = [getTableHeader(advancedTable), getTableBody(advancedTable)];
+    expect(renderedHeader).toEqual('│ FEATURE       │        VALUE         │                       NOTES │');
+    expect(renderedBody).toEqual([
       '│ COLUMN_COLOR  │     Cyan Column      │  This column is always cyan │',
       '│ MAX_LENGTH    │  This text will be   │ Prevents long text overflow │',
       '│               │  truncated because   │                             │',
       '│               │ maxLen is set to 20  │                             │',
       '│               │      characters      │                             │',
       '│ MIXED_CONTENT │        12345         │      Numbers and text mixed │',
-      '│ CUSTOM_STYLE  │    Special Format    │     Using multiple features │',
+      '│ CUSTOM_STYLE  │    Special Format    │     Using multiple features │'
     ]);
   });
 }); 

@@ -1,5 +1,5 @@
 import { printTable, Table } from '../../..';
-import { getTableBody } from '../../testUtils/getTableBody';
+import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('README Example 1: Basic Features', () => {
   test('should demonstrate basic table features', () => {
@@ -25,13 +25,14 @@ describe('README Example 1: Basic Features', () => {
       shouldDisableColors: true
     });
     table.addRows(tableFeatures);
-    table.printTable();
-    const rendered = getTableBody(table);
-    expect(rendered).toEqual([
+    
+    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    expect(renderedHeader).toEqual('│ id │           name │              description │  amount │                note │');
+    expect(renderedBody).toEqual([
       '│  1 │  DEFAULT_ALIGN │         Text aligns left │         │                     │',
       '│  2 │ TRUNCATED_TEXT │ Long text gets truncated │         │                     │',
       '│  3 │   NUMBER_ALIGN │                          │ 1234.56 │ Numbers align right │',
-      '│  4 │     EMPTY_CELL │                          │         │   Empty shows blank │',
+      '│  4 │     EMPTY_CELL │                          │         │   Empty shows blank │'
     ]);
   });
 }); 

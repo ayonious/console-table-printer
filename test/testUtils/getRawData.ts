@@ -1,8 +1,9 @@
-import { Table } from "../..";
+import { Table } from "../../dist";
 
 export const getTableHeader = (table: Table) => {
-    const rendered = table.render().split('\n')[1];
-    return rendered;
+    const rendered = table.render().split('\n');
+    const separatorIndex = rendered.findIndex(line => line.includes('│'));
+    return rendered[separatorIndex];
 };
 
 export const getTableBody = (table: Table) => {

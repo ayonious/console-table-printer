@@ -1,5 +1,5 @@
 import { Table } from '../../..';
-import { getTableBody } from '../../testUtils/getTableBody';
+import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('README Example 4: Practical Example', () => {
   test('should demonstrate a practical system status dashboard', () => {
@@ -60,13 +60,13 @@ describe('README Example 4: Practical Example', () => {
       { color: 'green' }
     );
 
-    systemStatus.printTable();
-    const rendered = getTableBody(systemStatus);
-    expect(rendered).toEqual([
+    const [renderedHeader, renderedBody] = [getTableHeader(systemStatus), getTableBody(systemStatus)];
+    expect(renderedHeader).toEqual('│ SERVICE    │ STATUS  │ RESPONSE TIME │');
+    expect(renderedBody).toEqual([
       '│ Database   │ ONLINE  │          45ms │',
       '│ API Server │ WARNING │         120ms │',
       '│ Cache      │ OFFLINE │           N/A │',
-      '│ CDN        │ ONLINE  │          20ms │',
+      '│ CDN        │ ONLINE  │          20ms │'
     ]);
   });
 }); 
