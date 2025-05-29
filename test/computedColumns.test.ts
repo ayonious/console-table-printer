@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Computed Columns Tests', () => {
   it('should handle basic arithmetic computations', () => {
@@ -229,5 +230,43 @@ describe('Computed Columns Tests', () => {
 
     p.printTable();
     expect(p.render()).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'value1', alignment: 'right' },
+        { name: 'value2', alignment: 'right' }
+      ],
+      computedColumns: [
+        {
+          name: 'sum',
+          function: (row) => row.value1 + row.value2
+        },
+        {
+          name: 'difference',
+          function: (row) => row.value1 - row.value2
+        },
+        {
+          name: 'product',
+          function: (row) => row.value1 * row.value2
+        }
+      ]
+    });
+
+    p.addRows([
+      { value1: 10, value2: 5 },
+      { value1: 20, value2: 10 },
+      { value1: 15, value2: 3 }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ value1 │ value2 │ sum │ difference │ product │');
+    expect(renderedBody).toEqual([
+      '│     10 │      5 │  15 │          5 │      50 │',
+      '│     20 │     10 │  30 │         10 │     200 │',
+      '│     15 │      3 │  18 │         12 │      45 │'
+    ]);
   });
 });

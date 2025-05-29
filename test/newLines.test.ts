@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Testing line breaks in table cells', () => {
   it('does not break the table', () => {
@@ -26,6 +27,32 @@ describe('Testing line breaks in table cells', () => {
     // print
     p.printTable();
     expect(p.render()).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const table = new Table({
+      shouldDisableColors: true
+    })
+      .addColumn('single_line')
+      .addColumn('multi_line')
+      .addColumn('mixed_line');
+
+    table.addRows([
+      {
+        single_line: 'No newlines here',
+        multi_line: 'First line\nSecond line\nThird line',
+        mixed_line: 'Start text\nMiddle\nEnd text'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    expect(renderedHeader).toEqual('│      single_line │ multi_line │ mixed_line │');
+    expect(renderedBody).toEqual([
+      '│ No newlines here │ First line │ Start text │',
+      '│                  │     Second │     Middle │',
+      '│                  │       line │   End text │',
+      '│                  │ Third line │            │'
+    ]);
   });
 });
 

@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Testing column alignment', () => {
   it('should handle basic left, right, and center alignments', () => {
@@ -171,5 +172,42 @@ describe('Testing column alignment', () => {
     // print
     p.printTable();
     expect(p.render()).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'left', alignment: 'left' },
+        { name: 'right', alignment: 'right' },
+        { name: 'center', alignment: 'center' }
+      ]
+    });
+
+    p.addRows([
+      {
+        left: 'short',
+        right: 'short',
+        center: 'short'
+      },
+      {
+        left: 'medium length',
+        right: 'medium length',
+        center: 'medium length'
+      },
+      {
+        left: 'this is a very long text',
+        right: 'this is a very long text',
+        center: 'this is a very long text'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ left                     │                    right │          center          │');
+    expect(renderedBody).toEqual([
+      '│ short                    │                    short │          short           │',
+      '│ medium length            │            medium length │      medium length       │',
+      '│ this is a very long text │ this is a very long text │ this is a very long text │'
+    ]);
   });
 });

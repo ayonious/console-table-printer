@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Testing adding columns', () => {
   it('should allow add new columns in a chain way', () => {
@@ -180,5 +181,20 @@ describe('Testing adding columns', () => {
     
     p.printTable();
     expect(rendered).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true
+    })
+      .addColumn({ name: 'complexColumn', alignment: 'center', color: 'blue', title: 'Complex Column' })
+      .addColumn('simpleColumn')
+      .addRow({ complexColumn: 'complexValue', simpleColumn: 'simpleValue' });
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ Complex Column │ simpleColumn │');
+    expect(renderedBody).toEqual([
+      '│  complexValue  │  simpleValue │'
+    ]);
   });
 });
