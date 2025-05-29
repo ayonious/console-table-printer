@@ -15,6 +15,7 @@ import {
 } from './table-constants';
 
 const max = (a: number, b: number) => Math.max(a, b);
+const min = (a: number, b: number) => Math.min(a, b);
 
 // takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>
@@ -100,34 +101,40 @@ export const findLenOfColumn = (
 ): number => {
   const columnId = column.name;
   const columnTitle = column.title;
-  let length = max(0, column?.minLen || 0);
-
-  if (column.maxLen) {
-    // if customer input is mentioned a max width, lets see if all other can fit here
-    // if others cant fit find the max word length so that at least the table can be printed
-    length = max(
-      length,
-      max(column.maxLen, biggestWordInSentence(columnTitle, charLength))
-    );
-    length = rows.reduce(
-      (acc, row) =>
-        max(
-          acc,
-          biggestWordInSentence(cellText(row.text[columnId]), charLength)
-        ),
-      length
-    );
-    return length;
-  }
-
-  length = max(length, findWidthInConsole(columnTitle, charLength));
-
+  
+  // First, calculate the content length without constraints
+  let contentLength = findWidthInConsole(columnTitle, charLength);
   rows.forEach((row) => {
-    length = max(
-      length,
+    contentLength = max(
+      contentLength,
       findWidthInConsole(cellText(row.text[columnId]), charLength)
     );
   });
+
+  // Apply minLen constraint
+  let length = max(contentLength, column?.minLen || 0);
+
+  // Apply maxLen constraint if specified
+  if (column.maxLen !== undefined) {
+    // If content needs to be wrapped, use the biggest word length
+    if (contentLength > column.maxLen) {
+      const biggestWordLength = max(
+        biggestWordInSentence(columnTitle, charLength),
+        rows.reduce(
+          (acc, row) =>
+            max(
+              acc,
+              biggestWordInSentence(cellText(row.text[columnId]), charLength)
+            ),
+          0
+        )
+      );
+      // Use the larger of maxLen and biggest word length to ensure text can be displayed
+      length = max(biggestWordLength, column.maxLen);
+    } else {
+      length = min(length, column.maxLen);
+    }
+  }
 
   return length;
 };

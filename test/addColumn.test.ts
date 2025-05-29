@@ -52,10 +52,10 @@ describe('Testing adding columns', () => {
     expect(p.render()).toMatchSnapshot();
   });
 
-  // TODO: fix this test
-  /*
   it('should handle columns with maxLen constraint', () => {
-    const p = new Table()
+    const p = new Table({
+      shouldDisableColors: true,
+    })
       .addColumn({ name: 'truncatedColumn', maxLen: 10 })
       .addColumn({ name: 'normalColumn' });
 
@@ -65,19 +65,22 @@ describe('Testing adding columns', () => {
       normalColumn: 'This text should not be truncated'
     });
 
+    p.printTable();
+
     const rendered = p.render();
     const lines = rendered.split('\n');
     
-    // Find the line with the content (should be the third line, after header and separator)
-    const contentLine = lines[2];
-    // Verify the truncated column's content length
-    const truncatedContent = contentLine.split('│')[1].trim();
-    expect(truncatedContent.length).toBeLessThanOrEqual(10);
-    
-    p.printTable();
+    // Get content lines (skip header and separator)
+    const contentLines = lines.slice(3, -1);
+
+    contentLines.forEach(line => {
+      const content = line.split('│')[1].trim();
+      // Verify the truncated column's content length
+      expect(content.length).toBeLessThanOrEqual(10);
+    });
+
     expect(rendered).toMatchSnapshot();
   });
-  */
 
   it('should handle columns with minLen padding', () => {
     const p = new Table()
@@ -101,26 +104,29 @@ describe('Testing adding columns', () => {
     expect(rendered).toMatchSnapshot();
   });
 
-  // TODO: fix this test
-  /*
+  // TODO: Fix this test
   it('should handle columns with both minLen and maxLen', () => {
-    const p = new Table()
+    const p = new Table({
+      shouldDisableColors: true,
+    })
       .addColumn({ 
-        name: 'constrainedColumn',
+        name: 'column',
         minLen: 10,
         maxLen: 15
       });
 
     // Test various content lengths
-    p.addRow({ constrainedColumn: 'short' }); // Should be padded
-    p.addRow({ constrainedColumn: 'just right' }); // Should fit
-    p.addRow({ constrainedColumn: 'this is too long' }); // Should be truncated
+    p.addRow({ column: 'short' }); // Should be padded to minLen
+    p.addRow({ column: 'just right' }); // Should fit as is
+    p.addRow({ column: 'this is too long' }); // Should be wrapped
+
+    p.printTable();
 
     const rendered = p.render();
     const lines = rendered.split('\n');
     
     // Get content lines (skip header and separator)
-    const contentLines = lines.slice(2, -1);
+    const contentLines = lines.slice(3, -1);
     
     contentLines.forEach(line => {
       const content = line.split('│')[1].trim();
@@ -132,7 +138,6 @@ describe('Testing adding columns', () => {
     p.printTable();
     expect(rendered).toMatchSnapshot();
   });
-  */
 
   it('should handle column with zero minLen and maxLen', () => {
     const p = new Table()
