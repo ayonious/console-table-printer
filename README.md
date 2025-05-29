@@ -28,122 +28,132 @@ npm install console-table-printer --save
 
 ## 🚀 Quick Start
 
-### The Simple Way
+### Basic Features
 
 ```javascript
-const { printTable } = require('console-table-printer');
+import { printTable } from 'console-table-printer';
 
-// Let's track our favorite ice cream flavors!
-const iceCreamRankings = [
-  { rank: 1, flavor: 'Chocolate', rating: '5/5', votes: 123 },
-  { rank: 2, flavor: 'Vanilla', rating: '4/5', votes: 92 },
-  { rank: 3, flavor: 'Cookie Dough', rating: '4/5', votes: 89 },
-  { rank: 4, flavor: 'Blueberry', rating: '3/5', votes: 45 },
+// Demonstrating basic table features
+const tableFeatures = [
+  { id: 1, name: 'DEFAULT_ALIGN', description: 'Text aligns left' },
+  { id: 2, name: 'TRUNCATED_TEXT', description: 'Long text gets truncated' },
+  { id: 3, name: 'NUMBER_ALIGN', amount: 1234.56, note: 'Numbers align right' },
+  { id: 4, name: 'EMPTY_CELL', amount: null, note: 'Empty shows blank' },
 ];
 
-printTable(iceCreamRankings);
+printTable(tableFeatures);
 ```
 
-Output:
-
-![Ice Cream Rankings Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-ice-cream.png)
-
-### The Fancy Way
+### Colors and Alignment
 
 ```javascript
-const { Table } = require('console-table-printer');
+import { Table } from 'console-table-printer';
 
-// Create a todo list with style!
-const todos = new Table();
-
-// Add some colorful tasks
-todos.addRow(
-  { priority: 'HIGH', task: 'Morning run', status: 'DONE' },
-  { color: 'red' }
-);
-todos.addRow(
-  { priority: 'MED', task: 'Read a chapter', status: 'PENDING' },
-  { color: 'yellow' }
-);
-todos.addRow(
-  { priority: 'LOW', task: 'Play video games', status: 'DONE' },
-  { color: 'green' }
-);
-
-todos.printTable();
-```
-
-Output:
-
-![Colored Todo List](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-todos.png)
-
-### The Super Fancy Way
-
-```javascript
-const { Table } = require('console-table-printer');
-
-// Let's track our superhero team!
-const team = new Table({
-  title: '🦸‍♂️ Superhero Squad Status',
+// Create a table demonstrating colors and alignment
+const table = new Table({
   columns: [
-    { name: 'hero', title: 'Superhero', alignment: 'left', color: 'cyan' },
-    { name: 'power', title: 'Superpower', alignment: 'center' },
-    { name: 'status', title: 'Mission Status', alignment: 'right' },
+    { name: 'feature', title: 'FEATURE', alignment: 'left' },
+    { name: 'example', title: 'EXAMPLE', alignment: 'center' },
+    { name: 'description', title: 'DESCRIPTION', alignment: 'right' },
   ],
 });
 
-team.addRow(
-  { hero: 'Spider-Woman', power: 'Web Slinging', status: 'Active' },
+// Add rows showing different features
+table.addRow(
+  { feature: 'RED_COLOR', example: 'Error State', description: 'Used for errors/warnings' },
   { color: 'red' }
 );
-team.addRow(
-  { hero: 'Captain Coffee', power: 'Never Sleeps', status: 'On Break' },
-  { color: 'yellow' }
-);
-team.addRow(
-  { hero: 'The Debugger', power: 'Finds All Bugs', status: 'Working' },
+table.addRow(
+  { feature: 'GREEN_COLOR', example: 'Success State', description: 'Used for success states' },
   { color: 'green' }
 );
-team.addRow(
-  { hero: 'Binary Warrior', power: 'Speed Coding', status: 'Active' },
+table.addRow(
+  { feature: 'CENTER_ALIGN', example: 'I AM CENTERED', description: 'This column is center-aligned' },
+  { color: 'yellow' }
+);
+table.addRow(
+  { feature: 'RIGHT_ALIGN', example: '12345', description: 'This column is right-aligned' },
   { color: 'blue' }
 );
 
-team.printTable();
+table.printTable();
 ```
 
-Output:
-
-![Superhero Squad Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-heroes.png)
-
-### Column Properties
+### Advanced Features
 
 ```javascript
-const { Table } = require('console-table-printer');
+import { Table } from 'console-table-printer';
 
-// Track your pet's daily schedule!
-const petSchedule = new Table({
+// Table demonstrating advanced features
+const advancedTable = new Table({
+  title: 'TITLE_DEMONSTRATION',
   columns: [
-    { name: 'time', title: 'Time', alignment: 'left', color: 'blue' },
-    { name: 'activity', title: 'Activity', alignment: 'center' },
-    { name: 'status', title: 'Status', maxLen: 20 },
+    { name: 'feature', title: 'FEATURE', alignment: 'left', color: 'cyan' },
+    { name: 'value', title: 'VALUE', alignment: 'center', maxLen: 20 },
+    { name: 'notes', title: 'NOTES', alignment: 'right' },
   ],
-  title: '🐕 Pet Daily Routine',
 });
 
-petSchedule.addRows([
-  { time: '7:00 AM', activity: 'Morning Walk', status: 'Done' },
-  { time: '8:00 AM', activity: 'Breakfast', status: 'In Progress' },
-  { time: '2:00 PM', activity: 'Play Time', status: 'Waiting' },
-  { time: '6:00 PM', activity: 'Evening Walk', status: 'Pending' },
-], { color: 'cyan' });
+advancedTable.addRows([
+  { 
+    feature: 'COLUMN_COLOR', 
+    value: 'Cyan Column', 
+    notes: 'This column is always cyan' 
+  },
+  { 
+    feature: 'MAX_LENGTH', 
+    value: 'This text will be truncated because maxLen is set to 20 characters', 
+    notes: 'Prevents long text overflow' 
+  },
+  { 
+    feature: 'MIXED_CONTENT',
+    value: '12345',
+    notes: 'Numbers and text mixed'
+  },
+  { 
+    feature: 'CUSTOM_STYLE',
+    value: 'Special Format',
+    notes: 'Using multiple features'
+  },
+], { color: 'magenta' });
 
-petSchedule.printTable();
+advancedTable.printTable();
 ```
 
-Output:
+### Practical Example
 
-![Pet Schedule Table](https://raw.githubusercontent.com/console-table-printer/console-table-printer/master/static-resources/example-pets.png)
+```javascript
+import { Table } from 'console-table-printer';
+
+// A practical example combining multiple features
+const systemStatus = new Table({
+  title: 'SYSTEM STATUS DASHBOARD',
+  columns: [
+    { name: 'service', title: 'SERVICE', alignment: 'left' },
+    { name: 'status', title: 'STATUS', alignment: 'center' },
+    { name: 'response', title: 'RESPONSE TIME', alignment: 'right' },
+  ],
+});
+
+systemStatus.addRow(
+  { service: 'Database', status: 'ONLINE', response: '45ms' },
+  { color: 'green' }
+);
+systemStatus.addRow(
+  { service: 'API Server', status: 'WARNING', response: '120ms' },
+  { color: 'yellow' }
+);
+systemStatus.addRow(
+  { service: 'Cache', status: 'OFFLINE', response: 'N/A' },
+  { color: 'red' }
+);
+systemStatus.addRow(
+  { service: 'CDN', status: 'ONLINE', response: '20ms' },
+  { color: 'green' }
+);
+
+systemStatus.printTable();
+```
 
 ## 📚 Complete Documentation
 
