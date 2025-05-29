@@ -6,6 +6,9 @@ export const getTableHeader = (table: Table) => {
 };
 
 export const getTableBody = (table: Table) => {
-    const rendered = table.render().split('\n').slice(3, -1);
-    return rendered;
+    const rendered = table.render().split('\n');
+    // Find the separator line index
+    const separatorIndex = rendered.findIndex(line => line.includes('├'));
+    // Return all lines after the separator until the footer
+    return rendered.slice(separatorIndex + 1, -1);
 };
