@@ -197,4 +197,27 @@ describe('Testing adding columns', () => {
       '│  complexValue  │  simpleValue │'
     ]);
   });
+
+  it('should verify that addColumn adds a new column while preserving existing data', () => {
+    const p = new Table({
+      shouldDisableColors: true
+    });
+    
+    // Add initial columns and data
+    p.addColumns(['col1', 'col2'])
+      .addRows([
+        { col1: 'value1', col2: 'value2' },
+        { col1: 'value3', col2: 'value4' }
+      ]);
+
+    // Add a new column
+    p.addColumn('col3');
+    p.addRows([
+      { col1: 'value5', col2: 'value6', col3: 'value7' }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader.split('│')).toContain('col3');
+    expect(renderedHeader).toHaveLength(3);
+  });
 });

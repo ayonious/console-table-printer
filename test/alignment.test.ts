@@ -210,4 +210,42 @@ describe('Testing column alignment', () => {
       '│ this is a very long text │ this is a very long text │ this is a very long text │'
     ]);
   });
+
+  it('should verify that each alignment type properly aligns content', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'left_col', alignment: 'left', minLen: 15 },
+        { name: 'right_col', alignment: 'right', minLen: 15 },
+        { name: 'center_col', alignment: 'center', minLen: 15 }
+      ]
+    });
+
+    // Test with different length content
+    p.addRows([
+      {
+        left_col: 'short',
+        right_col: 'short',
+        center_col: 'short'
+      },
+      {
+        left_col: 'medium length',
+        right_col: 'medium length',
+        center_col: 'medium length'
+      },
+      {
+        left_col: 'very long content',
+        right_col: 'very long content',
+        center_col: 'very long content'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ left_col          │         right_col │    center_col     │');
+    expect(renderedBody).toEqual([
+      '│ short             │             short │       short       │',
+      '│ medium length     │     medium length │   medium length   │',
+      '│ very long content │ very long content │ very long content │'
+    ]);
+  });
 });

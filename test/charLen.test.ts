@@ -177,4 +177,42 @@ describe('Character Length Handling Tests', () => {
       '│ Target 🎯 │ Art 🎨 │ Game 🎲 │'
     ]);
   });
+
+  it('should verify that columns maintain consistent width with different character lengths', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      charLength: {
+        '👍': 2,  // Thumbs up
+        '🌟': 2,  // Star
+        '❤️': 2,  // Heart
+        '→': 1,   // Arrow
+        '•': 1    // Bullet
+      },
+      columns: [
+        { name: 'emoji_start', alignment: 'left', minLen: 12 },
+        { name: 'emoji_middle', alignment: 'center', minLen: 12 },
+        { name: 'emoji_end', alignment: 'right', minLen: 12 }
+      ]
+    });
+
+    p.addRows([
+      {
+        emoji_start: '👍 Text',
+        emoji_middle: 'Text 🌟 Text',
+        emoji_end: 'Text ❤️'
+      },
+      {
+        emoji_start: '→ Normal',
+        emoji_middle: '• Center •',
+        emoji_end: 'End →'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ emoji_start  │ emoji_middle │    emoji_end │');
+    expect(renderedBody).toEqual([
+      '│ 👍 Text      │ Text 🌟 Text │      Text ❤️ │',
+      '│ → Normal     │ • Center •  │        End → │'
+    ]);
+  });
 });
