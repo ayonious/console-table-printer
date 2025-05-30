@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Testing column max Width', () => {
   it('Simple Line Limit', () => {
@@ -261,5 +262,40 @@ describe('Testing column max Width', () => {
     // print
     expect(p.render()).toMatchSnapshot();
     p.printTable();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'right_align_text', alignment: 'right', maxLen: 10, title: 'maxLen:10' },
+        { name: 'green_center_align', alignment: 'center', maxLen: 8, title: 'maxLen:8' }
+      ]
+    });
+
+    p.addRows([
+      {
+        right_align_text: 'This row is blue',
+        green_center_align: 'This row is green column'
+      },
+      {
+        right_align_text: 'This row is blue but again another line',
+        green_center_align: 'This row is green column but a little longer'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│  maxLen:10 │ maxLen:8 │');
+    expect(renderedBody).toEqual([
+      '│   This row │ This row │',
+      '│    is blue │ is green │',
+      '│            │  column  │',
+      '│   This row │ This row │',
+      '│    is blue │ is green │',
+      '│  but again │  column  │',
+      '│    another │  but a   │',
+      '│       line │  little  │',
+      '│            │  longer  │'
+    ]);
   });
 });

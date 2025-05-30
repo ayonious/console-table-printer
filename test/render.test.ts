@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Table Rendering Tests', () => {
   it('should render basic table correctly', () => {
@@ -130,5 +131,28 @@ describe('Table Rendering Tests', () => {
     const rendered = table.render();
     expect(rendered).toMatchSnapshot();
     table.printTable();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const table = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'id', alignment: 'right', color: 'blue' },
+        { name: 'name', alignment: 'left' },
+        { name: 'status', alignment: 'center', color: 'green' }
+      ]
+    });
+
+    table.addRows([
+      { id: 1, name: 'John', status: 'Active' },
+      { id: 2, name: 'Jane', status: 'Inactive' }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    expect(renderedHeader).toEqual('│ id │ name │  status  │');
+    expect(renderedBody).toEqual([
+      '│  1 │ John │  Active  │',
+      '│  2 │ Jane │ Inactive │'
+    ]);
   });
 });

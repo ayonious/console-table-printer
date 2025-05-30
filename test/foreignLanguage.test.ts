@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Example: Print a simple Table with cell colors', () => {
   it('foreign alphabets are working', () => {
@@ -119,6 +120,30 @@ describe('Example: Print a simple Table with cell colors', () => {
     // print
     p.printTable();
     expect(p.render()).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true
+    });
+
+    p.addRows([
+      {
+        Description: 'Some alphabets 这里是中文这里是中文这里是中文',
+        'Ticket No': 'ISSUE-1231',
+      },
+      {
+        Description: 'Some Summary 这里是中文这里是中文',
+        'Ticket No': 'ISSUE-22222',
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│                                   Description │   Ticket No │');
+    expect(renderedBody).toEqual([
+      '│ Some alphabets 这里是中文这里是中文这里是中文 │  ISSUE-1231 │',
+      '│             Some Summary 这里是中文这里是中文 │ ISSUE-22222 │'
+    ]);
   });
 });
 

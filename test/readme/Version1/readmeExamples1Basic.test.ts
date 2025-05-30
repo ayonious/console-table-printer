@@ -1,4 +1,4 @@
-import { printTable } from '../../index';
+import { printTable } from '../../../index';
 
 describe('Example: 1', () => {
   it('Basic', () => {

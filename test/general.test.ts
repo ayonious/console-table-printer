@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('General Table Functionality', () => {
   it('should create identical tables whether rows are added during or after instantiation', () => {
@@ -69,5 +70,33 @@ describe('General Table Functionality', () => {
       ]);
 
     expect(table.render()).toMatchSnapshot();
+  });
+
+  it('should make sure each column is what its expected to be', () => {
+    const table = new Table({
+      shouldDisableColors: true
+    });
+    
+    // Add columns first
+    table.addColumns(['col1', 'col2']);
+    
+    // Add rows one by one
+    table.addRow({ col1: 'value1', col2: 'value2' });
+    table.addRow({ col1: 'value3', col2: 'value4' });
+    
+    // Add multiple rows
+    table.addRows([
+      { col1: 'value5', col2: 'value6' },
+      { col1: 'value7', col2: 'value8' }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    expect(renderedHeader).toEqual('│   col1 │   col2 │');
+    expect(renderedBody).toEqual([
+      '│ value1 │ value2 │',
+      '│ value3 │ value4 │',
+      '│ value5 │ value6 │',
+      '│ value7 │ value8 │'
+    ]);
   });
 });

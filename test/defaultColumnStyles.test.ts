@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Testing defaultColumnOptions in Table', () => {
   it('should apply default styles to columns when not specified', () => {
