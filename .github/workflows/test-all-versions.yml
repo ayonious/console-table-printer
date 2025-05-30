@@ -179,9 +179,9 @@ jobs:
 
         // Test row addition and data handling
         table.addRows([
-          { id: 1, name: 'Very Long Product Name That Should be Truncated', price: 10.99, stock: true },
-          { id: 2, name: 'Product 2', price: 20.50, stock: false },
-          { id: 3, name: 'Product 3', price: 30.00, stock: true }
+          { id: 3, name: 'Product 3', price: 30.00, stock: true },
+          { id: 1, name: 'Product 1', price: 10.99, stock: true },
+          { id: 2, name: 'Product 2', price: 20.50, stock: false }
         ]);
 
         const render = table.render();
@@ -198,10 +198,13 @@ jobs:
         assert(render.includes('true'), 'Boolean value incorrect');
         assert(render.includes('false'), 'Boolean value incorrect');
 
-        // Test sorting
+        // Test sorting (verify the order of appearance)
         const lines = render.split('\n');
-        const idLine = lines.find(line => line.includes('1'));
-        assert(idLine && idLine.includes('10.99'), 'Sorting not working correctly');
+        const dataLines = lines.filter(line => line.includes('Product'));
+        assert(dataLines.length === 3, 'Expected 3 data lines');
+        assert(dataLines[0].includes('Product 1'), 'First row should be Product 1');
+        assert(dataLines[1].includes('Product 2'), 'Second row should be Product 2');
+        assert(dataLines[2].includes('Product 3'), 'Third row should be Product 3');
 
         console.log('✅ Node 20.x: Comprehensive functionality tests passed!');
 
