@@ -1,0 +1,71 @@
+name: Test All Node.js Versions
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install all dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build package
+      run: yarn build
+
+    - name: Run project tests
+      run: yarn test
+
+    - name: Pack package
+      run: yarn pack
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: package-dist
+        path: |
+          console-table-printer-*.tgz
+          test/githubActionsTest/package-test.js
+          dist/
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x, 22.x]
+      fail-fast: false
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: package-dist
+
+    - name: Test package
+      run: |
+        mkdir test-pkg && cd test-pkg
+        mv ../console-table-printer-*.tgz ./
+        mv ../test/githubActionsTest/package-test.js ./
+        yarn init -y
+        yarn add ./console-table-printer-*.tgz
+        echo "Running tests on Node.js ${{ matrix.node-version }}..."
+        node package-test.js 

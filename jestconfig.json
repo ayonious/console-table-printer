@@ -5,7 +5,8 @@
   "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "testPathIgnorePatterns": [
     "/node_modules/",
-    "/test/testUtils/"
+    "/test/testUtils/",
+    "/test/githubActionsTest/"
   ],
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "collectCoverageFrom": [
