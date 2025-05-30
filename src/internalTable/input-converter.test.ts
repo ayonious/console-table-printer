@@ -1,4 +1,4 @@
-import { rawColumnToInternalColumn, objIfExists } from '../../src/internalTable/input-converter';
+import { rawColumnToInternalColumn, objIfExists } from './input-converter';
 
 // Test rawColumnToInternalColumn function
 describe('rawColumnToInternalColumn', () => {
