@@ -1,4 +1,27 @@
 {
-  "collectCoverage": true,
-  "preset": "ts-jest"
+  "transform": {
+    "^.+\\.(t|j)sx?$": "ts-jest"
+  },
+  "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/test/testUtils/"
+  ],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/**/index.ts",
+    "!src/models/**/*.ts"
+  ],
+  "coverageReporters": ["lcov", "text", "text-summary"],
+  "coverageDirectory": "coverage",
+  "coverageThreshold": {
+    "global": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    }
+  }
 }
