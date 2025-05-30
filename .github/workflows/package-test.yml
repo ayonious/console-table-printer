@@ -1,0 +1,57 @@
+name: Package Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-package:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build package
+      run: yarn build
+
+    - name: Pack package
+      run: |
+        yarn pack
+        tar -xf console-table-printer-*.tgz
+        cd package
+        yarn init -y
+        yarn add ../console-table-printer-*.tgz
+
+    - name: Test package
+      working-directory: package
+      run: |
+        cat > test.js << 'EOL'
+        const { Table } = require('console-table-printer');
+
+        // Create a table
+        const p = new Table();
+
+        // Add rows with color
+        p.addRow({ id: 1, name: 'Product 1', price: 100 }, { color: 'green' });
+        p.addRow({ id: 2, name: 'Product 2', price: 200 }, { color: 'yellow' });
+        p.addRow({ id: 3, name: 'Product 3', price: 300 }, { color: 'red' });
+
+        // Print table
+        p.printTable();
+        EOL
+
+        node test.js 
