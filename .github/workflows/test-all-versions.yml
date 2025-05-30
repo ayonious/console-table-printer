@@ -36,12 +36,15 @@ jobs:
         name: package-dist
         path: |
           console-table-printer-*.tgz
+          test/githubActionsTest/package-test.js
           dist/
 
   test-node16:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+
     - name: Use Node.js 16.x
       uses: actions/setup-node@v4
       with:
@@ -56,38 +59,18 @@ jobs:
       run: |
         mkdir test-pkg && cd test-pkg
         mv ../console-table-printer-*.tgz ./
+        mv ../test/githubActionsTest/package-test.js ./
         yarn init -y
-        yarn add ./console-table-printer-*.tgz --production
-        cat > test.js << 'EOL'
-        const { Table } = require('console-table-printer');
-        const assert = require('assert');
-
-        // Test basic table rendering
-        const basicTable = new Table();
-        basicTable.addRow({ id: 1, name: 'Test' });
-        const basicRender = basicTable.render();
-        assert(basicRender.includes('id'), 'Table should contain column header "id"');
-        assert(basicRender.includes('name'), 'Table should contain column header "name"');
-        assert(basicRender.includes('1'), 'Table should contain value "1"');
-        assert(basicRender.includes('Test'), 'Table should contain value "Test"');
-
-        // Test table with colors
-        const colorTable = new Table();
-        colorTable.addRow({ id: 1, name: 'Green Row' }, { color: 'green' });
-        colorTable.addRow({ id: 2, name: 'Red Row' }, { color: 'red' });
-        const colorRender = colorTable.render();
-        assert(colorRender.includes('\x1b[32m'), 'Table should contain green color code');
-        assert(colorRender.includes('\x1b[31m'), 'Table should contain red color code');
-
-        console.log('✅ Node 16.x: Basic functionality tests passed!');
-        EOL
-
-        node test.js
+        yarn add ./console-table-printer-*.tgz
+        echo "Running tests on Node.js 16.x..."
+        node package-test.js
 
   test-node18:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+
     - name: Use Node.js 18.x
       uses: actions/setup-node@v4
       with:
@@ -102,49 +85,18 @@ jobs:
       run: |
         mkdir test-pkg && cd test-pkg
         mv ../console-table-printer-*.tgz ./
+        mv ../test/githubActionsTest/package-test.js ./
         yarn init -y
-        yarn add ./console-table-printer-*.tgz --production
-        cat > test.js << 'EOL'
-        const { Table } = require('console-table-printer');
-        const assert = require('assert');
-
-        // Test basic table rendering
-        const basicTable = new Table();
-        basicTable.addRow({ id: 1, name: 'Test' });
-        const basicRender = basicTable.render();
-        assert(basicRender.includes('id'), 'Table should contain column header "id"');
-        assert(basicRender.includes('name'), 'Table should contain column header "name"');
-
-        // Test table with column options
-        const optionsTable = new Table({
-          columns: [
-            { name: 'id', alignment: 'right' },
-            { name: 'name', title: 'NAME' }
-          ]
-        });
-        optionsTable.addRow({ id: 1, name: 'Test' });
-        const optionsRender = optionsTable.render();
-        assert(optionsRender.includes('NAME'), 'Table should contain custom column title "NAME"');
-
-        // Test table with multiple rows and data types
-        const complexTable = new Table();
-        complexTable.addRows([
-          { id: 1, name: 'Item 1', price: 10.99, inStock: true },
-          { id: 2, name: 'Item 2', price: 20.50, inStock: false }
-        ]);
-        const complexRender = complexTable.render();
-        assert(complexRender.includes('10.99'), 'Table should contain float value "10.99"');
-        assert(complexRender.includes('true'), 'Table should contain boolean value "true"');
-
-        console.log('✅ Node 18.x: Advanced functionality tests passed!');
-        EOL
-
-        node test.js
+        yarn add ./console-table-printer-*.tgz
+        echo "Running tests on Node.js 18.x..."
+        node package-test.js
 
   test-node20:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+
     - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
@@ -159,57 +111,8 @@ jobs:
       run: |
         mkdir test-pkg && cd test-pkg
         mv ../console-table-printer-*.tgz ./
+        mv ../test/githubActionsTest/package-test.js ./
         yarn init -y
-        yarn add ./console-table-printer-*.tgz --production
-        cat > test.js << 'EOL'
-        const { Table } = require('console-table-printer');
-        const assert = require('assert');
-
-        // Test comprehensive table features
-        const table = new Table({
-          title: 'Comprehensive Test Table',
-          columns: [
-            { name: 'id', alignment: 'right', color: 'blue' },
-            { name: 'name', title: 'PRODUCT NAME', maxLen: 20 },
-            { name: 'price', alignment: 'left' },
-            { name: 'stock', title: 'IN STOCK' }
-          ],
-          sort: (row1, row2) => row1.id - row2.id
-        });
-
-        // Test row addition and data handling
-        table.addRows([
-          { id: 3, name: 'Product 3', price: 30.00, stock: true },
-          { id: 1, name: 'Product 1', price: 10.99, stock: true },
-          { id: 2, name: 'Product 2', price: 20.50, stock: false }
-        ]);
-
-        const render = table.render();
-
-        // Test column configuration
-        assert(render.includes('PRODUCT NAME'), 'Custom column title not found');
-        assert(render.includes('IN STOCK'), 'Custom column title not found');
-
-        // Test color codes
-        assert(render.includes('\x1b[34m'), 'Blue color code not found');
-
-        // Test data formatting
-        assert(render.includes('10.99'), 'Price formatting incorrect');
-        assert(render.includes('true'), 'Boolean value incorrect');
-        assert(render.includes('false'), 'Boolean value incorrect');
-
-        // Test sorting (verify the order of appearance)
-        const lines = render.split('\n');
-        const dataLines = lines.filter(line => line.includes('Product'));
-        assert(dataLines.length === 3, 'Expected 3 data lines');
-        assert(dataLines[0].includes('Product 1'), 'First row should be Product 1');
-        assert(dataLines[1].includes('Product 2'), 'Second row should be Product 2');
-        assert(dataLines[2].includes('Product 3'), 'Third row should be Product 3');
-
-        console.log('✅ Node 20.x: Comprehensive functionality tests passed!');
-
-        // Visual verification
-        table.printTable();
-        EOL
-
-        node test.js 
+        yarn add ./console-table-printer-*.tgz
+        echo "Running tests on Node.js 20.x..."
+        node package-test.js 
