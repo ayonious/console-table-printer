@@ -1,5 +1,5 @@
-import { renderTable, renderSimpleTable, printSimpleTable } from '../../src/internalTable/internal-table-printer';
-import TableInternal from '../../src/internalTable/internal-table';
+import { renderTable, renderSimpleTable, printSimpleTable } from './internal-table-printer';
+import TableInternal from './internal-table';
 
 // Test renderTable function
 describe('renderTable', () => {

@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import {
   splitTextIntoTextsOfMinLen,
   textWithPadding,
-} from '../../src/utils/string-utils';
+} from './string-utils';
 
 describe('Example: Print a simple Table with cell colors', () => {
   it('cell colors are working', () => {

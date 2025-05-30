@@ -1,5 +1,5 @@
-import ColoredConsoleLine from '../../src/utils/colored-console-line';
-import { findWidthInConsole, stripAnsi } from '../../src/utils/console-utils';
+import ColoredConsoleLine from './colored-console-line';
+import { findWidthInConsole, stripAnsi } from './console-utils';
 
 describe('Console Width Calculation', () => {
   it('Simplest test: Colored Line', () => {

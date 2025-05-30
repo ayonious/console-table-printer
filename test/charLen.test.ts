@@ -1,4 +1,5 @@
 import { Table } from '../index';
+import { getTableBody, getTableHeader } from './testUtils/getRawData';
 
 describe('Character Length Handling Tests', () => {
   it('should handle basic emoji characters with custom lengths', () => {
@@ -140,4 +141,42 @@ describe('Character Length Handling Tests', () => {
     p.printTable();
     expect(p.render()).toMatchSnapshot();
   });
+
+  it('should make sure each column is what its expected to be', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      charLength: {
+        '🎯': 2,
+        '🎨': 2,
+        '🎲': 2
+      },
+      columns: [
+        { name: 'left', alignment: 'left' },
+        { name: 'center', alignment: 'center' },
+        { name: 'right', alignment: 'right' }
+      ]
+    });
+
+    p.addRows([
+      { 
+        left: '🎯 Target',
+        center: '🎨 Art',
+        right: '🎲 Game'
+      },
+      { 
+        left: 'Target 🎯',
+        center: 'Art 🎨',
+        right: 'Game 🎲'
+      }
+    ]);
+
+    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    expect(renderedHeader).toEqual('│ left      │ center │   right │');
+    expect(renderedBody).toEqual([
+      '│ 🎯 Target │ 🎨 Art │ 🎲 Game │',
+      '│ Target 🎯 │ Art 🎨 │ Game 🎲 │'
+    ]);
+  });
+
+
 });

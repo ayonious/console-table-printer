@@ -1,5 +1,5 @@
-import TableInternal from '../../src/internalTable/internal-table';
-import { renderTable } from '../../src/internalTable/internal-table-printer';
+import TableInternal from './internal-table';
+import { renderTable } from './internal-table-printer';
 
 // Test initialization of TableInternal
 

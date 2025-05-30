@@ -1,5 +1,5 @@
-import { preProcessColumns, preProcessRows } from '../../src/internalTable/table-pre-processors';
-import TableInternal from '../../src/internalTable/internal-table';
+import { preProcessColumns, preProcessRows } from './table-pre-processors';
+import TableInternal from './internal-table';
 
 // Test preProcessColumns function
 describe('preProcessColumns', () => {
