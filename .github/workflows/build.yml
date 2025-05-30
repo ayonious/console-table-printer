@@ -1,0 +1,42 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  # Continue with other Node versions even if one fails
+      matrix:
+        node-version: [16, 18, 20, 22]
+    name: Node ${{ matrix.node-version }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Type check & Build
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Run linting
+        run: yarn lint
+
+      - name: Check formatting
+        run: yarn format --check
+
+      - name: Check TypeScript types
+        run: yarn tsc --noEmit 
