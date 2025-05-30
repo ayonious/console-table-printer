@@ -1,4 +1,4 @@
-import { Table } from "../../dist";
+import { Table } from "../..";
 
 export const getTableHeader = (table: Table) => {
     const rendered = table.render().split('\n');
