@@ -42,8 +42,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-
     - name: Use Node.js 16.x
       uses: actions/setup-node@v4
       with:
@@ -56,10 +54,10 @@ jobs:
 
     - name: Test package
       run: |
-        tar -xf console-table-printer-*.tgz
-        cd package
+        mkdir test-pkg && cd test-pkg
+        mv ../console-table-printer-*.tgz ./
         yarn init -y
-        yarn add ../console-table-printer-*.tgz
+        yarn add ./console-table-printer-*.tgz --production
         cat > test.js << 'EOL'
         const { Table } = require('console-table-printer');
         const assert = require('assert');
@@ -90,8 +88,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-
     - name: Use Node.js 18.x
       uses: actions/setup-node@v4
       with:
@@ -104,10 +100,10 @@ jobs:
 
     - name: Test package
       run: |
-        tar -xf console-table-printer-*.tgz
-        cd package
+        mkdir test-pkg && cd test-pkg
+        mv ../console-table-printer-*.tgz ./
         yarn init -y
-        yarn add ../console-table-printer-*.tgz
+        yarn add ./console-table-printer-*.tgz --production
         cat > test.js << 'EOL'
         const { Table } = require('console-table-printer');
         const assert = require('assert');
@@ -149,8 +145,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-
     - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
@@ -163,10 +157,10 @@ jobs:
 
     - name: Test package
       run: |
-        tar -xf console-table-printer-*.tgz
-        cd package
+        mkdir test-pkg && cd test-pkg
+        mv ../console-table-printer-*.tgz ./
         yarn init -y
-        yarn add ../console-table-printer-*.tgz
+        yarn add ./console-table-printer-*.tgz --production
         cat > test.js << 'EOL'
         const { Table } = require('console-table-printer');
         const assert = require('assert');
