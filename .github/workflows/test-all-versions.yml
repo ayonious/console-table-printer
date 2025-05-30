@@ -1,92 +1,71 @@
-# Workflow name as displayed in GitHub Actions UI
 name: Test All Node.js Versions
 
-# Define when this workflow will run
 on:
   push:
-    branches: [ master ]  # Run on pushes to master branch
+    branches: [ master ]
   pull_request:
-    branches: [ master ]  # Run on PRs targeting master branch
+    branches: [ master ]
 
 jobs:
-  # First job: Build the package and create artifacts
   build:
-    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+    runs-on: ubuntu-latest
     steps:
-    # Step 1: Get the code
     - uses: actions/checkout@v4
 
-    # Step 2: Setup Node.js environment for building
     - name: Use Node.js 22.x
       uses: actions/setup-node@v4
       with:
-        node-version: 22.x  # Latest LTS version for building
-        registry-url: 'https://registry.npmjs.org'  # For package publishing
+        node-version: 22.x
+        registry-url: 'https://registry.npmjs.org'
 
-    # Step 3: Install all dependencies (including dev dependencies)
     - name: Install all dependencies
-      run: yarn install --frozen-lockfile  # --frozen-lockfile ensures consistent installs
+      run: yarn install --frozen-lockfile
 
-    # Step 4: Build the TypeScript code
     - name: Build package
       run: yarn build
 
-    # Step 5: Run the regular test suite
     - name: Run project tests
       run: yarn test
 
-    # Step 6: Create the package that will be tested
     - name: Pack package
-      run: yarn pack  # Creates a .tgz file
+      run: yarn pack
 
-    # Step 7: Save build outputs for test jobs
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: package-dist
-        path: |  # Multiple files/directories to save
-          console-table-printer-*.tgz  # The packed package
-          test/githubActionsTest/package-test.js  # The test file
-          dist/  # Built files
+        path: |
+          console-table-printer-*.tgz
+          test/githubActionsTest/package-test.js
+          dist/
 
-  # Second job: Test the built package across Node.js versions
   test:
-    needs: build  # Wait for build job to complete
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Test across multiple Node.js versions in parallel
-        node-version: [14.x, 16.x, 18.x, 20.x, 22.x]
-      fail-fast: false  # Continue testing other versions even if one fails
+        node-version: [12x, 14.x, 16.x, 18.x, 20.x, 22.x]
+      fail-fast: false
     
     steps:
-    # Step 1: Get the code (needed for test file structure)
     - uses: actions/checkout@v4
 
-    # Step 2: Setup specific Node.js version for testing
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
-    # Step 3: Get the built package and test files
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
         name: package-dist
 
-    # Step 4: Run the package tests
     - name: Test package
       run: |
-        # Create a clean test directory
         mkdir test-pkg && cd test-pkg
-        # Move the package and test file
         mv ../console-table-printer-*.tgz ./
         mv ../test/githubActionsTest/package-test.js ./
-        # Initialize a new package.json
         yarn init -y
-        # Install our package
         yarn add ./console-table-printer-*.tgz
-        # Run the tests
         echo "Running tests on Node.js ${{ matrix.node-version }}..."
         node package-test.js 
