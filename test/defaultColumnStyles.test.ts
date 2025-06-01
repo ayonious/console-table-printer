@@ -140,15 +140,16 @@ describe('Testing defaultColumnOptions in Table', () => {
     p.addRow({ firstName: 'Jane', lastName: 'Smith', age: 35 });
 
     p.printTable();
-    expect(p.render()).toMatchSnapshot();
-
+    
     // Verify computed columns inherit default options
     const computedColumns = p.table.columns.slice(-2);
     computedColumns.forEach(col => {
       // TODO: fix this test
-      // expect(col.color).toBe('cyan');
-      // expect(col.maxLen).toBe(20);
+      expect(col.color).toBe('cyan');
+      expect(col.maxLen).toBe(20);
+      expect(col.alignment).toBe('center');
     });
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should handle defaultColumnOptions with row separators and colors', () => {

@@ -5,6 +5,7 @@ import { Column } from '../models/internal-table';
 import { findLenOfColumn } from '../utils/table-helpers';
 import TableInternal from './internal-table';
 
+// All these functions are ran when renderTable/printTable is called
 const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
@@ -13,7 +14,10 @@ const createComputedColumnsIfNecessary = (table: TableInternal) => {
       if (isColumnAlreadyExists) {
         return;
       }
-      table.addColumn(computedColumn);
+      table.addColumn({
+        ...computedColumn,
+        ...table.defaultColumnOptions,
+      });
       table.rows.forEach((row: Row, index: number, rowsArray: Row[]) => {
         const arrayRowText = rowsArray.map((elemInRowsArray) => elemInRowsArray.text);
         row.text[computedColumn.name] = computedColumn.function(row.text, index, arrayRowText);

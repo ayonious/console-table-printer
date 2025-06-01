@@ -3,7 +3,6 @@ import {
   convertRawRowOptionsToStandard,
   createTableHorizontalBorders,
   createColumFromOnlyName,
-  createColumFromComputedColumn,
   createRow,
   findLenOfColumn,
   createHeaderAsRow,
@@ -68,54 +67,6 @@ describe('table-helpers', () => {
       expect(createColumFromOnlyName('test')).toEqual({
         name: 'test',
         title: 'test'
-      });
-    });
-  });
-
-  describe('createColumFromComputedColumn', () => {
-    const defaultFunction = (row: any) => row.value;
-
-    it('should create column with default alignment when not provided', () => {
-      const column: ComputedColumn = {
-        name: 'test',
-        function: defaultFunction
-      };
-      expect(createColumFromComputedColumn(column)).toEqual({
-        name: 'test',
-        title: 'test',
-        alignment: 'right'
-      });
-    });
-
-    it('should use provided title', () => {
-      const column: ComputedColumn = {
-        name: 'test',
-        title: 'Test Title',
-        function: defaultFunction
-      };
-      expect(createColumFromComputedColumn(column)).toEqual({
-        name: 'test',
-        title: 'Test Title',
-        alignment: 'right'
-      });
-    });
-
-    it('should include optional properties', () => {
-      const column: ComputedColumn = {
-        name: 'test',
-        color: 'red',
-        maxLen: 10,
-        minLen: 5,
-        alignment: 'center',
-        function: defaultFunction
-      };
-      expect(createColumFromComputedColumn(column)).toEqual({
-        name: 'test',
-        title: 'test',
-        color: 'red',
-        maxLen: 10,
-        minLen: 5,
-        alignment: 'center'
       });
     });
   });

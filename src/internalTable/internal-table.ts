@@ -3,6 +3,7 @@ import {
   ColumnOptionsRaw,
   ComplexOptions,
   ComputedColumn,
+  DefaultColumnOptions,
   RowFilterFunction,
   RowSortFunction,
 } from '../models/external-table';
@@ -15,7 +16,6 @@ import {
   DEFAULT_ROW_SEPARATOR,
 } from '../utils/table-constants';
 import {
-  createColumFromComputedColumn,
   createColumFromOnlyName,
   createRow,
   RowOptions,
@@ -52,6 +52,8 @@ class TableInternal {
 
   charLength: CharLengthDict;
 
+  defaultColumnOptions?: DefaultColumnOptions;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -72,6 +74,7 @@ class TableInternal {
       options?.columns?.map((column) => rawColumnToInternalColumn(column, options?.defaultColumnOptions)) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
+    this.defaultColumnOptions = options?.defaultColumnOptions || this.defaultColumnOptions;
 
     if (options?.shouldDisableColors) {
       this.colorMap = {};
@@ -98,6 +101,7 @@ class TableInternal {
     this.rowSeparator = DEFAULT_ROW_SEPARATOR;
     this.colorMap = DEFAULT_COLOR_MAP;
     this.charLength = {};
+    this.defaultColumnOptions = undefined;
 
     if (options instanceof Array) {
       this.initSimple(options);
@@ -118,10 +122,8 @@ class TableInternal {
   addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
     if (typeof textOrObj === 'string') {
       this.columns.push(createColumFromOnlyName(textOrObj));
-    } else if ('function' in textOrObj) { // Only way to know if this is a computed column
-      this.columns.push(createColumFromComputedColumn(textOrObj as ComputedColumn));
     } else {
-      this.columns.push(rawColumnToInternalColumn(textOrObj as ColumnOptionsRaw));
+      this.columns.push(rawColumnToInternalColumn(textOrObj));
     }
   }
 

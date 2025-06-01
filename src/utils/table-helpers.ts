@@ -72,16 +72,6 @@ export const createColumFromOnlyName = (name: string): Column => ({
   name,
   title: name,
 });
-export const createColumFromComputedColumn = (
-  column: ComputedColumn
-): Column => ({
-  name: column.name,
-  title: column.title ?? column.name,
-  ...objIfExists('color', column.color as COLOR),
-  ...objIfExists('maxLen', column.maxLen),
-  ...objIfExists('minLen', column.minLen),
-  alignment: column.alignment || DEFAULT_ROW_ALIGNMENT,
-});
 
 export const createRow = (
   color: COLOR,

@@ -53,32 +53,30 @@ describe('Testing adding columns', () => {
     expect(p.render()).toMatchSnapshot();
   });
 
-  // TODO: fix this test
-  /*
   it('should handle columns with maxLen constraint', () => {
-    const p = new Table()
-      .addColumn({ name: 'truncatedColumn', maxLen: 10 })
+    const p = new Table({
+      shouldDisableColors: true,
+    })
+      .addColumn({ name: 'trunCol', maxLen: 10 })
       .addColumn({ name: 'normalColumn' });
 
     // Add a row with content exceeding maxLen
     p.addRow({
-      truncatedColumn: 'This text should be truncated',
-      normalColumn: 'This text should not be truncated'
+      trunCol: 'This text should be truncated',
+      normalCol: 'This text should not be truncated'
     });
 
-    const rendered = p.render();
-    const lines = rendered.split('\n');
-    
-    // Find the line with the content (should be the third line, after header and separator)
-    const contentLine = lines[2];
-    // Verify the truncated column's content length
-    const truncatedContent = contentLine.split('│')[1].trim();
-    expect(truncatedContent.length).toBeLessThanOrEqual(10);
+    const contentLines = getTableBody(p);
     
     p.printTable();
-    expect(rendered).toMatchSnapshot();
+    const paddingSize = 2;
+
+    contentLines.forEach(line => {
+      // Verify the truncated column's content length
+      const truncatedContent = line.split('│')[1];
+      expect(truncatedContent.length).toBeLessThanOrEqual(10 + paddingSize);
+    });
   });
-  */
 
   it('should handle columns with minLen padding', () => {
     const p = new Table()
@@ -117,21 +115,18 @@ describe('Testing adding columns', () => {
     p.addRow({ constrainedColumn: 'just right' }); // Should fit
     p.addRow({ constrainedColumn: 'this is too long' }); // Should be truncated
 
-    const rendered = p.render();
-    const lines = rendered.split('\n');
-    
-    // Get content lines (skip header and separator)
-    const contentLines = lines.slice(2, -1);
-    
-    contentLines.forEach(line => {
-      const content = line.split('│')[1].trim();
-      // Content should be between minLen and maxLen
-      expect(content.length).toBeGreaterThanOrEqual(10);
-      expect(content.length).toBeLessThanOrEqual(15);
-    });
-    
     p.printTable();
-    expect(rendered).toMatchSnapshot();
+
+    const contentLines = getTableBody(p);
+
+    const paddingSize = 2;
+    contentLines.forEach(line => {
+      // Verify the truncated column's content length
+      const truncatedContent = line.split('│')[1];
+      expect(truncatedContent.length).toBeGreaterThanOrEqual(10 + paddingSize);
+      expect(truncatedContent.length).toBeLessThanOrEqual(15 + paddingSize);
+    });
+
   });
   */
 
