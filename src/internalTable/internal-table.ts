@@ -3,6 +3,7 @@ import {
   ColumnOptionsRaw,
   ComplexOptions,
   ComputedColumn,
+  DefaultColumnOptions,
   RowFilterFunction,
   RowSortFunction,
 } from '../models/external-table';
@@ -51,6 +52,8 @@ class TableInternal {
 
   charLength: CharLengthDict;
 
+  defaultColumnOptions?: DefaultColumnOptions;
+
   initSimple(columns: string[]) {
     this.columns = columns.map((column) => ({
       name: column,
@@ -71,6 +74,7 @@ class TableInternal {
       options?.columns?.map((column) => rawColumnToInternalColumn(column, options?.defaultColumnOptions)) || this.columns;
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
+    this.defaultColumnOptions = options?.defaultColumnOptions || this.defaultColumnOptions;
 
     if (options?.shouldDisableColors) {
       this.colorMap = {};
@@ -97,6 +101,7 @@ class TableInternal {
     this.rowSeparator = DEFAULT_ROW_SEPARATOR;
     this.colorMap = DEFAULT_COLOR_MAP;
     this.charLength = {};
+    this.defaultColumnOptions = undefined;
 
     if (options instanceof Array) {
       this.initSimple(options);
