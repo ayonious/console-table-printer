@@ -1,3 +1,10 @@
+## [2.14.1](https://github.com/console-table-printer/console-table-printer/compare/v2.14.0...v2.14.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* Computed columns default options ([#513](https://github.com/console-table-printer/console-table-printer/issues/513)) ([7f32f89](https://github.com/console-table-printer/console-table-printer/commit/7f32f89ce77985ef2e46e51104b6502e2db496ae))
+
 # [2.14.0](https://github.com/console-table-printer/console-table-printer/compare/v2.13.0...v2.14.0) (2025-05-27)
 
 
