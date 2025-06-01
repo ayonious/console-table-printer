@@ -13,9 +13,10 @@ describe('Jest Test Discovery', () => {
     .split('\n')
     .filter(line => line.endsWith('.test.ts') || line.endsWith('.test.js'))
     .map(line => line.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .map(file => path.relative(process.cwd(), file)); // Convert to relative paths
 
-  console.log("Detected test files:", detectedFiles);
+  // console.log("Detected test files:", detectedFiles);
 
   // Expected test files (using relative paths)
   const expectedFiles = [
@@ -70,30 +71,30 @@ describe('Jest Test Discovery', () => {
     "test/readme/Version1/readmeExamples1Basic.test.ts",
   ];
 
-  detectedFiles.forEach(file => {
-    it(`should detect ${path.basename(file)}`, () => {
-      const fullPath = path.join(process.cwd(), file);
-      expect(fs.existsSync(fullPath)).toBe(true);
-      expect(detectedFiles).toContain(fullPath);
-    });
-  });
-
-  describe('No Unexpected Files', () => {
-    it('should not have any unexpected test files', () => {
-      const expectedFullPaths = expectedFiles.map(file => path.join(process.cwd(), file));
-      detectedFiles.forEach(detectedFile => {
-        const isExpected = expectedFullPaths.includes(detectedFile);
-        if (!isExpected) {
-          console.error(`Unexpected file detected: ${detectedFile}`);
-        }
-        expect(isExpected).toBe(true);
+  describe('Test File Detection', () => {
+    // Test each detected file
+    detectedFiles.forEach(file => {
+      it(`should be a valid test file: ${file}`, () => {
+        // Check if file exists
+        const fullPath = path.join(process.cwd(), file);
+        expect(fs.existsSync(fullPath)).toBe(true);
+        
+        // Check if file is in expected list
+        expect(expectedFiles).toContain(file);
       });
     });
-  });
 
-  // Verify number of test files
-  it('should have the correct number of test files', () => {
-    expect(detectedFiles.length).toBe(expectedFiles.length);
+    // Test for missing expected files
+    expectedFiles.forEach(file => {
+      it(`should detect expected file: ${file}`, () => {
+        expect(detectedFiles).toContain(file);
+      });
+    });
+
+    // Verify total number of files
+    it('should have the correct number of test files', () => {
+      expect(detectedFiles.length).toBe(expectedFiles.length);
+    });
   });
 
   describe('Jest Configuration', () => {
