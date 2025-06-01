@@ -7,7 +7,7 @@
 [![npm version](https://badge.fury.io/js/console-table-printer.svg)](https://badge.fury.io/js/console-table-printer)
 [![codecov](https://codecov.io/gh/console-table-printer/console-table-printer/graph/badge.svg?token=SWX9VBuYUs)](https://codecov.io/gh/console-table-printer/console-table-printer)
 
-## Synopsis
+## Synopsis 
 
 Printing Simple Table with Coloring rows on your console. Its useful when you want to present some tables on console using js.
 
