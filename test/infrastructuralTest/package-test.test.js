@@ -15,6 +15,11 @@ afterEach(() => {
   console.log = originalLog;
 });
 
+/*
+Test that the package created after npm build is working correctly.
+By working correctly, I mean that the package can be used to create tables and that the tables are rendered correctly.
+*/
+
 describe('Package Test Suite', () => {
   test('Basic Table Rendering', () => {
     const basicTable = new Table();
