@@ -21,6 +21,13 @@ export type RowSortFunction = (row1: any, row2: any) => number;
 
 export type RowFilterFunction = (row: any) => Boolean;
 
+export interface DefaultColumnOptions {
+  alignment?: ALIGNMENT;
+  color?: COLOR;
+  title?: string;
+  maxLen?: number;
+  minLen?: number;
+}
 export interface ComplexOptions {
   style?: TableStyleDetails;
   title?: string;
@@ -35,11 +42,5 @@ export interface ComplexOptions {
   shouldDisableColors? : boolean;
   colorMap?: ColorMap;
   charLength?: CharLengthDict;
-  defaultColumnOptions?: {
-    alignment?: ALIGNMENT;
-    color?: COLOR;
-    title?: string;
-    maxLen?: number;
-    minLen?: number;
-  };
+  defaultColumnOptions?: DefaultColumnOptions;
 }

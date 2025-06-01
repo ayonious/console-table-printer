@@ -1,5 +1,5 @@
 import { ALIGNMENT, COLOR } from '../models/common';
-import { ColumnOptionsRaw } from '../models/external-table';
+import { ColumnOptionsRaw, ComputedColumn, DefaultColumnOptions } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import { DEFAULT_ROW_ALIGNMENT } from '../utils/table-constants';
 
@@ -14,13 +14,8 @@ export const objIfExists = (key: string, val: any) => {
 };
 
 export const rawColumnToInternalColumn = (
-  column: ColumnOptionsRaw,
-  defaultColumnStyles?: {
-    alignment?: ALIGNMENT;
-    color?: COLOR;
-    maxLen?: number;
-    minLen?: number;
-  }
+  column: ColumnOptionsRaw | ComputedColumn,
+  defaultColumnStyles?: DefaultColumnOptions
 ): Column => ({
   name: column.name,
   title: column.title ?? column.name,

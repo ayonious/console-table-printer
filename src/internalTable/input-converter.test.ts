@@ -5,10 +5,44 @@ describe('rawColumnToInternalColumn', () => {
   it('should convert raw column options to internal column format', () => {
     const rawColumn = { name: 'col1', alignment: 'left', color: 'red' };
     const internalColumn = rawColumnToInternalColumn(rawColumn);
-    expect(internalColumn.name).toBe('col1');
-    expect(internalColumn.alignment).toBe('left');
-    expect(internalColumn.color).toBe('red');
+    expect(internalColumn).toStrictEqual({ 
+      "alignment": "left", 
+      "color": "red", 
+      "name": "col1", 
+      "title": "col1" 
+    });
   });
+
+  it('should convert raw column options to internal column format with default styles', () => {
+    const rawColumn = { name: 'col1' };
+    const defaultColumnStyles = {
+      alignment: 'right',
+      color: 'blue',
+      maxLen: 18,
+      minLen: 8,
+    };
+    const internalColumn = rawColumnToInternalColumn(rawColumn, defaultColumnStyles);
+    expect(internalColumn).toStrictEqual({ 
+      "alignment": "right", 
+      "color": "blue", 
+      "maxLen": 18, 
+      "minLen": 8,
+      "name": "col1", 
+      "title": "col1" 
+    });
+  });
+
+  it('should convert raw computed column options to internal column format', () => {
+    const rawColumn = { name: 'col1', alignment: 'left', color: 'red', function: () => 'test' };
+    const internalColumn = rawColumnToInternalColumn(rawColumn);
+    expect(internalColumn).toStrictEqual({ 
+      "alignment": "left", 
+      "color": "red", 
+      "name": "col1", 
+      "title": "col1" 
+    });
+  });
+
 });
 
 // Test objIfExists function

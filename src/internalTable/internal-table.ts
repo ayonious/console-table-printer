@@ -15,7 +15,6 @@ import {
   DEFAULT_ROW_SEPARATOR,
 } from '../utils/table-constants';
 import {
-  createColumFromComputedColumn,
   createColumFromOnlyName,
   createRow,
   RowOptions,
@@ -118,10 +117,8 @@ class TableInternal {
   addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
     if (typeof textOrObj === 'string') {
       this.columns.push(createColumFromOnlyName(textOrObj));
-    } else if ('function' in textOrObj) { // Only way to know if this is a computed column
-      this.columns.push(createColumFromComputedColumn(textOrObj as ComputedColumn));
     } else {
-      this.columns.push(rawColumnToInternalColumn(textOrObj as ColumnOptionsRaw));
+      this.columns.push(rawColumnToInternalColumn(textOrObj));
     }
   }
 
