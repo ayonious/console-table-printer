@@ -150,47 +150,86 @@ describe('Testing add columnd and verifying the output', () => {
 
   */
 
-  it('should handle column with equal minLen and maxLen', () => {
-    const p = new Table()
-      .addColumn({
-        name: 'fixedWidth',
-        minLen: 10,
-        maxLen: 10
+  [15, 20, 30].forEach(fixedLen => {
+    it(`should handle column with fixed length ${fixedLen} (minLen = maxLen)`, () => {
+      const p = new Table({
+        shouldDisableColors: true
+      })
+        .addColumn({
+          name: `fixedWidth:${fixedLen}`,
+          minLen: fixedLen,
+          maxLen: fixedLen
+        });
+
+      // Test various content lengths
+      const testData = [
+        { input: 'short', description: 'shorter than fixed length' },
+        { input: 'x'.repeat(fixedLen), description: 'exactly fixed length' },
+        { input: 'this is a very long text that needs truncation', description: 'longer than fixed length' }
+      ];
+
+      testData.forEach(({ input }) => {
+        p.addRow({ [`fixedWidth:${fixedLen}`]: input });
       });
 
-    p.addRow({ fixedWidth: 'short' }); // Should be padded
-    p.addRow({ fixedWidth: 'exact fit!' }); // Should fit exactly
-    p.addRow({ fixedWidth: 'too long text' }); // Should be truncated
+      const contentLines = getTableBody(p);
+      const headerLine = getTableHeader(p);
+      const paddingSize = 2; // Account for standard padding
 
-    const rendered = p.render();
-    const lines = rendered.split('\n');
+      p.printTable();
 
-    // Check that all content lines are exactly the same length
-    const contentLines = lines.filter(line =>
-      line.includes('short') ||
-      line.includes('exact') ||
-      line.includes('too')
-    );
-
-    p.printTable();
-
-    const firstLineLength = contentLines[0].length;
-    contentLines.forEach(line => {
-      expect(line.length).toBe(firstLineLength);
+      // All lines should have exactly the same length
+      const expectedLength = Math.max(fixedLen + paddingSize);
+      contentLines.forEach(line => {
+        const content = line.split('│')[1];
+        expect(content.length).toBe(expectedLength);
+      });
     });
-
-    expect(rendered).toMatchSnapshot();
   });
-  
 
-  const constraints = [
+  [10, 5].forEach(fixedLen => {
+    it(`should handle column with fixed length ${fixedLen} (minLen = maxLen), but headers are longer`, () => {
+      const p = new Table({
+        shouldDisableColors: true
+      })
+        .addColumn({
+          name: `fixedWidth:${fixedLen}`,
+          minLen: fixedLen,
+          maxLen: fixedLen
+        });
+
+      // Test various content lengths
+      const testData = [
+        { input: 'short', description: 'shorter than fixed length' },
+        { input: 'x'.repeat(fixedLen), description: 'exactly fixed length' },
+        { input: 'this is a very long text that needs truncation', description: 'longer than fixed length' }
+      ];
+
+      testData.forEach(({ input }) => {
+        p.addRow({ [`fixedWidth:${fixedLen}`]: input });
+      });
+
+      const contentLines = getTableBody(p);
+      const headerLine = getTableHeader(p);
+      const paddingSize = 2; // Account for standard padding
+
+      p.printTable();
+
+      // All lines should have exactly the same length
+      const expectedLength = Math.max(fixedLen + paddingSize);
+      contentLines.forEach(line => {
+        const content = line.split('│')[1];
+        expect(content.length).toBe(expectedLength);
+      });
+    });
+  });
+
+  [
     { min: 10, max: 15 },
     { min: 15, max: 25 },
     { min: 20, max: 30 },
     { min: 30, max: 40 }
-  ];
-
-  constraints.forEach(({ min, max }) => {
+  ].forEach(({ min, max }) => {
     it(`should handle column with minLen ${min} and maxLen ${max}`, () => {
       const p = new Table({
         shouldDisableColors: true
