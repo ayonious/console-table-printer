@@ -20,12 +20,15 @@ describe('Jest Test Discovery', () => {
 
   // Expected test files (using relative paths)
   const expectedFiles = [
+    // Features Tests
+    "test/features/addColumn/basic.test.ts",
+    "test/features/addColumn/verifyOutput.test.ts",
+
     // Infrastructure Tests
     "test/infrastructuralTest/package-test.test.js",
     "test/infrastructuralTest/jest-discovery.test.js",
 
     // Core Test Files (Root Level)
-    "test/addColumn.test.ts",
     "test/lineWidthLimit.test.ts",
     "test/foreignLanguage.test.ts",
     "test/computedColumns.test.ts",
