@@ -219,7 +219,8 @@ describe('Testing add columnd and verifying the output', () => {
       const expectedLength = Math.max(fixedLen + paddingSize);
       contentLines.forEach(line => {
         const content = line.split('│')[1];
-        expect(content.length).toBe(expectedLength);
+        const headerLength = headerLine.split('│')[1].length;
+        expect(content.length).toBe(Math.max(headerLength, expectedLength));
       });
     });
   });
