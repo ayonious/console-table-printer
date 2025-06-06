@@ -1,5 +1,4 @@
 import { Table } from '../../../index';
-import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('Testing adding columns', () => {
   it('should allow add new columns in a chain way', () => {
