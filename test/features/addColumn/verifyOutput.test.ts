@@ -103,6 +103,7 @@ describe('Testing add columnd and verifying the output', () => {
   */
 
   /*
+  
   // TODO: fix this test
   it('should handle column with zero minLen and maxLen', () => {
     const p = new Table({
@@ -146,10 +147,8 @@ describe('Testing add columnd and verifying the output', () => {
     p.printTable();
   });
 
-  
-  
-  
-  /*
+
+  */
 
   it('should handle column with equal minLen and maxLen', () => {
     const p = new Table()
@@ -173,15 +172,16 @@ describe('Testing add columnd and verifying the output', () => {
       line.includes('too')
     );
 
+    p.printTable();
+
     const firstLineLength = contentLines[0].length;
     contentLines.forEach(line => {
       expect(line.length).toBe(firstLineLength);
     });
 
-    p.printTable();
     expect(rendered).toMatchSnapshot();
   });
-  */
+  
 
   const constraints = [
     { min: 10, max: 15 },
