@@ -31,6 +31,8 @@ describe('Testing add columnd and verifying the output', () => {
         const truncatedContent = line.split('│')[1];
         expect(truncatedContent.length).toBeLessThanOrEqual(len + paddingSize);
       });
+
+      expect(p.render()).toMatchSnapshot();
     });
   });
 
@@ -69,6 +71,8 @@ describe('Testing add columnd and verifying the output', () => {
         const truncatedContent = line.split('│')[1];
         expect(truncatedContent.length).toBeGreaterThanOrEqual(len + paddingSize);  
       });
+
+      expect(p.render()).toMatchSnapshot();
     });
   });
 
@@ -106,6 +110,8 @@ describe('Testing add columnd and verifying the output', () => {
         const content = line.split('│')[1];
         expect(content.length).toBe(expectedLength);
       });
+
+      expect(p.render()).toMatchSnapshot();
     });
   });
 
@@ -144,6 +150,8 @@ describe('Testing add columnd and verifying the output', () => {
         const headerLength = headerLine.split('│')[1].length;
         expect(content.length).toBe(Math.max(headerLength, expectedLength));
       });
+
+      expect(p.render()).toMatchSnapshot();
     });
   });
 
@@ -166,8 +174,8 @@ describe('Testing add columnd and verifying the output', () => {
       // Test various content lengths
       const testData = [
         { input: 'short', description: 'shorter than minLen' },
-        { input: 'perfect size text'.padEnd(min, ' '), description: 'exactly minLen' },
-        { input: 'this is a longer text that should be truncated'.padEnd(max + 10, '!'), description: 'longer than maxLen' }
+        { input: 'x'.repeat(min), description: 'exactly minLen' },
+        { input: 'this is a very long text that needs truncation', description: 'longer than maxLen' }
       ];
 
       testData.forEach(({ input }) => {
@@ -185,6 +193,8 @@ describe('Testing add columnd and verifying the output', () => {
         expect(content.length).toBeGreaterThanOrEqual(min + paddingSize);
         expect(content.length).toBeLessThanOrEqual(max + paddingSize);
       });
+
+      expect(p.render()).toMatchSnapshot();
     });
   });
 
@@ -201,6 +211,8 @@ describe('Testing add columnd and verifying the output', () => {
     expect(renderedBody).toEqual([
       '│  complexValue  │  simpleValue │'
     ]);
+
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify that addColumn adds a new column while preserving existing data', () => {
@@ -244,6 +256,8 @@ describe('Testing add columnd and verifying the output', () => {
     expect(firstRowParts.length).toBe(5); // Including empty parts at start/end
     expect(secondRowParts.length).toBe(5);
     expect(lastRowParts.length).toBe(5);
+
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify addColumn with custom column properties', () => {
@@ -270,6 +284,8 @@ describe('Testing add columnd and verifying the output', () => {
     expect(headerParts).toContain('Column Two');
     // Verify right alignment (value should be at the end of its cell)
     expect(bodyParts[2]).toBe('123');
+
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify addColumn with multiple data types', () => {
@@ -297,6 +313,8 @@ describe('Testing add columnd and verifying the output', () => {
     expect(rows[2][2]).toBe('true');     // boolean
     expect(rows[3][2]).toBe('');         // null
     expect(rows[4][2]).toBe('');         // undefined
+
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify addColumn maintains column order', () => {
@@ -324,5 +342,7 @@ describe('Testing add columnd and verifying the output', () => {
     expect(bodyParts[1]).toBe('1');
     expect(bodyParts[2]).toBe('2');
     expect(bodyParts[3]).toBe('3');
+
+    expect(p.render()).toMatchSnapshot();
   });
 });
