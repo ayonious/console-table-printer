@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing add columnd and verifying the output should handle column with fixed length 5 (minLen = maxLen), but headers are longer 1`] = `
+"┌──────────────┐
+│ fixedWidth:5 │
+├──────────────┤
+│        short │
+│        xxxxx │
+│    this is a │
+│    very long │
+│    text that │
+│        needs │
+│   truncation │
+└──────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with fixed length 10 (minLen = maxLen), but headers are longer 1`] = `
+"┌───────────────┐
+│ fixedWidth:10 │
+├───────────────┤
+│         short │
+│    xxxxxxxxxx │
+│     this is a │
+│     very long │
+│     text that │
+│         needs │
+│    truncation │
+└───────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with fixed length 15 (minLen = maxLen) 1`] = `
+"┌─────────────────┐
+│   fixedWidth:15 │
+├─────────────────┤
+│           short │
+│ xxxxxxxxxxxxxxx │
+│  this is a very │
+│  long text that │
+│           needs │
+│      truncation │
+└─────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with fixed length 20 (minLen = maxLen) 1`] = `
+"┌──────────────────────┐
+│        fixedWidth:20 │
+├──────────────────────┤
+│                short │
+│ xxxxxxxxxxxxxxxxxxxx │
+│  this is a very long │
+│      text that needs │
+│           truncation │
+└──────────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with fixed length 30 (minLen = maxLen) 1`] = `
+"┌────────────────────────────────┐
+│                  fixedWidth:30 │
+├────────────────────────────────┤
+│                          short │
+│ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx │
+│  this is a very long text that │
+│               needs truncation │
+└────────────────────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with minLen 10 and maxLen 15 1`] = `
+"┌─────────────────┐
+│ col:min10:max15 │
+├─────────────────┤
+│           short │
+│      xxxxxxxxxx │
+│  this is a very │
+│  long text that │
+│           needs │
+│      truncation │
+└─────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with minLen 15 and maxLen 25 1`] = `
+"┌───────────────────────────┐
+│           col:min15:max25 │
+├───────────────────────────┤
+│                     short │
+│           xxxxxxxxxxxxxxx │
+│  this is a very long text │
+│     that needs truncation │
+└───────────────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with minLen 20 and maxLen 30 1`] = `
+"┌────────────────────────────────┐
+│                col:min20:max30 │
+├────────────────────────────────┤
+│                          short │
+│           xxxxxxxxxxxxxxxxxxxx │
+│  this is a very long text that │
+│               needs truncation │
+└────────────────────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle column with minLen 30 and maxLen 40 1`] = `
+"┌──────────────────────────────────────────┐
+│                          col:min30:max40 │
+├──────────────────────────────────────────┤
+│                                    short │
+│           xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx │
+│      this is a very long text that needs │
+│                               truncation │
+└──────────────────────────────────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 20 1`] = `
+"┌──────────────────────┬───────────────────────────────────┬─────────────┐
+│    trunCol:maxLen:20 │                      normalColumn │ emptyColumn │
+├──────────────────────┼───────────────────────────────────┼─────────────┤
+│  This text should be │ This text should not be truncated │             │
+│            truncated │                                   │             │
+└──────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 30 1`] = `
+"┌────────────────────────────────┬───────────────────────────────────┬─────────────┐
+│              trunCol:maxLen:30 │                      normalColumn │ emptyColumn │
+├────────────────────────────────┼───────────────────────────────────┼─────────────┤
+│  This text should be truncated │ This text should not be truncated │             │
+└────────────────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 40 1`] = `
+"┌──────────────────────────────────────────┬───────────────────────────────────┬─────────────┐
+│                        trunCol:maxLen:40 │                      normalColumn │ emptyColumn │
+├──────────────────────────────────────────┼───────────────────────────────────┼─────────────┤
+│            This text should be truncated │ This text should not be truncated │             │
+└──────────────────────────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 50 1`] = `
+"┌────────────────────────────────────────────────────┬───────────────────────────────────┬─────────────┐
+│                                  trunCol:maxLen:50 │                      normalColumn │ emptyColumn │
+├────────────────────────────────────────────────────┼───────────────────────────────────┼─────────────┤
+│                      This text should be truncated │ This text should not be truncated │             │
+└────────────────────────────────────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 60 1`] = `
+"┌──────────────────────────────────────────────────────────────┬───────────────────────────────────┬─────────────┐
+│                                            trunCol:maxLen:60 │                      normalColumn │ emptyColumn │
+├──────────────────────────────────────────────────────────────┼───────────────────────────────────┼─────────────┤
+│                                This text should be truncated │ This text should not be truncated │             │
+└──────────────────────────────────────────────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with maxLen constraint 100 1`] = `
+"┌──────────────────────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────┬─────────────┐
+│                                                                                   trunCol:maxLen:100 │                      normalColumn │ emptyColumn │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────┼─────────────┤
+│                                                                        This text should be truncated │ This text should not be truncated │             │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 20 1`] = `
+"┌────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                     paddedColumn:minLen:20 │                                   normalColumn │ emptyColumn │
+├────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                 This text should be padded │                 This text should not be padded │             │
+│           This text should be padded again │           This text should not be padded again │             │
+│ This text should be padded again and again │ This text should not be padded again and again │             │
+└────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 30 1`] = `
+"┌────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                     paddedColumn:minLen:30 │                                   normalColumn │ emptyColumn │
+├────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                 This text should be padded │                 This text should not be padded │             │
+│           This text should be padded again │           This text should not be padded again │             │
+│ This text should be padded again and again │ This text should not be padded again and again │             │
+└────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 40 1`] = `
+"┌────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                     paddedColumn:minLen:40 │                                   normalColumn │ emptyColumn │
+├────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                 This text should be padded │                 This text should not be padded │             │
+│           This text should be padded again │           This text should not be padded again │             │
+│ This text should be padded again and again │ This text should not be padded again and again │             │
+└────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 50 1`] = `
+"┌────────────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                             paddedColumn:minLen:50 │                                   normalColumn │ emptyColumn │
+├────────────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                         This text should be padded │                 This text should not be padded │             │
+│                   This text should be padded again │           This text should not be padded again │             │
+│         This text should be padded again and again │ This text should not be padded again and again │             │
+└────────────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 60 1`] = `
+"┌──────────────────────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                                       paddedColumn:minLen:60 │                                   normalColumn │ emptyColumn │
+├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                                   This text should be padded │                 This text should not be padded │             │
+│                             This text should be padded again │           This text should not be padded again │             │
+│                   This text should be padded again and again │ This text should not be padded again and again │             │
+└──────────────────────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should handle columns with minLen constraint 100 1`] = `
+"┌──────────────────────────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────┬─────────────┐
+│                                                                              paddedColumn:minLen:100 │                                   normalColumn │ emptyColumn │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────┼─────────────┤
+│                                                                           This text should be padded │                 This text should not be padded │             │
+│                                                                     This text should be padded again │           This text should not be padded again │             │
+│                                                           This text should be padded again and again │ This text should not be padded again and again │             │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────┴─────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should make sure each column is what its expected to be 1`] = `
+"┌────────────────┬──────────────┐
+│ Complex Column │ simpleColumn │
+├────────────────┼──────────────┤
+│  complexValue  │  simpleValue │
+└────────────────┴──────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should verify addColumn maintains column order 1`] = `
+"┌──────┬──────┬──────┐
+│ col1 │ col2 │ col3 │
+├──────┼──────┼──────┤
+│    1 │    2 │    3 │
+└──────┴──────┴──────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should verify addColumn with custom column properties 1`] = `
+"┌────────┬────────────┐
+│   col1 │ Column Two │
+├────────┼────────────┤
+│ value1 │            │
+│ value2 │        123 │
+└────────┴────────────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should verify addColumn with multiple data types 1`] = `
+"┌──────┬──────┐
+│ col1 │ col2 │
+├──────┼──────┤
+│ text │      │
+│ row1 │  123 │
+│ row2 │ true │
+│ row3 │      │
+│ row4 │      │
+└──────┴──────┘"
+`;
+
+exports[`Testing add columnd and verifying the output should verify that addColumn adds a new column while preserving existing data 1`] = `
+"┌────────┬────────┬────────┐
+│   col1 │   col2 │   col3 │
+├────────┼────────┼────────┤
+│ value1 │ value2 │        │
+│ value3 │ value4 │        │
+│ value5 │ value6 │ value7 │
+└────────┴────────┴────────┘"
+`;
