@@ -3,28 +3,72 @@ import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 
 describe('Testing add columnd and verifying the output', () => {
-  it('should handle columns with maxLen constraint', () => {
-    const p = new Table({
-      shouldDisableColors: true,
-    })
-      .addColumn({ name: 'trunCol', maxLen: 10 })
-      .addColumn({ name: 'normalColumn' });
+  [20, 30, 40, 50, 60, 100].forEach(len => {
+    it(`should handle columns with maxLen constraint ${len}`, () => {
 
-    // Add a row with content exceeding maxLen
-    p.addRow({
-      trunCol: 'This text should be truncated',
-      normalCol: 'This text should not be truncated'
+      const columnName = `trunCol:maxLen:${len}`;
+
+      const p = new Table({
+        shouldDisableColors: true,
+      })
+        .addColumn({ name: columnName, maxLen: len })
+        .addColumn({ name: 'normalColumn' });
+
+      p.addRow({
+        [columnName]: 'This text should be truncated',
+        normalColumn: 'This text should not be truncated',
+        emptyColumn: '',
+      });
+
+      const contentLines = getTableBody(p);
+
+      p.printTable();
+
+      const paddingSize = 2;
+
+      contentLines.forEach(line => {
+        // Verify the truncated column's content length
+        const truncatedContent = line.split('│')[1];
+        expect(truncatedContent.length).toBeLessThanOrEqual(len + paddingSize);
+      });
     });
+  });
 
-    const contentLines = getTableBody(p);
-    
-    p.printTable();
-    const paddingSize = 2;
+  [20, 30, 40, 50, 60, 100].forEach(len => {
+    it(`should handle columns with minLen constraint ${len}`, () => {
+      const columnName = `paddedColumn:minLen:${len}`;
 
-    contentLines.forEach(line => {
-      // Verify the truncated column's content length
-      const truncatedContent = line.split('│')[1];
-      expect(truncatedContent.length).toBeLessThanOrEqual(10 + paddingSize);
+      const p = new Table({
+        shouldDisableColors: true,
+      })
+        .addColumn({ name: columnName, minLen: len })
+        .addColumn({ name: 'normalColumn' }).addRows([{
+          [columnName]: 'This text should be padded',
+          normalColumn: 'This text should not be padded',
+          emptyColumn: '',
+        },
+        {
+          [columnName]: 'This text should be padded again',
+          normalColumn: 'This text should not be padded again',
+          emptyColumn: '',
+        },
+        {
+          [columnName]: 'This text should be padded again and again',
+          normalColumn: 'This text should not be padded again and again',
+          emptyColumn: '',
+        },
+      ]);
+      const contentLines = getTableBody(p);
+
+      p.printTable();
+
+      const paddingSize = 2;
+
+      contentLines.forEach(line => {
+        // Verify the truncated column's content length
+        const truncatedContent = line.split('│')[1];
+        expect(truncatedContent.length).toBeGreaterThanOrEqual(len + paddingSize);  
+      });
     });
   });
 
@@ -41,11 +85,11 @@ describe('Testing add columnd and verifying the output', () => {
 
     const rendered = p.render();
     const lines = rendered.split('\n');
-    
+
     // Find the header line to check padding
     const headerLine = lines.find(line => line.includes('paddedColumn'));
     expect(headerLine?.length).toBeGreaterThanOrEqual(35); // Account for padding and borders
-    
+
     p.printTable();
     expect(rendered).toMatchSnapshot();
   });
@@ -82,24 +126,24 @@ describe('Testing add columnd and verifying the output', () => {
 
   it('should handle column with zero minLen and maxLen', () => {
     const p = new Table()
-      .addColumn({ 
+      .addColumn({
         name: 'zeroConstraints',
         minLen: 0,
         maxLen: 0
       });
 
     p.addRow({ zeroConstraints: 'some content' });
-    
+
     const rendered = p.render();
     expect(rendered).toContain('some content'); // Content should still be visible
-    
+
     p.printTable();
     expect(rendered).toMatchSnapshot();
   });
 
   it('should handle column with equal minLen and maxLen', () => {
     const p = new Table()
-      .addColumn({ 
+      .addColumn({
         name: 'fixedWidth',
         minLen: 10,
         maxLen: 10
@@ -111,19 +155,19 @@ describe('Testing add columnd and verifying the output', () => {
 
     const rendered = p.render();
     const lines = rendered.split('\n');
-    
+
     // Check that all content lines are exactly the same length
-    const contentLines = lines.filter(line => 
-      line.includes('short') || 
-      line.includes('exact') || 
+    const contentLines = lines.filter(line =>
+      line.includes('short') ||
+      line.includes('exact') ||
       line.includes('too')
     );
-    
+
     const firstLineLength = contentLines[0].length;
     contentLines.forEach(line => {
       expect(line.length).toBe(firstLineLength);
     });
-    
+
     p.printTable();
     expect(rendered).toMatchSnapshot();
   });
@@ -147,7 +191,7 @@ describe('Testing add columnd and verifying the output', () => {
     const p = new Table({
       shouldDisableColors: true
     });
-    
+
     // Add initial columns and data
     p.addColumns(['col1', 'col2'])
       .addRows([
@@ -162,24 +206,24 @@ describe('Testing add columnd and verifying the output', () => {
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    
+
     // Verify header structure
     const headerParts = renderedHeader.split('│').map(part => part.trim());
     expect(headerParts).toContain('col3');
     expect(renderedBody).toHaveLength(3); // Three rows
-    
+
     // Verify body structure and content
     const lastRowParts = renderedBody[2].split('│').map(part => part.trim());
     const firstRowParts = renderedBody[0].split('│').map(part => part.trim());
     const secondRowParts = renderedBody[1].split('│').map(part => part.trim());
-    
+
     // Check empty spaces in first two rows' last column
     expect(firstRowParts[3]).toBe('');
     expect(secondRowParts[3]).toBe('');
-    
+
     // Check the value in the last row's last column
     expect(lastRowParts[3]).toBe('value7');
-    
+
     // Verify all rows have correct number of columns
     expect(firstRowParts.length).toBe(5); // Including empty parts at start/end
     expect(secondRowParts.length).toBe(5);
@@ -190,12 +234,12 @@ describe('Testing add columnd and verifying the output', () => {
     const p = new Table({
       shouldDisableColors: true
     });
-    
+
     p.addColumns(['col1'])
       .addRows([{ col1: 'value1' }]);
 
     // Add a column with alignment and title
-    p.addColumn({ 
+    p.addColumn({
       name: 'col2',
       alignment: 'right',
       title: 'Column Two'
@@ -216,7 +260,7 @@ describe('Testing add columnd and verifying the output', () => {
     const p = new Table({
       shouldDisableColors: true
     });
-    
+
     p.addColumn('col1')
       .addRows([{ col1: 'text' }]);
 
@@ -243,12 +287,12 @@ describe('Testing add columnd and verifying the output', () => {
     const p = new Table({
       shouldDisableColors: true
     });
-    
+
     // Add columns in sequence
     p.addColumn('col1');
     p.addColumn('col2');
     p.addColumn('col3');
-    
+
     p.addRows([{ col1: '1', col2: '2', col3: '3' }]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
