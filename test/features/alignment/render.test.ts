@@ -6,64 +6,96 @@ describe('Alignment Tests: Rendering', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'text', alignment: 'left' },
-        { name: 'value', alignment: 'left' },
+        { name: 'very_long_text_column_name_for_testing', alignment: 'left' },
+        { name: 'another_long_value_column_name', alignment: 'left' },
       ],
     });
 
-    p.addRow({ text: 'Left Text', value: 123 });
+    p.addRows([
+      { 'very_long_text_column_name_for_testing': 'Left Text', 'another_long_value_column_name': 123 },
+      { 'very_long_text_column_name_for_testing': 'Another Left', 'another_long_value_column_name': 456 },
+      { 'very_long_text_column_name_for_testing': 'Third Row', 'another_long_value_column_name': 789 },
+    ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ text      │ value │');
-    expect(renderedBody).toEqual(['│ Left Text │ 123   │']);
+    expect(renderedHeader).toEqual('│ very_long_text_column_name_for_testing │ another_long_value_column_name │');
+    expect(renderedBody).toEqual([
+      '│ Left Text                              │ 123                            │',
+      '│ Another Left                           │ 456                            │',
+      '│ Third Row                              │ 789                            │',
+    ]);
   });
 
   it('should render right-aligned content', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'text', alignment: 'right' },
-        { name: 'value', alignment: 'right' },
+        { name: 'long_text_column_right_aligned', alignment: 'right' },
+        { name: 'numeric_value_right_aligned', alignment: 'right' },
       ],
     });
 
-    p.addRow({ text: 'Right Text', value: 123 });
+    p.addRows([
+      { long_text_column_right_aligned: 'Right Text', numeric_value_right_aligned: 123 },
+      { long_text_column_right_aligned: 'More Right', numeric_value_right_aligned: 456 },
+      { long_text_column_right_aligned: 'Last Right', numeric_value_right_aligned: 789 },
+    ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│       text │ value │');
-    expect(renderedBody).toEqual(['│ Right Text │   123 │']);
+    expect(renderedHeader).toEqual('│ long_text_column_right_aligned │ numeric_value_right_aligned │');
+    expect(renderedBody).toEqual([
+      '│                     Right Text │                         123 │',
+      '│                     More Right │                         456 │',
+      '│                     Last Right │                         789 │',
+    ]);
   });
 
   it('should render center-aligned content', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'text', alignment: 'center' },
-        { name: 'value', alignment: 'center' },
+        { name: 'centered_text_column_name', alignment: 'center' },
+        { name: 'centered_value_column', alignment: 'center' },
       ],
     });
 
-    p.addRow({ text: 'Center Text', value: 123 });
+    p.addRows([
+      { centered_text_column_name: 'Center Text', centered_value_column: 123 },
+      { centered_text_column_name: 'Middle Row', centered_value_column: 456 },
+      { centered_text_column_name: 'Last Center', centered_value_column: 789 },
+    ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│    text     │ value │');
-    expect(renderedBody).toEqual(['│ Center Text │  123  │']);
+    expect(renderedHeader).toEqual('│ centered_text_column_name │ centered_value_column │');
+    expect(renderedBody).toEqual([
+      '│        Center Text        │          123          │',
+      '│        Middle Row         │          456          │',
+      '│        Last Center        │          789          │',
+    ]);
   });
 
   it('should render mixed alignments', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'left', alignment: 'left' },
-        { name: 'right', alignment: 'right' },
-        { name: 'center', alignment: 'center' },
+        { name: 'left_aligned_column', alignment: 'left' },
+        { name: 'right_aligned_column', alignment: 'right' },
+        { name: 'center_aligned_column', alignment: 'center' },
       ],
     });
 
-    p.addRow({ left: 'Left', right: 'Right', center: 'Center' });
+    p.addRows([
+      { left_aligned_column: 'Left Text', right_aligned_column: 'Right Text', center_aligned_column: 'Center Text' },
+      { left_aligned_column: 'Left2 Long', right_aligned_column: 'Right2 Long', center_aligned_column: 'Center2 Long' },
+      { left_aligned_column: 'Left3 Longer', right_aligned_column: 'Right3 Longer', center_aligned_column: 'Center3 Longer' },
+    ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ left │ right │ center │');
-    expect(renderedBody).toEqual(['│ Left │ Right │ Center │']);
+    expect(renderedHeader).toEqual('│ left_aligned_column │ right_aligned_column │ center_aligned_column │');
+    expect(renderedBody).toEqual([
+      '│ Left Text           │           Right Text │      Center Text      │',
+      '│ Left2 Long          │          Right2 Long │     Center2 Long      │',
+      '│ Left3 Longer        │        Right3 Longer │    Center3 Longer     │',
+    ]);
   });
 });
