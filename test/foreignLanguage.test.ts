@@ -124,7 +124,7 @@ describe('Example: Print a simple Table with cell colors', () => {
 
   it('should make sure each column is what its expected to be', () => {
     const p = new Table({
-      shouldDisableColors: true
+      shouldDisableColors: true,
     });
 
     p.addRows([
@@ -135,23 +135,23 @@ describe('Example: Print a simple Table with cell colors', () => {
       {
         Description: 'Some Summary 这里是中文这里是中文',
         'Ticket No': 'ISSUE-22222',
-      }
+      },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│                                   Description │   Ticket No │');
+    expect(renderedHeader).toEqual(
+      '│                                   Description │   Ticket No │'
+    );
     expect(renderedBody).toEqual([
       '│ Some alphabets 这里是中文这里是中文这里是中文 │  ISSUE-1231 │',
-      '│             Some Summary 这里是中文这里是中文 │ ISSUE-22222 │'
+      '│             Some Summary 这里是中文这里是中文 │ ISSUE-22222 │',
     ]);
   });
 });
 
 describe('Foreign Language and Special Character Support', () => {
   it('should handle Chinese characters correctly', () => {
-    const table = new Table()
-      .addColumn('description')
-      .addColumn('identifier');
+    const table = new Table().addColumn('description').addColumn('identifier');
 
     table.addRows([
       {
@@ -165,7 +165,7 @@ describe('Foreign Language and Special Character Support', () => {
       {
         description: '混合 Chinese 和 English 文字',
         identifier: 'MIXED-003',
-      }
+      },
     ]);
 
     table.printTable();
@@ -182,28 +182,28 @@ describe('Foreign Language and Special Character Support', () => {
       {
         language: 'Japanese',
         text: 'こんにちは世界',
-        description: 'Hello World in Japanese'
+        description: 'Hello World in Japanese',
       },
       {
         language: 'Korean',
         text: '안녕하세요',
-        description: 'Hello in Korean'
+        description: 'Hello in Korean',
       },
       {
         language: 'Arabic',
         text: 'مرحبا بالعالم',
-        description: 'Hello World in Arabic'
+        description: 'Hello World in Arabic',
       },
       {
         language: 'Russian',
         text: 'Привет мир',
-        description: 'Hello World in Russian'
+        description: 'Hello World in Russian',
       },
       {
         language: 'Greek',
         text: 'Γεια σας κόσμε',
-        description: 'Hello World in Greek'
-      }
+        description: 'Hello World in Greek',
+      },
     ]);
 
     table.printTable();
@@ -220,18 +220,18 @@ describe('Foreign Language and Special Character Support', () => {
       {
         category: 'Greeting',
         content: 'Hello 你好 안녕하세요',
-        emoji: '👋'
+        emoji: '👋',
       },
       {
         category: 'Food',
         content: '寿司 🍣 초밥',
-        emoji: '🍱'
+        emoji: '🍱',
       },
       {
         category: 'Weather',
         content: '晴れ ☀️ 맑음',
-        emoji: '🌤'
-      }
+        emoji: '🌤',
+      },
     ]);
 
     table.printTable();
@@ -248,18 +248,18 @@ describe('Foreign Language and Special Character Support', () => {
       {
         direction: 'LTR',
         content: 'English text',
-        description: 'Left-to-right text'
+        description: 'Left-to-right text',
       },
       {
         direction: 'RTL',
         content: 'نص عربي',
-        description: 'Right-to-left text'
+        description: 'Right-to-left text',
       },
       {
         direction: 'Mixed',
         content: 'Hello مرحبا 你好',
-        description: 'Mixed direction text'
-      }
+        description: 'Mixed direction text',
+      },
     ]);
 
     table.printTable();
@@ -276,23 +276,23 @@ describe('Foreign Language and Special Character Support', () => {
       {
         type: 'Mathematical',
         symbols: '∑∏∆∇∫√',
-        description: 'Math symbols'
+        description: 'Math symbols',
       },
       {
         type: 'Currency',
         symbols: '¥€$₹£₽',
-        description: 'Currency symbols'
+        description: 'Currency symbols',
       },
       {
         type: 'Punctuation',
         symbols: '¡¿—–…',
-        description: 'Special punctuation'
+        description: 'Special punctuation',
       },
       {
         type: 'Diacritics',
         symbols: 'áéíóúñ',
-        description: 'Letters with accents'
-      }
+        description: 'Letters with accents',
+      },
     ]);
 
     table.printTable();

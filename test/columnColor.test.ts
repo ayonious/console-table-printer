@@ -10,7 +10,7 @@ describe('Column Color Tests', () => {
 
     p.addRows([
       { red: 'Red text', green: 'Green text', blue: 'Blue text' },
-      { red: '123', green: '456', blue: '789' }
+      { red: '123', green: '456', blue: '789' },
     ]);
 
     p.printTable();
@@ -25,7 +25,7 @@ describe('Column Color Tests', () => {
 
     p.addRows([
       { left_red: 'Left', center_green: 'Center', right_blue: 'Right' },
-      { left_red: '111', center_green: '222', right_blue: '333' }
+      { left_red: '111', center_green: '222', right_blue: '333' },
     ]);
 
     p.printTable();
@@ -48,21 +48,32 @@ describe('Column Color Tests', () => {
     const p = new Table({
       columns: [
         { name: 'color_name', alignment: 'left' },
-        { name: 'sample', alignment: 'left' }
-      ]
+        { name: 'sample', alignment: 'left' },
+      ],
     });
 
     // Test all available colors
     const colors = [
-      'red', 'green', 'yellow', 'blue', 'magenta', 'cyan',
-      'white', 'crimson', 'white_bold', 'gray'
+      'red',
+      'green',
+      'yellow',
+      'blue',
+      'magenta',
+      'cyan',
+      'white',
+      'crimson',
+      'white_bold',
+      'gray',
     ];
 
-    colors.forEach(color => {
-      p.addRow({
-        color_name: color,
-        sample: 'Sample Text'
-      }, { color });
+    colors.forEach((color) => {
+      p.addRow(
+        {
+          color_name: color,
+          sample: 'Sample Text',
+        },
+        { color }
+      );
     });
 
     p.printTable();
@@ -138,28 +149,30 @@ describe('Column Color Tests', () => {
       columns: [
         { name: 'red_left_align_index', alignment: 'left', color: 'red' },
         { name: 'right_align_text', alignment: 'right' },
-        { name: 'green_value', color: 'green' }
-      ]
+        { name: 'green_value', color: 'green' },
+      ],
     });
 
     p.addRows([
       {
         red_left_align_index: 2,
         right_align_text: 'This row is blue',
-        green_value: 10.212
+        green_value: 10.212,
       },
       {
         red_left_align_index: 3,
         right_align_text: 'I would like some red wine please',
-        green_value: 10.212
-      }
+        green_value: 10.212,
+      },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ red_left_align_index │                  right_align_text │ green_value │');
+    expect(renderedHeader).toEqual(
+      '│ red_left_align_index │                  right_align_text │ green_value │'
+    );
     expect(renderedBody).toEqual([
       '│ 2                    │                  This row is blue │      10.212 │',
-      '│ 3                    │ I would like some red wine please │      10.212 │'
+      '│ 3                    │ I would like some red wine please │      10.212 │',
     ]);
   });
 });

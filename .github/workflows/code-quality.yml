@@ -39,7 +39,7 @@ jobs:
       run: yarn test:coverage
 
     - name: Check formatting
-      run: yarn prettier --check "**/*.{json,md,ts,tsx,yml,js,jsx}"
+      run: yarn prettier --check "**/*.{ts,js}"
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master

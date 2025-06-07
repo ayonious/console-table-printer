@@ -6,28 +6,28 @@ describe('Computed Columns Tests', () => {
     const p = new Table({
       columns: [
         { name: 'value1', alignment: 'right' },
-        { name: 'value2', alignment: 'right' }
+        { name: 'value2', alignment: 'right' },
       ],
       computedColumns: [
         {
           name: 'sum',
-          function: (row) => row.value1 + row.value2
+          function: (row) => row.value1 + row.value2,
         },
         {
           name: 'difference',
-          function: (row) => row.value1 - row.value2
+          function: (row) => row.value1 - row.value2,
         },
         {
           name: 'product',
-          function: (row) => row.value1 * row.value2
-        }
-      ]
+          function: (row) => row.value1 * row.value2,
+        },
+      ],
     });
 
     p.addRows([
       { value1: 10, value2: 5 },
       { value1: 20, value2: 10 },
-      { value1: 15, value2: 3 }
+      { value1: 15, value2: 3 },
     ]);
 
     p.printTable();
@@ -36,26 +36,23 @@ describe('Computed Columns Tests', () => {
 
   it('should handle string manipulations', () => {
     const p = new Table({
-      columns: [
-        { name: 'firstName' },
-        { name: 'lastName' }
-      ],
+      columns: [{ name: 'firstName' }, { name: 'lastName' }],
       computedColumns: [
         {
           name: 'fullName',
-          function: (row) => `${row.firstName} ${row.lastName}`
+          function: (row) => `${row.firstName} ${row.lastName}`,
         },
         {
           name: 'initials',
-          function: (row) => `${row.firstName[0]}.${row.lastName[0]}.`
-        }
-      ]
+          function: (row) => `${row.firstName[0]}.${row.lastName[0]}.`,
+        },
+      ],
     });
 
     p.addRows([
       { firstName: 'John', lastName: 'Doe' },
       { firstName: 'Jane', lastName: 'Smith' },
-      { firstName: 'Bob', lastName: 'Johnson' }
+      { firstName: 'Bob', lastName: 'Johnson' },
     ]);
 
     p.printTable();
@@ -64,9 +61,7 @@ describe('Computed Columns Tests', () => {
 
   it('should handle conditional computations', () => {
     const p = new Table({
-      columns: [
-        { name: 'score', alignment: 'right' }
-      ],
+      columns: [{ name: 'score', alignment: 'right' }],
       computedColumns: [
         {
           name: 'grade',
@@ -76,13 +71,13 @@ describe('Computed Columns Tests', () => {
             if (row.score >= 70) return 'C';
             if (row.score >= 60) return 'D';
             return 'F';
-          }
+          },
         },
         {
           name: 'status',
-          function: (row) => row.score >= 60 ? 'PASS' : 'FAIL'
-        }
-      ]
+          function: (row) => (row.score >= 60 ? 'PASS' : 'FAIL'),
+        },
+      ],
     });
 
     p.addRows([
@@ -90,7 +85,7 @@ describe('Computed Columns Tests', () => {
       { score: 85 },
       { score: 75 },
       { score: 65 },
-      { score: 55 }
+      { score: 55 },
     ]);
 
     p.printTable();
@@ -99,17 +94,15 @@ describe('Computed Columns Tests', () => {
 
   it('should handle computations with row index', () => {
     const p = new Table({
-      columns: [
-        { name: 'value', alignment: 'right' }
-      ],
+      columns: [{ name: 'value', alignment: 'right' }],
       computedColumns: [
         {
           name: 'rowNum',
-          function: (row, index) => index + 1
+          function: (row, index) => index + 1,
         },
         {
           name: 'isEvenRow',
-          function: (row, index) => (index + 1) % 2 === 0 ? 'Yes' : 'No'
+          function: (row, index) => ((index + 1) % 2 === 0 ? 'Yes' : 'No'),
         },
         {
           name: 'runningTotal',
@@ -119,17 +112,12 @@ describe('Computed Columns Tests', () => {
               total += rows[i].value;
             }
             return total;
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
-    p.addRows([
-      { value: 10 },
-      { value: 20 },
-      { value: 30 },
-      { value: 40 }
-    ]);
+    p.addRows([{ value: 10 }, { value: 20 }, { value: 30 }, { value: 40 }]);
 
     p.printTable();
     expect(p.render()).toMatchSnapshot();
@@ -161,7 +149,7 @@ describe('Computed Columns Tests', () => {
     p.addRows([
       { red_amount: 2, blue_amount: 3 },
       { red_amount: 1, blue_amount: 1 },
-      { red_amount: 5, blue_amount: 6 }
+      { red_amount: 5, blue_amount: 6 },
     ]);
 
     p.printTable();
@@ -195,7 +183,7 @@ describe('Computed Columns Tests', () => {
     p.addRows([
       { red_amount: 2, blue_amount: 3 },
       { red_amount: 1, blue_amount: 1 },
-      { red_amount: 5, blue_amount: 6 }
+      { red_amount: 5, blue_amount: 6 },
     ]);
 
     p.printTable();
@@ -225,7 +213,7 @@ describe('Computed Columns Tests', () => {
     p.addRows([
       { red_amount: 2, blue_amount: 3 },
       { red_amount: 1, blue_amount: 1 },
-      { red_amount: 5, blue_amount: 6 }
+      { red_amount: 5, blue_amount: 6 },
     ]);
 
     p.printTable();
@@ -237,36 +225,38 @@ describe('Computed Columns Tests', () => {
       shouldDisableColors: true,
       columns: [
         { name: 'value1', alignment: 'right' },
-        { name: 'value2', alignment: 'right' }
+        { name: 'value2', alignment: 'right' },
       ],
       computedColumns: [
         {
           name: 'sum',
-          function: (row) => row.value1 + row.value2
+          function: (row) => row.value1 + row.value2,
         },
         {
           name: 'difference',
-          function: (row) => row.value1 - row.value2
+          function: (row) => row.value1 - row.value2,
         },
         {
           name: 'product',
-          function: (row) => row.value1 * row.value2
-        }
-      ]
+          function: (row) => row.value1 * row.value2,
+        },
+      ],
     });
 
     p.addRows([
       { value1: 10, value2: 5 },
       { value1: 20, value2: 10 },
-      { value1: 15, value2: 3 }
+      { value1: 15, value2: 3 },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ value1 │ value2 │ sum │ difference │ product │');
+    expect(renderedHeader).toEqual(
+      '│ value1 │ value2 │ sum │ difference │ product │'
+    );
     expect(renderedBody).toEqual([
       '│     10 │      5 │  15 │          5 │      50 │',
       '│     20 │     10 │  30 │         10 │     200 │',
-      '│     15 │      3 │  18 │         12 │      45 │'
+      '│     15 │      3 │  18 │         12 │      45 │',
     ]);
   });
 });

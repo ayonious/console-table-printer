@@ -11,7 +11,7 @@ describe('Table Rendering Tests', () => {
     table.addRows([
       { id: 1, name: 'John', score: 85 },
       { id: 2, name: 'Jane', score: 92 },
-      { id: 3, name: 'Bob', score: 78 }
+      { id: 3, name: 'Bob', score: 78 },
     ]);
 
     const rendered = table.render();
@@ -24,13 +24,13 @@ describe('Table Rendering Tests', () => {
       columns: [
         { name: 'left_col', alignment: 'left' },
         { name: 'center_col', alignment: 'center' },
-        { name: 'right_col', alignment: 'right' }
-      ]
+        { name: 'right_col', alignment: 'right' },
+      ],
     });
 
     table.addRows([
       { left_col: 'Left', center_col: 'Center', right_col: 'Right' },
-      { left_col: '111', center_col: '222', right_col: '333' }
+      { left_col: '111', center_col: '222', right_col: '333' },
     ]);
 
     const rendered = table.render();
@@ -43,13 +43,13 @@ describe('Table Rendering Tests', () => {
       columns: [
         { name: 'red_col', color: 'red' },
         { name: 'green_col', color: 'green' },
-        { name: 'blue_col', color: 'blue' }
-      ]
+        { name: 'blue_col', color: 'blue' },
+      ],
     });
 
     table.addRows([
       { red_col: 'Red text', green_col: 'Green text', blue_col: 'Blue text' },
-      { red_col: '111', green_col: '222', blue_col: '333' }
+      { red_col: '111', green_col: '222', blue_col: '333' },
     ]);
 
     const rendered = table.render();
@@ -67,10 +67,7 @@ describe('Table Rendering Tests', () => {
       { name: 'John', status: 'Pass', score: 95 },
       { color: 'green' }
     );
-    table.addRow(
-      { name: 'Jane', status: 'Fail', score: 45 },
-      { color: 'red' }
-    );
+    table.addRow({ name: 'Jane', status: 'Fail', score: 45 }, { color: 'red' });
     table.addRow(
       { name: 'Bob', status: 'Pass', score: 85 },
       { color: 'green' }
@@ -86,8 +83,8 @@ describe('Table Rendering Tests', () => {
       columns: [
         { name: 'id', alignment: 'right', color: 'blue' },
         { name: 'name', alignment: 'left' },
-        { name: 'status', alignment: 'center', color: 'green' }
-      ]
+        { name: 'status', alignment: 'center', color: 'green' },
+      ],
     });
 
     table.addRow(
@@ -106,10 +103,7 @@ describe('Table Rendering Tests', () => {
 
   it('should render empty table correctly', () => {
     const table = new Table({
-      columns: [
-        { name: 'col1' },
-        { name: 'col2' }
-      ]
+      columns: [{ name: 'col1' }, { name: 'col2' }],
     });
 
     const rendered = table.render();
@@ -118,14 +112,12 @@ describe('Table Rendering Tests', () => {
   });
 
   it('should render table with special characters', () => {
-    const table = new Table()
-      .addColumn('symbols')
-      .addColumn('description');
+    const table = new Table().addColumn('symbols').addColumn('description');
 
     table.addRows([
       { symbols: '!@#$%^&*()', description: 'Special characters' },
       { symbols: '│─┌┐└┘├┤┬┴┼', description: 'Box drawing characters' },
-      { symbols: '♠♣♥♦', description: 'Card suits' }
+      { symbols: '♠♣♥♦', description: 'Card suits' },
     ]);
 
     const rendered = table.render();
@@ -139,20 +131,23 @@ describe('Table Rendering Tests', () => {
       columns: [
         { name: 'id', alignment: 'right', color: 'blue' },
         { name: 'name', alignment: 'left' },
-        { name: 'status', alignment: 'center', color: 'green' }
-      ]
+        { name: 'status', alignment: 'center', color: 'green' },
+      ],
     });
 
     table.addRows([
       { id: 1, name: 'John', status: 'Active' },
-      { id: 2, name: 'Jane', status: 'Inactive' }
+      { id: 2, name: 'Jane', status: 'Inactive' },
     ]);
 
-    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    const [renderedHeader, renderedBody] = [
+      getTableHeader(table),
+      getTableBody(table),
+    ];
     expect(renderedHeader).toEqual('│ id │ name │  status  │');
     expect(renderedBody).toEqual([
       '│  1 │ John │  Active  │',
-      '│  2 │ Jane │ Inactive │'
+      '│  2 │ Jane │ Inactive │',
     ]);
   });
 });

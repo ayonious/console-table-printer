@@ -5,10 +5,7 @@ describe('Testing defaultColumnOptions in Table', () => {
   it('should apply default styles to columns when not specified', () => {
     const defaultStyles = { alignment: 'center', color: 'blue', maxLen: 50 };
     const p = new Table({
-      columns: [
-        { name: 'col1' },
-        { name: 'col2', alignment: 'left' },
-      ],
+      columns: [{ name: 'col1' }, { name: 'col2', alignment: 'left' }],
       defaultColumnOptions: defaultStyles,
     });
 
@@ -30,10 +27,7 @@ describe('Testing defaultColumnOptions in Table', () => {
 
   it('should handle empty defaultColumnOptions', () => {
     const p = new Table({
-      columns: [
-        { name: 'col1' },
-        { name: 'col2' },
-      ],
+      columns: [{ name: 'col1' }, { name: 'col2' }],
       defaultColumnOptions: {},
     });
 
@@ -44,10 +38,7 @@ describe('Testing defaultColumnOptions in Table', () => {
 
   it('should handle undefined defaultColumnOptions', () => {
     const p = new Table({
-      columns: [
-        { name: 'col1' },
-        { name: 'col2' },
-      ],
+      columns: [{ name: 'col1' }, { name: 'col2' }],
     });
 
     p.addRow({ col1: 'value1', col2: 'value2' });
@@ -69,8 +60,8 @@ describe('Testing defaultColumnOptions in Table', () => {
         alignment: 'center',
         color: 'blue',
         maxLen: 15,
-        minLen: 8
-      }
+        minLen: 8,
+      },
     });
 
     // Add rows with various lengths and content
@@ -79,14 +70,14 @@ describe('Testing defaultColumnOptions in Table', () => {
       product: 'Super long product name that should be truncated',
       quantity: 5,
       price: 99.99,
-      status: 'In Stock'
+      status: 'In Stock',
     });
     p.addRow({
       id: 2,
       product: 'Short name',
       quantity: 0,
       price: 149.99,
-      status: 'Out of Stock'
+      status: 'Out of Stock',
     });
 
     p.printTable();
@@ -111,39 +102,35 @@ describe('Testing defaultColumnOptions in Table', () => {
 
   it('should handle defaultColumnOptions with computed columns', () => {
     const p = new Table({
-      columns: [
-        { name: 'firstName' },
-        { name: 'lastName' },
-        { name: 'age' }
-      ],
+      columns: [{ name: 'firstName' }, { name: 'lastName' }, { name: 'age' }],
       computedColumns: [
         {
           name: 'fullName',
           title: 'Full Name',
           function: (row) => `${row.firstName} ${row.lastName}`,
-          alignment: 'center'
+          alignment: 'center',
         },
         {
           name: 'ageGroup',
-          function: (row) => row.age < 30 ? 'Young' : 'Adult',
-          alignment: 'center'
-        }
+          function: (row) => (row.age < 30 ? 'Young' : 'Adult'),
+          alignment: 'center',
+        },
       ],
       defaultColumnOptions: {
         alignment: 'center',
         color: 'cyan',
-        maxLen: 20
-      }
+        maxLen: 20,
+      },
     });
 
     p.addRow({ firstName: 'John', lastName: 'Doe', age: 25 });
     p.addRow({ firstName: 'Jane', lastName: 'Smith', age: 35 });
 
     p.printTable();
-    
+
     // Verify computed columns inherit default options
     const computedColumns = p.table.columns.slice(-2);
-    computedColumns.forEach(col => {
+    computedColumns.forEach((col) => {
       // TODO: fix this test
       expect(col.color).toBe('cyan');
       expect(col.maxLen).toBe(20);
@@ -154,17 +141,13 @@ describe('Testing defaultColumnOptions in Table', () => {
 
   it('should handle defaultColumnOptions with row separators and colors', () => {
     const p = new Table({
-      columns: [
-        { name: 'task' },
-        { name: 'status' },
-        { name: 'priority' }
-      ],
+      columns: [{ name: 'task' }, { name: 'status' }, { name: 'priority' }],
       defaultColumnOptions: {
         alignment: 'center',
         color: 'white',
-        maxLen: 15
+        maxLen: 15,
       },
-      rowSeparator: true
+      rowSeparator: true,
     });
 
     // Add rows with different colors that should not affect column colors
@@ -185,36 +168,31 @@ describe('Testing defaultColumnOptions in Table', () => {
     expect(p.render()).toMatchSnapshot();
 
     // Verify column colors remain as default despite row colors
-    p.table.columns.forEach(col => {
+    p.table.columns.forEach((col) => {
       expect(col.color).toBe('white');
     });
   });
-  
 
   it('should handle extremely long content with defaultColumnOptions', () => {
     const p = new Table({
-      columns: [
-        { name: 'id' },
-        { name: 'description' },
-        { name: 'tags' }
-      ],
+      columns: [{ name: 'id' }, { name: 'description' }, { name: 'tags' }],
       defaultColumnOptions: {
         alignment: 'left',
         maxLen: 20,
-        minLen: 5
-      }
+        minLen: 5,
+      },
     });
 
     // Add rows with shorter content to keep output reasonable
     p.addRow({
       id: 1,
       description: 'A long description that will be truncated by maxLen',
-      tags: 'tag1, tag2, tag3'
+      tags: 'tag1, tag2, tag3',
     });
     p.addRow({
       id: 2,
       description: 'Short desc',
-      tags: 'tag1'
+      tags: 'tag1',
     });
 
     p.printTable();
@@ -222,7 +200,6 @@ describe('Testing defaultColumnOptions in Table', () => {
 
     // Verify content handling
 
-    
     const rendered = p.render();
     expect(rendered.length).toBeLessThan(1000);
     expect(rendered).toContain('Short desc');

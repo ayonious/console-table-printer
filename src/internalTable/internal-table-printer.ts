@@ -234,12 +234,18 @@ export const renderTable = (table: TableInternal): string => {
   return ret.join('\n');
 };
 
-export const renderSimpleTable = (rows: any[], tableOptions?: ComplexOptions) => {
+export const renderSimpleTable = (
+  rows: any[],
+  tableOptions?: ComplexOptions
+) => {
   const table = new TableInternal(tableOptions);
   table.addRows(rows);
   return renderTable(table);
 };
 
-export const printSimpleTable = (rows: any[], tableOptions?: ComplexOptions) => {
+export const printSimpleTable = (
+  rows: any[],
+  tableOptions?: ComplexOptions
+) => {
   console.log(renderSimpleTable(rows, tableOptions));
 };

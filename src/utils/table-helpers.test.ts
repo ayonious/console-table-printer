@@ -6,7 +6,7 @@ import {
   createRow,
   findLenOfColumn,
   createHeaderAsRow,
-  getWidthLimitedColumnsArray
+  getWidthLimitedColumnsArray,
 } from './table-helpers';
 import { DEFAULT_ROW_SEPARATOR } from './table-constants';
 import { ComputedColumn } from '../models/external-table';
@@ -38,14 +38,16 @@ describe('table-helpers', () => {
     it('should use default separator when not provided', () => {
       expect(convertRawRowOptionsToStandard({ color: 'red' })).toEqual({
         color: 'red',
-        separator: DEFAULT_ROW_SEPARATOR
+        separator: DEFAULT_ROW_SEPARATOR,
       });
     });
 
     it('should use provided separator', () => {
-      expect(convertRawRowOptionsToStandard({ color: 'blue', separator: true })).toEqual({
+      expect(
+        convertRawRowOptionsToStandard({ color: 'blue', separator: true })
+      ).toEqual({
         color: 'blue',
-        separator: true
+        separator: true,
       });
     });
   });
@@ -58,7 +60,9 @@ describe('table-helpers', () => {
 
     it('should create border with multiple columns', () => {
       const style = { left: '╚', mid: '╩', right: '╝', other: '═' };
-      expect(createTableHorizontalBorders(style, [3, 4])).toBe('╚═════╩══════╝');
+      expect(createTableHorizontalBorders(style, [3, 4])).toBe(
+        '╚═════╩══════╝'
+      );
     });
   });
 
@@ -66,7 +70,7 @@ describe('table-helpers', () => {
     it('should create column with name as title', () => {
       expect(createColumFromOnlyName('test')).toEqual({
         name: 'test',
-        title: 'test'
+        title: 'test',
       });
     });
   });
@@ -77,7 +81,7 @@ describe('table-helpers', () => {
       expect(createRow('red', text, true)).toEqual({
         color: 'red',
         separator: true,
-        text
+        text,
       });
     });
   });
@@ -85,7 +89,7 @@ describe('table-helpers', () => {
   describe('findLenOfColumn', () => {
     const rows = [
       { color: 'white', separator: false, text: { col1: 'short' } },
-      { color: 'white', separator: false, text: { col1: 'longer text' } }
+      { color: 'white', separator: false, text: { col1: 'longer text' } },
     ];
 
     it('should respect minLen', () => {
@@ -108,42 +112,46 @@ describe('table-helpers', () => {
     it('should create header row from columns', () => {
       const columns = [
         { name: 'col1', title: 'Column 1' },
-        { name: 'col2', title: 'Column 2' }
+        { name: 'col2', title: 'Column 2' },
       ];
-      const createRowFn = (color: string, text: any, separator: boolean) => ({ color, text, separator });
-      
+      const createRowFn = (color: string, text: any, separator: boolean) => ({
+        color,
+        text,
+        separator,
+      });
+
       expect(createHeaderAsRow(createRowFn, columns)).toEqual({
         color: 'white_bold',
         separator: false,
         text: {
           col1: 'Column 1',
-          col2: 'Column 2'
-        }
+          col2: 'Column 2',
+        },
       });
     });
   });
 
   describe('getWidthLimitedColumnsArray', () => {
     it('should split text into arrays based on column length', () => {
-      const columns = [
-        { name: 'col1', title: 'Col 1', length: 5 }
-      ];
-      const row = { color: 'white', separator: false, text: { col1: 'This is a long text' } };
-      
+      const columns = [{ name: 'col1', title: 'Col 1', length: 5 }];
+      const row = {
+        color: 'white',
+        separator: false,
+        text: { col1: 'This is a long text' },
+      };
+
       expect(getWidthLimitedColumnsArray(columns, row)).toEqual({
-        col1: ['This', 'is a', 'long', 'text']
+        col1: ['This', 'is a', 'long', 'text'],
       });
     });
 
     it('should handle undefined column length', () => {
-      const columns = [
-        { name: 'col1', title: 'Col 1' }
-      ];
+      const columns = [{ name: 'col1', title: 'Col 1' }];
       const row = { color: 'white', separator: false, text: { col1: 'Short' } };
-      
+
       expect(getWidthLimitedColumnsArray(columns, row)).toEqual({
-        col1: ['Short']
+        col1: ['Short'],
       });
     });
   });
-}); 
+});

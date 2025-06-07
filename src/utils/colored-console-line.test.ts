@@ -14,7 +14,7 @@ describe('ColoredConsoleLine', () => {
   it('should initialize with custom color map', () => {
     const customColorMap = {
       red: '\x1b[31m',
-      reset: '\x1b[0m'
+      reset: '\x1b[0m',
     };
     const line = new ColoredConsoleLine(customColorMap);
     expect(line.colorMap).toEqual(customColorMap);
@@ -53,4 +53,4 @@ describe('ColoredConsoleLine', () => {
       expect(line.renderConsole()).toBe('');
     });
   });
-}); 
+});

@@ -25,7 +25,7 @@ describe('TableInternal Initialization', () => {
     const options = {
       title: 'No Color Table',
       columns: [{ name: 'col1' }],
-      shouldDisableColors: true
+      shouldDisableColors: true,
     };
     const table = new TableInternal(options);
     expect(table.colorMap).toEqual({});
@@ -34,12 +34,12 @@ describe('TableInternal Initialization', () => {
   it('should initialize with custom color map', () => {
     const customColorMap = {
       customRed: '\x1b[31m',
-      customBlue: '\x1b[34m'
+      customBlue: '\x1b[34m',
     };
     const options = {
       title: 'Custom Color Table',
       columns: [{ name: 'col1' }],
-      colorMap: customColorMap
+      colorMap: customColorMap,
     };
     const table = new TableInternal(options);
     expect(table.colorMap).toMatchObject(customColorMap);
@@ -50,8 +50,8 @@ describe('TableInternal Initialization', () => {
       columns: [{ name: 'name' }, { name: 'age' }],
       rows: [
         { name: 'Alice', age: 30 },
-        { name: 'Bob', age: 25 }
-      ]
+        { name: 'Bob', age: 25 },
+      ],
     };
     const table = new TableInternal(options);
     expect(table.rows.length).toBe(2);
@@ -90,7 +90,7 @@ describe('TableInternal Additions', () => {
     const computedColumn: ComputedColumn = {
       name: 'computed',
       title: 'Computed Value',
-      function: (row: any) => row.a + row.b
+      function: (row: any) => row.a + row.b,
     };
     table.addColumn(computedColumn);
     expect(table.columns.length).toBe(1);
@@ -104,7 +104,7 @@ describe('TableInternal Additions', () => {
       name: 'rawCol',
       title: 'Raw Column',
       alignment: 'center' as const,
-      color: 'red' as const
+      color: 'red' as const,
     };
     table.addColumn(rawColumn);
     expect(table.columns.length).toBe(1);
@@ -125,7 +125,7 @@ describe('TableInternal Additions', () => {
     const table = new TableInternal();
     const columns = [
       { name: 'name', title: 'Full Name' },
-      { name: 'age', title: 'Age' }
+      { name: 'age', title: 'Age' },
     ];
     table.addColumns(columns);
     expect(table.columns.length).toBe(2);
@@ -137,33 +137,35 @@ describe('TableInternal Additions', () => {
     const table = new TableInternal();
     // Start with no columns
     expect(table.columns.length).toBe(0);
-    
+
     // Add row with new columns
     table.addRow({ newCol1: 'value1', newCol2: 'value2' });
     expect(table.columns.length).toBe(2);
-    expect(table.columns.find(col => col.name === 'newCol1')).toBeDefined();
-    expect(table.columns.find(col => col.name === 'newCol2')).toBeDefined();
+    expect(table.columns.find((col) => col.name === 'newCol1')).toBeDefined();
+    expect(table.columns.find((col) => col.name === 'newCol2')).toBeDefined();
   });
 
   it('should not duplicate columns when adding row with existing column names', () => {
     const table = new TableInternal(['existingCol']);
     expect(table.columns.length).toBe(1);
-    
+
     // Add row with mix of existing and new columns
     table.addRow({ existingCol: 'value1', newCol: 'value2' });
     expect(table.columns.length).toBe(2); // Should only add 1 new column
-    expect(table.columns.find(col => col.name === 'existingCol')).toBeDefined();
-    expect(table.columns.find(col => col.name === 'newCol')).toBeDefined();
+    expect(
+      table.columns.find((col) => col.name === 'existingCol')
+    ).toBeDefined();
+    expect(table.columns.find((col) => col.name === 'newCol')).toBeDefined();
   });
 
   it('should add rows with options', () => {
     const table = new TableInternal(['name', 'status']);
     const rowsData = [
       { name: 'Alice', status: 'Active' },
-      { name: 'Bob', status: 'Inactive' }
+      { name: 'Bob', status: 'Inactive' },
     ];
     const options = { color: 'blue' as const, separator: true };
-    
+
     table.addRows(rowsData, options);
     expect(table.rows.length).toBe(2);
     expect(table.rows[0].color).toBe('blue');
@@ -176,9 +178,9 @@ describe('TableInternal Additions', () => {
     const table = new TableInternal(['id', 'value']);
     const rowsData = [
       { id: 1, value: 'first' },
-      { id: 2, value: 'second' }
+      { id: 2, value: 'second' },
     ];
-    
+
     table.addRows(rowsData);
     expect(table.rows.length).toBe(2);
     expect(table.rows[0].text.id).toBe(1);
@@ -229,4 +231,4 @@ describe('TableInternal Edge Cases', () => {
     expect(rendered).toContain('value1');
     expect(rendered).toContain('value2');
   });
-}); 
+});

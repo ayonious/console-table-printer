@@ -111,14 +111,16 @@ describe('Example: Print a simple Table with Custom column colors', () => {
         red_left_align_index: 3,
         right_align_text: 'This row is blue as well',
         green_value: 10.212,
-      }
+      },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ red_left_align_index │         right_align_text │ green_value │');
+    expect(renderedHeader).toEqual(
+      '│ red_left_align_index │         right_align_text │ green_value │'
+    );
     expect(renderedBody).toEqual([
       '│ 2                    │ This is my defined Green │      10.212 │',
-      '│ 3                    │ This row is blue as well │      10.212 │'
+      '│ 3                    │ This row is blue as well │      10.212 │',
     ]);
   });
 });

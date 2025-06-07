@@ -10,7 +10,9 @@ const createComputedColumnsIfNecessary = (table: TableInternal) => {
   if (table.computedColumns.length) {
     table.computedColumns.forEach((computedColumn: ComputedColumn) => {
       // This can happen if renderTable/printTable is called multiple times
-      const isColumnAlreadyExists = table.columns.some((col: Column) => col.name === computedColumn.name);
+      const isColumnAlreadyExists = table.columns.some(
+        (col: Column) => col.name === computedColumn.name
+      );
       if (isColumnAlreadyExists) {
         return;
       }
@@ -19,8 +21,14 @@ const createComputedColumnsIfNecessary = (table: TableInternal) => {
         ...table.defaultColumnOptions,
       });
       table.rows.forEach((row: Row, index: number, rowsArray: Row[]) => {
-        const arrayRowText = rowsArray.map((elemInRowsArray) => elemInRowsArray.text);
-        row.text[computedColumn.name] = computedColumn.function(row.text, index, arrayRowText);
+        const arrayRowText = rowsArray.map(
+          (elemInRowsArray) => elemInRowsArray.text
+        );
+        row.text[computedColumn.name] = computedColumn.function(
+          row.text,
+          index,
+          arrayRowText
+        );
       });
     });
   }

@@ -22,7 +22,11 @@ describe('Testing printTable function', () => {
   // Test with critical length options
   it('should handle minLen and maxLen options', () => {
     const testData = [
-      { id: 1, description: 'This is a very long description that should be truncated', count: 42 },
+      {
+        id: 1,
+        description: 'This is a very long description that should be truncated',
+        count: 42,
+      },
       { id: 2, description: 'Short desc', count: 10 },
     ];
 
@@ -30,8 +34,8 @@ describe('Testing printTable function', () => {
       defaultColumnOptions: {
         minLen: 10,
         maxLen: 15,
-        color: 'red'
-      }
+        color: 'red',
+      },
     });
     expect(result).toBeUndefined();
   });
@@ -47,8 +51,8 @@ describe('Testing printTable function', () => {
       title: 'Task Status Report',
       rowSeparator: true,
       defaultColumnOptions: {
-        alignment: 'center'
-      }
+        alignment: 'center',
+      },
     });
     expect(result).toBeUndefined();
   });
@@ -81,7 +85,7 @@ describe('Testing printTable function', () => {
           other: '═',
         },
         vertical: '║',
-      }
+      },
     });
     expect(result).toBeUndefined();
   });
@@ -97,8 +101,8 @@ describe('Testing printTable function', () => {
       defaultColumnOptions: {
         alignment: 'center',
         color: 'blue',
-        maxLen: 20
-      }
+        maxLen: 20,
+      },
     });
 
     expect(result).toBeUndefined();
@@ -115,13 +119,13 @@ describe('Testing printTable function', () => {
       columns: [
         { name: 'id', alignment: 'left' },
         { name: 'name' },
-        { name: 'age', color: 'green' }
+        { name: 'age', color: 'green' },
       ],
       defaultColumnOptions: {
         alignment: 'center',
         color: 'blue',
-        maxLen: 20
-      }
+        maxLen: 20,
+      },
     });
 
     expect(result).toBeUndefined();
@@ -138,8 +142,8 @@ describe('Testing printTable function', () => {
       enabledColumns: ['id', 'name'],
       disabledColumns: ['email'],
       defaultColumnOptions: {
-        alignment: 'left'
-      }
+        alignment: 'left',
+      },
     });
     expect(result).toBeUndefined();
   });
@@ -161,20 +165,20 @@ describe('Testing printTable function', () => {
       columns: [
         { name: 'firstName' },
         { name: 'lastName' },
-        { name: 'salary' }
+        { name: 'salary' },
       ],
       computedColumns: [
         {
           name: 'fullName',
           title: 'Full Name',
-          function: (row: Row) => `${row.firstName} ${row.lastName}`
+          function: (row: Row) => `${row.firstName} ${row.lastName}`,
         },
         {
           name: 'taxed_salary',
           title: 'After Tax',
-          function: (row: Row) => (row.salary * 0.8).toFixed(2)
-        }
-      ]
+          function: (row: Row) => (row.salary * 0.8).toFixed(2),
+        },
+      ],
     };
 
     const result = printTable(testData, options);

@@ -142,7 +142,7 @@ describe('Testing column max Width', () => {
           title: 'maxLen:8',
         },
       ],
-      title: "large words",
+      title: 'large words',
     });
 
     // add rows with color
@@ -268,20 +268,30 @@ describe('Testing column max Width', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'right_align_text', alignment: 'right', maxLen: 10, title: 'maxLen:10' },
-        { name: 'green_center_align', alignment: 'center', maxLen: 8, title: 'maxLen:8' }
-      ]
+        {
+          name: 'right_align_text',
+          alignment: 'right',
+          maxLen: 10,
+          title: 'maxLen:10',
+        },
+        {
+          name: 'green_center_align',
+          alignment: 'center',
+          maxLen: 8,
+          title: 'maxLen:8',
+        },
+      ],
     });
 
     p.addRows([
       {
         right_align_text: 'This row is blue',
-        green_center_align: 'This row is green column'
+        green_center_align: 'This row is green column',
       },
       {
         right_align_text: 'This row is blue but again another line',
-        green_center_align: 'This row is green column but a little longer'
-      }
+        green_center_align: 'This row is green column but a little longer',
+      },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
@@ -295,7 +305,7 @@ describe('Testing column max Width', () => {
       '│  but again │  column  │',
       '│    another │  but a   │',
       '│       line │  little  │',
-      '│            │  longer  │'
+      '│            │  longer  │',
     ]);
   });
 });

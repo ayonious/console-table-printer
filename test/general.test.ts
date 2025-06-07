@@ -26,18 +26,18 @@ describe('General Table Functionality', () => {
 
   it('should maintain data consistency across operations', () => {
     const table = new Table();
-    
+
     // Add columns first
     table.addColumns(['col1', 'col2']);
-    
+
     // Add rows one by one
     table.addRow({ col1: 'value1', col2: 'value2' });
     table.addRow({ col1: 'value3', col2: 'value4' });
-    
+
     // Add multiple rows
     table.addRows([
       { col1: 'value5', col2: 'value6' },
-      { col1: 'value7', col2: 'value8' }
+      { col1: 'value7', col2: 'value8' },
     ]);
 
     expect(table.render()).toMatchSnapshot();
@@ -46,14 +46,14 @@ describe('General Table Functionality', () => {
   it('should handle mixed data types in cells', () => {
     const table = new Table();
     table.addRows([
-      { 
+      {
         number: 42,
         string: 'text',
         boolean: true,
         nullValue: null,
         undefinedValue: undefined,
-        object: { key: 'value' }
-      }
+        object: { key: 'value' },
+      },
     ]);
 
     expect(table.render()).toMatchSnapshot();
@@ -66,7 +66,7 @@ describe('General Table Functionality', () => {
       .addRow({ col1: 'v1', col2: 'v2', col3: 'v3' })
       .addRows([
         { col1: 'v4', col2: 'v5', col3: 'v6' },
-        { col1: 'v7', col2: 'v8', col3: 'v9' }
+        { col1: 'v7', col2: 'v8', col3: 'v9' },
       ]);
 
     expect(table.render()).toMatchSnapshot();
@@ -74,29 +74,32 @@ describe('General Table Functionality', () => {
 
   it('should make sure each column is what its expected to be', () => {
     const table = new Table({
-      shouldDisableColors: true
+      shouldDisableColors: true,
     });
-    
+
     // Add columns first
     table.addColumns(['col1', 'col2']);
-    
+
     // Add rows one by one
     table.addRow({ col1: 'value1', col2: 'value2' });
     table.addRow({ col1: 'value3', col2: 'value4' });
-    
+
     // Add multiple rows
     table.addRows([
       { col1: 'value5', col2: 'value6' },
-      { col1: 'value7', col2: 'value8' }
+      { col1: 'value7', col2: 'value8' },
     ]);
 
-    const [renderedHeader, renderedBody] = [getTableHeader(table), getTableBody(table)];
+    const [renderedHeader, renderedBody] = [
+      getTableHeader(table),
+      getTableBody(table),
+    ];
     expect(renderedHeader).toEqual('│   col1 │   col2 │');
     expect(renderedBody).toEqual([
       '│ value1 │ value2 │',
       '│ value3 │ value4 │',
       '│ value5 │ value6 │',
-      '│ value7 │ value8 │'
+      '│ value7 │ value8 │',
     ]);
   });
 });
