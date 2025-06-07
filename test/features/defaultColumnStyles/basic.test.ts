@@ -10,7 +10,7 @@ describe('Default Column Styles: Basic Tests', () => {
     });
 
     p.addRow({ col1: 'value1', col2: 'value2' });
-    
+
     // Verify column properties
     expect(p.table.columns[0].alignment).toBe('center');
     expect(p.table.columns[0].color).toBe('blue');
@@ -25,7 +25,7 @@ describe('Default Column Styles: Basic Tests', () => {
     });
 
     p.addRow({ col1: 'value1', col2: 'value2' });
-    
+
     // Verify default values are used
     expect(p.table.columns[0].alignment).toBe('right'); // default alignment
     expect(p.table.columns[0].color).toBeUndefined();
@@ -38,7 +38,7 @@ describe('Default Column Styles: Basic Tests', () => {
     });
 
     p.addRow({ col1: 'value1', col2: 'value2' });
-    
+
     // Verify default values are used
     expect(p.table.columns[0].alignment).toBe('right'); // default alignment
     expect(p.table.columns[0].color).toBeUndefined();
@@ -109,4 +109,4 @@ describe('Default Column Styles: Basic Tests', () => {
       expect(col.alignment).toBe('center');
     });
   });
-}); 
+});

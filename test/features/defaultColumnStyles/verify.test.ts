@@ -3,17 +3,25 @@ import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('Default Column Styles: Verification Tests', () => {
   it('should verify all available color options', () => {
-    const colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
-    
-    colors.forEach(color => {
+    const colors = [
+      'red',
+      'green',
+      'yellow',
+      'blue',
+      'magenta',
+      'cyan',
+      'white',
+    ];
+
+    colors.forEach((color) => {
       const p = new Table({
         columns: [{ name: 'col1' }, { name: 'col2' }],
         defaultColumnOptions: { color },
       });
 
       p.addRow({ col1: 'test', col2: 'test' });
-      
-      p.table.columns.forEach(col => {
+
+      p.table.columns.forEach((col) => {
         expect(col.color).toBe(color);
       });
     });
@@ -21,16 +29,16 @@ describe('Default Column Styles: Verification Tests', () => {
 
   it('should verify all alignment options', () => {
     const alignments = ['left', 'right', 'center'];
-    
-    alignments.forEach(alignment => {
+
+    alignments.forEach((alignment) => {
       const p = new Table({
         columns: [{ name: 'col1' }, { name: 'col2' }],
         defaultColumnOptions: { alignment },
       });
 
       p.addRow({ col1: 'test', col2: 'test' });
-      
-      p.table.columns.forEach(col => {
+
+      p.table.columns.forEach((col) => {
         expect(col.alignment).toBe(alignment);
       });
     });
@@ -50,17 +58,17 @@ describe('Default Column Styles: Verification Tests', () => {
       { col1: 'a', col2: 'b' },
     ]);
 
-    p.table.columns.forEach(col => {
+    p.table.columns.forEach((col) => {
       expect(col.minLen).toBe(10);
       expect(col.maxLen).toBe(20);
     });
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
     const bodyLines = renderedBody.join('\\n');
-    
+
     // Check minLen enforcement
     expect(bodyLines).not.toMatch(/│\s{0,9}[a-z]│/); // No content less than minLen
-    
+
     // Check maxLen enforcement
     expect(bodyLines).not.toMatch(/[a-z]{21,}│/); // No content exceeds maxLen
   });
@@ -132,4 +140,4 @@ describe('Default Column Styles: Verification Tests', () => {
     expect(p.table.columns[2].alignment).toBe('center');
     expect(p.table.columns[2].color).toBe('cyan');
   });
-}); 
+});

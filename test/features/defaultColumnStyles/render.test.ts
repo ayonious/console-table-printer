@@ -5,11 +5,7 @@ describe('Default Column Styles: Rendering Tests', () => {
   it('should render table with default column styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [
-        { name: 'name' },
-        { name: 'age' },
-        { name: 'city' },
-      ],
+      columns: [{ name: 'name' }, { name: 'age' }, { name: 'city' }],
       defaultColumnOptions: {
         alignment: 'center',
         maxLen: 15,
@@ -23,7 +19,9 @@ describe('Default Column Styles: Rendering Tests', () => {
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│      name       │       age       │      city       │');
+    expect(renderedHeader).toEqual(
+      '│      name       │       age       │      city       │'
+    );
     expect(renderedBody).toEqual([
       '│    John Doe     │       30        │    New York     │',
       '│   Jane Smith    │       25        │   Los Angeles   │',
@@ -46,13 +44,19 @@ describe('Default Column Styles: Rendering Tests', () => {
     });
 
     p.addRows([
-      { id: 1, description: 'First item with a very long description', amount: 100.50 },
+      {
+        id: 1,
+        description: 'First item with a very long description',
+        amount: 100.5,
+      },
       { id: 2, description: 'Second item', amount: 200.75 },
       { id: 3, description: 'Third', amount: 300.25 },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│  id   │ description          │     amount │');
+    expect(renderedHeader).toEqual(
+      '│  id   │ description          │     amount │'
+    );
     expect(renderedBody).toEqual([
       '│   1   │ First item with a    │      100.5 │',
       '│       │ very long            │            │',
@@ -65,10 +69,7 @@ describe('Default Column Styles: Rendering Tests', () => {
   it('should render table with computed columns using default styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [
-        { name: 'firstName' },
-        { name: 'lastName' },
-      ],
+      columns: [{ name: 'firstName' }, { name: 'lastName' }],
       computedColumns: [
         {
           name: 'fullName',
@@ -88,7 +89,9 @@ describe('Default Column Styles: Rendering Tests', () => {
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│  firstName   │   lastName   │   fullName   │');
+    expect(renderedHeader).toEqual(
+      '│  firstName   │   lastName   │   fullName   │'
+    );
     expect(renderedBody).toEqual([
       '│     John     │     Doe      │   John Doe   │',
       '│     Jane     │    Smith     │  Jane Smith  │',
@@ -99,10 +102,7 @@ describe('Default Column Styles: Rendering Tests', () => {
   it('should render table with row separators and default styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [
-        { name: 'task' },
-        { name: 'status' },
-      ],
+      columns: [{ name: 'task' }, { name: 'status' }],
       defaultColumnOptions: {
         alignment: 'center',
         maxLen: 15,
@@ -123,4 +123,4 @@ describe('Default Column Styles: Rendering Tests', () => {
     expect(rendered).toContain('│     Task 2      │     Pending     │');
     expect(rendered).toContain('│     Task 3      │     Failed      │');
   });
-}); 
+});
