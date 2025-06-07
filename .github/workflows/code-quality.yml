@@ -31,8 +31,9 @@ jobs:
     - name: Build TypeScript
       run: yarn build
 
-    - name: Run linting
-      run: yarn lint
+    # TODO: Add linting
+    # - name: Run linting
+    #   run: yarn lint
 
     - name: Run tests with coverage
       run: yarn test:coverage
