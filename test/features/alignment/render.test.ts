@@ -66,4 +66,4 @@ describe('Alignment Tests: Rendering', () => {
     expect(renderedHeader).toEqual('│ left │ right │ center │');
     expect(renderedBody).toEqual(['│ Left │ Right │ Center │']);
   });
-}); 
+});

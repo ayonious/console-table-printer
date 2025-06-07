@@ -66,4 +66,4 @@ describe('Add Column Tests: Rendering', () => {
       '│ value2 │        123 │',
     ]);
   });
-}); 
+});

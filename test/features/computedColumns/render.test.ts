@@ -82,7 +82,9 @@ describe('Computed Columns Tests: Rendering', () => {
     p.addRows(testData);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ firstName │ lastName │   fullName │ initials │');
+    expect(renderedHeader).toEqual(
+      '│ firstName │ lastName │   fullName │ initials │'
+    );
 
     renderedBody.forEach((line, index) => {
       const [, first, last, full, initials] = line.split('│');
@@ -139,12 +141,12 @@ describe('Computed Columns Tests: Rendering', () => {
         row.score >= 90
           ? 'A'
           : row.score >= 80
-          ? 'B'
-          : row.score >= 70
-          ? 'C'
-          : row.score >= 60
-          ? 'D'
-          : 'F';
+            ? 'B'
+            : row.score >= 70
+              ? 'C'
+              : row.score >= 60
+                ? 'D'
+                : 'F';
       verifyStringContent(grade, expectedGrade);
 
       // Verify status
