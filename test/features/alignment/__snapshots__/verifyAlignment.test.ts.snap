@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing alignment functionality and verifying the output should handle alignment with special characters and emojis 1`] = `
+"┌─────────────┐
+│ special-col │
+├─────────────┤
+│  👋 Hello!  │
+│   ⭐ Star    │
+│ 🎉 Party 🎈 │
+└─────────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should handle center alignment correctly 1`] = `
+"┌────────────┐
+│ col-center │
+├────────────┤
+│    test    │
+└────────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should handle left alignment correctly 1`] = `
+"┌──────────┐
+│ col-left │
+├──────────┤
+│ test     │
+└──────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should handle mixed alignments in multiple columns 1`] = `
+"┌──────────────┬──────────────────┬─────────────┐
+│ left-col     │        right-col │ center-col  │
+├──────────────┼──────────────────┼─────────────┤
+│ left aligned │    right aligned │  centered   │
+│ short        │ longer text here │ medium text │
+└──────────────┴──────────────────┴─────────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should handle right alignment correctly 1`] = `
+"┌───────────┐
+│ col-right │
+├───────────┤
+│      test │
+└───────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should maintain alignment with varying content lengths 1`] = `
+"┌─────────────────────────────────────────────────┐
+│                   aligned-col                   │
+├─────────────────────────────────────────────────┤
+│                      short                      │
+│               medium length text                │
+│ this is a very long text that should be handled │
+└─────────────────────────────────────────────────┘"
+`;
+
+exports[`Testing alignment functionality and verifying the output should respect default column alignment from table options 1`] = `
+"┌─────────────────┬────────────────┐
+│     default-col │ override-col   │
+├─────────────────┼────────────────┤
+│ should be right │ should be left │
+└─────────────────┴────────────────┘"
+`;
