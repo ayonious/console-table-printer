@@ -13,6 +13,9 @@ describe('Testing alignment functionality and verifying the output', () => {
     }
 
     // By checking if the first character is not a space
+    // Not the perfect way to check, but it's good enough for now
+    // Not perfect because the content might have spaces at the end or start and then 
+    // this will fail because the space is considered as part of padding
     const isStringLeftAligned = (contentWithPadding: string) => {
         const contentWithoutPadding = getContentWithoutPadding(contentWithPadding);
         expect(!contentWithoutPadding.startsWith(' ')).toBeTruthy();
