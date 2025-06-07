@@ -2,6 +2,11 @@ import { Table } from '../../../index';
 import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('Testing column color output verification', () => {
+    const countSpaces = (str: string, fromStart = true) => {
+        const chars = fromStart ? [...str] : [...str].reverse();
+        return chars.findIndex(c => c !== ' ');
+    };
+
     // Helper function to verify color column content
     const verifyColoredColumn = (content: string, expectedText: string, expectedColor?: ColorType) => {
         const trimmedContent = content.trim();
@@ -11,7 +16,7 @@ describe('Testing column color output verification', () => {
         console.log('Expected color:', expectedColor);
         
         // Verify the actual text content
-        const textWithoutColors = trimmedContent.replace(/\x1b\[\d+m/g, '').trim();
+        const textWithoutColors = trimmedContent.replace(/\x1b\[(\d+)m/g, '').trim();
         expect(textWithoutColors).toBe(expectedText);
 
         // If a color is expected, verify the color code
@@ -126,29 +131,10 @@ describe('Testing column color output verification', () => {
         verifyColoredColumn(centerContent, 'Center', 'green');
         verifyColoredColumn(rightContent, 'Right', 'blue');
         
-        // Count spaces manually for center alignment
-        let leftSpaces = 0;
-        let rightSpaces = 0;
-        const centerTextWithoutColors = centerContent.replace(/\x1b\[\d+m/g, '');
-        
-        // Count left spaces
-        for (let i = 0; i < centerTextWithoutColors.length; i++) {
-            if (centerTextWithoutColors[i] === ' ') {
-                leftSpaces++;
-            } else {
-                break;
-            }
-        }
-        
-        // Count right spaces
-        for (let i = centerTextWithoutColors.length - 1; i >= 0; i--) {
-            if (centerTextWithoutColors[i] === ' ') {
-                rightSpaces++;
-            } else {
-                break;
-            }
-        }
-        
+        // Verify center alignment by checking space distribution
+        const centerTextWithoutColors = centerContent.replace(/\x1b\[(\d+)m/g, '');
+        const leftSpaces = countSpaces(centerTextWithoutColors, true);
+        const rightSpaces = countSpaces(centerTextWithoutColors, false);
         expect(Math.abs(leftSpaces - rightSpaces)).toBeLessThanOrEqual(1);
 
         expect(p.render()).toMatchSnapshot();

@@ -2,38 +2,23 @@ import { Table } from '../../../index';
 import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('Testing alignment functionality and verifying the output', () => {
-    
+    const countSpaces = (str: string, fromStart = true) => {
+        const chars = fromStart ? [...str] : [...str].reverse();
+        return chars.findIndex(c => c !== ' ');
+    };
+
     const isStringLeftAligned = (content: string) => {
-        expect(content.startsWith(' ')).toBeTruthy();
+        expect(content.startsWith(' ') && !content.endsWith(' ')).toBeTruthy();
     }
 
     const isStringRightAligned = (content: string) => {
-        expect(content.endsWith(' ')).toBeTruthy();
+        expect(content.endsWith(' ') && !content.startsWith(' ')).toBeTruthy();
     }
 
     const isStringCenterAligned = (content: string) => {
         // Count spaces manually instead of using trim functions
-        let leftSpaces = 0;
-        let rightSpaces = 0;
-        
-        // Count left spaces
-        for (let i = 0; i < content.length; i++) {
-            if (content[i] === ' ') {
-                leftSpaces++;
-            } else {
-                break;
-            }
-        }
-        
-        // Count right spaces
-        for (let i = content.length - 1; i >= 0; i--) {
-            if (content[i] === ' ') {
-                rightSpaces++;
-            } else {
-                break;
-            }
-        }
-        
+        let leftSpaces = countSpaces(content, true);
+        let rightSpaces = countSpaces(content, false);        
         // Allow for 1 character difference due to odd-length strings
         expect(Math.abs(leftSpaces - rightSpaces)).toBeLessThanOrEqual(1);
     }
