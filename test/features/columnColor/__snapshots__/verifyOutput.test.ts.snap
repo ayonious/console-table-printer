@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing column color output verification should correctly apply blue color to column 1`] = `
+"┌──────────┐
+│[37m [0m[01mblue-col[0m │
+├──────────┤
+│[37m [0m[34m    test[0m │
+└──────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply crimson color to column 1`] = `
+"┌─────────────┐
+│[37m [0m[01mcrimson-col[0m │
+├─────────────┤
+│[37m [0m       test │
+└─────────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply cyan color to column 1`] = `
+"┌──────────┐
+│[37m [0m[01mcyan-col[0m │
+├──────────┤
+│[37m [0m[36m    test[0m │
+└──────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply gray color to column 1`] = `
+"┌──────────┐
+│[37m [0m[01mgray-col[0m │
+├──────────┤
+│[37m [0m    test │
+└──────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply green color to column 1`] = `
+"┌───────────┐
+│[37m [0m[01mgreen-col[0m │
+├───────────┤
+│[37m [0m[32m     test[0m │
+└───────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply magenta color to column 1`] = `
+"┌─────────────┐
+│[37m [0m[01mmagenta-col[0m │
+├─────────────┤
+│[37m [0m[35m       test[0m │
+└─────────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply red color to column 1`] = `
+"┌─────────┐
+│[37m [0m[01mred-col[0m │
+├─────────┤
+│[37m [0m[31m   test[0m │
+└─────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply white color to column 1`] = `
+"┌───────────┐
+│[37m [0m[01mwhite-col[0m │
+├───────────┤
+│[37m [0m[37m     test[0m │
+└───────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply white_bold color to column 1`] = `
+"┌────────────────┐
+│[37m [0m[01mwhite_bold-col[0m │
+├────────────────┤
+│[37m [0m[01m          test[0m │
+└────────────────┘"
+`;
+
+exports[`Testing column color output verification should correctly apply yellow color to column 1`] = `
+"┌────────────┐
+│[37m [0m[01myellow-col[0m │
+├────────────┤
+│[37m [0m[33m      test[0m │
+└────────────┘"
+`;
+
+exports[`Testing column color output verification should handle color with different alignments 1`] = `
+"┌──────────┬──────────────┬────────────┐
+│[37m [0m[01mleft-red[0m │[37m [0m[01mcenter-green[0m │[37m [0m[01mright-blue[0m │
+├──────────┼──────────────┼────────────┤
+│[37m [0m[31mLeft    [0m │[37m [0m[32m   Center   [0m │[37m [0m[34m     Right[0m │
+└──────────┴──────────────┴────────────┘"
+`;
+
+exports[`Testing column color output verification should handle column colors with row colors 1`] = `
+"┌──────────┬───────────┐
+│[37m [0m[01m red-col[0m │[37m [0m[01m blue-col[0m │
+├──────────┼───────────┤
+│[37m [0m[31mRed text[0m │[37m [0m[34mBlue text[0m │
+│[37m [0m[31m     123[0m │[37m [0m[34m      456[0m │
+└──────────┴───────────┘"
+`;
+
+exports[`Testing column color output verification should handle multiple colored columns 1`] = `
+"┌──────────┬────────────┬───────────┐
+│[37m [0m[01m red-col[0m │[37m [0m[01m green-col[0m │[37m [0m[01m blue-col[0m │
+├──────────┼────────────┼───────────┤
+│[37m [0m[31mRed text[0m │[37m [0m[32mGreen text[0m │[37m [0m[34mBlue text[0m │
+│[37m [0m[31m     123[0m │[37m [0m[32m       456[0m │[37m [0m[34m      789[0m │
+└──────────┴────────────┴───────────┘"
+`;
+
+exports[`Testing column color output verification should verify header colors 1`] = `
+"┌─────────┬───────────┬──────────┐
+│[37m [0m[01mred-col[0m │[37m [0m[01mgreen-col[0m │[37m [0m[01mblue-col[0m │
+├─────────┼───────────┼──────────┤
+│[37m [0m[31m   test[0m │[37m [0m[32m     test[0m │[37m [0m[34m    test[0m │
+└─────────┴───────────┴──────────┘"
+`;

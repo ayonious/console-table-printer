@@ -1,4 +1,4 @@
-import { Table } from '../index';
+import { Table } from '../../../index';
 
 describe('Testing column alignment', () => {
   it('should handle basic left, right, and center alignments', () => {

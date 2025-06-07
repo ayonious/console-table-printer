@@ -1,5 +1,5 @@
-import { Table } from '../index';
-import { getTableBody, getTableHeader } from './testUtils/getRawData';
+import { Table } from '../../../index';
+import { getTableBody, getTableHeader } from '../../testUtils/getRawData';
 
 describe('Computed Columns Tests', () => {
   it('should handle basic arithmetic computations', () => {
