@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing computed columns output verification should verify basic arithmetic computations 1`] = `
+"┌────────┬────────┬─────┬────────────┬─────────┐
+│ value1 │ value2 │ sum │ difference │ product │
+├────────┼────────┼─────┼────────────┼─────────┤
+│     10 │      5 │  15 │          5 │      50 │
+│     20 │     10 │  30 │         10 │     200 │
+└────────┴────────┴─────┴────────────┴─────────┘"
+`;
+
+exports[`Testing computed columns output verification should verify computations with row index 1`] = `
+"┌───────┬────────┬──────────────┐
+│ value │ rowNum │ runningTotal │
+├───────┼────────┼──────────────┤
+│    10 │      1 │           10 │
+│    20 │      2 │           30 │
+│    30 │      3 │           60 │
+└───────┴────────┴──────────────┘"
+`;
+
+exports[`Testing computed columns output verification should verify conditional computations 1`] = `
+"┌───────┬───────┬────────┐
+│ score │ grade │ status │
+├───────┼───────┼────────┤
+│    95 │     A │   PASS │
+│    85 │     B │   PASS │
+│    55 │     F │   FAIL │
+└───────┴───────┴────────┘"
+`;
+
+exports[`Testing computed columns output verification should verify header content of computed columns 1`] = `
+"┌─────────────┬──────────────┬───────┐
+│ First Value │ Second Value │ Total │
+├─────────────┼──────────────┼───────┤
+│          10 │           20 │    30 │
+└─────────────┴──────────────┴───────┘"
+`;
+
+exports[`Testing computed columns output verification should verify string manipulations 1`] = `
+"┌───────────┬──────────┬────────────┬──────────┐
+│ firstName │ lastName │   fullName │ initials │
+├───────────┼──────────┼────────────┼──────────┤
+│      John │      Doe │   John Doe │     J.D. │
+│      Jane │    Smith │ Jane Smith │     J.S. │
+└───────────┴──────────┴────────────┴──────────┘"
+`;
