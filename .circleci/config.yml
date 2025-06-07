@@ -12,7 +12,7 @@ jobs:
             - deps-hash- # used if checksum fails
 
       - run: yarn install
-      - run: 
+      - run:
           name: Run tests with coverage
           command: yarn test --coverage
 
@@ -22,7 +22,7 @@ jobs:
           key: deps-hash-{{ checksum "yarn.lock" }}
 
       - run: yarn build
-      
+
       - run:
           name: Upload Coverage Results
           command: |
