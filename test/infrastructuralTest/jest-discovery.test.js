@@ -31,6 +31,8 @@ describe('Jest Test Discovery', () => {
     'test/features/columnColor/verifyOutput.test.ts',
     'test/features/computedColumns/verifyOutput.test.ts',
     'test/features/computedColumns/computedColumns.test.ts',
+    'test/features/customColor/basic.test.ts',
+    'test/features/customColor/render.test.ts',
 
     // Infrastructure Tests
     'test/infrastructuralTest/package-test.test.js',
@@ -44,7 +46,6 @@ describe('Jest Test Discovery', () => {
     'test/printTable.test.ts',
     'test/charLen.test.ts',
     'test/render.test.ts',
-    'test/customizedColor.test.ts',
     'test/general.test.ts',
     'test/types.test.ts',
 
