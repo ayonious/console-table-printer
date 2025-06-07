@@ -25,12 +25,18 @@ describe('Jest Test Discovery', () => {
     // Features Tests
     'test/features/addColumn/basic.test.ts',
     'test/features/addColumn/verifyOutput.test.ts',
+    'test/features/addColumn/render.test.ts',
     'test/features/alignment/verifyAlignment.test.ts',
     'test/features/alignment/basic.test.ts',
+    'test/features/alignment/render.test.ts',
     'test/features/columnColor/basic.test.ts',
     'test/features/columnColor/verifyOutput.test.ts',
+    'test/features/columnColor/render.test.ts',
     'test/features/computedColumns/verifyOutput.test.ts',
     'test/features/computedColumns/computedColumns.test.ts',
+    'test/features/computedColumns/render.test.ts',
+    'test/features/customColor/basic.test.ts',
+    'test/features/customColor/render.test.ts',
 
     // Infrastructure Tests
     'test/infrastructuralTest/package-test.test.js',
@@ -44,7 +50,6 @@ describe('Jest Test Discovery', () => {
     'test/printTable.test.ts',
     'test/charLen.test.ts',
     'test/render.test.ts',
-    'test/customizedColor.test.ts',
     'test/general.test.ts',
     'test/types.test.ts',
 
