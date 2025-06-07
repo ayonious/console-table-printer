@@ -7,12 +7,21 @@ describe('Testing alignment functionality and verifying the output', () => {
         return chars.findIndex(c => c !== ' ');
     };
 
-    const isStringLeftAligned = (content: string) => {
-        expect(content.startsWith(' ') && !content.endsWith(' ')).toBeTruthy();
+    // By removing the padding from the content
+    const getContentWithoutPadding = (contentWithPadding: string) => {
+        return contentWithPadding.substring(1, contentWithPadding.length - 1);
     }
 
-    const isStringRightAligned = (content: string) => {
-        expect(content.endsWith(' ') && !content.startsWith(' ')).toBeTruthy();
+    // By checking if the first character is not a space
+    const isStringLeftAligned = (contentWithPadding: string) => {
+        const contentWithoutPadding = getContentWithoutPadding(contentWithPadding);
+        expect(!contentWithoutPadding.startsWith(' ')).toBeTruthy();
+    }
+
+    // By checking if the last character is not a space
+    const isStringRightAligned = (contentWithPadding: string) => {
+        const contentWithoutPadding = getContentWithoutPadding(contentWithPadding);
+        expect(!contentWithoutPadding.endsWith(' ')).toBeTruthy();
     }
 
     const isStringCenterAligned = (content: string) => {
@@ -52,6 +61,7 @@ describe('Testing alignment functionality and verifying the output', () => {
         });
     });
 
+    
     it('should handle mixed alignments in multiple columns', () => {
         const p = new Table({
             shouldDisableColors: true,

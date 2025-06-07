@@ -11,10 +11,6 @@ describe('Testing column color output verification', () => {
     const verifyColoredColumn = (content: string, expectedText: string, expectedColor?: ColorType) => {
         const trimmedContent = content.trim();
         
-        // Debug logging
-        console.log('Content:', JSON.stringify(trimmedContent));
-        console.log('Expected color:', expectedColor);
-        
         // Verify the actual text content
         const textWithoutColors = trimmedContent.replace(/\x1b\[(\d+)m/g, '').trim();
         expect(textWithoutColors).toBe(expectedText);
