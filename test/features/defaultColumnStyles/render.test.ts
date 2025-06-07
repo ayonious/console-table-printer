@@ -5,7 +5,11 @@ describe('Default Column Styles: Rendering Tests', () => {
   it('should render table with default column styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [{ name: 'name' }, { name: 'age' }, { name: 'city' }],
+      columns: [
+        { name: 'name_center_maxlen15' },
+        { name: 'age_center_maxlen15' },
+        { name: 'city_center_maxlen15' }
+      ],
       defaultColumnOptions: {
         alignment: 'center',
         maxLen: 15,
@@ -13,19 +17,81 @@ describe('Default Column Styles: Rendering Tests', () => {
     });
 
     p.addRows([
-      { name: 'John Doe', age: 30, city: 'New York' },
-      { name: 'Jane Smith', age: 25, city: 'Los Angeles' },
-      { name: 'Bob Johnson', age: 35, city: 'Chicago' },
+      { name_center_maxlen15: 'John Doe', age_center_maxlen15: 30, city_center_maxlen15: 'New York' },
+      { name_center_maxlen15: 'Jane Smith', age_center_maxlen15: 25, city_center_maxlen15: 'Los Angeles' },
+      { name_center_maxlen15: 'Bob Johnson', age_center_maxlen15: 35, city_center_maxlen15: 'Chicago' },
     ]);
 
-    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual(
-      '│      name       │       age       │      city       │'
-    );
-    expect(renderedBody).toEqual([
-      '│    John Doe     │       30        │    New York     │',
-      '│   Jane Smith    │       25        │   Los Angeles   │',
-      '│   Bob Johnson   │       35        │     Chicago     │',
+    expect([
+      getTableHeader(p),
+      ...getTableBody(p)
+    ]).toEqual([
+      '│ name_center_maxlen15 │ age_center_maxlen15 │ city_center_maxlen15 │',
+      '│       John Doe       │         30          │       New York       │',
+      '│      Jane Smith      │         25          │     Los Angeles      │',
+      '│     Bob Johnson      │         35          │       Chicago        │',
+    ]);
+  });
+
+  it('should render table with default left alignment', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'name_left_maxlen15' },
+        { name: 'age_left_maxlen15' },
+        { name: 'city_left_maxlen15' }
+      ],
+      defaultColumnOptions: {
+        alignment: 'left',
+        maxLen: 15,
+      },
+    });
+
+    p.addRows([
+      { name_left_maxlen15: 'John Doe', age_left_maxlen15: 30, city_left_maxlen15: 'New York' },
+      { name_left_maxlen15: 'Jane Smith', age_left_maxlen15: 25, city_left_maxlen15: 'Los Angeles' },
+      { name_left_maxlen15: 'Bob Johnson', age_left_maxlen15: 35, city_left_maxlen15: 'Chicago' },
+    ]);
+
+    expect([
+      getTableHeader(p),
+      ...getTableBody(p)
+    ]).toEqual([
+      '│ name_left_maxlen15 │ age_left_maxlen15 │ city_left_maxlen15 │',
+      '│ John Doe           │ 30                │ New York           │',
+      '│ Jane Smith         │ 25                │ Los Angeles        │',
+      '│ Bob Johnson        │ 35                │ Chicago            │',
+    ]);
+  });
+
+  it('should render table with default right alignment', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      columns: [
+        { name: 'name_right_maxlen15' },
+        { name: 'age_right_maxlen15' },
+        { name: 'city_right_maxlen15' }
+      ],
+      defaultColumnOptions: {
+        alignment: 'right',
+        maxLen: 15,
+      },
+    });
+
+    p.addRows([
+      { name_right_maxlen15: 'John Doe', age_right_maxlen15: 30, city_right_maxlen15: 'New York' },
+      { name_right_maxlen15: 'Jane Smith', age_right_maxlen15: 25, city_right_maxlen15: 'Los Angeles' },
+      { name_right_maxlen15: 'Bob Johnson', age_right_maxlen15: 35, city_right_maxlen15: 'Chicago' },
+    ]);
+
+    expect([
+      getTableHeader(p),
+      ...getTableBody(p)
+    ]).toEqual([
+      '│ name_right_maxlen15 │ age_right_maxlen15 │ city_right_maxlen15 │',
+      '│            John Doe │                 30 │            New York │',
+      '│          Jane Smith │                 25 │         Los Angeles │',
+      '│         Bob Johnson │                 35 │             Chicago │',
     ]);
   });
 
@@ -33,9 +99,9 @@ describe('Default Column Styles: Rendering Tests', () => {
     const p = new Table({
       shouldDisableColors: true,
       columns: [
-        { name: 'id', maxLen: 5 },
-        { name: 'description', alignment: 'left', maxLen: 20 },
-        { name: 'amount', alignment: 'right' },
+        { name: 'id_center_maxlen5', maxLen: 5 },
+        { name: 'desc_left_maxlen20', alignment: 'left', maxLen: 20 },
+        { name: 'amount_right_align', alignment: 'right' },
       ],
       defaultColumnOptions: {
         alignment: 'center',
@@ -45,35 +111,46 @@ describe('Default Column Styles: Rendering Tests', () => {
 
     p.addRows([
       {
-        id: 1,
-        description: 'First item with a very long description',
-        amount: 100.5,
+        id_center_maxlen5: 1,
+        desc_left_maxlen20: 'First item with a very long description',
+        amount_right_align: 100.5,
       },
-      { id: 2, description: 'Second item', amount: 200.75 },
-      { id: 3, description: 'Third', amount: 300.25 },
+      { 
+        id_center_maxlen5: 2,
+        desc_left_maxlen20: 'Second item',
+        amount_right_align: 200.75,
+      },
+      { 
+        id_center_maxlen5: 3,
+        desc_left_maxlen20: 'Third',
+        amount_right_align: 300.25,
+      },
     ]);
 
-    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual(
-      '│  id   │ description          │     amount │'
-    );
-    expect(renderedBody).toEqual([
-      '│   1   │ First item with a    │      100.5 │',
-      '│       │ very long            │            │',
-      '│       │ description          │            │',
-      '│   2   │ Second item          │     200.75 │',
-      '│   3   │ Third                │     300.25 │',
+    expect([
+      getTableHeader(p),
+      ...getTableBody(p)
+    ]).toEqual([
+      '│ id_center_maxlen5 │ desc_left_maxlen20   │ amount_right_align │',
+      '│         1         │ First item with a    │              100.5 │',
+      '│                   │ very long            │                    │',
+      '│                   │ description          │                    │',
+      '│         2         │ Second item          │             200.75 │',
+      '│         3         │ Third                │             300.25 │',
     ]);
   });
 
   it('should render table with computed columns using default styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [{ name: 'firstName' }, { name: 'lastName' }],
+      columns: [
+        { name: 'first_center_maxlen12' },
+        { name: 'last_center_maxlen12' }
+      ],
       computedColumns: [
         {
-          name: 'fullName',
-          function: (row) => `${row.firstName} ${row.lastName}`,
+          name: 'full_computed_center',
+          function: (row) => `${row.first_center_maxlen12} ${row.last_center_maxlen12}`,
         },
       ],
       defaultColumnOptions: {
@@ -83,26 +160,29 @@ describe('Default Column Styles: Rendering Tests', () => {
     });
 
     p.addRows([
-      { firstName: 'John', lastName: 'Doe' },
-      { firstName: 'Jane', lastName: 'Smith' },
-      { firstName: 'Bob', lastName: 'Johnson' },
+      { first_center_maxlen12: 'John', last_center_maxlen12: 'Doe' },
+      { first_center_maxlen12: 'Jane', last_center_maxlen12: 'Smith' },
+      { first_center_maxlen12: 'Bob', last_center_maxlen12: 'Johnson' },
     ]);
 
-    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual(
-      '│  firstName   │   lastName   │   fullName   │'
-    );
-    expect(renderedBody).toEqual([
-      '│     John     │     Doe      │   John Doe   │',
-      '│     Jane     │    Smith     │  Jane Smith  │',
-      '│     Bob      │   Johnson    │ Bob Johnson  │',
+    expect([
+      getTableHeader(p),
+      ...getTableBody(p)
+    ]).toEqual([
+      '│ first_center_maxlen12 │ last_center_maxlen12 │ full_computed_center │',
+      '│         John          │         Doe          │       John Doe       │',
+      '│         Jane          │        Smith         │      Jane Smith      │',
+      '│          Bob          │       Johnson        │     Bob Johnson      │',
     ]);
   });
 
   it('should render table with row separators and default styles', () => {
     const p = new Table({
       shouldDisableColors: true,
-      columns: [{ name: 'task' }, { name: 'status' }],
+      columns: [
+        { name: 'task_center_maxlen15' },
+        { name: 'status_center_maxlen15' }
+      ],
       defaultColumnOptions: {
         alignment: 'center',
         maxLen: 15,
@@ -111,16 +191,21 @@ describe('Default Column Styles: Rendering Tests', () => {
     });
 
     p.addRows([
-      { task: 'Task 1', status: 'Done' },
-      { task: 'Task 2', status: 'Pending' },
-      { task: 'Task 3', status: 'Failed' },
+      { task_center_maxlen15: 'Task 1', status_center_maxlen15: 'Done' },
+      { task_center_maxlen15: 'Task 2', status_center_maxlen15: 'Pending' },
+      { task_center_maxlen15: 'Task 3', status_center_maxlen15: 'Failed' },
     ]);
 
-    const rendered = p.render();
-    expect(rendered).toContain('│      task       │     status      │');
-    expect(rendered).toContain('│     Task 1      │      Done       │');
-    expect(rendered).toContain('├─────────────────┼─────────────────┤');
-    expect(rendered).toContain('│     Task 2      │     Pending     │');
-    expect(rendered).toContain('│     Task 3      │     Failed      │');
+    expect(p.render().split('\n')).toEqual([
+      '┌──────────────────────┬────────────────────────┐',
+      '│ task_center_maxlen15 │ status_center_maxlen15 │',
+      '├──────────────────────┼────────────────────────┤',
+      '│        Task 1        │          Done          │',
+      '├──────────────────────┼────────────────────────┤',
+      '│        Task 2        │        Pending         │',
+      '├──────────────────────┼────────────────────────┤',
+      '│        Task 3        │         Failed         │',
+      '└──────────────────────┴────────────────────────┘'
+    ]);
   });
 });
