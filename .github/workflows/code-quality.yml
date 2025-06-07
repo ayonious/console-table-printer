@@ -20,23 +20,25 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.x'
-        cache: 'npm'
+        cache: 'yarn'
+
+    - name: Install Yarn
+      run: corepack enable
 
     - name: Install dependencies
-      run: npm ci
+      run: yarn install --frozen-lockfile
 
     - name: Build TypeScript
-      run: npm run build
+      run: yarn build
 
     - name: Run linting
-      run: npm run lint
+      run: yarn lint
 
     - name: Run tests with coverage
-      run: npm run test:coverage
+      run: yarn test:coverage
 
     - name: Check formatting
-      run: |
-        npx prettier --check "**/*.{json,md,ts,tsx,yml,js,jsx}"
+      run: yarn prettier --check "**/*.{json,md,ts,tsx,yml,js,jsx}"
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
