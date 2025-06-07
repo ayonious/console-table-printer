@@ -7,14 +7,14 @@ describe('Character Length Handling Tests', () => {
       charLength: {
         '👍': 2,
         '❤️': 2,
-        '🌟': 2
-      }
+        '🌟': 2,
+      },
     });
 
     p.addRows([
       { name: 'Like', emoji: '👍', description: 'Thumbs up' },
       { name: 'Love', emoji: '❤️', description: 'Heart' },
-      { name: 'Star', emoji: '🌟', description: 'Star rating' }
+      { name: 'Star', emoji: '🌟', description: 'Star rating' },
     ]);
 
     p.printTable();
@@ -24,18 +24,18 @@ describe('Character Length Handling Tests', () => {
   it('should handle complex emoji combinations', () => {
     const p = new Table({
       charLength: {
-        '👨‍👩‍👧‍👦': 2,  // Family
-        '🏃‍♂️': 2,     // Man running
-        '👩‍💻': 2,     // Woman technologist
-        '🌈': 2        // Rainbow
-      }
+        '👨‍👩‍👧‍👦': 2, // Family
+        '🏃‍♂️': 2, // Man running
+        '👩‍💻': 2, // Woman technologist
+        '🌈': 2, // Rainbow
+      },
     });
 
     p.addRows([
       { type: 'Family', emoji: '👨‍👩‍👧‍👦', description: 'Complete family' },
       { type: 'Activity', emoji: '🏃‍♂️', description: 'Running person' },
       { type: 'Profession', emoji: '👩‍💻', description: 'Developer' },
-      { type: 'Symbol', emoji: '🌈', description: 'Rainbow' }
+      { type: 'Symbol', emoji: '🌈', description: 'Rainbow' },
     ]);
 
     p.printTable();
@@ -48,26 +48,26 @@ describe('Character Length Handling Tests', () => {
         '🎉': 2,
         '📝': 2,
         '⭐': 1,
-        '✨': 1
-      }
+        '✨': 1,
+      },
     });
 
     p.addRows([
-      { 
+      {
         title: 'Celebration 🎉',
         content: 'Party time!',
-        rating: '⭐⭐⭐'
+        rating: '⭐⭐⭐',
       },
-      { 
+      {
         title: 'Notes 📝',
         content: 'Take notes',
-        rating: '⭐⭐'
+        rating: '⭐⭐',
       },
-      { 
+      {
         title: 'Special ✨',
         content: 'Sparkles',
-        rating: '⭐'
-      }
+        rating: '⭐',
+      },
     ]);
 
     p.printTable();
@@ -77,34 +77,34 @@ describe('Character Length Handling Tests', () => {
   it('should handle emoji with different width specifications', () => {
     const p = new Table({
       charLength: {
-        '🌍': 3,  // Extra wide
-        '📱': 2,  // Standard wide
-        '•': 1,   // Normal width
-        '→': 1    // Normal width
-      }
+        '🌍': 3, // Extra wide
+        '📱': 2, // Standard wide
+        '•': 1, // Normal width
+        '→': 1, // Normal width
+      },
     });
 
     p.addRows([
-      { 
+      {
         symbol: '🌍',
         description: 'Globe (width: 3)',
-        example: '🌍 World'
+        example: '🌍 World',
       },
-      { 
+      {
         symbol: '📱',
         description: 'Phone (width: 2)',
-        example: '📱 Mobile'
+        example: '📱 Mobile',
       },
-      { 
+      {
         symbol: '•',
         description: 'Bullet (width: 1)',
-        example: '• Point'
+        example: '• Point',
       },
-      { 
+      {
         symbol: '→',
         description: 'Arrow (width: 1)',
-        example: '→ Next'
-      }
+        example: '→ Next',
+      },
     ]);
 
     p.printTable();
@@ -116,26 +116,26 @@ describe('Character Length Handling Tests', () => {
       columns: [
         { name: 'left', alignment: 'left' },
         { name: 'center', alignment: 'center' },
-        { name: 'right', alignment: 'right' }
+        { name: 'right', alignment: 'right' },
       ],
       charLength: {
         '🎯': 2,
         '🎨': 2,
-        '🎲': 2
-      }
+        '🎲': 2,
+      },
     });
 
     p.addRows([
-      { 
+      {
         left: '🎯 Target',
         center: '🎨 Art',
-        right: '🎲 Game'
+        right: '🎲 Game',
       },
-      { 
+      {
         left: 'Target 🎯',
         center: 'Art 🎨',
-        right: 'Game 🎲'
-      }
+        right: 'Game 🎲',
+      },
     ]);
 
     p.printTable();
@@ -148,35 +148,33 @@ describe('Character Length Handling Tests', () => {
       charLength: {
         '🎯': 2,
         '🎨': 2,
-        '🎲': 2
+        '🎲': 2,
       },
       columns: [
         { name: 'left', alignment: 'left' },
         { name: 'center', alignment: 'center' },
-        { name: 'right', alignment: 'right' }
-      ]
+        { name: 'right', alignment: 'right' },
+      ],
     });
 
     p.addRows([
-      { 
+      {
         left: '🎯 Target',
         center: '🎨 Art',
-        right: '🎲 Game'
+        right: '🎲 Game',
       },
-      { 
+      {
         left: 'Target 🎯',
         center: 'Art 🎨',
-        right: 'Game 🎲'
-      }
+        right: 'Game 🎲',
+      },
     ]);
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
     expect(renderedHeader).toEqual('│ left      │ center │   right │');
     expect(renderedBody).toEqual([
       '│ 🎯 Target │ 🎨 Art │ 🎲 Game │',
-      '│ Target 🎯 │ Art 🎨 │ Game 🎲 │'
+      '│ Target 🎯 │ Art 🎨 │ Game 🎲 │',
     ]);
   });
-
-
 });

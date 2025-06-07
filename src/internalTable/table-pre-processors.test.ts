@@ -6,7 +6,9 @@ describe('preProcessColumns', () => {
   it('should process computed columns and enable/disable columns', () => {
     const table = new TableInternal({
       columns: [{ name: 'col1' }, { name: 'col2' }],
-      computedColumns: [{ name: 'computedCol', function: (row) => row.col1 + row.col2 }],
+      computedColumns: [
+        { name: 'computedCol', function: (row) => row.col1 + row.col2 },
+      ],
       enabledColumns: ['col1', 'computedCol'],
     });
     preProcessColumns(table);
@@ -27,4 +29,4 @@ describe('preProcessRows', () => {
     expect(table.rows.length).toBe(1);
     expect(table.rows[0].text.col1).toBe(2);
   });
-}); 
+});

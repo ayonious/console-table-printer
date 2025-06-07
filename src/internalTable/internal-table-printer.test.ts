@@ -1,4 +1,8 @@
-import { renderTable, renderSimpleTable, printSimpleTable } from './internal-table-printer';
+import {
+  renderTable,
+  renderSimpleTable,
+  printSimpleTable,
+} from './internal-table-printer';
 import TableInternal from './internal-table';
 
 // Test renderTable function
@@ -14,10 +18,7 @@ describe('renderTable', () => {
   it('should render a table with title', () => {
     const table = new TableInternal({
       title: 'Test Report',
-      columns: [
-        { name: 'name' },
-        { name: 'score' }
-      ]
+      columns: [{ name: 'name' }, { name: 'score' }],
     });
     table.addRow({ name: 'John', score: 95 });
     const rendered = renderTable(table);
@@ -36,7 +37,10 @@ describe('renderTable', () => {
 
   it('should render table with row separators', () => {
     const table = new TableInternal(['col1', 'col2']);
-    table.addRow({ col1: 'row1', col2: 'data1' }, { color: 'red', separator: true });
+    table.addRow(
+      { col1: 'row1', col2: 'data1' },
+      { color: 'red', separator: true }
+    );
     table.addRow({ col1: 'row2', col2: 'data2' });
     const rendered = renderTable(table);
     expect(rendered).toContain('row1');
@@ -48,31 +52,42 @@ describe('renderTable', () => {
   it('should not render separator for last row', () => {
     const table = new TableInternal(['col1', 'col2']);
     table.addRow({ col1: 'row1', col2: 'data1' });
-    table.addRow({ col1: 'last_row', col2: 'last_data' }, { color: 'blue', separator: true });
+    table.addRow(
+      { col1: 'last_row', col2: 'last_data' },
+      { color: 'blue', separator: true }
+    );
     const rendered = renderTable(table);
     expect(rendered).toContain('last_row');
     // Count separator lines - should be minimal for headers only
-    const separatorLines = rendered.split('\n').filter(line => 
-      line.includes('─') || line.includes('╬') || line.includes('┼')
-    );
+    const separatorLines = rendered
+      .split('\n')
+      .filter(
+        (line) => line.includes('─') || line.includes('╬') || line.includes('┼')
+      );
     expect(separatorLines.length).toBeLessThan(5); // Only header separators
   });
 
   it('should render table with multiple rows and separators', () => {
     const table = new TableInternal(['id', 'name', 'status']);
-    table.addRow({ id: 1, name: 'Alice', status: 'Active' }, { color: 'green', separator: true });
-    table.addRow({ id: 2, name: 'Bob', status: 'Inactive' }, { color: 'yellow', separator: true });
+    table.addRow(
+      { id: 1, name: 'Alice', status: 'Active' },
+      { color: 'green', separator: true }
+    );
+    table.addRow(
+      { id: 2, name: 'Bob', status: 'Inactive' },
+      { color: 'yellow', separator: true }
+    );
     table.addRow({ id: 3, name: 'Charlie', status: 'Pending' });
     const rendered = renderTable(table);
-    
+
     expect(rendered).toContain('Alice');
     expect(rendered).toContain('Bob');
     expect(rendered).toContain('Charlie');
-    
+
     // Should have separators between first two rows but not after last row
     const lines = rendered.split('\n');
-    const separatorCount = lines.filter(line => 
-      line.includes('─') && line.includes('┼')
+    const separatorCount = lines.filter(
+      (line) => line.includes('─') && line.includes('┼')
     ).length;
     expect(separatorCount).toBeGreaterThan(2); // At least header + row separators
   });
@@ -83,12 +98,16 @@ describe('renderTable', () => {
       columns: [
         { name: 'short', minLen: 5 },
         { name: 'very_long_column_name', minLen: 25 },
-        { name: 'med', minLen: 10 }
-      ]
+        { name: 'med', minLen: 10 },
+      ],
     });
-    table.addRow({ short: 'A', very_long_column_name: 'Long content here', med: 'Medium' });
+    table.addRow({
+      short: 'A',
+      very_long_column_name: 'Long content here',
+      med: 'Medium',
+    });
     const rendered = renderTable(table);
-    
+
     expect(rendered).toContain('Wide Title That Should Be Centered');
     expect(rendered).toContain('short');
     expect(rendered).toContain('very_long_column_name');
@@ -97,14 +116,11 @@ describe('renderTable', () => {
   it('should render table with colored title', () => {
     const table = new TableInternal({
       title: 'Colored Report',
-      columns: [
-        { name: 'item' },
-        { name: 'value' }
-      ]
+      columns: [{ name: 'item' }, { name: 'value' }],
     });
     table.addRow({ item: 'test', value: 123 });
     const rendered = renderTable(table);
-    
+
     expect(rendered).toContain('Colored Report');
     expect(rendered).toContain('test');
   });
@@ -122,17 +138,17 @@ describe('renderSimpleTable', () => {
   it('should render simple table with options', () => {
     const rows = [
       { name: 'Alice', age: 30 },
-      { name: 'Bob', age: 25 }
+      { name: 'Bob', age: 25 },
     ];
     const options = {
       title: 'People List',
       columns: [
         { name: 'name', alignment: 'left' as const },
-        { name: 'age', alignment: 'right' as const }
-      ]
+        { name: 'age', alignment: 'right' as const },
+      ],
     };
     const rendered = renderSimpleTable(rows, options);
-    
+
     expect(rendered).toContain('People List');
     expect(rendered).toContain('Alice');
     expect(rendered).toContain('Bob');
@@ -148,13 +164,13 @@ describe('renderSimpleTable', () => {
   it('should render simple table with row separators', () => {
     const rows = [
       { id: 1, status: 'active' },
-      { id: 2, status: 'pending' }
+      { id: 2, status: 'pending' },
     ];
     const options = {
-      title: 'Status Report'
+      title: 'Status Report',
     };
     const rendered = renderSimpleTable(rows, options);
-    
+
     expect(rendered).toContain('Status Report');
     expect(rendered).toContain('active');
     expect(rendered).toContain('pending');
@@ -187,11 +203,11 @@ describe('printSimpleTable', () => {
       title: 'Test Results',
       columns: [
         { name: 'name', alignment: 'center' as const },
-        { name: 'score', alignment: 'right' as const }
-      ]
+        { name: 'score', alignment: 'right' as const },
+      ],
     };
     printSimpleTable(rows, options);
-    
+
     expect(console.log).toHaveBeenCalledTimes(1);
     const output = consoleSpy.mock.calls[0][0];
     expect(output).toContain('Test Results');
@@ -205,4 +221,4 @@ describe('printSimpleTable', () => {
     expect(console.log).toHaveBeenCalledTimes(1);
     expect(typeof consoleSpy.mock.calls[0][0]).toBe('string');
   });
-}); 
+});

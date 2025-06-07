@@ -81,9 +81,11 @@ describe('Testing column alignment', () => {
     });
 
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
-    expect(renderedHeader).toEqual('│ red_left_align_index │ right_align_text │ green_value_center │');
+    expect(renderedHeader).toEqual(
+      '│ red_left_align_index │ right_align_text │ green_value_center │'
+    );
     expect(renderedBody).toEqual([
-      '│ 2                    │ This row is blue │       10.212       │'
+      '│ 2                    │ This row is blue │       10.212       │',
     ]);
   });
 });

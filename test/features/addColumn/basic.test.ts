@@ -36,8 +36,7 @@ describe('Testing adding columns', () => {
   });
 
   it('should allow adding columns with colors', () => {
-    const p = new Table()
-      .addColumn({ name: 'coloredColumn', color: 'red' });
+    const p = new Table().addColumn({ name: 'coloredColumn', color: 'red' });
     p.addRow({ coloredColumn: 'redValue' });
     p.printTable();
     expect(p.render()).toMatchSnapshot();
@@ -45,7 +44,12 @@ describe('Testing adding columns', () => {
 
   it('should allow adding a complex column object with chaining', () => {
     const p = new Table()
-      .addColumn({ name: 'complexColumn', alignment: 'center', color: 'blue', title: 'Complex Column' })
+      .addColumn({
+        name: 'complexColumn',
+        alignment: 'center',
+        color: 'blue',
+        title: 'Complex Column',
+      })
       .addColumn('simpleColumn')
       .addRow({ complexColumn: 'complexValue', simpleColumn: 'simpleValue' });
     p.printTable();

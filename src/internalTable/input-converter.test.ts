@@ -5,11 +5,11 @@ describe('rawColumnToInternalColumn', () => {
   it('should convert raw column options to internal column format', () => {
     const rawColumn = { name: 'col1', alignment: 'left', color: 'red' };
     const internalColumn = rawColumnToInternalColumn(rawColumn);
-    expect(internalColumn).toStrictEqual({ 
-      "alignment": "left", 
-      "color": "red", 
-      "name": "col1", 
-      "title": "col1" 
+    expect(internalColumn).toStrictEqual({
+      alignment: 'left',
+      color: 'red',
+      name: 'col1',
+      title: 'col1',
     });
   });
 
@@ -21,28 +21,35 @@ describe('rawColumnToInternalColumn', () => {
       maxLen: 18,
       minLen: 8,
     };
-    const internalColumn = rawColumnToInternalColumn(rawColumn, defaultColumnStyles);
-    expect(internalColumn).toStrictEqual({ 
-      "alignment": "right", 
-      "color": "blue", 
-      "maxLen": 18, 
-      "minLen": 8,
-      "name": "col1", 
-      "title": "col1" 
+    const internalColumn = rawColumnToInternalColumn(
+      rawColumn,
+      defaultColumnStyles
+    );
+    expect(internalColumn).toStrictEqual({
+      alignment: 'right',
+      color: 'blue',
+      maxLen: 18,
+      minLen: 8,
+      name: 'col1',
+      title: 'col1',
     });
   });
 
   it('should convert raw computed column options to internal column format', () => {
-    const rawColumn = { name: 'col1', alignment: 'left', color: 'red', function: () => 'test' };
+    const rawColumn = {
+      name: 'col1',
+      alignment: 'left',
+      color: 'red',
+      function: () => 'test',
+    };
     const internalColumn = rawColumnToInternalColumn(rawColumn);
-    expect(internalColumn).toStrictEqual({ 
-      "alignment": "left", 
-      "color": "red", 
-      "name": "col1", 
-      "title": "col1" 
+    expect(internalColumn).toStrictEqual({
+      alignment: 'left',
+      color: 'red',
+      name: 'col1',
+      title: 'col1',
     });
   });
-
 });
 
 // Test objIfExists function
@@ -56,4 +63,4 @@ describe('objIfExists', () => {
     const result = objIfExists('key', null);
     expect(result).toEqual({});
   });
-}); 
+});

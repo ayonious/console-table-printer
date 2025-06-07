@@ -1,8 +1,8 @@
 import { ALIGNMENTS, COLORS } from '../utils/table-constants';
 
-export type ALIGNMENT = typeof ALIGNMENTS[number];
+export type ALIGNMENT = (typeof ALIGNMENTS)[number];
 
-export type COLOR = typeof COLORS[number];
+export type COLOR = (typeof COLORS)[number];
 export interface Dictionary {
   [key: string]: any;
 }

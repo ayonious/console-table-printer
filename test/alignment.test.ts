@@ -10,7 +10,7 @@ describe('Testing column alignment', () => {
     p.addRow({
       left: 'left-aligned',
       right: 'right-aligned',
-      center: 'centered'
+      center: 'centered',
     });
 
     const rendered = p.render();
@@ -30,17 +30,17 @@ describe('Testing column alignment', () => {
     p.addRow({
       left: 'short',
       right: 'short',
-      center: 'short'
+      center: 'short',
     });
     p.addRow({
       left: 'medium length',
       right: 'medium length',
-      center: 'medium length'
+      center: 'medium length',
     });
     p.addRow({
       left: 'this is a very long text',
       right: 'this is a very long text',
-      center: 'this is a very long text'
+      center: 'this is a very long text',
     });
 
     const rendered = p.render();
@@ -60,18 +60,18 @@ describe('Testing column alignment', () => {
       {
         leftNum: 12345,
         rightNum: 67890,
-        centerSpecial: '!@#$%'
+        centerSpecial: '!@#$%',
       },
       {
         leftNum: -123.45,
-        rightNum: 678.90,
-        centerSpecial: '    spaces    '
+        rightNum: 678.9,
+        centerSpecial: '    spaces    ',
       },
       {
         leftNum: '0000',
         rightNum: '9999',
-        centerSpecial: '~~middle~~'
-      }
+        centerSpecial: '~~middle~~',
+      },
     ]);
 
     const rendered = p.render();
@@ -91,13 +91,13 @@ describe('Testing column alignment', () => {
       {
         leftRed: 'Red Left',
         rightBlue: 'Blue Right',
-        centerGreen: 'Green Center'
+        centerGreen: 'Green Center',
       },
       {
         leftRed: 'Short',
         rightBlue: 'Medium Text',
-        centerGreen: 'Very Long Center Text'
-      }
+        centerGreen: 'Very Long Center Text',
+      },
     ]);
 
     const rendered = p.render();

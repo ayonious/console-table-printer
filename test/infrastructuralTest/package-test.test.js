@@ -25,7 +25,7 @@ describe('Package Test Suite', () => {
     const basicTable = new Table();
     basicTable.addRow({ id: 1, name: 'Test' });
     const basicRender = basicTable.render();
-    
+
     expect(basicRender).toContain('id');
     expect(basicRender).toContain('name');
     expect(basicRender).toContain('1');
@@ -37,7 +37,7 @@ describe('Package Test Suite', () => {
     colorTable.addRow({ id: 1, name: 'Green Row' }, { color: 'green' });
     colorTable.addRow({ id: 2, name: 'Red Row' }, { color: 'red' });
     const colorRender = colorTable.render();
-    
+
     expect(colorRender).toContain('\x1b[32m'); // green color code
     expect(colorRender).toContain('\x1b[31m'); // red color code
   });
@@ -46,12 +46,12 @@ describe('Package Test Suite', () => {
     const optionsTable = new Table({
       columns: [
         { name: 'id', alignment: 'right' },
-        { name: 'name', title: 'NAME' }
-      ]
+        { name: 'name', title: 'NAME' },
+      ],
     });
     optionsTable.addRow({ id: 1, name: 'Test' });
     const optionsRender = optionsTable.render();
-    
+
     expect(optionsRender).toContain('NAME');
   });
 
@@ -59,10 +59,10 @@ describe('Package Test Suite', () => {
     const typesTable = new Table();
     typesTable.addRows([
       { id: 1, name: 'Item 1', price: 10.99, inStock: true },
-      { id: 2, name: 'Item 2', price: 20.50, inStock: false }
+      { id: 2, name: 'Item 2', price: 20.5, inStock: false },
     ]);
     const typesRender = typesTable.render();
-    
+
     expect(typesRender).toContain('10.99');
     expect(typesRender).toContain('true');
     expect(typesRender).toContain('false');
@@ -70,17 +70,17 @@ describe('Package Test Suite', () => {
 
   test('Sorting', () => {
     const sortTable = new Table({
-      sort: (row1, row2) => row1.id - row2.id
+      sort: (row1, row2) => row1.id - row2.id,
     });
     sortTable.addRows([
-      { id: 3, name: 'Product 3', price: 30.00 },
+      { id: 3, name: 'Product 3', price: 30.0 },
       { id: 1, name: 'Product 1', price: 10.99 },
-      { id: 2, name: 'Product 2', price: 20.50 }
+      { id: 2, name: 'Product 2', price: 20.5 },
     ]);
     const sortRender = sortTable.render();
     const lines = sortRender.split('\n');
-    const dataLines = lines.filter(line => line.includes('Product'));
-    
+    const dataLines = lines.filter((line) => line.includes('Product'));
+
     expect(dataLines).toHaveLength(3);
     expect(dataLines[0]).toContain('Product 1');
     expect(dataLines[1]).toContain('Product 2');
@@ -94,15 +94,20 @@ describe('Package Test Suite', () => {
         { name: 'id', alignment: 'right', color: 'blue' },
         { name: 'name', title: 'PRODUCT NAME', maxLen: 20 },
         { name: 'price', alignment: 'left' },
-        { name: 'stock', title: 'IN STOCK' }
-      ]
+        { name: 'stock', title: 'IN STOCK' },
+      ],
     });
     comprehensiveTable.addRows([
-      { id: 1, name: 'Very Long Product Name That Should be Truncated', price: 10.99, stock: true },
-      { id: 2, name: 'Product 2', price: 20.50, stock: false }
+      {
+        id: 1,
+        name: 'Very Long Product Name That Should be Truncated',
+        price: 10.99,
+        stock: true,
+      },
+      { id: 2, name: 'Product 2', price: 20.5, stock: false },
     ]);
     const comprehensiveRender = comprehensiveTable.render();
-    
+
     expect(comprehensiveRender).toContain('PRODUCT NAME');
     expect(comprehensiveRender).toContain('IN STOCK');
     expect(comprehensiveRender).toContain('\x1b[34m'); // blue color code
@@ -110,12 +115,12 @@ describe('Package Test Suite', () => {
 
   test('Error Handling', () => {
     const table = new Table();
-    
+
     // Should not throw when adding valid rows
     expect(() => {
       table.addRow({ id: 1, name: 'Test' });
     }).not.toThrow();
-    
+
     // Should handle empty table gracefully
     const emptyTable = new Table();
     expect(() => {
@@ -127,12 +132,12 @@ describe('Package Test Suite', () => {
     const table = new Table();
     table.addRow({ id: 1, name: 'Test' });
     const render = table.render();
-    
+
     // Check table border characters
     expect(render).toMatch(/[─│┌┐└┘├┤]/); // Should contain table border characters
-    
+
     // Check alignment
     const lines = render.split('\n');
     expect(lines.length).toBeGreaterThan(2); // Header + data + borders
   });
-}); 
+});
