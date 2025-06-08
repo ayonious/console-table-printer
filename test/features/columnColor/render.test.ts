@@ -33,5 +33,8 @@ describe('Column Color Tests: Rendering', () => {
       '│ 2                    │                  This row is blue │      10.212 │',
       '│ 3                    │ I would like some red wine please │      10.212 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

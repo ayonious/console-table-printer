@@ -1,6 +1,4 @@
-import { objIfExists } from '../internalTable/input-converter';
 import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
-import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
 import { findWidthInConsole } from './console-utils';
 import {
@@ -9,9 +7,8 @@ import {
 } from './string-utils';
 import {
   DEFAULT_COLUMN_LEN,
-  DEFAULT_ROW_ALIGNMENT,
-  DEFAULT_ROW_SEPARATOR,
   DEFAULT_HEADER_FONT_COLOR,
+  DEFAULT_ROW_SEPARATOR
 } from './table-constants';
 
 const max = (a: number, b: number) => Math.max(a, b);
@@ -68,7 +65,7 @@ export const createTableHorizontalBorders = (
   return ret;
 };
 
-export const createColumFromOnlyName = (name: string): Column => ({
+export const createColumFromOnlyName = (name: string): {name: string, title: string} => ({
   name,
   title: name,
 });

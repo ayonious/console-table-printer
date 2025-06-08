@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Column Color Tests: Rendering should make sure each column is what its expected to be 1`] = `
+"┌──────────────────────┬───────────────────────────────────┬─────────────┐
+│ red_left_align_index │                  right_align_text │ green_value │
+├──────────────────────┼───────────────────────────────────┼─────────────┤
+│ 2                    │                  This row is blue │      10.212 │
+│ 3                    │ I would like some red wine please │      10.212 │
+└──────────────────────┴───────────────────────────────────┴─────────────┘"
+`;

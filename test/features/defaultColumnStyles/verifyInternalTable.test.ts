@@ -109,4 +109,29 @@ describe('Default Column Styles: Basic Tests', () => {
       expect(col.alignment).toBe('center');
     });
   });
+
+  it('should handle defaultColumnOptions when columns are not specified', () => {
+    const p = new Table({
+      defaultColumnOptions: {
+        alignment: 'center',
+        color: 'red',
+        maxLen: 25,
+        minLen: 17,
+      },
+    });
+
+    p.addRow({ firstName: 'John', lastName: 'Doe', age: 25 });
+    p.addRow({ firstName: 'John', lastName: 'Smith', age: 23 });
+
+    // Verify computed columns inherit default options
+    const columns = p.table.columns;
+    columns.forEach((col) => {
+      expect(col.color).toBe('red');
+      expect(col.maxLen).toBe(25);
+      expect(col.minLen).toBe(17);
+      expect(col.alignment).toBe('center');
+    });
+
+    p.printTable();
+  });
 });

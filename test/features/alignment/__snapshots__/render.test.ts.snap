@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alignment Tests: Rendering should render center-aligned content 1`] = `
+"┌───────────────────────────┬───────────────────────┐
+│ centered_text_column_name │ centered_value_column │
+├───────────────────────────┼───────────────────────┤
+│        Center Text        │          123          │
+│        Middle Row         │          456          │
+│        Last Center        │          789          │
+└───────────────────────────┴───────────────────────┘"
+`;
+
+exports[`Alignment Tests: Rendering should render left-aligned content 1`] = `
+"┌────────────────────────────────────────┬────────────────────────────────┐
+│ very_long_text_column_name_for_testing │ another_long_value_column_name │
+├────────────────────────────────────────┼────────────────────────────────┤
+│ Left Text                              │ 123                            │
+│ Another Left                           │ 456                            │
+│ Third Row                              │ 789                            │
+└────────────────────────────────────────┴────────────────────────────────┘"
+`;
+
+exports[`Alignment Tests: Rendering should render mixed alignments 1`] = `
+"┌─────────────────────┬──────────────────────┬───────────────────────┐
+│ left_aligned_column │ right_aligned_column │ center_aligned_column │
+├─────────────────────┼──────────────────────┼───────────────────────┤
+│ Left Text           │           Right Text │      Center Text      │
+│ Left2 Long          │          Right2 Long │     Center2 Long      │
+│ Left3 Longer        │        Right3 Longer │    Center3 Longer     │
+└─────────────────────┴──────────────────────┴───────────────────────┘"
+`;
+
+exports[`Alignment Tests: Rendering should render right-aligned content 1`] = `
+"┌────────────────────────────────┬─────────────────────────────┐
+│ long_text_column_right_aligned │ numeric_value_right_aligned │
+├────────────────────────────────┼─────────────────────────────┤
+│                     Right Text │                         123 │
+│                     More Right │                         456 │
+│                     Last Right │                         789 │
+└────────────────────────────────┴─────────────────────────────┘"
+`;

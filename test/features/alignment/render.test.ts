@@ -35,6 +35,9 @@ describe('Alignment Tests: Rendering', () => {
       '│ Another Left                           │ 456                            │',
       '│ Third Row                              │ 789                            │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render right-aligned content', () => {
@@ -70,6 +73,9 @@ describe('Alignment Tests: Rendering', () => {
       '│                     More Right │                         456 │',
       '│                     Last Right │                         789 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render center-aligned content', () => {
@@ -96,6 +102,9 @@ describe('Alignment Tests: Rendering', () => {
       '│        Middle Row         │          456          │',
       '│        Last Center        │          789          │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render mixed alignments', () => {
@@ -135,5 +144,8 @@ describe('Alignment Tests: Rendering', () => {
       '│ Left2 Long          │          Right2 Long │     Center2 Long      │',
       '│ Left3 Longer        │        Right3 Longer │    Center3 Longer     │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

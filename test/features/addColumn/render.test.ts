@@ -18,6 +18,9 @@ describe('Add Column Tests: Rendering', () => {
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
     expect(renderedHeader).toEqual('│ Complex Column │ simpleColumn │');
     expect(renderedBody).toEqual(['│  complexValue  │  simpleValue │']);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify that addColumn preserves existing data', () => {
@@ -42,6 +45,9 @@ describe('Add Column Tests: Rendering', () => {
       '│ value3 │ value4 │        │',
       '│ value5 │ value6 │ value7 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should verify addColumn with custom properties', () => {
@@ -65,5 +71,8 @@ describe('Add Column Tests: Rendering', () => {
       '│ value1 │            │',
       '│ value2 │        123 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

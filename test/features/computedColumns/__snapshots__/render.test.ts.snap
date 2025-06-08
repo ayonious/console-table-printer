@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Computed Columns Tests: Rendering should render basic arithmetic computations 1`] = `
+"┌────────┬────────┬─────┬────────────┬─────────┐
+│ value1 │ value2 │ sum │ difference │ product │
+├────────┼────────┼─────┼────────────┼─────────┤
+│     10 │      5 │  15 │          5 │      50 │
+│     20 │     10 │  30 │         10 │     200 │
+└────────┴────────┴─────┴────────────┴─────────┘"
+`;
+
+exports[`Computed Columns Tests: Rendering should render computations with row index 1`] = `
+"┌───────┬────────┬──────────────┐
+│ value │ rowNum │ runningTotal │
+├───────┼────────┼──────────────┤
+│    10 │      1 │           10 │
+│    20 │      2 │           30 │
+│    30 │      3 │           60 │
+└───────┴────────┴──────────────┘"
+`;
+
+exports[`Computed Columns Tests: Rendering should render conditional computations 1`] = `
+"┌───────┬───────┬────────┐
+│ score │ grade │ status │
+├───────┼───────┼────────┤
+│    95 │     A │   PASS │
+│    85 │     B │   PASS │
+│    55 │     F │   FAIL │
+└───────┴───────┴────────┘"
+`;
+
+exports[`Computed Columns Tests: Rendering should render header content of computed columns 1`] = `
+"┌─────────────┬──────────────┬───────┐
+│ First Value │ Second Value │ Total │
+├─────────────┼──────────────┼───────┤
+│          10 │           20 │    30 │
+└─────────────┴──────────────┴───────┘"
+`;
+
+exports[`Computed Columns Tests: Rendering should render string manipulations 1`] = `
+"┌───────────┬──────────┬────────────┬──────────┐
+│ firstName │ lastName │   fullName │ initials │
+├───────────┼──────────┼────────────┼──────────┤
+│      John │      Doe │   John Doe │     J.D. │
+│      Jane │    Smith │ Jane Smith │     J.S. │
+└───────────┴──────────┴────────────┴──────────┘"
+`;
