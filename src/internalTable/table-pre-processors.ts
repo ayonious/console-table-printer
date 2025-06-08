@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { Row } from '../models/common';
 import { ComputedColumn } from '../models/external-table';
 import { Column } from '../models/internal-table';
