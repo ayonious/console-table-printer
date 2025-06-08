@@ -12,8 +12,8 @@ export default [
       '**/*.test.ts',
       '**/*.test.js',
       '**/test/**',
-      'eslint.config.js'
-    ]
+      'eslint.config.js',
+    ],
   },
   ...tseslint.config(
     eslint.configs.recommended,
@@ -57,8 +57,8 @@ export default [
         'comma-dangle': 'off',
         'no-unused-vars': 'off',
         camelcase: 'off',
-        '@typescript-eslint/no-explicit-any': 'off'
-      }
+        '@typescript-eslint/no-explicit-any': 'off',
+      },
     }
-  )
-]; 
+  ),
+];
