@@ -1,9 +1,9 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import prettier from 'eslint-config-prettier';
-import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+const prettier = require('eslint-config-prettier');
+const eslintPluginPrettier = require('eslint-plugin-prettier/recommended');
 
-export default [
+module.exports = [
   {
     ignores: [
       '**/dist/**',
@@ -24,7 +24,7 @@ export default [
       languageOptions: {
         parserOptions: {
           ecmaVersion: 'latest',
-          sourceType: 'module',
+          sourceType: 'commonjs',
         },
         globals: {
           // ES2015 globals

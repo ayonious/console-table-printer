@@ -45,6 +45,5 @@
   "homepage": "https://console-table.netlify.app",
   "dependencies": {
     "simple-wcswidth": "^1.0.1"
-  },
-  "type": "module"
+  }
 }
