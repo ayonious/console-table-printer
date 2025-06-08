@@ -1,3 +1,10 @@
+## [2.14.2](https://github.com/console-table-printer/console-table-printer/compare/v2.14.1...v2.14.2) (2025-06-08)
+
+
+### Bug Fixes
+
+* Default Column options fix ([#522](https://github.com/console-table-printer/console-table-printer/issues/522)) ([d5ecf47](https://github.com/console-table-printer/console-table-printer/commit/d5ecf47d323f6dca9b679a21ab7cd2b4a906da23))
+
 ## [2.14.1](https://github.com/console-table-printer/console-table-printer/compare/v2.14.0...v2.14.1) (2025-06-01)
 
 
