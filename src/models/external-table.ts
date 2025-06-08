@@ -20,7 +20,7 @@ export interface ComputedColumn extends ColumnOptionsRaw {
 
 export type RowSortFunction = (row1: any, row2: any) => number;
 
-export type RowFilterFunction = (row: any) => Boolean;
+export type RowFilterFunction = (row: any) => boolean;
 
 export interface DefaultColumnOptions {
   alignment?: ALIGNMENT;
