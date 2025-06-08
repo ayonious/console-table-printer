@@ -8,7 +8,7 @@
   "scripts": {
     "setup": "yarn",
     "build": "tsc",
-    "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
+    "format": "prettier --write \"**/*.{json,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json",
     "test:coverage": "jest --config jestconfig.json --coverage",
     "lint": "eslint --ext=js,ts .",
