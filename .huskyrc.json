@@ -1,5 +1,6 @@
 {
   "hooks": {
+    "pre-commit": "yarn lint && pretty-quick --staged",
     "pre-push": "pretty-quick --staged"
   }
 }

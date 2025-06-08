@@ -26,8 +26,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      #  - name: Run linting
-      #    run: yarn lint
+      - name: Run linting
+        run: yarn lint
 
       - name: Check formatting
         run: yarn prettier --check "**/*.{ts,js,yml}"
