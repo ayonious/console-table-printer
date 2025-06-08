@@ -117,14 +117,27 @@ class TableInternal {
     const colNames = this.columns.map((col) => col.name);
     Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
-        this.columns.push(rawColumnToInternalColumn(createColumFromOnlyName(key), this.defaultColumnOptions));
+        this.columns.push(
+          rawColumnToInternalColumn(
+            createColumFromOnlyName(key),
+            this.defaultColumnOptions
+          )
+        );
       }
     });
   }
 
   addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
-    const columnOptionsFromInput = typeof textOrObj === 'string' ? createColumFromOnlyName(textOrObj) : textOrObj;
-    this.columns.push(rawColumnToInternalColumn(columnOptionsFromInput, this.defaultColumnOptions));
+    const columnOptionsFromInput =
+      typeof textOrObj === 'string'
+        ? createColumFromOnlyName(textOrObj)
+        : textOrObj;
+    this.columns.push(
+      rawColumnToInternalColumn(
+        columnOptionsFromInput,
+        this.defaultColumnOptions
+      )
+    );
   }
 
   addColumns(toBeInsertedColumns: string[] | ColumnOptionsRaw[]) {

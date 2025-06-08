@@ -8,7 +8,7 @@ import {
 import {
   DEFAULT_COLUMN_LEN,
   DEFAULT_HEADER_FONT_COLOR,
-  DEFAULT_ROW_SEPARATOR
+  DEFAULT_ROW_SEPARATOR,
 } from './table-constants';
 
 const max = (a: number, b: number) => Math.max(a, b);
@@ -65,7 +65,9 @@ export const createTableHorizontalBorders = (
   return ret;
 };
 
-export const createColumFromOnlyName = (name: string): {name: string, title: string} => ({
+export const createColumFromOnlyName = (
+  name: string
+): { name: string; title: string } => ({
   name,
   title: name,
 });

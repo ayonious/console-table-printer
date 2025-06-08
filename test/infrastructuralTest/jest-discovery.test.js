@@ -36,22 +36,22 @@ describe('Jest Test Discovery', () => {
     'test/features/addColumn/basic.test.ts',
     'test/features/addColumn/render.test.ts',
     'test/features/addColumn/verifyOutput.test.ts',
-    
+
     'test/features/alignment/basic.test.ts',
     'test/features/alignment/render.test.ts',
     'test/features/alignment/verifyOutput.test.ts',
-    
+
     'test/features/columnColor/basic.test.ts',
     'test/features/columnColor/render.test.ts',
     'test/features/columnColor/verifyOutput.test.ts',
-    
+
     'test/features/computedColumns/computedColumns.test.ts',
     'test/features/computedColumns/render.test.ts',
     'test/features/computedColumns/verifyOutput.test.ts',
-    
+
     'test/features/customColor/basic.test.ts',
     'test/features/customColor/render.test.ts',
-    
+
     'test/features/defaultColumnStyles/render.test.ts',
     'test/features/defaultColumnStyles/verify.test.ts',
     'test/features/defaultColumnStyles/verifyInternalTable.test.ts',
@@ -88,7 +88,7 @@ describe('Jest Test Discovery', () => {
     'src/utils/table-helpers.test.ts',
     'src/utils/console-utils.test.ts',
     'src/utils/colored-console-line.test.ts',
-    'src/utils/string-utils.test.ts'
+    'src/utils/string-utils.test.ts',
   ];
 
   describe('Test File Detection', () => {

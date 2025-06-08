@@ -256,8 +256,8 @@ describe('Default Column Styles: Rendering Tests', () => {
         alignment: 'center',
         maxLen: 12,
         minLen: 8,
-        color: 'blue'
-      }
+        color: 'blue',
+      },
     });
 
     // Add rows with different data types and lengths
@@ -265,24 +265,24 @@ describe('Default Column Styles: Rendering Tests', () => {
       {
         id: 1,
         name: 'John Smith',
-        salary: 50000.50,
+        salary: 50000.5,
         status: 'Active',
-        notes: 'This is a very long note that should be wrapped due to maxLen'
+        notes: 'This is a very long note that should be wrapped due to maxLen',
       },
       {
         id: 2,
         name: 'Jane Doe',
         salary: 60000.75,
         status: 'On Leave',
-        notes: 'Short note'
+        notes: 'Short note',
       },
       {
         id: 3,
         name: 'Bob Wilson',
         salary: 45000.25,
         status: 'Inactive',
-        notes: 'Another note here'
-      }
+        notes: 'Another note here',
+      },
     ]);
 
     expect([getTableHeader(p), ...getTableBody(p)]).toEqual([
@@ -295,7 +295,7 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│              │              │              │              │  to maxLen   │',
       '│      2       │   Jane Doe   │   60000.75   │   On Leave   │  Short note  │',
       '│      3       │  Bob Wilson  │   45000.25   │   Inactive   │ Another note │',
-      '│              │              │              │              │     here     │'
+      '│              │              │              │              │     here     │',
     ]);
 
     // Add snapshot test
