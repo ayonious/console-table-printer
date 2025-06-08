@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-wrapper-object-types */
 import { ColorMap } from '../utils/colored-console-line';
 import { ALIGNMENT, CharLengthDict, COLOR, Dictionary } from './common';
 import { TableStyleDetails } from './internal-table';

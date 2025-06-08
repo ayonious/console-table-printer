@@ -63,7 +63,7 @@ describe('Default Column Styles: Verification Tests', () => {
       expect(col.maxLen).toBe(20);
     });
 
-    const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
+    const [, renderedBody] = [getTableHeader(p), getTableBody(p)];
     const bodyLines = renderedBody.join('\\n');
 
     // Check minLen enforcement
