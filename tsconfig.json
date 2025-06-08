@@ -9,13 +9,8 @@
     "lib": ["es2017", "dom"],
     "strict": true,
     "types": ["jest"],
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*", "index.ts"],
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/__tests__/**",
-    "**/test/**"
-  ]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**", "**/test/**"]
 }
