@@ -36,5 +36,8 @@ describe('Rendered Table content verification', () => {
       '│ 2                    │ This is my defined Green │      10.212 │',
       '│ 3                    │ This row is blue as well │      10.212 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

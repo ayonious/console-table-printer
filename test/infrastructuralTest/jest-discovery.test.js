@@ -22,52 +22,63 @@ describe('Jest Test Discovery', () => {
 
   // Expected test files (using relative paths)
   const expectedFiles = [
-    // Features Tests
-    'test/features/addColumn/basic.test.ts',
-    'test/features/addColumn/verifyOutput.test.ts',
-    'test/features/addColumn/render.test.ts',
-    'test/features/alignment/verifyAlignment.test.ts',
-    'test/features/alignment/basic.test.ts',
-    'test/features/alignment/render.test.ts',
-    'test/features/columnColor/basic.test.ts',
-    'test/features/columnColor/verifyOutput.test.ts',
-    'test/features/columnColor/render.test.ts',
-    'test/features/computedColumns/verifyOutput.test.ts',
-    'test/features/computedColumns/computedColumns.test.ts',
-    'test/features/computedColumns/render.test.ts',
-    'test/features/customColor/basic.test.ts',
-    'test/features/customColor/render.test.ts',
-    'test/features/defaultColumnStyles/basic.test.ts',
-    'test/features/defaultColumnStyles/verify.test.ts',
-    'test/features/defaultColumnStyles/render.test.ts',
-
-    // Infrastructure Tests
-    'test/infrastructuralTest/package-test.test.js',
-    'test/infrastructuralTest/jest-discovery.test.js',
-
-    // Core Test Files (Root Level)
-    'test/lineWidthLimit.test.ts',
+    // Root Level Tests
+    'test/charLen.test.ts',
     'test/foreignLanguage.test.ts',
+    'test/general.test.ts',
+    'test/lineWidthLimit.test.ts',
     'test/newLines.test.ts',
     'test/printTable.test.ts',
-    'test/charLen.test.ts',
     'test/render.test.ts',
-    'test/general.test.ts',
     'test/types.test.ts',
 
+    // Feature Tests
+    'test/features/addColumn/basic.test.ts',
+    'test/features/addColumn/render.test.ts',
+    'test/features/addColumn/verifyOutput.test.ts',
+
+    'test/features/alignment/basic.test.ts',
+    'test/features/alignment/render.test.ts',
+    'test/features/alignment/verifyOutput.test.ts',
+
+    'test/features/columnColor/basic.test.ts',
+    'test/features/columnColor/render.test.ts',
+    'test/features/columnColor/verifyOutput.test.ts',
+
+    'test/features/computedColumns/computedColumns.test.ts',
+    'test/features/computedColumns/render.test.ts',
+    'test/features/computedColumns/verifyOutput.test.ts',
+
+    'test/features/customColor/basic.test.ts',
+    'test/features/customColor/render.test.ts',
+
+    'test/features/defaultColumnStyles/render.test.ts',
+    'test/features/defaultColumnStyles/verify.test.ts',
+    'test/features/defaultColumnStyles/verifyInternalTable.test.ts',
+
     // Internal Table Tests
-    'test/internalTable/borderStyle.test.ts',
     'test/internalTable/alignment.test.ts',
-    'test/internalTable/rowSeparator.test.ts',
-    'test/internalTable/enableDisable.test.ts',
-    'test/internalTable/title.test.ts',
-    'test/internalTable/headerTitle.test.ts',
-    'test/internalTable/sorting.test.ts',
-    'test/internalTable/filter.test.ts',
+    'test/internalTable/borderStyle.test.ts',
     'test/internalTable/columnColor.test.ts',
-    'test/internalTable/rowColor.test.ts',
     'test/internalTable/computedColumn.test.ts',
+    'test/internalTable/enableDisable.test.ts',
+    'test/internalTable/filter.test.ts',
+    'test/internalTable/headerTitle.test.ts',
+    'test/internalTable/rowColor.test.ts',
+    'test/internalTable/rowSeparator.test.ts',
     'test/internalTable/simpleTable.test.ts',
+    'test/internalTable/sorting.test.ts',
+    'test/internalTable/title.test.ts',
+
+    // Documentation Tests (Version 1)
+    'test/readme/Version1/readmeExamples1Basic.test.ts',
+    'test/readme/Version1/readmeExamples2Instance.test.ts',
+    'test/readme/Version1/readmeExamples3Color.test.ts',
+    'test/readme/Version1/readmeExamples4Columns.test.ts',
+
+    // Infrastructure Tests
+    'test/infrastructuralTest/jest-discovery.test.js',
+    'test/infrastructuralTest/package-test.test.js',
 
     // Source Code Tests
     'src/internalTable/internal-table.test.ts',
@@ -78,12 +89,6 @@ describe('Jest Test Discovery', () => {
     'src/utils/console-utils.test.ts',
     'src/utils/colored-console-line.test.ts',
     'src/utils/string-utils.test.ts',
-
-    // Documentation Tests (Version 1)
-    'test/readme/Version1/readmeExamples4Columns.test.ts',
-    'test/readme/Version1/readmeExamples2Instance.test.ts',
-    'test/readme/Version1/readmeExamples3Color.test.ts',
-    'test/readme/Version1/readmeExamples1Basic.test.ts',
   ];
 
   describe('Test File Detection', () => {

@@ -40,6 +40,9 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│      Jane Smith      │         25          │     Los Angeles      │',
       '│     Bob Johnson      │         35          │       Chicago        │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render table with default left alignment', () => {
@@ -80,6 +83,9 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│ Jane Smith         │ 25                │ Los Angeles        │',
       '│ Bob Johnson        │ 35                │ Chicago            │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render table with default right alignment', () => {
@@ -120,6 +126,9 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│          Jane Smith │                 25 │         Los Angeles │',
       '│         Bob Johnson │                 35 │             Chicago │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render table with mixed alignments and maxLen', () => {
@@ -162,6 +171,9 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│         2         │ Second item          │             200.75 │',
       '│         3         │ Third                │             300.25 │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render table with computed columns using default styles', () => {
@@ -196,6 +208,9 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│         Jane          │        Smith         │      Jane Smith      │',
       '│          Bob          │       Johnson        │     Bob Johnson      │',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render table with row separators and default styles', () => {
@@ -229,5 +244,61 @@ describe('Default Column Styles: Rendering Tests', () => {
       '│        Task 3        │         Failed         │',
       '└──────────────────────┴────────────────────────┘',
     ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
+  });
+
+  it('should render table with defaultColumnOptions without specifying columns', () => {
+    const p = new Table({
+      shouldDisableColors: true,
+      defaultColumnOptions: {
+        alignment: 'center',
+        maxLen: 12,
+        minLen: 8,
+        color: 'blue',
+      },
+    });
+
+    // Add rows with different data types and lengths
+    p.addRows([
+      {
+        id: 1,
+        name: 'John Smith',
+        salary: 50000.5,
+        status: 'Active',
+        notes: 'This is a very long note that should be wrapped due to maxLen',
+      },
+      {
+        id: 2,
+        name: 'Jane Doe',
+        salary: 60000.75,
+        status: 'On Leave',
+        notes: 'Short note',
+      },
+      {
+        id: 3,
+        name: 'Bob Wilson',
+        salary: 45000.25,
+        status: 'Inactive',
+        notes: 'Another note here',
+      },
+    ]);
+
+    expect([getTableHeader(p), ...getTableBody(p)]).toEqual([
+      '│      id      │     name     │    salary    │    status    │    notes     │',
+      '│      1       │  John Smith  │   50000.5    │    Active    │  This is a   │',
+      '│              │              │              │              │  very long   │',
+      '│              │              │              │              │  note that   │',
+      '│              │              │              │              │  should be   │',
+      '│              │              │              │              │ wrapped due  │',
+      '│              │              │              │              │  to maxLen   │',
+      '│      2       │   Jane Doe   │   60000.75   │   On Leave   │  Short note  │',
+      '│      3       │  Bob Wilson  │   45000.25   │   Inactive   │ Another note │',
+      '│              │              │              │              │     here     │',
+    ]);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Default Column Styles: Rendering Tests should render table with computed columns using default styles 1`] = `
+"┌───────────────────────┬──────────────────────┬──────────────────────┐
+│ first_center_maxlen12 │ last_center_maxlen12 │ full_computed_center │
+├───────────────────────┼──────────────────────┼──────────────────────┤
+│         John          │         Doe          │       John Doe       │
+│         Jane          │        Smith         │      Jane Smith      │
+│          Bob          │       Johnson        │     Bob Johnson      │
+└───────────────────────┴──────────────────────┴──────────────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with default column styles 1`] = `
+"┌──────────────────────┬─────────────────────┬──────────────────────┐
+│ name_center_maxlen15 │ age_center_maxlen15 │ city_center_maxlen15 │
+├──────────────────────┼─────────────────────┼──────────────────────┤
+│       John Doe       │         30          │       New York       │
+│      Jane Smith      │         25          │     Los Angeles      │
+│     Bob Johnson      │         35          │       Chicago        │
+└──────────────────────┴─────────────────────┴──────────────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with default left alignment 1`] = `
+"┌────────────────────┬───────────────────┬────────────────────┐
+│ name_left_maxlen15 │ age_left_maxlen15 │ city_left_maxlen15 │
+├────────────────────┼───────────────────┼────────────────────┤
+│ John Doe           │ 30                │ New York           │
+│ Jane Smith         │ 25                │ Los Angeles        │
+│ Bob Johnson        │ 35                │ Chicago            │
+└────────────────────┴───────────────────┴────────────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with default right alignment 1`] = `
+"┌─────────────────────┬────────────────────┬─────────────────────┐
+│ name_right_maxlen15 │ age_right_maxlen15 │ city_right_maxlen15 │
+├─────────────────────┼────────────────────┼─────────────────────┤
+│            John Doe │                 30 │            New York │
+│          Jane Smith │                 25 │         Los Angeles │
+│         Bob Johnson │                 35 │             Chicago │
+└─────────────────────┴────────────────────┴─────────────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with defaultColumnOptions without specifying columns 1`] = `
+"┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+│      id      │     name     │    salary    │    status    │    notes     │
+├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+│      1       │  John Smith  │   50000.5    │    Active    │  This is a   │
+│              │              │              │              │  very long   │
+│              │              │              │              │  note that   │
+│              │              │              │              │  should be   │
+│              │              │              │              │ wrapped due  │
+│              │              │              │              │  to maxLen   │
+│      2       │   Jane Doe   │   60000.75   │   On Leave   │  Short note  │
+│      3       │  Bob Wilson  │   45000.25   │   Inactive   │ Another note │
+│              │              │              │              │     here     │
+└──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with mixed alignments and maxLen 1`] = `
+"┌───────────────────┬──────────────────────┬────────────────────┐
+│ id_center_maxlen5 │ desc_left_maxlen20   │ amount_right_align │
+├───────────────────┼──────────────────────┼────────────────────┤
+│         1         │ First item with a    │              100.5 │
+│                   │ very long            │                    │
+│                   │ description          │                    │
+│         2         │ Second item          │             200.75 │
+│         3         │ Third                │             300.25 │
+└───────────────────┴──────────────────────┴────────────────────┘"
+`;
+
+exports[`Default Column Styles: Rendering Tests should render table with row separators and default styles 1`] = `
+"┌──────────────────────┬────────────────────────┐
+│ task_center_maxlen15 │ status_center_maxlen15 │
+├──────────────────────┼────────────────────────┤
+│        Task 1        │          Done          │
+├──────────────────────┼────────────────────────┤
+│        Task 2        │        Pending         │
+├──────────────────────┼────────────────────────┤
+│        Task 3        │         Failed         │
+└──────────────────────┴────────────────────────┘"
+`;

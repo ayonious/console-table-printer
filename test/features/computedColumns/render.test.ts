@@ -56,6 +56,9 @@ describe('Computed Columns Tests: Rendering', () => {
       verifyNumericContent(diff, row.value1 - row.value2);
       verifyNumericContent(prod, row.value1 * row.value2);
     });
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render string manipulations', () => {
@@ -95,6 +98,9 @@ describe('Computed Columns Tests: Rendering', () => {
       verifyStringContent(full, `${row.firstName} ${row.lastName}`);
       verifyStringContent(initials, `${row.firstName[0]}.${row.lastName[0]}.`);
     });
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render conditional computations', () => {
@@ -152,6 +158,9 @@ describe('Computed Columns Tests: Rendering', () => {
       // Verify status
       verifyStringContent(status, row.score >= 60 ? 'PASS' : 'FAIL');
     });
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render computations with row index', () => {
@@ -193,6 +202,9 @@ describe('Computed Columns Tests: Rendering', () => {
       verifyNumericContent(rowNum, index + 1);
       verifyNumericContent(total, runningTotal);
     });
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 
   it('should render header content of computed columns', () => {
@@ -216,5 +228,8 @@ describe('Computed Columns Tests: Rendering', () => {
     const [renderedHeader, renderedBody] = [getTableHeader(p), getTableBody(p)];
     expect(renderedHeader).toEqual('│ First Value │ Second Value │ Total │');
     expect(renderedBody).toEqual(['│          10 │           20 │    30 │']);
+
+    // Add snapshot test
+    expect(p.render()).toMatchSnapshot();
   });
 });

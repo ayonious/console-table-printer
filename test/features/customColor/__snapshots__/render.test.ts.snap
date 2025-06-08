@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendered Table content verification should make sure each column is what its expected to be 1`] = `
+"┌──────────────────────┬──────────────────────────┬─────────────┐
+│ red_left_align_index │         right_align_text │ green_value │
+├──────────────────────┼──────────────────────────┼─────────────┤
+│ 2                    │ This is my defined Green │      10.212 │
+│ 3                    │ This row is blue as well │      10.212 │
+└──────────────────────┴──────────────────────────┴─────────────┘"
+`;
