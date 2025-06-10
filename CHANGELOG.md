@@ -1,3 +1,10 @@
+## [2.14.3](https://github.com/console-table-printer/console-table-printer/compare/v2.14.2...v2.14.3) (2025-06-10)
+
+
+### Bug Fixes
+
+* change return type for row filter function (boolean instead Boolean) ([#526](https://github.com/console-table-printer/console-table-printer/issues/526)) ([48bafca](https://github.com/console-table-printer/console-table-printer/commit/48bafcae140f6fceba8dc27992a7c4a15fb846c1))
+
 ## [2.14.2](https://github.com/console-table-printer/console-table-printer/compare/v2.14.1...v2.14.2) (2025-06-08)
 
 
