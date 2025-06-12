@@ -196,13 +196,13 @@ describe('TableInternal Initialization', () => {
         headerBottom: { left: '├', mid: '┼', right: '┤', other: '─' },
         tableBottom: { left: '└', mid: '┴', right: '┘', other: '─' },
         rowSeparator: { left: '├', mid: '┼', right: '┤', other: '─' },
-        vertical: '│'
+        vertical: '│',
       },
       enabledColumns: ['col1'],
       disabledColumns: ['col2'],
       computedColumns: [{ name: 'computed', function: (row: any) => row.col1 }],
       rowSeparator: true,
-      charLength: { '😊': 2 }
+      charLength: { '😊': 2 },
     });
 
     // Then update with partial options to test fallbacks
@@ -226,13 +226,13 @@ describe('TableInternal Initialization', () => {
     // Test with shouldDisableColors true
     const tableNoColors = new TableInternal({
       shouldDisableColors: true,
-      colorMap: { custom: 'value' } // This should be ignored due to shouldDisableColors
+      colorMap: { custom: 'value' }, // This should be ignored due to shouldDisableColors
     });
     expect(tableNoColors.colorMap).toEqual({});
 
     // Test with only colorMap
     const tableWithColorMap = new TableInternal({
-      colorMap: { custom: 'value' }
+      colorMap: { custom: 'value' },
     });
     expect(tableWithColorMap.colorMap).toMatchObject({ custom: 'value' });
 
@@ -253,7 +253,7 @@ describe('TableInternal Initialization', () => {
       columns: undefined,
       rowSeparator: undefined,
       charLength: undefined,
-      defaultColumnOptions: undefined
+      defaultColumnOptions: undefined,
     });
 
     // Verify default values are used
