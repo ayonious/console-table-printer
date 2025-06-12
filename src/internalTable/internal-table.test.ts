@@ -65,6 +65,127 @@ describe('TableInternal Initialization', () => {
     expect(table.rows.length).toBe(0);
     expect(table.title).toBeUndefined();
   });
+
+  it('should initialize with all possible table options', () => {
+    const customColorMap = {
+      customRed: '\x1b[31m',
+      customBlue: '\x1b[34m',
+      reset: '\x1b[0m',
+    };
+
+    const customCharLength = {
+      '👋': 2,
+      '🌟': 2,
+    };
+
+    const customStyle = {
+      headerTop: { left: '╔', mid: '╦', right: '╗', other: '═' },
+      headerBottom: { left: '╠', mid: '╬', right: '╣', other: '═' },
+      tableBottom: { left: '╚', mid: '╩', right: '╝', other: '═' },
+      rowSeparator: { left: '╟', mid: '╫', right: '╢', other: '─' },
+      vertical: '║',
+    };
+
+    const options = {
+      // Basic options
+      title: 'Complete Test Table',
+      columns: [
+        {
+          name: 'col1',
+          title: 'Column 1',
+          alignment: 'left' as const,
+          color: 'red' as const,
+          maxLen: 20,
+          minLen: 10,
+        },
+        {
+          name: 'col2',
+          title: 'Column 2',
+          alignment: 'right' as const,
+          color: 'blue' as const,
+          maxLen: 15,
+        },
+      ],
+      rows: [
+        { col1: 'Row 1', col2: 'Value 1' },
+        { col1: 'Row 2', col2: 'Value 2' },
+      ],
+
+      // Column management
+      defaultColumnOptions: {
+        alignment: 'center' as const,
+        color: 'green' as const,
+      },
+
+      // Computed columns
+      computedColumns: [
+        {
+          name: 'computed',
+          title: 'Computed',
+          function: (row: any) => `${row.col1}-${row.col2}`,
+        },
+      ],
+
+      // Styling and formatting
+      style: customStyle,
+      colorMap: customColorMap,
+      charLength: customCharLength,
+      shouldDisableColors: false,
+      rowSeparator: true,
+
+      // Data manipulation
+      sort: (a: any, b: any) => a.col1.localeCompare(b.col1),
+      filter: (row: any) => row.col1?.includes('Row'),
+    };
+
+    const table = new TableInternal(options);
+
+    // Verify basic options
+    expect(table.title).toBe('Complete Test Table');
+    expect(table.columns.length).toBe(2); // 2 regular + (Not 1 computed)
+    expect(table.rows.length).toBe(2);
+
+    // Verify column configuration
+    expect(table.columns[0].name).toBe('col1');
+    expect(table.columns[0].title).toBe('Column 1');
+    expect(table.columns[0].alignment).toBe('left');
+    expect(table.columns[0].color).toBe('red');
+    expect(table.columns[0].maxLen).toBe(20);
+    expect(table.columns[0].minLen).toBe(10);
+    expect(table.columns[1].maxLen).toBe(15);
+
+    // Verify column management
+    expect(table.defaultColumnOptions).toEqual({
+      alignment: 'center',
+      color: 'green',
+    });
+
+    // Verify computed columns
+    expect(table.computedColumns.length).toBe(1);
+    expect(table.computedColumns[0].name).toBe('computed');
+    expect(typeof table.computedColumns[0].function).toBe('function');
+
+    // Verify styling and formatting
+    expect(table.tableStyle).toEqual(customStyle);
+    expect(table.colorMap).toMatchObject(customColorMap);
+    expect(table.charLength).toEqual(customCharLength);
+    expect(table.rowSeparator).toBe(true);
+
+    // Verify data manipulation functions
+    expect(typeof table.sortFunction).toBe('function');
+    expect(typeof table.filterFunction).toBe('function');
+
+    // Verify rendered output contains expected elements
+    const rendered = table.renderTable();
+    expect(rendered).toContain('Complete Test Table');
+    expect(rendered).toContain('Column 1');
+    expect(rendered).toContain('Row 1');
+    expect(rendered).toContain('Value 1');
+    expect(rendered).toContain('╔'); // Custom style character
+
+    // After table print, the computed column is added to the columns array
+    expect(table.columns.length).toBe(3); // 2 regular + 1 computed
+  });
 });
 
 // Test adding columns and rows
