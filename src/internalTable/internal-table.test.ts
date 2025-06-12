@@ -70,12 +70,12 @@ describe('TableInternal Initialization', () => {
     const customColorMap = {
       customRed: '\x1b[31m',
       customBlue: '\x1b[34m',
-      reset: '\x1b[0m'
+      reset: '\x1b[0m',
     };
 
     const customCharLength = {
       '👋': 2,
-      '🌟': 2
+      '🌟': 2,
     };
 
     const customStyle = {
@@ -83,46 +83,48 @@ describe('TableInternal Initialization', () => {
       headerBottom: { left: '╠', mid: '╬', right: '╣', other: '═' },
       tableBottom: { left: '╚', mid: '╩', right: '╝', other: '═' },
       rowSeparator: { left: '╟', mid: '╫', right: '╢', other: '─' },
-      vertical: '║'
+      vertical: '║',
     };
 
     const options = {
       // Basic options
       title: 'Complete Test Table',
       columns: [
-        { 
+        {
           name: 'col1',
           title: 'Column 1',
           alignment: 'left' as const,
           color: 'red' as const,
           maxLen: 20,
-          minLen: 10
+          minLen: 10,
         },
         {
           name: 'col2',
           title: 'Column 2',
           alignment: 'right' as const,
           color: 'blue' as const,
-          maxLen: 15
-        }
+          maxLen: 15,
+        },
       ],
       rows: [
         { col1: 'Row 1', col2: 'Value 1' },
-        { col1: 'Row 2', col2: 'Value 2' }
+        { col1: 'Row 2', col2: 'Value 2' },
       ],
 
       // Column management
       defaultColumnOptions: {
         alignment: 'center' as const,
-        color: 'green' as const
+        color: 'green' as const,
       },
 
       // Computed columns
-      computedColumns: [{
-        name: 'computed',
-        title: 'Computed',
-        function: (row: any) => `${row.col1}-${row.col2}`
-      }],
+      computedColumns: [
+        {
+          name: 'computed',
+          title: 'Computed',
+          function: (row: any) => `${row.col1}-${row.col2}`,
+        },
+      ],
 
       // Styling and formatting
       style: customStyle,
@@ -133,7 +135,7 @@ describe('TableInternal Initialization', () => {
 
       // Data manipulation
       sort: (a: any, b: any) => a.col1.localeCompare(b.col1),
-      filter: (row: any) => row.col1?.includes('Row')
+      filter: (row: any) => row.col1?.includes('Row'),
     };
 
     const table = new TableInternal(options);
@@ -155,7 +157,7 @@ describe('TableInternal Initialization', () => {
     // Verify column management
     expect(table.defaultColumnOptions).toEqual({
       alignment: 'center',
-      color: 'green'
+      color: 'green',
     });
 
     // Verify computed columns
