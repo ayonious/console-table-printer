@@ -186,6 +186,88 @@ describe('TableInternal Initialization', () => {
     // After table print, the computed column is added to the columns array
     expect(table.columns.length).toBe(3); // 2 regular + 1 computed
   });
+
+  it('should handle partial options and fallbacks', () => {
+    // First create a table with some initial values
+    const table = new TableInternal({
+      title: 'Initial Title',
+      style: {
+        headerTop: { left: '┌', mid: '┬', right: '┐', other: '─' },
+        headerBottom: { left: '├', mid: '┼', right: '┤', other: '─' },
+        tableBottom: { left: '└', mid: '┴', right: '┘', other: '─' },
+        rowSeparator: { left: '├', mid: '┼', right: '┤', other: '─' },
+        vertical: '│',
+      },
+      enabledColumns: ['col1'],
+      disabledColumns: ['col2'],
+      computedColumns: [{ name: 'computed', function: (row: any) => row.col1 }],
+      rowSeparator: true,
+      charLength: { '😊': 2 },
+    });
+
+    // Then update with partial options to test fallbacks
+    const partialOptions = {
+      // Deliberately omit title, style, etc to test fallbacks
+      columns: [{ name: 'newCol' }],
+    };
+
+    table.initDetailed(partialOptions);
+
+    // Verify that unspecified options retain their previous values
+    expect(table.title).toBe('Initial Title');
+    expect(table.enabledColumns).toEqual(['col1']);
+    expect(table.disabledColumns).toEqual(['col2']);
+    expect(table.computedColumns[0].name).toBe('computed');
+    expect(table.rowSeparator).toBe(true);
+    expect(table.charLength).toEqual({ '😊': 2 });
+  });
+
+  it('should handle color map options correctly', () => {
+    // Test with shouldDisableColors true
+    const tableNoColors = new TableInternal({
+      shouldDisableColors: true,
+      colorMap: { custom: 'value' }, // This should be ignored due to shouldDisableColors
+    });
+    expect(tableNoColors.colorMap).toEqual({});
+
+    // Test with only colorMap
+    const tableWithColorMap = new TableInternal({
+      colorMap: { custom: 'value' },
+    });
+    expect(tableWithColorMap.colorMap).toMatchObject({ custom: 'value' });
+
+    // Test with neither option
+    const tableDefaultColors = new TableInternal({});
+    expect(tableDefaultColors.colorMap).toBeTruthy(); // Should have default colors
+  });
+
+  it('should handle undefined values in options', () => {
+    const table = new TableInternal({
+      title: undefined,
+      style: undefined,
+      sort: undefined,
+      filter: undefined,
+      enabledColumns: undefined,
+      disabledColumns: undefined,
+      computedColumns: undefined,
+      columns: undefined,
+      rowSeparator: undefined,
+      charLength: undefined,
+      defaultColumnOptions: undefined,
+    });
+
+    // Verify default values are used
+    expect(table.title).toBeUndefined();
+    expect(table.columns).toEqual([]);
+    expect(table.enabledColumns).toEqual([]);
+    expect(table.disabledColumns).toEqual([]);
+    expect(table.computedColumns).toEqual([]);
+    expect(table.rowSeparator).toBe(false); // Default value from constructor
+    expect(table.charLength).toEqual({});
+    expect(table.defaultColumnOptions).toBeUndefined();
+    expect(typeof table.sortFunction).toBe('function');
+    expect(typeof table.filterFunction).toBe('function');
+  });
 });
 
 // Test adding columns and rows
