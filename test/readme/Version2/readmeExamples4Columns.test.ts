@@ -15,12 +15,21 @@ describe('Example: 4', () => {
       },
     });
 
-    p.addRow({ id: 1, project: 'Website Redesign', status: 'On Track' }, { color: 'on_track' });
-    p.addRow({ id: 2, project: 'Mobile App', status: 'Behind Schedule' }, { color: 'urgent' });
-    p.addRow({ id: 3, project: 'API Integration', status: 'Completed' }, { color: 'green' });
+    p.addRow(
+      { id: 1, project: 'Website Redesign', status: 'On Track' },
+      { color: 'on_track' }
+    );
+    p.addRow(
+      { id: 2, project: 'Mobile App', status: 'Behind Schedule' },
+      { color: 'urgent' }
+    );
+    p.addRow(
+      { id: 3, project: 'API Integration', status: 'Completed' },
+      { color: 'green' }
+    );
 
     // print
     const returned = p.printTable();
     expect(returned).toBeUndefined();
   });
-}); 
+});

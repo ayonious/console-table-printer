@@ -41,4 +41,4 @@ describe('Example: 5', () => {
     const returned = salesTable.printTable();
     expect(returned).toBeUndefined();
   });
-}); 
+});
