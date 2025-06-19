@@ -22,17 +22,18 @@ npm install console-table-printer --save
 ```javascript
 const { printTable } = require('console-table-printer');
 
-//Create a table
-const testCases = [
-  { Rank: 3, text: 'I would like some Yellow', value: 100 },
-  { Rank: 4, text: 'I hope batch update is working', value: 300 },
+// Create a simple task list
+const tasks = [
+  { id: 1, task: 'Fix login bug', priority: 'High', status: 'In Progress' },
+  { id: 2, task: 'Update documentation', priority: 'Medium', status: 'Done' },
+  { id: 3, task: 'Add unit tests', priority: 'High', status: 'Todo' },
 ];
 
-//print
-printTable(testCases);
+// Print the table
+printTable(tasks);
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-quick-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/Example-1-basic.png)
 
 ## 🚨🚨Announcement🚨🚨 Official Documentation is moved [Here](https://console-table.netlify.app/docs)
 
@@ -41,65 +42,60 @@ You can also create a Table instance and print it:
 ```javascript
 const { Table } = require('console-table-printer');
 
-//Create a table
-const p = new Table();
+// Create a game leaderboard
+const leaderboard = new Table();
 
-// add rows with color
-p.addRow({ Record: 'a', text: 'red wine please', value: 10.212 });
-p.addRow({ Record: 'b', text: 'green gemuse please', value: 20.0 });
-p.addRows([
-  // adding multiple rows are possible
-  { Record: 'c', text: 'gelb bananen bitte', value: 100 },
-  { Record: 'd', text: 'update is working', value: 300 },
+// Add players with their scores
+leaderboard.addRow({ rank: 1, player: 'Alice', score: 1250, level: 'Master' });
+leaderboard.addRow({ rank: 2, player: 'Bob', score: 1180, level: 'Expert' });
+leaderboard.addRows([
+  { rank: 3, player: 'Charlie', score: 1050, level: 'Advanced' },
+  { rank: 4, player: 'Diana', score: 920, level: 'Intermediate' },
 ]);
 
-//print
-p.printTable();
+// Print the leaderboard
+leaderboard.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-instance-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/Example-2-instance.png)
 
 You can also put some color to your table like this:
 
 ```javascript
 const p = new Table();
-p.addRow({ description: 'red wine', value: 10.212 }, { color: 'red' });
-p.addRow({ description: 'green gemuse', value: 20.0 }, { color: 'green' });
-p.addRow({ description: 'gelb bananen', value: 100 }, { color: 'yellow' });
+p.addRow({ item: 'Pizza', price: 12.99, rating: '5/5' }, { color: 'red' });
+p.addRow({ item: 'Burger', price: 8.99, rating: '4/5' }, { color: 'green' });
+p.addRow({ item: 'Ramen', price: 15.99, rating: '5/5' }, { color: 'yellow' });
+p.addRow({ item: 'Salad', price: 6.99, rating: '3/5' }, { color: 'cyan' });
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-color-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/Example-3-color.png)
 
 You can also put properties based on columns (color/alignment/title)
 
 ```javascript
 const p = new Table({
+  title: 'Project Status',
   columns: [
-    { name: 'id', alignment: 'left', color: 'blue' }, // with alignment and color
-    { name: 'text', alignment: 'right' },
-    { name: 'is_priority_today', title: 'Is This Priority?' }, // with Title as separate Text
+    { name: 'id', alignment: 'left', color: 'blue' },
+    { name: 'project', alignment: 'left' },
+    { name: 'status', title: 'Current Status' },
   ],
   colorMap: {
-    custom_green: '\x1b[32m', // define customized color
+    urgent: '\x1b[31m',
+    on_track: '\x1b[32m',
   },
 });
 
-p.addRow({ id: 1, text: 'red wine', value: 10.212 }, { color: 'green' });
-p.addRow(
-  { id: 2, text: 'green gemuse', value: 20.0 },
-  { color: 'custom_green' } // your green
-);
-p.addRow(
-  { id: 3, text: 'gelb bananen', value: 100, is_priority_today: 'Y' },
-  { color: 'yellow' }
-);
-p.addRow({ id: 3, text: 'rosa hemd wie immer', value: 100 }, { color: 'cyan' });
+p.addRow({ id: 1, project: 'Website Redesign', status: 'On Track' }, { color: 'on_track' });
+p.addRow({ id: 2, project: 'Mobile App', status: 'Behind Schedule' }, { color: 'urgent' });
+p.addRow({ id: 3, project: 'API Integration', status: 'Completed' }, { color: 'green' });
 
 p.printTable();
 ```
 
-![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/readme-columns-1.png)
+![Screenshot](https://cdn.jsdelivr.net/gh/console-table-printer/console-table-printer@master/static-resources/Example-4-columns.png)
 
 ## CLI
 
@@ -121,19 +117,23 @@ Official documentation has been moved here: [console-table-documentation](https:
 
 ```javascript
 new Table({
-  title: 'Title of the Table', // A text showsup on top of table (optoinal)
+  title: '📊 Sales Report Q4 2024', // A text showsup on top of table (optional)
   columns: [
-    { name: 'column1', alignment: 'left', color: 'red' }, // with alignment and color
-    { name: 'column2', alignment: 'right', maxLen: 30 }, // lines bigger than this will be splitted in multiple lines
-    { name: 'column3', title: 'Column3' }, // Title is what will be shown while printing, by default title = name
+    { name: 'region', alignment: 'left', color: 'blue' }, // with alignment and color
+    { name: 'sales', alignment: 'right', maxLen: 30 }, // lines bigger than this will be splitted in multiple lines
+    { name: 'growth', title: 'Growth %' }, // Title is what will be shown while printing, by default title = name
   ],
-  rows: [{ column1: 'row1' }, { column2: 'row2' }, { column3: 'row3' }],
-  sort: (row1, row2) => row2.column1 - row1.column1, // sorting order of rows (optional), this is normal js sort function for Array.sort
-  filter: (row) => row.column1 < 3, // filtering rows (optional)
-  enabledColumns: ['column1'], // array of columns that you want to see, all other will be ignored (optional)
-  disabledColumns: ['column2'], // array of columns that you DONT want to see, these will always be hidden
+  rows: [
+    { region: 'North America', sales: '$2.5M', growth: '+15%' },
+    { region: 'Europe', sales: '$1.8M', growth: '+8%' },
+    { region: 'Asia Pacific', sales: '$3.2M', growth: '+22%' },
+  ],
+  sort: (row1, row2) => row2.sales - row1.sales, // sorting order of rows (optional), this is normal js sort function for Array.sort
+  filter: (row) => row.growth > '+10%', // filtering rows (optional)
+  enabledColumns: ['region', 'sales'], // array of columns that you want to see, all other will be ignored (optional)
+  disabledColumns: ['growth'], // array of columns that you DONT want to see, these will always be hidden
   colorMap: {
-    custom_green: '\x1b[32m', // define customized color
+    high_growth: '\x1b[32m', // define customized color
   },
   charLength: {
     '👋': 2,

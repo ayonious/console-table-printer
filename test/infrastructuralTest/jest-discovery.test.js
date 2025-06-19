@@ -76,6 +76,13 @@ describe('Jest Test Discovery', () => {
     'test/readme/Version1/readmeExamples3Color.test.ts',
     'test/readme/Version1/readmeExamples4Columns.test.ts',
 
+    // Documentation Tests (Version 2)
+    'test/readme/Version2/readmeExamples1Basic.test.ts',
+    'test/readme/Version2/readmeExamples2Instance.test.ts',
+    'test/readme/Version2/readmeExamples3Color.test.ts',
+    'test/readme/Version2/readmeExamples4Columns.test.ts',
+    'test/readme/Version2/readmeExamples5DetailedConfig.test.ts',
+
     // Infrastructure Tests
     'test/infrastructuralTest/jest-discovery.test.js',
     'test/infrastructuralTest/package-test.test.js',
