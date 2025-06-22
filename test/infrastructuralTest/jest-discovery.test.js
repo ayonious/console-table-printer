@@ -86,6 +86,7 @@ describe('Jest Test Discovery', () => {
     // Infrastructure Tests
     'test/infrastructuralTest/jest-discovery.test.js',
     'test/infrastructuralTest/package-test.test.js',
+    'test/infrastructuralTest/performance.test.js',
 
     // Source Code Tests
     'src/internalTable/internal-table.test.ts',

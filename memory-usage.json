@@ -1,0 +1,96 @@
+{
+  "timestamp": "2025-06-22T10:21:03.688Z",
+  "nodeVersion": "v24.2.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "tests": {
+    "basicPrintTable": {
+      "initial": {
+        "rss": 46104576,
+        "heapTotal": 6619136,
+        "heapUsed": 4481840,
+        "external": 1463995,
+        "arrayBuffers": 10515
+      },
+      "final": {
+        "rss": 48201728,
+        "heapTotal": 7667712,
+        "heapUsed": 5440320,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "difference": {
+        "heapUsed": 958480,
+        "heapTotal": 1048576,
+        "external": 40,
+        "rss": 2097152
+      }
+    },
+    "tableInstance": {
+      "initial": {
+        "rss": 48201728,
+        "heapTotal": 7667712,
+        "heapUsed": 4822832,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "final": {
+        "rss": 49430528,
+        "heapTotal": 7929856,
+        "heapUsed": 5426368,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "difference": {
+        "heapUsed": 603536,
+        "heapTotal": 262144,
+        "external": 0,
+        "rss": 1228800
+      }
+    },
+    "advancedFeatures": {
+      "initial": {
+        "rss": 50462720,
+        "heapTotal": 7929856,
+        "heapUsed": 5431712,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "final": {
+        "rss": 52543488,
+        "heapTotal": 7929856,
+        "heapUsed": 4316112,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "difference": {
+        "heapUsed": -1115600,
+        "heapTotal": 0,
+        "external": 0,
+        "rss": 2080768
+      }
+    },
+    "memoryLeak": {
+      "initial": {
+        "rss": 52559872,
+        "heapTotal": 7929856,
+        "heapUsed": 4885112,
+        "external": 1464035,
+        "arrayBuffers": 10515
+      },
+      "final": {
+        "rss": 54476800,
+        "heapTotal": 7143424,
+        "heapUsed": 4320728,
+        "external": 1464035,
+        "arrayBuffers": 10479
+      },
+      "difference": {
+        "heapUsed": -564384,
+        "heapTotal": -786432,
+        "external": 0,
+        "rss": 1916928
+      }
+    }
+  }
+}
