@@ -10,10 +10,42 @@ function measureMemoryUsage() {
     tests: {}
   };
 
+  // Performance limits
+  const PERFORMANCE_LIMITS = {
+    basicPrintTable: 500,    // 500ms for basic printTable
+    tableInstance: 300,      // 300ms for table instance operations
+    advancedFeatures: 800,   // 800ms for advanced features
+    memoryLeak: 1000,        // 1 second for memory leak test
+    memoryIncrease: 20       // 20MB max memory increase
+  };
+
+  // Helper function to measure performance
+  function measurePerformance(testName, testFunction, maxDuration) {
+    const start = performance.now();
+    
+    // Capture console.log to prevent output
+    const originalLog = console.log;
+    console.log = () => {};
+
+    const result = testFunction();
+
+    const end = performance.now();
+    const duration = end - start;
+    
+    console.log = originalLog;
+    
+    // Assert performance limit
+    if (duration > maxDuration) {
+      throw new Error(`${testName} exceeded performance limit: ${duration.toFixed(2)}ms > ${maxDuration}ms`);
+    }
+    
+    console.log(`✓ ${testName} completed in ${duration.toFixed(2)}ms`);
+    
+    return { result, duration };
+  }
+
   // Test 1: Basic printTable memory usage
   function testBasicPrintTable() {
-    const initialMemory = process.memoryUsage();
-    
     const data = Array.from({ length: 100 }, (_, i) => ({
       id: i + 1,
       name: `User ${i + 1}`,
@@ -21,14 +53,9 @@ function measureMemoryUsage() {
       score: Math.floor(Math.random() * 1000)
     }));
 
-    // Capture console.log to prevent output
-    const originalLog = console.log;
-    console.log = () => {};
-
+    const initialMemory = process.memoryUsage();
     printTable(data);
-
     const finalMemory = process.memoryUsage();
-    console.log = originalLog;
 
     return {
       initial: initialMemory,
@@ -44,8 +71,6 @@ function measureMemoryUsage() {
 
   // Test 2: Table instance memory usage
   function testTableInstance() {
-    const initialMemory = process.memoryUsage();
-    
     const table = new Table();
     
     // Add 100 rows
@@ -57,14 +82,9 @@ function measureMemoryUsage() {
       });
     }
 
-    // Capture console.log to prevent output
-    const originalLog = console.log;
-    console.log = () => {};
-
+    const initialMemory = process.memoryUsage();
     table.printTable();
-
     const finalMemory = process.memoryUsage();
-    console.log = originalLog;
 
     return {
       initial: initialMemory,
@@ -80,8 +100,6 @@ function measureMemoryUsage() {
 
   // Test 3: Advanced features memory usage
   function testAdvancedFeatures() {
-    const initialMemory = process.memoryUsage();
-    
     const table = new Table({
       title: 'Memory Test',
       columns: [
@@ -105,14 +123,9 @@ function measureMemoryUsage() {
 
     table.addRows(data);
 
-    // Capture console.log to prevent output
-    const originalLog = console.log;
-    console.log = () => {};
-
+    const initialMemory = process.memoryUsage();
     table.printTable();
-
     const finalMemory = process.memoryUsage();
-    console.log = originalLog;
 
     return {
       initial: initialMemory,
@@ -168,45 +181,79 @@ function measureMemoryUsage() {
     };
   }
 
-  // Run all tests
-  console.log('Running memory usage tests...\n');
+  // Run all tests with performance assertions
+  console.log('Running memory usage tests with performance assertions...\n');
 
-  results.tests.basicPrintTable = testBasicPrintTable();
-  console.log('✓ Basic printTable test completed');
+  try {
+    const { result: basicResult, duration: basicDuration } = measurePerformance(
+      'Basic printTable test',
+      testBasicPrintTable,
+      PERFORMANCE_LIMITS.basicPrintTable
+    );
+    results.tests.basicPrintTable = basicResult;
+    results.tests.basicPrintTable.duration = basicDuration;
 
-  results.tests.tableInstance = testTableInstance();
-  console.log('✓ Table instance test completed');
+    const { result: tableResult, duration: tableDuration } = measurePerformance(
+      'Table instance test',
+      testTableInstance,
+      PERFORMANCE_LIMITS.tableInstance
+    );
+    results.tests.tableInstance = tableResult;
+    results.tests.tableInstance.duration = tableDuration;
 
-  results.tests.advancedFeatures = testAdvancedFeatures();
-  console.log('✓ Advanced features test completed');
+    const { result: advancedResult, duration: advancedDuration } = measurePerformance(
+      'Advanced features test',
+      testAdvancedFeatures,
+      PERFORMANCE_LIMITS.advancedFeatures
+    );
+    results.tests.advancedFeatures = advancedResult;
+    results.tests.advancedFeatures.duration = advancedDuration;
 
-  results.tests.memoryLeak = testMemoryLeak();
-  console.log('✓ Memory leak test completed');
+    const { result: leakResult, duration: leakDuration } = measurePerformance(
+      'Memory leak test',
+      testMemoryLeak,
+      PERFORMANCE_LIMITS.memoryLeak
+    );
+    results.tests.memoryLeak = leakResult;
+    results.tests.memoryLeak.duration = leakDuration;
 
-  // Save results to file
-  const fs = require('fs');
-  const path = require('path');
-  
-  const outputPath = path.join(process.cwd(), 'memory-usage.json');
-  fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
-
-  // Print summary
-  console.log('\n=== Memory Usage Summary ===');
-  console.log(`Node.js Version: ${results.nodeVersion}`);
-  console.log(`Platform: ${results.platform} ${results.arch}`);
-  console.log(`Timestamp: ${results.timestamp}\n`);
-
-  Object.entries(results.tests).forEach(([testName, testResult]) => {
-    const heapUsedMB = (testResult.difference.heapUsed / 1024 / 1024).toFixed(2);
-    const rssMB = (testResult.difference.rss / 1024 / 1024).toFixed(2);
+    // Save results to file
+    const fs = require('fs');
+    const path = require('path');
     
-    console.log(`${testName}:`);
-    console.log(`  Heap Used: ${heapUsedMB} MB`);
-    console.log(`  RSS: ${rssMB} MB`);
-    console.log('');
-  });
+    const outputPath = path.join(process.cwd(), 'memory-usage.json');
+    fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
 
-  console.log(`Detailed results saved to: ${outputPath}`);
+    // Print summary
+    console.log('\n=== Memory Usage Summary ===');
+    console.log(`Node.js Version: ${results.nodeVersion}`);
+    console.log(`Platform: ${results.platform} ${results.arch}`);
+    console.log(`Timestamp: ${results.timestamp}\n`);
+
+    Object.entries(results.tests).forEach(([testName, testResult]) => {
+      const heapUsedMB = (testResult.difference.heapUsed / 1024 / 1024).toFixed(2);
+      const rssMB = (testResult.difference.rss / 1024 / 1024).toFixed(2);
+      const duration = testResult.duration ? ` (${testResult.duration.toFixed(2)}ms)` : '';
+      
+      console.log(`${testName}:${duration}`);
+      console.log(`  Heap Used: ${heapUsedMB} MB`);
+      console.log(`  RSS: ${rssMB} MB`);
+      
+      // Assert memory limits
+      if (testResult.difference.heapUsed > PERFORMANCE_LIMITS.memoryIncrease * 1024 * 1024) {
+        throw new Error(`${testName} exceeded memory limit: ${heapUsedMB}MB > ${PERFORMANCE_LIMITS.memoryIncrease}MB`);
+      }
+      
+      console.log('');
+    });
+
+    console.log(`Detailed results saved to: ${outputPath}`);
+    console.log('\n✅ All performance and memory tests passed!');
+
+  } catch (error) {
+    console.error('\n❌ Performance test failed:', error.message);
+    process.exit(1);
+  }
 }
 
 // Run the memory usage test

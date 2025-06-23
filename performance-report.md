@@ -1,6 +1,6 @@
 # Performance Test Report
 
-**Generated:** 6/22/2025, 12:21:06 PM
+**Generated:** 6/22/2025, 12:23:38 PM
 **Node.js Version:** v24.2.0
 **Platform:** darwin arm64
 
@@ -14,41 +14,41 @@ This report contains performance metrics for the console-table-printer package.
 
 | Test | Heap Used (MB) | RSS (MB) | Status |
 |------|----------------|----------|--------|
-| basicPrintTable | 0.91 | 2.00 | ✅ Good |
-| tableInstance | 0.58 | 1.17 | ✅ Good |
-| advancedFeatures | -1.06 | 1.98 | ✅ Good |
-| memoryLeak | -0.54 | 1.83 | ✅ Good |
+| basicPrintTable | 0.28 | 1.95 | ✅ Good |
+| tableInstance | 1.77 | 3.80 | ✅ Good |
+| advancedFeatures | -0.57 | 0.02 | ✅ Good |
+| memoryLeak | -0.32 | 1.17 | ✅ Good |
 
 
 ### Detailed Memory Metrics
 
 #### basicPrintTable
 
-- **Heap Used:** 0.91 MB
+- **Heap Used:** 0.28 MB
 - **Heap Total:** 1.00 MB  
 - **External:** 0.00 MB
-- **RSS:** 2.00 MB
+- **RSS:** 1.95 MB
 
 #### tableInstance
 
-- **Heap Used:** 0.58 MB
-- **Heap Total:** 0.25 MB  
+- **Heap Used:** 1.77 MB
+- **Heap Total:** 0.50 MB  
 - **External:** 0.00 MB
-- **RSS:** 1.17 MB
+- **RSS:** 3.80 MB
 
 #### advancedFeatures
 
-- **Heap Used:** -1.06 MB
+- **Heap Used:** -0.57 MB
 - **Heap Total:** 0.00 MB  
 - **External:** 0.00 MB
-- **RSS:** 1.98 MB
+- **RSS:** 0.02 MB
 
 #### memoryLeak
 
-- **Heap Used:** -0.54 MB
-- **Heap Total:** -0.75 MB  
+- **Heap Used:** -0.32 MB
+- **Heap Total:** -1.00 MB  
 - **External:** 0.00 MB
-- **RSS:** 1.83 MB
+- **RSS:** 1.17 MB
 
 ## Performance Benchmarks
 
@@ -81,7 +81,7 @@ The following benchmarks are based on typical usage patterns:
 
 - **Node.js:** v24.2.0
 - **Platform:** darwin arm64
-- **Timestamp:** 2025-06-22T10:21:06.582Z
+- **Timestamp:** 2025-06-22T10:23:38.704Z
 
 ---
 

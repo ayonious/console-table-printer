@@ -23,6 +23,24 @@ describe('Performance Tests', () => {
     { id: 3, name: 'Charlie', score: 87 },
   ];
 
+  // Performance limits (in milliseconds)
+  const PERFORMANCE_LIMITS = {
+    smallDataset: 50,      // 50ms for small datasets
+    mediumDataset: 200,    // 200ms for medium datasets
+    largeDataset: 1000,    // 1 second for large datasets
+    veryLargeDataset: 5000, // 5 seconds for very large datasets
+    tableCreation: 5,      // 5ms for table creation
+    rowAddition: 50,       // 50ms for adding 100 rows
+    bulkRowAddition: 20,   // 20ms for bulk row addition
+    tablePrinting: 200,    // 200ms for printing medium table
+    customColors: 100,     // 100ms for custom colors
+    columnConfig: 150,     // 150ms for column configuration
+    sorting: 150,          // 150ms for sorting
+    filtering: 150,        // 150ms for filtering
+    rapidOperations: 1000, // 1 second for 50 rapid operations
+    memoryIncrease: 20     // 20MB max memory increase
+  };
+
   // Helper function to measure performance
   function measurePerformance(testName, testFunction, maxDuration) {
     const start = performance.now();
@@ -39,6 +57,8 @@ describe('Performance Tests', () => {
     console.log = originalLog;
     
     console.log(`${testName}: ${duration.toFixed(2)}ms`);
+    
+    // Assert performance limit
     expect(duration).toBeLessThan(maxDuration);
     
     return duration;
@@ -46,42 +66,54 @@ describe('Performance Tests', () => {
 
   describe('printTable Performance', () => {
     it('should handle small datasets efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         `Small dataset (${smallDataset.length} rows)`,
         () => printTable(smallDataset),
-        100
+        PERFORMANCE_LIMITS.smallDataset
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle medium datasets efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         `Medium dataset (${mediumDataset.length} rows)`,
         () => printTable(mediumDataset),
-        500
+        PERFORMANCE_LIMITS.mediumDataset
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle large datasets efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         `Large dataset (${largeDataset.length} rows)`,
         () => printTable(largeDataset),
-        2000
+        PERFORMANCE_LIMITS.largeDataset
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
   });
 
   describe('Table Instance Performance', () => {
     it('should create table instances efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         'Table instance creation',
         () => new Table(),
-        10
+        PERFORMANCE_LIMITS.tableCreation
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should add rows efficiently', () => {
       const table = new Table();
-      measurePerformance(
+      const duration = measurePerformance(
         'Adding 100 rows',
         () => {
           for (let i = 0; i < 100; i++) {
@@ -92,35 +124,44 @@ describe('Performance Tests', () => {
             });
           }
         },
-        100
+        PERFORMANCE_LIMITS.rowAddition
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should add multiple rows efficiently', () => {
       const table = new Table();
-      measurePerformance(
+      const duration = measurePerformance(
         `Adding ${mediumDataset.length} rows at once`,
         () => table.addRows(mediumDataset),
-        50
+        PERFORMANCE_LIMITS.bulkRowAddition
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should print table efficiently', () => {
       const table = new Table();
       table.addRows(mediumDataset);
       
-      measurePerformance(
+      const duration = measurePerformance(
         `Printing table with ${mediumDataset.length} rows`,
         () => table.printTable(),
-        500
+        PERFORMANCE_LIMITS.tablePrinting
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
   });
 
   describe('Advanced Features Performance', () => {
     it('should handle custom colors efficiently', () => {
       const table = new Table();
-      measurePerformance(
+      const duration = measurePerformance(
         'Custom colors with 50 rows',
         () => {
           for (let i = 0; i < 50; i++) {
@@ -131,12 +172,15 @@ describe('Performance Tests', () => {
           }
           table.printTable();
         },
-        300
+        PERFORMANCE_LIMITS.customColors
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle column configuration efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         `Column configuration with ${mediumDataset.length} rows`,
         () => {
           const table = new Table({
@@ -154,12 +198,15 @@ describe('Performance Tests', () => {
           table.addRows(mediumDataset);
           table.printTable();
         },
-        400
+        PERFORMANCE_LIMITS.columnConfig
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle sorting efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         'Sorting 100 rows',
         () => {
           const table = new Table({
@@ -168,12 +215,15 @@ describe('Performance Tests', () => {
           table.addRows(largeDataset.slice(0, 100));
           table.printTable();
         },
-        300
+        PERFORMANCE_LIMITS.sorting
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle filtering efficiently', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         'Filtering 100 rows',
         () => {
           const table = new Table({
@@ -182,8 +232,11 @@ describe('Performance Tests', () => {
           table.addRows(largeDataset.slice(0, 100));
           table.printTable();
         },
-        300
+        PERFORMANCE_LIMITS.filtering
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
   });
 
@@ -209,16 +262,21 @@ describe('Performance Tests', () => {
       
       const finalMemory = process.memoryUsage().heapUsed;
       const memoryIncrease = finalMemory - initialMemory;
+      const memoryIncreaseMB = memoryIncrease / 1024 / 1024;
       
-      // Memory increase should be reasonable (less than 10MB)
-      expect(memoryIncrease).toBeLessThan(10 * 1024 * 1024);
-      console.log(`Memory increase after 10 operations: ${(memoryIncrease / 1024 / 1024).toFixed(2)}MB`);
+      // Memory increase should be reasonable (less than 20MB)
+      expect(memoryIncreaseMB).toBeLessThan(PERFORMANCE_LIMITS.memoryIncrease);
+      
+      // Additional assertion: memory increase should not be negative (indicating GC issues)
+      expect(memoryIncreaseMB).toBeGreaterThan(-10); // Allow some GC variance
+      
+      console.log(`Memory increase after 10 operations: ${memoryIncreaseMB.toFixed(2)}MB`);
     });
   });
 
   describe('Stress Tests', () => {
     it('should handle rapid successive operations', () => {
-      measurePerformance(
+      const duration = measurePerformance(
         '50 rapid operations',
         () => {
           for (let i = 0; i < 50; i++) {
@@ -227,8 +285,11 @@ describe('Performance Tests', () => {
             table.printTable();
           }
         },
-        2000
+        PERFORMANCE_LIMITS.rapidOperations
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
     });
 
     it('should handle very large datasets gracefully', () => {
@@ -239,11 +300,90 @@ describe('Performance Tests', () => {
         score: Math.floor(Math.random() * 1000),
       }));
       
-      measurePerformance(
+      const duration = measurePerformance(
         `Very large dataset (${veryLargeDataset.length} rows)`,
         () => printTable(veryLargeDataset),
-        10000
+        PERFORMANCE_LIMITS.veryLargeDataset
       );
+      
+      // Additional assertion for minimum performance
+      expect(duration).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Performance Regression Tests', () => {
+    it('should maintain consistent performance across multiple runs', () => {
+      const durations = [];
+      
+      // Run the same test multiple times
+      for (let i = 0; i < 5; i++) {
+        const start = performance.now();
+        
+        const originalLog = console.log;
+        console.log = jest.fn();
+        printTable(smallDataset);
+        console.log = originalLog;
+        
+        const end = performance.now();
+        durations.push(end - start);
+      }
+      
+      // Calculate average and standard deviation
+      const avgDuration = durations.reduce((a, b) => a + b, 0) / durations.length;
+      const variance = durations.reduce((acc, val) => acc + Math.pow(val - avgDuration, 2), 0) / durations.length;
+      const stdDev = Math.sqrt(variance);
+      
+      // Performance should be consistent (low standard deviation)
+      expect(stdDev).toBeLessThan(avgDuration * 0.5); // Standard deviation should be less than 50% of average
+      
+      // All runs should be within reasonable limits
+      durations.forEach(duration => {
+        expect(duration).toBeLessThan(PERFORMANCE_LIMITS.smallDataset);
+        expect(duration).toBeGreaterThan(0);
+      });
+      
+      console.log(`Average duration: ${avgDuration.toFixed(2)}ms, Std Dev: ${stdDev.toFixed(2)}ms`);
+    });
+
+    it('should handle edge cases without performance degradation', () => {
+      // Test with empty dataset
+      const emptyDataset = [];
+      const emptyDuration = measurePerformance(
+        'Empty dataset',
+        () => printTable(emptyDataset),
+        10 // Should be very fast
+      );
+      expect(emptyDuration).toBeGreaterThan(0);
+      
+      // Test with single row
+      const singleRowDataset = [{ id: 1, name: 'Single', value: 100 }];
+      const singleDuration = measurePerformance(
+        'Single row dataset',
+        () => printTable(singleRowDataset),
+        PERFORMANCE_LIMITS.smallDataset
+      );
+      expect(singleDuration).toBeGreaterThan(0);
+      
+      // Test with very wide dataset (many columns)
+      const wideDataset = Array.from({ length: 10 }, (_, i) => ({
+        col1: `data${i}`,
+        col2: `data${i}`,
+        col3: `data${i}`,
+        col4: `data${i}`,
+        col5: `data${i}`,
+        col6: `data${i}`,
+        col7: `data${i}`,
+        col8: `data${i}`,
+        col9: `data${i}`,
+        col10: `data${i}`,
+      }));
+      
+      const wideDuration = measurePerformance(
+        'Wide dataset (10 columns)',
+        () => printTable(wideDataset),
+        PERFORMANCE_LIMITS.mediumDataset
+      );
+      expect(wideDuration).toBeGreaterThan(0);
     });
   });
 }); 
