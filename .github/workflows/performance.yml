@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
-    
+
     steps:
       - uses: actions/checkout@v4
 
@@ -57,7 +57,7 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-            
+
             try {
               const reportPath = path.join(process.cwd(), 'performance-report.md');
               if (fs.existsSync(reportPath)) {
@@ -71,4 +71,4 @@ jobs:
               }
             } catch (error) {
               console.log('Could not create performance comment:', error.message);
-            } 
+            }

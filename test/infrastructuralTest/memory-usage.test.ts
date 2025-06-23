@@ -4,17 +4,21 @@ import { printTable, Table } from '../../index';
 describe('Memory Usage Tests', () => {
   // Performance limits
   const PERFORMANCE_LIMITS = {
-    basicPrintTable: 500,    // 500ms for basic printTable
-    tableInstance: 300,      // 300ms for table instance operations
-    advancedFeatures: 800,   // 800ms for advanced features
-    memoryLeak: 1000,        // 1 second for memory leak test
-    memoryIncrease: 20       // 20MB max memory increase
+    basicPrintTable: 500, // 500ms for basic printTable
+    tableInstance: 300, // 300ms for table instance operations
+    advancedFeatures: 800, // 800ms for advanced features
+    memoryLeak: 1000, // 1 second for memory leak test
+    memoryIncrease: 20, // 20MB max memory increase
   };
 
   // Helper function to measure performance
-  function measurePerformance(testName: string, testFunction: () => any, maxDuration: number) {
+  function measurePerformance(
+    testName: string,
+    testFunction: () => any,
+    maxDuration: number
+  ) {
     const start = performance.now();
-    
+
     // Capture console.log to prevent output
     const originalLog = console.log;
     console.log = () => {};
@@ -23,14 +27,14 @@ describe('Memory Usage Tests', () => {
 
     const end = performance.now();
     const duration = end - start;
-    
+
     console.log = originalLog;
-    
+
     // Assert performance limit
     expect(duration).toBeLessThan(maxDuration);
-    
+
     console.log(`✓ ${testName} completed in ${duration.toFixed(2)}ms`);
-    
+
     return { result, duration };
   }
 
@@ -39,7 +43,7 @@ describe('Memory Usage Tests', () => {
     id: i + 1,
     name: `User ${i + 1}`,
     email: `user${i + 1}@example.com`,
-    score: Math.floor(Math.random() * 1000)
+    score: Math.floor(Math.random() * 1000),
   }));
 
   describe('Basic printTable memory usage', () => {
@@ -58,8 +62,8 @@ describe('Memory Usage Tests', () => {
               heapUsed: finalMemory.heapUsed - initialMemory.heapUsed,
               heapTotal: finalMemory.heapTotal - initialMemory.heapTotal,
               external: finalMemory.external - initialMemory.external,
-              rss: finalMemory.rss - initialMemory.rss
-            }
+              rss: finalMemory.rss - initialMemory.rss,
+            },
           };
         },
         PERFORMANCE_LIMITS.basicPrintTable
@@ -83,13 +87,13 @@ describe('Memory Usage Tests', () => {
         'Table instance test',
         () => {
           const table = new Table();
-          
+
           // Add 100 rows
           for (let i = 0; i < 100; i++) {
             table.addRow({
               id: i + 1,
               name: `User ${i + 1}`,
-              value: Math.random() * 1000
+              value: Math.random() * 1000,
             });
           }
 
@@ -104,8 +108,8 @@ describe('Memory Usage Tests', () => {
               heapUsed: finalMemory.heapUsed - initialMemory.heapUsed,
               heapTotal: finalMemory.heapTotal - initialMemory.heapTotal,
               external: finalMemory.external - initialMemory.external,
-              rss: finalMemory.rss - initialMemory.rss
-            }
+              rss: finalMemory.rss - initialMemory.rss,
+            },
           };
         },
         PERFORMANCE_LIMITS.tableInstance
@@ -133,14 +137,14 @@ describe('Memory Usage Tests', () => {
             columns: [
               { name: 'id', alignment: 'left', color: 'blue' },
               { name: 'name', alignment: 'center' },
-              { name: 'score', alignment: 'right' }
+              { name: 'score', alignment: 'right' },
             ],
             colorMap: {
               high: '\x1b[32m',
-              low: '\x1b[31m'
+              low: '\x1b[31m',
             },
             sort: (a: any, b: any) => b.score - a.score,
-            filter: (row: any) => row.score > 500
+            filter: (row: any) => row.score > 500,
           });
 
           table.addRows(testData);
@@ -156,8 +160,8 @@ describe('Memory Usage Tests', () => {
               heapUsed: finalMemory.heapUsed - initialMemory.heapUsed,
               heapTotal: finalMemory.heapTotal - initialMemory.heapTotal,
               external: finalMemory.external - initialMemory.external,
-              rss: finalMemory.rss - initialMemory.rss
-            }
+              rss: finalMemory.rss - initialMemory.rss,
+            },
           };
         },
         PERFORMANCE_LIMITS.advancedFeatures
@@ -181,15 +185,15 @@ describe('Memory Usage Tests', () => {
         'Memory leak test',
         () => {
           const initialMemory = process.memoryUsage();
-          
+
           // Perform multiple operations
           for (let i = 0; i < 10; i++) {
             const table = new Table();
-            
+
             const data = Array.from({ length: 50 }, (_, j) => ({
               id: j + 1,
               name: `User ${j + 1}`,
-              value: Math.random() * 1000
+              value: Math.random() * 1000,
             }));
 
             table.addRows(data);
@@ -215,8 +219,8 @@ describe('Memory Usage Tests', () => {
               heapUsed: finalMemory.heapUsed - initialMemory.heapUsed,
               heapTotal: finalMemory.heapTotal - initialMemory.heapTotal,
               external: finalMemory.external - initialMemory.external,
-              rss: finalMemory.rss - initialMemory.rss
-            }
+              rss: finalMemory.rss - initialMemory.rss,
+            },
           };
         },
         PERFORMANCE_LIMITS.memoryLeak
@@ -234,4 +238,4 @@ describe('Memory Usage Tests', () => {
       console.log(`RSS: ${rssMB.toFixed(2)}MB`);
     });
   });
-}); 
+});

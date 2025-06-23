@@ -140,4 +140,4 @@ describe('Package Test Suite', () => {
     const lines = render.split('\n');
     expect(lines.length).toBeGreaterThan(2); // Header + data + borders
   });
-}); 
+});
