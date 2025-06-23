@@ -28,7 +28,7 @@ jobs:
         run: yarn test
 
       - name: Pack package
-        run: yarn pack
+        run: npm pack
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4

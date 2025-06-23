@@ -28,7 +28,7 @@ jobs:
       run: yarn build
       
     - name: Create package tarball
-      run: yarn pack
+      run: npm pack
       
     - name: Check package tarball size
       run: |
@@ -84,14 +84,6 @@ jobs:
         fi
         
         echo "Package directory: $PACKAGE_DIR"
-        
-        echo "=== Debug: Package directory contents ==="
-        ls -la "$PACKAGE_DIR"
-        
-        if [ -d "$PACKAGE_DIR/dist" ]; then
-          echo "=== Debug: dist directory contents ==="
-          ls -la "$PACKAGE_DIR/dist"
-        fi
         
         # Define the exact files that should be in the package
         EXPECTED_FILES=(
