@@ -43,8 +43,8 @@ jobs:
           echo "Package size: ${SIZE_BYTES} bytes (${SIZE_KB} KB)"
 
           # Expected tarball size range (allow some variation)
-          EXPECTED_MIN=10000  # ~12KB
-          EXPECTED_MAX=13000  # ~15KB
+          EXPECTED_MIN=10000  # ~10KB
+          EXPECTED_MAX=13000  # ~13KB
 
           if [ "$SIZE_BYTES" -lt "$EXPECTED_MIN" ] || [ "$SIZE_BYTES" -gt "$EXPECTED_MAX" ]; then
             echo "❌ Package tarball size ${SIZE_BYTES} bytes is outside expected range (${EXPECTED_MIN}-${EXPECTED_MAX} bytes)"
@@ -196,8 +196,8 @@ jobs:
           echo "Extracted package size: ${EXTRACTED_SIZE} bytes (${EXTRACTED_SIZE_KB} KB)"
 
           # Expected extracted size range (allow some variation)
-          EXTRACTED_MIN=50000   # ~50KB
-          EXTRACTED_MAX=100000  # ~100KB
+          EXTRACTED_MIN=40000   # ~40KB
+          EXTRACTED_MAX=60000   # ~60KB
 
           if [ "$EXTRACTED_SIZE" -lt "$EXTRACTED_MIN" ] || [ "$EXTRACTED_SIZE" -gt "$EXTRACTED_MAX" ]; then
             echo "❌ Extracted package size ${EXTRACTED_SIZE} bytes is outside expected range (${EXTRACTED_MIN}-${EXTRACTED_MAX} bytes)"
