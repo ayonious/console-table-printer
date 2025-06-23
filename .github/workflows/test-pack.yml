@@ -1,0 +1,193 @@
+name: Test Package Packing
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  test-pack:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build the project
+      run: yarn build
+      
+    - name: Create package tarball
+      run: yarn pack
+      
+    - name: Extract and inspect package contents
+      run: |
+        # Extract the tarball
+        tar -xzf *.tgz
+        
+        # Find the extracted directory (should be named like console-table-printer-x.x.x)
+        PACKAGE_DIR=$(find . -maxdepth 1 -type d -name "console-table-printer-*" | head -n 1)
+        echo "Package directory: $PACKAGE_DIR"
+        
+        # Define the exact files that should be in the package
+        EXPECTED_FILES=(
+          "dist/index.js"
+          "dist/src/console-table-printer.js"
+          "dist/src/internalTable/input-converter.js"
+          "dist/src/internalTable/internal-table-printer.js"
+          "dist/src/internalTable/internal-table.js"
+          "dist/src/internalTable/table-pre-processors.js"
+          "dist/src/models/common.js"
+          "dist/src/models/external-table.js"
+          "dist/src/models/internal-table.js"
+          "dist/src/utils/colored-console-line.js"
+          "dist/src/utils/console-utils.js"
+          "dist/src/utils/string-utils.js"
+          "dist/src/utils/table-constants.js"
+          "dist/src/utils/table-helpers.js"
+          "index.d.ts"
+          "package.json"
+          "LICENSE"
+        )
+        
+        echo "=== Expected Files Check ==="
+        MISSING_FILES=()
+        UNEXPECTED_FILES=()
+        
+        # Check for expected files
+        for file in "${EXPECTED_FILES[@]}"; do
+          if [ -f "$PACKAGE_DIR/$file" ]; then
+            echo "✅ $file - Found"
+          else
+            echo "❌ $file - Missing"
+            MISSING_FILES+=("$file")
+          fi
+        done
+        
+        # Find all files in the package
+        echo "=== All Files in Package ==="
+        ALL_FILES=$(find "$PACKAGE_DIR" -type f | sed "s|^$PACKAGE_DIR/||" | sort)
+        echo "$ALL_FILES"
+        
+        # Check for unexpected files
+        while IFS= read -r file; do
+          if [ -n "$file" ]; then
+            FOUND=false
+            for expected in "${EXPECTED_FILES[@]}"; do
+              if [ "$file" = "$expected" ]; then
+                FOUND=true
+                break
+              fi
+            done
+            if [ "$FOUND" = false ]; then
+              echo "❌ Unexpected file: $file"
+              UNEXPECTED_FILES+=("$file")
+            fi
+          fi
+        done <<< "$ALL_FILES"
+        
+        # Check package.json for correct main/module/types fields
+        echo "=== Package.json Configuration Check ==="
+        if [ -f "$PACKAGE_DIR/package.json" ]; then
+          echo "Package.json contents:"
+          cat "$PACKAGE_DIR/package.json" | jq '{
+            name: .name,
+            version: .version,
+            main: .main,
+            module: .module,
+            types: .types,
+            files: .files,
+            exports: .exports
+          }'
+        fi
+        
+        # Fail if any files are missing or unexpected
+        if [ ${#MISSING_FILES[@]} -ne 0 ]; then
+          echo "❌ Missing expected files: ${MISSING_FILES[*]}"
+          exit 1
+        fi
+        
+        if [ ${#UNEXPECTED_FILES[@]} -ne 0 ]; then
+          echo "❌ Unexpected files found: ${UNEXPECTED_FILES[*]}"
+          exit 1
+        fi
+        
+        echo "✅ Package contains exactly the expected files"
+        
+        # Check file sizes
+        echo "=== Package Size Analysis ==="
+        PACKAGE_SIZE=$(du -sh "$PACKAGE_DIR" | cut -f1)
+        echo "Package size: $PACKAGE_SIZE"
+        
+        # List file sizes
+        echo "File sizes:"
+        for file in "${EXPECTED_FILES[@]}"; do
+          if [ -f "$PACKAGE_DIR/$file" ]; then
+            SIZE=$(du -h "$PACKAGE_DIR/$file" | cut -f1)
+            echo "  $SIZE $file"
+          fi
+        done
+        
+    - name: Upload package as artifact (for inspection)
+      uses: actions/upload-artifact@v4
+      with:
+        name: packed-package
+        path: |
+          *.tgz
+          console-table-printer-*/
+        retention-days: 7
+        
+    - name: Test package installation
+      run: |
+        # Install the packed package in a temporary directory
+        mkdir test-install
+        cd test-install
+        
+        # Initialize a new package.json
+        npm init -y
+        
+        # Install the packed package
+        npm install ../*.tgz
+        
+        # Test that the package can be imported
+        echo "Testing package import..."
+        node -e "
+          try {
+            const { printTable, renderTable, Table, COLOR, ALIGNMENT } = require('console-table-printer');
+            console.log('✅ Package imported successfully');
+            console.log('Available exports:', Object.keys({ printTable, renderTable, Table, COLOR, ALIGNMENT }));
+          } catch (error) {
+            console.error('❌ Failed to import package:', error.message);
+            process.exit(1);
+          }
+        "
+        
+        # Test TypeScript types if available
+        if command -v tsc &> /dev/null; then
+          echo "Testing TypeScript types..."
+          echo "
+            import { printTable, renderTable, Table, COLOR, ALIGNMENT, ComplexOptions } from 'console-table-printer';
+            
+            const data = [{ id: 1, name: 'Test' }];
+            const options: ComplexOptions = { title: 'Test Table' };
+            
+            printTable(data, options);
+            const result = renderTable(data, options);
+            console.log(result);
+          " > test.ts
+          
+          tsc --noEmit test.ts
+          echo "✅ TypeScript types working correctly"
+        else
+          echo "⚠️ TypeScript not available, skipping type check"
+        fi 
