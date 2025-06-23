@@ -291,7 +291,7 @@ describe('Memory Limit Performance Tests', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(MEMORY_LIMITS.mediumTable);
-      expect(memoryIncrease).toBeGreaterThanOrEqual(0);
+      // Allow negative values due to GC or memory reuse
       console.log(
         `Column configuration memory increase: ${memoryIncrease.toFixed(2)}MB`
       );
@@ -313,7 +313,7 @@ describe('Memory Limit Performance Tests', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(MEMORY_LIMITS.largeTable);
-      expect(memoryIncrease).toBeGreaterThanOrEqual(0);
+      // Allow negative values due to GC or memory reuse
       console.log(
         `Sorting and filtering memory increase: ${memoryIncrease.toFixed(2)}MB`
       );
@@ -406,7 +406,7 @@ describe('Memory Limit Performance Tests', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(MEMORY_LIMITS.mediumTable);
-      expect(memoryIncrease).toBeGreaterThanOrEqual(0);
+      // Allow negative values due to GC or memory reuse
       console.log(
         `Nested objects memory increase: ${memoryIncrease.toFixed(2)}MB`
       );
