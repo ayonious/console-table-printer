@@ -59,9 +59,30 @@ jobs:
         # Extract the tarball
         tar -xzf *.tgz
         
+        echo "=== Debug: Current directory contents ==="
+        ls -la
+        
         # Find the extracted directory (should be named like console-table-printer-x.x.x)
         PACKAGE_DIR=$(find . -maxdepth 1 -type d -name "console-table-printer-*" | head -n 1)
+        
+        if [ -z "$PACKAGE_DIR" ]; then
+          echo "❌ Could not find extracted package directory"
+          echo "Available directories:"
+          ls -la
+          echo "Trying to find any directory:"
+          find . -maxdepth 1 -type d
+          exit 1
+        fi
+        
         echo "Package directory: $PACKAGE_DIR"
+        
+        echo "=== Debug: Package directory contents ==="
+        ls -la "$PACKAGE_DIR"
+        
+        if [ -d "$PACKAGE_DIR/dist" ]; then
+          echo "=== Debug: dist directory contents ==="
+          ls -la "$PACKAGE_DIR/dist"
+        fi
         
         # Define the exact files that should be in the package
         EXPECTED_FILES=(
@@ -100,25 +121,30 @@ jobs:
         
         # Find all files in the package
         echo "=== All Files in Package ==="
-        ALL_FILES=$(find "$PACKAGE_DIR" -type f | sed "s|^$PACKAGE_DIR/||" | sort)
-        echo "$ALL_FILES"
-        
-        # Check for unexpected files
-        while IFS= read -r file; do
-          if [ -n "$file" ]; then
-            FOUND=false
-            for expected in "${EXPECTED_FILES[@]}"; do
-              if [ "$file" = "$expected" ]; then
-                FOUND=true
-                break
+        if [ -d "$PACKAGE_DIR" ]; then
+          ALL_FILES=$(find "$PACKAGE_DIR" -type f | sed "s|^$PACKAGE_DIR/||" | sort)
+          echo "$ALL_FILES"
+          
+          # Check for unexpected files
+          while IFS= read -r file; do
+            if [ -n "$file" ]; then
+              FOUND=false
+              for expected in "${EXPECTED_FILES[@]}"; do
+                if [ "$file" = "$expected" ]; then
+                  FOUND=true
+                  break
+                fi
+              done
+              if [ "$FOUND" = false ]; then
+                echo "❌ Unexpected file: $file"
+                UNEXPECTED_FILES+=("$file")
               fi
-            done
-            if [ "$FOUND" = false ]; then
-              echo "❌ Unexpected file: $file"
-              UNEXPECTED_FILES+=("$file")
             fi
-          fi
-        done <<< "$ALL_FILES"
+          done <<< "$ALL_FILES"
+        else
+          echo "❌ Package directory does not exist: $PACKAGE_DIR"
+          exit 1
+        fi
         
         # Check package.json for correct main/module/types fields
         echo "=== Package.json Configuration Check ==="
