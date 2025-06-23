@@ -1,7 +1,15 @@
-const { Table } = require('console-table-printer');
-const assert = require('assert');
+import { Table } from '../../index';
+import assert from 'assert';
 
-function runAllTests() {
+interface TestRow {
+  id: number;
+  name: string;
+  price?: number;
+  inStock?: boolean;
+  stock?: boolean;
+}
+
+function runAllTests(): void {
   // Test 1: Basic Table Rendering
   console.log('Running basic table rendering tests...');
   const basicTable = new Table();
@@ -69,7 +77,7 @@ function runAllTests() {
   // Test 5: Sorting
   console.log('Running sorting tests...');
   const sortTable = new Table({
-    sort: (row1, row2) => row1.id - row2.id,
+    sort: (row1: TestRow, row2: TestRow) => row1.id - row2.id,
   });
   sortTable.addRows([
     { id: 3, name: 'Product 3', price: 30.0 },
@@ -125,6 +133,6 @@ function runAllTests() {
 try {
   runAllTests();
 } catch (error) {
-  console.error('❌ Test failed:', error.message);
+  console.error('❌ Test failed:', (error as Error).message);
   process.exit(1);
-}
+} 
