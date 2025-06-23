@@ -6,9 +6,12 @@ import * as fs from 'fs';
 // and that all test files are properly detected and executed.
 describe('Jest Test Discovery', () => {
   // Run Jest with --listTests flag and capture output once for all tests
-  const output: string = execSync('yarn jest --config jestconfig.json --listTests', {
-    encoding: 'utf8',
-  });
+  const output: string = execSync(
+    'yarn jest --config jestconfig.json --listTests',
+    {
+      encoding: 'utf8',
+    }
+  );
 
   // Extract detected test files from Jest output
   const detectedFiles: string[] = output
