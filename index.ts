@@ -4,27 +4,27 @@ import {
   renderSimpleTable as renderTable,
 } from './src/internalTable/internal-table-printer';
 
-import { 
-  COLOR, 
+import {
+  COLOR,
   ALIGNMENT,
   ComplexOptions,
   ColumnOptionsRaw,
   ComputedColumn,
   RowSortFunction,
   RowFilterFunction,
-  DefaultColumnOptions
+  DefaultColumnOptions,
 } from './src/models/external-table';
 
-export { 
-  Table, 
-  printTable, 
-  renderTable, 
-  COLOR, 
+export {
+  Table,
+  printTable,
+  renderTable,
+  COLOR,
   ALIGNMENT,
   ComplexOptions,
   ColumnOptionsRaw,
   ComputedColumn,
   RowSortFunction,
   RowFilterFunction,
-  DefaultColumnOptions
+  DefaultColumnOptions,
 };
