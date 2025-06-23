@@ -1,3 +1,21 @@
+# Release Workflow
+#
+# This workflow handles automated releases using semantic-release. It performs:
+# - Builds the project and runs tests to ensure quality
+# - Analyzes commit messages to determine version bump type
+# - Creates GitHub releases with changelog
+# - Publishes to npm registry with provenance attestations
+# - Updates version tags and release notes
+#
+# The workflow uses semantic-release to automatically:
+# - Determine the next version number based on conventional commits
+# - Generate changelog from commit messages
+# - Create GitHub releases
+# - Publish to npm with proper security attestations
+#
+# Triggers: Push to master branch
+# Requires: NPM_TOKEN secret for npm publishing
+
 name: Release
 on:
   push:
