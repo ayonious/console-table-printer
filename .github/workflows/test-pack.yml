@@ -278,7 +278,7 @@ jobs:
               import { printTable, renderTable, Table, COLOR, ALIGNMENT } from 'console-table-printer';
               
               const data = [{ id: 1, name: 'Test' }];
-              const options: ComplexOptions = { title: 'Test Table' };
+              const options = { title: 'Test Table' };
               
               printTable(data, options);
               const result = renderTable(data, options);
