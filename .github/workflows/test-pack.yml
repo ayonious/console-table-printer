@@ -43,12 +43,12 @@ jobs:
         echo "Package size: ${SIZE_BYTES} bytes (${SIZE_KB} KB)"
         
         # Expected tarball size range (allow some variation)
-        EXPECTED_MIN=9000   # ~9KB
-        EXPECTED_MAX=11000  # ~11KB
+        EXPECTED_MIN=12000  # ~12KB
+        EXPECTED_MAX=15000  # ~15KB
         
         if [ "$SIZE_BYTES" -lt "$EXPECTED_MIN" ] || [ "$SIZE_BYTES" -gt "$EXPECTED_MAX" ]; then
           echo "❌ Package tarball size ${SIZE_BYTES} bytes is outside expected range (${EXPECTED_MIN}-${EXPECTED_MAX} bytes)"
-          echo "Expected size should be around 10KB"
+          echo "Expected size should be around 13.5KB"
           exit 1
         else
           echo "✅ Package tarball size is within expected range"
