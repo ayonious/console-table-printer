@@ -30,6 +30,30 @@ jobs:
     - name: Create package tarball
       run: yarn pack
       
+    - name: Check package tarball size
+      run: |
+        # Get the tarball file
+        TARBALL=$(ls *.tgz)
+        echo "Package tarball: $TARBALL"
+        
+        # Get file size in bytes
+        SIZE_BYTES=$(stat -c%s "$TARBALL" 2>/dev/null || stat -f%z "$TARBALL" 2>/dev/null || wc -c < "$TARBALL")
+        SIZE_KB=$(echo "scale=1; $SIZE_BYTES / 1024" | bc -l)
+        
+        echo "Package size: ${SIZE_BYTES} bytes (${SIZE_KB} KB)"
+        
+        # Expected tarball size range (allow some variation)
+        EXPECTED_MIN=9000   # ~9KB
+        EXPECTED_MAX=11000  # ~11KB
+        
+        if [ "$SIZE_BYTES" -lt "$EXPECTED_MIN" ] || [ "$SIZE_BYTES" -gt "$EXPECTED_MAX" ]; then
+          echo "❌ Package tarball size ${SIZE_BYTES} bytes is outside expected range (${EXPECTED_MIN}-${EXPECTED_MAX} bytes)"
+          echo "Expected size should be around 10KB"
+          exit 1
+        else
+          echo "✅ Package tarball size is within expected range"
+        fi
+      
     - name: Extract and inspect package contents
       run: |
         # Extract the tarball
@@ -124,20 +148,40 @@ jobs:
         
         echo "✅ Package contains exactly the expected files"
         
-        # Check file sizes
-        echo "=== Package Size Analysis ==="
-        PACKAGE_SIZE=$(du -sh "$PACKAGE_DIR" | cut -f1)
-        echo "Package size: $PACKAGE_SIZE"
+        # Check extracted package size
+        echo "=== Extracted Package Size Check ==="
+        EXTRACTED_SIZE=$(du -sb "$PACKAGE_DIR" | cut -f1)
+        EXTRACTED_SIZE_KB=$(echo "scale=1; $EXTRACTED_SIZE / 1024" | bc -l)
+        echo "Extracted package size: ${EXTRACTED_SIZE} bytes (${EXTRACTED_SIZE_KB} KB)"
         
-        # List file sizes
-        echo "File sizes:"
+        # Expected extracted size range (allow some variation)
+        EXTRACTED_MIN=200   # ~200B
+        EXTRACTED_MAX=300   # ~300B
+        
+        if [ "$EXTRACTED_SIZE" -lt "$EXTRACTED_MIN" ] || [ "$EXTRACTED_SIZE" -gt "$EXTRACTED_MAX" ]; then
+          echo "❌ Extracted package size ${EXTRACTED_SIZE} bytes is outside expected range (${EXTRACTED_MIN}-${EXTRACTED_MAX} bytes)"
+          echo "Expected size should be around 224B"
+          exit 1
+        else
+          echo "✅ Extracted package size is within expected range"
+        fi
+        
+        # Check file sizes
+        echo "=== Detailed File Size Analysis ==="
+        echo "File sizes in package:"
         for file in "${EXPECTED_FILES[@]}"; do
           if [ -f "$PACKAGE_DIR/$file" ]; then
-            SIZE=$(du -h "$PACKAGE_DIR/$file" | cut -f1)
-            echo "  $SIZE $file"
+            SIZE_BYTES=$(stat -c%s "$PACKAGE_DIR/$file" 2>/dev/null || stat -f%z "$PACKAGE_DIR/$file" 2>/dev/null || wc -c < "$PACKAGE_DIR/$file")
+            SIZE_KB=$(echo "scale=1; $SIZE_BYTES / 1024" | bc -l)
+            printf "  %6s %s\n" "${SIZE_KB}K" "$file"
           fi
         done
         
+        # Show total size breakdown
+        echo ""
+        echo "Total size breakdown:"
+        du -sh "$PACKAGE_DIR"/*
+      
     - name: Upload package as artifact (for inspection)
       uses: actions/upload-artifact@v4
       with:
