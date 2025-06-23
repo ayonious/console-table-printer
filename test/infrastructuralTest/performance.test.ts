@@ -1,4 +1,4 @@
-const { printTable, Table } = require('../../dist/index');
+import { printTable, Table } from '../../dist/index';
 
 // Performance test for console-table-printer
 describe('Performance Tests', () => {
@@ -42,7 +42,7 @@ describe('Performance Tests', () => {
   };
 
   // Helper function to measure performance
-  function measurePerformance(testName, testFunction, maxDuration) {
+  function measurePerformance(testName: string, testFunction: () => void, maxDuration: number): number {
     const start = performance.now();
     
     // Capture console.log to prevent output during tests
@@ -313,7 +313,7 @@ describe('Performance Tests', () => {
 
   describe('Performance Regression Tests', () => {
     it('should maintain consistent performance across multiple runs', () => {
-      const durations = [];
+      const durations: number[] = [];
       
       // Run the same test multiple times
       for (let i = 0; i < 5; i++) {
@@ -347,7 +347,7 @@ describe('Performance Tests', () => {
 
     it('should handle edge cases without performance degradation', () => {
       // Test with empty dataset
-      const emptyDataset = [];
+      const emptyDataset: any[] = [];
       const emptyDuration = measurePerformance(
         'Empty dataset',
         () => printTable(emptyDataset),

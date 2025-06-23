@@ -1,6 +1,6 @@
-const { execSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { execSync } from 'child_process';
+import path from 'path';
+import fs from 'fs';
 
 // This test ensures that Jest test discovery is working correctly in CI/CD environments
 // and that all test files are properly detected and executed.
@@ -84,9 +84,10 @@ describe('Jest Test Discovery', () => {
     'test/readme/Version2/readmeExamples5DetailedConfig.test.ts',
 
     // Infrastructure Tests
-    'test/infrastructuralTest/jest-discovery.test.js',
-    'test/infrastructuralTest/package-test.test.js',
-    'test/infrastructuralTest/performance.test.js',
+    'test/infrastructuralTest/jest-discovery.test.ts',
+    'test/infrastructuralTest/package-test.test.ts',
+    'test/infrastructuralTest/performance.test.ts',
+    'test/infrastructuralTest/memory-usage.test.ts',
 
     // Source Code Tests
     'src/internalTable/internal-table.test.ts',
@@ -150,4 +151,4 @@ describe('Jest Test Discovery', () => {
       );
     });
   });
-});
+}); 

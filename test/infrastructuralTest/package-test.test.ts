@@ -1,12 +1,12 @@
-const { Table } = require('console-table-printer');
-const assert = require('assert');
+import { Table } from '../../dist/index';
 
 // Mock console.log to capture output
-let consoleOutput = [];
+let consoleOutput: string[] = [];
 const originalLog = console.log;
+
 beforeEach(() => {
   consoleOutput = [];
-  console.log = jest.fn((...args) => {
+  console.log = jest.fn((...args: any[]) => {
     consoleOutput.push(args.join(' '));
   });
 });
@@ -70,7 +70,7 @@ describe('Package Test Suite', () => {
 
   test('Sorting', () => {
     const sortTable = new Table({
-      sort: (row1, row2) => row1.id - row2.id,
+      sort: (row1: any, row2: any) => row1.id - row2.id,
     });
     sortTable.addRows([
       { id: 3, name: 'Product 3', price: 30.0 },
@@ -140,4 +140,4 @@ describe('Package Test Suite', () => {
     const lines = render.split('\n');
     expect(lines.length).toBeGreaterThan(2); // Header + data + borders
   });
-});
+}); 
