@@ -4,7 +4,7 @@
   "repository": "github:console-table-printer/console-table-printer",
   "description": "Printing pretty tables on console log",
   "main": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "setup": "yarn",
     "build": "tsc",
@@ -21,8 +21,7 @@
     "node-table-printing"
   ],
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "author": "Nahiyan Kamal",
   "license": "MIT",
