@@ -21,9 +21,7 @@
     "node-table-printing"
   ],
   "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
+    "dist"
   ],
   "author": "Nahiyan Kamal",
   "license": "MIT",
