@@ -6,7 +6,9 @@
   "testPathIgnorePatterns": [
     "/node_modules/",
     "/test/testUtils/",
-    "/test/githubActionsTest/"
+    "/test/githubActionsTest/",
+    "/test/infrastructuralTest/memory-usage.js",
+    "/test/infrastructuralTest/generate-performance-report.js"
   ],
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "collectCoverageFrom": [
