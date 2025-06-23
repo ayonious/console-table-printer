@@ -1,27 +1,28 @@
-const { execSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { execSync } from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
 
 // This test ensures that Jest test discovery is working correctly in CI/CD environments
 // and that all test files are properly detected and executed.
 describe('Jest Test Discovery', () => {
   // Run Jest with --listTests flag and capture output once for all tests
-  const output = execSync('yarn jest --config jestconfig.json --listTests', {
-    encoding: 'utf8',
-  });
+  const output: string = execSync(
+    'yarn jest --config jestconfig.json --listTests',
+    {
+      encoding: 'utf8',
+    }
+  );
 
   // Extract detected test files from Jest output
-  const detectedFiles = output
+  const detectedFiles: string[] = output
     .split('\n')
     .filter((line) => line.endsWith('.test.ts') || line.endsWith('.test.js'))
     .map((line) => line.trim())
     .filter(Boolean)
     .map((file) => path.relative(process.cwd(), file)); // Convert to relative paths
 
-  // console.log("Detected test files:", detectedFiles);
-
   // Expected test files (using relative paths)
-  const expectedFiles = [
+  const expectedFiles: string[] = [
     // Root Level Tests
     'test/charLen.test.ts',
     'test/foreignLanguage.test.ts',
@@ -84,8 +85,14 @@ describe('Jest Test Discovery', () => {
     'test/readme/Version2/readmeExamples5DetailedConfig.test.ts',
 
     // Infrastructure Tests
-    'test/infrastructuralTest/jest-discovery.test.js',
+    'test/infrastructuralTest/jest-discovery.test.ts',
     'test/infrastructuralTest/package-test.test.js',
+
+    // Performance Tests
+    'test/performance/timeLimit.test.ts',
+    'test/performance/memoryLimit.test.ts',
+    'test/performance/throughput.test.ts',
+    'test/performance/scalability.test.ts',
 
     // Source Code Tests
     'src/internalTable/internal-table.test.ts',
