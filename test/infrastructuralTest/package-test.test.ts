@@ -1,4 +1,4 @@
-import { Table } from '../../dist/index';
+import { Table } from '../../index';
 
 // Mock console.log to capture output
 let consoleOutput: string[] = [];

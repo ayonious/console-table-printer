@@ -1,4 +1,4 @@
-import { printTable, Table } from '../../dist/index';
+import { printTable, Table } from '../../index';
 
 // Memory usage test for console-table-printer
 describe('Memory Usage Tests', () => {
