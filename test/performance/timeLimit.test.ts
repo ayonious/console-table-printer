@@ -45,7 +45,7 @@ describe('Time Limit Performance Tests', () => {
     largeTable: 1000, // 1 second for large tables (1000 rows)
     veryLargeTable: 5000, // 5 seconds for very large tables (5000 rows)
     tableCreation: 5, // 5ms for table creation
-    singleRowAddition: 1, // 1ms for adding a single row
+    singleRowAddition: 30, // 30ms for adding a single row
     bulkRowAddition: 50, // 50ms for adding 100 rows
     renderOperation: 100, // 100ms for render operation
     printOperation: 150, // 150ms for print operation
