@@ -261,7 +261,7 @@ jobs:
           if command -v tsc &> /dev/null; then
             echo "Testing TypeScript types..."
             echo "
-              import { printTable, renderTable, Table, COLOR, ALIGNMENT, ComplexOptions } from 'console-table-printer';
+              import { printTable, renderTable, Table, COLOR, ALIGNMENT } from 'console-table-printer';
               
               const data = [{ id: 1, name: 'Test' }];
               const options: ComplexOptions = { title: 'Test Table' };
