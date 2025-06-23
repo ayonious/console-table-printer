@@ -57,20 +57,29 @@ jobs:
     - name: Extract and inspect package contents
       run: |
         # Extract the tarball
-        tar -xzf *.tgz
+        echo "=== Extracting tarball ==="
+        echo "Tarball file:"
+        ls -la *.tgz
+        echo "Extracting with verbose output:"
+        tar -xzf *.tgz --verbose
         
         echo "=== Debug: Current directory contents ==="
         ls -la
         
         # Find the extracted directory (should be named like console-table-printer-x.x.x)
-        PACKAGE_DIR=$(find . -maxdepth 1 -type d -name "console-table-printer-*" | head -n 1)
-        
+        echo "=== Looking for package directory ==="
+        PACKAGE_DIR="./package"
+
         if [ -z "$PACKAGE_DIR" ]; then
           echo "❌ Could not find extracted package directory"
           echo "Available directories:"
           ls -la
           echo "Trying to find any directory:"
           find . -maxdepth 1 -type d
+          echo "Trying to find any file with console-table-printer in name:"
+          find . -name "*console-table-printer*"
+          echo "Trying to find any file with package in name:"
+          find . -name "*package*"
           exit 1
         fi
         
@@ -103,6 +112,7 @@ jobs:
           "index.d.ts"
           "package.json"
           "LICENSE"
+          "README.md"
         )
         
         echo "=== Expected Files Check ==="
@@ -181,12 +191,12 @@ jobs:
         echo "Extracted package size: ${EXTRACTED_SIZE} bytes (${EXTRACTED_SIZE_KB} KB)"
         
         # Expected extracted size range (allow some variation)
-        EXTRACTED_MIN=200   # ~200B
-        EXTRACTED_MAX=300   # ~300B
+        EXTRACTED_MIN=50000   # ~50KB
+        EXTRACTED_MAX=100000  # ~100KB
         
         if [ "$EXTRACTED_SIZE" -lt "$EXTRACTED_MIN" ] || [ "$EXTRACTED_SIZE" -gt "$EXTRACTED_MAX" ]; then
           echo "❌ Extracted package size ${EXTRACTED_SIZE} bytes is outside expected range (${EXTRACTED_MIN}-${EXTRACTED_MAX} bytes)"
-          echo "Expected size should be around 224B"
+          echo "Expected size should be around 75KB"
           exit 1
         else
           echo "✅ Extracted package size is within expected range"
