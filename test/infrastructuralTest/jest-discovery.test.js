@@ -87,6 +87,12 @@ describe('Jest Test Discovery', () => {
     'test/infrastructuralTest/jest-discovery.test.js',
     'test/infrastructuralTest/package-test.test.js',
 
+    // Performance Tests
+    'test/performance/timeLimit.test.ts',
+    'test/performance/memoryLimit.test.ts',
+    'test/performance/throughput.test.ts',
+    'test/performance/scalability.test.ts',
+
     // Source Code Tests
     'src/internalTable/internal-table.test.ts',
     'src/internalTable/internal-table-printer.test.ts',
