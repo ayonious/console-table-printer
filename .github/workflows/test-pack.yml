@@ -1,5 +1,5 @@
 # Test Package Packing Workflow
-# 
+#
 # This workflow validates that the npm package is correctly structured and contains
 # all expected files when packed. It performs the following checks:
 # - Builds the project and creates a package tarball
@@ -9,7 +9,7 @@
 # - Validates package.json configuration (main, types, files fields)
 # - Tests package installation and import functionality
 # - Verifies TypeScript types work correctly
-# 
+#
 # Triggers: Push to master, pull requests to master, manual dispatch
 
 name: Test Package Packing
