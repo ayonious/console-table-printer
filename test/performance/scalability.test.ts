@@ -305,7 +305,9 @@ describe('Scalability Performance Tests', () => {
         const memoryRatio = memoryUsage[i] / memoryUsage[i - 1];
 
         // Memory should scale reasonably - allow for some variance due to GC and memory management
-        expect(memoryRatio).toBeLessThan(sizeRatio * SCALABILITY_LIMITS.memoryScalingFactor);
+        expect(memoryRatio).toBeLessThan(
+          sizeRatio * SCALABILITY_LIMITS.memoryScalingFactor
+        );
       }
 
       console.log(
