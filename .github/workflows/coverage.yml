@@ -1,3 +1,17 @@
+# Code Coverage Workflow
+#
+# This workflow generates and uploads code coverage reports to Codecov. It performs:
+# - Runs all tests with coverage reporting enabled
+# - Generates coverage reports in various formats
+# - Uploads coverage data to Codecov for tracking and visualization
+# - Provides coverage badges and trend analysis
+#
+# This helps maintain high code quality by ensuring adequate test coverage
+# and provides visibility into which parts of the codebase are well-tested.
+#
+# Triggers: Push to master, pull requests to master
+# Requires: CODECOV_TOKEN secret for uploading to Codecov
+
 name: Code Coverage
 
 on:

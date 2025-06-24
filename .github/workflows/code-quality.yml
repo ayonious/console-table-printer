@@ -1,3 +1,13 @@
+# Code Quality Workflow
+#
+# This workflow ensures code quality standards are maintained by running:
+# - ESLint linting to check for code style and potential issues
+# - Prettier formatting checks to ensure consistent code formatting
+#
+# These checks help maintain code quality and consistency across the project.
+#
+# Triggers: Push to master, pull requests (opened, synchronize, reopened)
+
 name: Code Quality
 
 on:
