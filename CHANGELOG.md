@@ -1,3 +1,10 @@
+## [2.14.4](https://github.com/console-table-printer/console-table-printer/compare/v2.14.3...v2.14.4) (2025-06-24)
+
+
+### Bug Fixes
+
+* adding some docs regarding the exported types ([#539](https://github.com/console-table-printer/console-table-printer/issues/539)) ([5b13545](https://github.com/console-table-printer/console-table-printer/commit/5b13545af63e4db7da19723755388105cc4adbb1))
+
 ## [2.14.3](https://github.com/console-table-printer/console-table-printer/compare/v2.14.2...v2.14.3) (2025-06-10)
 
 
