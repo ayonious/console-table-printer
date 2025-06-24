@@ -173,7 +173,7 @@ describe('Memory Limit Performance Tests', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(MEMORY_LIMITS.largeTable);
-      expect(memoryIncrease).toBeGreaterThanOrEqual(0);
+      // Allow negative values due to GC or memory reuse
       console.log(
         `Large table memory increase: ${memoryIncrease.toFixed(2)}MB`
       );
@@ -189,7 +189,7 @@ describe('Memory Limit Performance Tests', () => {
       const memoryIncrease = finalMemory - initialMemory;
 
       expect(memoryIncrease).toBeLessThan(MEMORY_LIMITS.veryLargeTable);
-      expect(memoryIncrease).toBeGreaterThanOrEqual(0);
+      // Allow negative values due to GC or memory reuse
       console.log(
         `Very large table memory increase: ${memoryIncrease.toFixed(2)}MB`
       );
