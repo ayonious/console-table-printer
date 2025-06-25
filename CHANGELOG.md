@@ -1,3 +1,10 @@
+## [2.14.6](https://github.com/console-table-printer/console-table-printer/compare/v2.14.5...v2.14.6) (2025-06-25)
+
+
+### Bug Fixes
+
+* Remove use of any in addRows function ([#543](https://github.com/console-table-printer/console-table-printer/issues/543)) ([f356cf7](https://github.com/console-table-printer/console-table-printer/commit/f356cf763775b2246d82901f241079efcf7275d2))
+
 ## [2.14.5](https://github.com/console-table-printer/console-table-printer/compare/v2.14.4...v2.14.5) (2025-06-25)
 
 
