@@ -1,5 +1,5 @@
 import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
-import { Column } from '../models/internal-table';
+import { Column, TableLineDetails } from '../models/internal-table';
 import { findWidthInConsole } from './console-utils';
 import {
   biggestWordInSentence,
@@ -122,14 +122,20 @@ export const findLenOfColumn = (
 };
 
 export const renderTableHorizontalBorders = (
-  style: any,
+  style: TableLineDetails | undefined,
   column_lengths: number[]
 ): string => {
+  if (!style) {
+    return '';
+  }
   const str = createTableHorizontalBorders(style, column_lengths);
   return str;
 };
 
-export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
+export const createHeaderAsRow = (
+  createRowFn: (color: COLOR, text: Dictionary, separator: boolean) => Row, 
+  columns: Column[]
+): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {
