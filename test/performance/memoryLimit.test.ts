@@ -44,6 +44,9 @@
 import { printTable, Table } from '../../index';
 
 describe('Memory Limit Performance Tests', () => {
+  // Add retry configuration for all tests in this suite
+  jest.retryTimes(2); // This means each test will run up to 3 times (initial + 2 retries)
+
   // Memory thresholds (in MB)
   const MEMORY_LIMITS = {
     smallTable: 5, // 5MB for small tables

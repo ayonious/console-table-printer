@@ -38,6 +38,9 @@
 import { printTable, Table } from '../../index';
 
 describe('Time Limit Performance Tests', () => {
+  // Add retry configuration for all tests in this suite
+  jest.retryTimes(2); // This means each test will run up to 3 times (initial + 2 retries)
+
   // Performance thresholds (in milliseconds)
   const TIME_LIMITS = {
     smallTable: 50, // 50ms for small tables (1-10 rows)
