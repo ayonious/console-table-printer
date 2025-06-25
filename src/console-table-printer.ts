@@ -28,7 +28,7 @@ export default class Table {
     return this;
   }
 
-  addRows(toBeInsertedRows: any, rowOptions?: RowOptionsRaw) {
+  addRows(toBeInsertedRows: Dictionary[], rowOptions?: RowOptionsRaw) {
     this.table.addRows(
       toBeInsertedRows,
       convertRawRowOptionsToStandard(rowOptions)

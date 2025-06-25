@@ -44,7 +44,7 @@ class TableInternal {
 
   disabledColumns: string[];
 
-  computedColumns: any[];
+  computedColumns: ComputedColumn[];
 
   rowSeparator: boolean;
 

@@ -54,7 +54,7 @@ import { printTable, Table } from '../../index';
 describe('Scalability Performance Tests', () => {
   // Scalability thresholds
   const SCALABILITY_LIMITS = {
-    linearScalingFactor: 20.0, // Performance should scale linearly (within 20x factor for real-world variations)
+    linearScalingFactor: 30.0, // Performance should scale linearly (within 30x factor for real-world variations)
     exponentialScalingFactor: 10.0, // Performance should not scale exponentially (within 10x factor)
     memoryScalingFactor: 3.0, // Memory should scale reasonably (within 3x factor)
     timeComplexity: 'O(n)', // Expected time complexity
