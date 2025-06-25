@@ -27,7 +27,7 @@ const DEFAULT_ROW_SORT_FUNC = () => 0;
 
 const DEFAULT_ROW_FILTER_FUNC = () => true;
 
-class TableInternal {
+class TableInternal<T = Dictionary> {
   title?: string;
 
   tableStyle: TableStyleDetails;
@@ -36,15 +36,15 @@ class TableInternal {
 
   rows: Row[];
 
-  filterFunction: RowFilterFunction;
+  filterFunction: RowFilterFunction<T>;
 
-  sortFunction: RowSortFunction;
+  sortFunction: RowSortFunction<T>;
 
   enabledColumns: string[];
 
   disabledColumns: string[];
 
-  computedColumns: any[];
+  computedColumns: ComputedColumn<T>[];
 
   rowSeparator: boolean;
 
@@ -62,7 +62,7 @@ class TableInternal {
     }));
   }
 
-  initDetailed(options: ComplexOptions) {
+  initDetailed(options: ComplexOptions<T>) {
     this.title = options?.title || this.title;
     this.tableStyle = options?.style || this.tableStyle;
     this.sortFunction = options?.sort || this.sortFunction;
@@ -90,7 +90,7 @@ class TableInternal {
     }
   }
 
-  constructor(options?: ComplexOptions | string[]) {
+  constructor(options?: ComplexOptions<T> | string[]) {
     // default construction
     this.rows = [];
     this.columns = [];
@@ -113,9 +113,9 @@ class TableInternal {
     }
   }
 
-  createColumnFromRow(text: Dictionary) {
+  createColumnFromRow(text: T) {
     const colNames = this.columns.map((col) => col.name);
-    Object.keys(text).forEach((key) => {
+    Object.keys(text as Dictionary).forEach((key) => {
       if (!colNames.includes(key)) {
         this.columns.push(
           rawColumnToInternalColumn(
@@ -127,7 +127,7 @@ class TableInternal {
     });
   }
 
-  addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
+  addColumn(textOrObj: string | ComputedColumn<T> | ColumnOptionsRaw) {
     const columnOptionsFromInput =
       typeof textOrObj === 'string'
         ? createColumFromOnlyName(textOrObj)
@@ -146,12 +146,12 @@ class TableInternal {
     });
   }
 
-  addRow(text: Dictionary, options?: RowOptions) {
+  addRow(text: T, options?: RowOptions) {
     this.createColumnFromRow(text);
     this.rows.push(
       createRow(
         options?.color || DEFAULT_ROW_FONT_COLOR,
-        text,
+        text as Dictionary,
         options?.separator !== undefined
           ? options?.separator
           : this.rowSeparator
@@ -159,7 +159,7 @@ class TableInternal {
     );
   }
 
-  addRows(toBeInsertedRows: Dictionary[], options?: RowOptions) {
+  addRows(toBeInsertedRows: T[], options?: RowOptions) {
     toBeInsertedRows.forEach((toBeInsertedRow) => {
       this.addRow(toBeInsertedRow, options);
     });

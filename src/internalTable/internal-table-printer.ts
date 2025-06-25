@@ -56,7 +56,8 @@ const renderOneLine = (
   return line.renderConsole();
 };
 
-// ║ Bold  ║    text ║  value ║
+// ║ Index ║         ║        ║
+// ║ Index ║         ║        ║
 // ║ Index ║         ║        ║
 const renderWidthLimitedLines = (
   tableStyle: TableStyleDetails,
@@ -66,86 +67,31 @@ const renderWidthLimitedLines = (
   isHeader?: boolean,
   charLength?: CharLengthDict
 ): string[] => {
-  // { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
   const widthLimitedColumnsArray = getWidthLimitedColumnsArray(
     columns,
     row,
     charLength
   );
 
-  const totalLines = Object.values(widthLimitedColumnsArray).reduce(
-    (a, b) => Math.max(a, b.length),
-    0
+  const maxLines = Math.max(
+    ...Object.values(widthLimitedColumnsArray).map((arr) => arr.length)
   );
 
-  const ret = [];
-  for (
-    let currentLineIndex = 0;
-    currentLineIndex < totalLines;
-    currentLineIndex += 1
-  ) {
-    const singleLine = renderOneLine(
-      tableStyle,
-      columns,
-      currentLineIndex,
-      widthLimitedColumnsArray,
-      isHeader,
-      row,
-      colorMap,
-      charLength
-    );
-
-    ret.push(singleLine);
-  }
-
-  return ret;
-};
-
-// ║ 1     ║     I would like some red wine please ║ 10.212 ║
-const renderRow = (table: TableInternal, row: Row): string[] => {
-  let ret: string[] = [];
-  ret = ret.concat(
-    renderWidthLimitedLines(
-      table.tableStyle,
-      table.columns,
-      row,
-      table.colorMap,
-      undefined,
-      table.charLength
-    )
-  );
-  return ret;
-};
-
-/*
-                  The analysis Result
- ╔═══════╦═══════════════════════════════════════╦════════╗
-*/
-const renderTableTitle = (table: TableInternal): string[] => {
   const ret: string[] = [];
-
-  if (table.title === undefined) {
-    return ret;
+  for (let i = 0; i < maxLines; i++) {
+    ret.push(
+      renderOneLine(
+        tableStyle,
+        columns,
+        i,
+        widthLimitedColumnsArray,
+        isHeader,
+        row,
+        colorMap,
+        charLength
+      )
+    );
   }
-
-  const getTableWidth = () => {
-    const reducer = (accumulator: number, currentValue: number) =>
-      // ║ cell ║, 2 spaces + cellTextSize + one border on the left
-      accumulator + currentValue + 2 + 1;
-    return table.columns
-      .map((m) => m.length || DEFAULT_COLUMN_LEN)
-      .reduce(reducer, 1);
-  };
-
-  const titleWithPadding = textWithPadding(
-    table.title as string,
-    DEFAULT_HEADER_ALIGNMENT,
-    getTableWidth()
-  );
-  const styledText = new ColoredConsoleLine(table.colorMap);
-  styledText.addCharsWithColor(DEFAULT_HEADER_FONT_COLOR, titleWithPadding);
-  //                  The analysis Result
-  ret.push(styledText.renderConsole());
   return ret;
 };
 
@@ -154,7 +100,7 @@ const renderTableTitle = (table: TableInternal): string[] => {
  ║ index ║                                  text ║  value ║
  ╟═══════╬═══════════════════════════════════════╬════════╢
 */
-const renderTableHeaders = (table: TableInternal): string[] => {
+const renderTableHeaders = <T>(table: TableInternal<T>): string[] => {
   let ret: string[] = [];
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
@@ -188,19 +134,27 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   return ret;
 };
 
-const renderTableEnding = (table: TableInternal): string[] => {
+const renderTableBody = <T>(table: TableInternal<T>): string[] => {
   const ret: string[] = [];
-  // ╚═══════╩═══════════════════════════════════════╩════════╝
-  ret.push(
-    renderTableHorizontalBorders(
-      table.tableStyle.tableBottom,
-      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
-    )
-  );
+
+  table.rows.forEach((row) => {
+    ret.push(
+      ...renderWidthLimitedLines(
+        table.tableStyle,
+        table.columns,
+        row,
+        table.colorMap,
+        false,
+        table.charLength
+      )
+    );
+    ret.push(...renderRowSeparator(table, row));
+  });
+
   return ret;
 };
 
-const renderRowSeparator = (table: TableInternal, row: Row): string[] => {
+const renderRowSeparator = <T>(table: TableInternal<T>, row: Row): string[] => {
   const ret: string[] = [];
   const lastRowIndex = table.rows.length - 1;
   const currentRowIndex = table.rows.indexOf(row);
@@ -217,35 +171,50 @@ const renderRowSeparator = (table: TableInternal, row: Row): string[] => {
   return ret;
 };
 
-export const renderTable = (table: TableInternal): string => {
-  preProcessColumns(table); // enable / disable cols, find maxLn of each col/ computed Columns
-  preProcessRows(table); // sort and filter
-
+const renderTableBottom = <T>(table: TableInternal<T>): string[] => {
   const ret: string[] = [];
-  renderTableTitle(table).forEach((row) => ret.push(row));
 
-  renderTableHeaders(table).forEach((row) => ret.push(row));
+  // ╚═══════╩═══════════════════════════════════════╩════════╝
+  ret.push(
+    renderTableHorizontalBorders(
+      table.tableStyle.tableBottom,
+      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
+    )
+  );
 
-  table.rows.forEach((row) => {
-    renderRow(table, row).forEach((row_) => ret.push(row_));
-    renderRowSeparator(table, row).forEach((row_) => ret.push(row_));
-  });
-  renderTableEnding(table).forEach((row) => ret.push(row));
+  return ret;
+};
+
+export const renderTable = <T>(table: TableInternal<T>): string => {
+  preProcessColumns(table);
+  preProcessRows(table);
+
+  let ret: string[] = [];
+
+  if (table.title) {
+    ret.push(table.title);
+    ret.push('');
+  }
+
+  if (table.columns.length === 0) {
+    return ret.join('\n');
+  }
+
+  ret = ret.concat(renderTableHeaders(table));
+  ret = ret.concat(renderTableBody(table));
+  ret = ret.concat(renderTableBottom(table));
+
   return ret.join('\n');
 };
 
-export const renderSimpleTable = (
-  rows: any[],
-  tableOptions?: ComplexOptions
-) => {
-  const table = new TableInternal(tableOptions);
+export const printSimpleTable = <T>(rows: T[]): void => {
+  const table = new TableInternal<T>();
   table.addRows(rows);
-  return renderTable(table);
+  console.log(renderTable(table));
 };
 
-export const printSimpleTable = (
-  rows: any[],
-  tableOptions?: ComplexOptions
-) => {
-  console.log(renderSimpleTable(rows, tableOptions));
+export const renderSimpleTable = <T>(rows: T[]): string => {
+  const table = new TableInternal<T>();
+  table.addRows(rows);
+  return renderTable(table);
 };

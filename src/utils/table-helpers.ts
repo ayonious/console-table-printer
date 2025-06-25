@@ -13,8 +13,12 @@ import {
 
 const max = (a: number, b: number) => Math.max(a, b);
 
-// takes any input that is given by user and converts to string
-export const cellText = (text: string | number): string =>
+/**
+ * Converts any input to a string representation for table cells
+ * @param text - The input value to convert
+ * @returns String representation of the input
+ */
+export const cellText = (text: string | number | null | undefined): string =>
   text === undefined || text === null ? '' : `${text}`;
 
 export interface RowOptionsRaw {
@@ -27,6 +31,11 @@ export interface RowOptions {
   separator: boolean;
 }
 
+/**
+ * Converts raw row options to standardized row options
+ * @param options - Raw row options from user input
+ * @returns Standardized row options or undefined
+ */
 export const convertRawRowOptionsToStandard = (
   options?: RowOptionsRaw
 ): RowOptions | undefined => {
@@ -39,6 +48,12 @@ export const convertRawRowOptionsToStandard = (
   return undefined;
 };
 
+/**
+ * Creates horizontal border lines for table rendering
+ * @param style - Border style configuration
+ * @param columnLengths - Array of column widths
+ * @returns Formatted border string
+ */
 export const createTableHorizontalBorders = (
   {
     left,
@@ -46,13 +61,13 @@ export const createTableHorizontalBorders = (
     right,
     other,
   }: { left: string; mid: string; right: string; other: string },
-  column_lengths: number[]
-) => {
+  columnLengths: number[]
+): string => {
   // ╚
   let ret = left;
 
   // ╚═══════╩═══════════════════════════════════════╩════════╩
-  column_lengths.forEach((len) => {
+  columnLengths.forEach((len) => {
     ret += other.repeat(len + 2);
     ret += mid;
   });
@@ -65,6 +80,11 @@ export const createTableHorizontalBorders = (
   return ret;
 };
 
+/**
+ * Creates a column configuration from just a name
+ * @param name - Column name
+ * @returns Basic column configuration
+ */
 export const createColumFromOnlyName = (
   name: string
 ): { name: string; title: string } => ({
@@ -72,6 +92,13 @@ export const createColumFromOnlyName = (
   title: name,
 });
 
+/**
+ * Creates a row object with color and separator settings
+ * @param color - Row color
+ * @param text - Row data
+ * @param separator - Whether to show separator after this row
+ * @returns Row object
+ */
 export const createRow = (
   color: COLOR,
   text: Dictionary,
@@ -82,6 +109,13 @@ export const createRow = (
   text,
 });
 
+/**
+ * Calculates the optimal width for a column based on content
+ * @param column - Column configuration
+ * @param rows - Array of table rows
+ * @param charLength - Custom character length mapping
+ * @returns Optimal column width
+ */
 export const findLenOfColumn = (
   column: Column,
   rows: Row[],
@@ -121,15 +155,29 @@ export const findLenOfColumn = (
   return length;
 };
 
+/**
+ * Renders horizontal borders for table styling
+ * @param style - Border style configuration
+ * @param columnLengths - Array of column widths
+ * @returns Formatted border string
+ */
 export const renderTableHorizontalBorders = (
-  style: any,
-  column_lengths: number[]
+  style: { left: string; mid: string; right: string; other: string },
+  columnLengths: number[]
 ): string => {
-  const str = createTableHorizontalBorders(style, column_lengths);
-  return str;
+  return createTableHorizontalBorders(style, columnLengths);
 };
 
-export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
+/**
+ * Creates a header row from column configurations
+ * @param createRowFn - Function to create row objects
+ * @param columns - Array of column configurations
+ * @returns Header row object
+ */
+export const createHeaderAsRow = (
+  createRowFn: (color: COLOR, text: Dictionary, separator: boolean) => Row,
+  columns: Column[]
+): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {
@@ -138,7 +186,13 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   return row;
 };
 
-// { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
+/**
+ * Splits row content into width-limited arrays for multi-line rendering
+ * @param columns - Array of column configurations
+ * @param row - Row data
+ * @param charLength - Custom character length mapping
+ * @returns Object mapping column names to arrays of text lines
+ */
 export const getWidthLimitedColumnsArray = (
   columns: Column[],
   row: Row,

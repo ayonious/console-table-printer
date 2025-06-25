@@ -25,14 +25,14 @@ export interface ColumnOptionsRaw {
 /**
  * Configuration for a computed column that generates values dynamically
  */
-export interface ComputedColumn extends ColumnOptionsRaw {
+export interface ComputedColumn<T = Dictionary> extends ColumnOptionsRaw {
   /** Function that computes the column value for each row
-   * @param arg0 - The current row data object
+   * @param row - The current row data object
    * @param index - The index of the current row in the data array
    * @param array - The complete array of row data
    * @returns The computed value for this column
    */
-  function: (arg0: any, index: number, array: any[]) => any;
+  function: (row: T, index: number, array: T[]) => string | number;
 }
 
 /**
@@ -41,14 +41,14 @@ export interface ComputedColumn extends ColumnOptionsRaw {
  * @param row2 - Second row to compare
  * @returns Negative number if row1 should come before row2, positive if row2 should come before row1, 0 if equal
  */
-export type RowSortFunction = (row1: any, row2: any) => number;
+export type RowSortFunction<T = Dictionary> = (row1: T, row2: T) => number;
 
 /**
  * Function type for filtering table rows
  * @param row - The row data to evaluate
  * @returns True if the row should be included, false if it should be filtered out
  */
-export type RowFilterFunction = (row: any) => boolean;
+export type RowFilterFunction<T = Dictionary> = (row: T) => boolean;
 
 /**
  * Default styling options applied to all columns unless overridden
@@ -69,7 +69,7 @@ export interface DefaultColumnOptions {
 /**
  * Complete configuration options for table creation and styling
  */
-export interface ComplexOptions {
+export interface ComplexOptions<T = Dictionary> {
   /** Table styling configuration including borders and colors */
   style?: TableStyleDetails;
   /** Title displayed at the top of the table */
@@ -77,17 +77,17 @@ export interface ComplexOptions {
   /** Array of column configurations */
   columns?: ColumnOptionsRaw[];
   /** Initial data rows for the table */
-  rows?: Dictionary[];
+  rows?: T[];
   /** Function to sort rows before display */
-  sort?: RowSortFunction;
+  sort?: RowSortFunction<T>;
   /** Function to filter rows before display */
-  filter?: RowFilterFunction;
+  filter?: RowFilterFunction<T>;
   /** Array of column names to include (all others will be hidden) */
   enabledColumns?: string[];
   /** Array of column names to exclude (these will always be hidden) */
   disabledColumns?: string[];
   /** Array of computed columns that generate values dynamically */
-  computedColumns?: ComputedColumn[];
+  computedColumns?: ComputedColumn<T>[];
   /** Whether to add separator lines between rows */
   rowSeparator?: boolean;
   /** Whether to disable color output (useful for non-color terminals) */
