@@ -1,4 +1,5 @@
 import { printTable } from '../index';
+import { Dictionary } from '../src/models/common';
 
 describe('Testing printTable function', () => {
   // Basic test without any options
@@ -14,7 +15,7 @@ describe('Testing printTable function', () => {
 
   // Empty data test
   it('should handle empty data array', () => {
-    const testData: any[] = [];
+    const testData: Dictionary[] = [];
     const result = printTable(testData);
     expect(result).toBeUndefined();
   });
@@ -150,12 +151,6 @@ describe('Testing printTable function', () => {
 
   // Test with computed columns
   it('should print table with computed columns', () => {
-    type Row = {
-      firstName: string;
-      lastName: string;
-      salary: number;
-    };
-
     const testData = [
       { firstName: 'John', lastName: 'Doe', salary: 50000 },
       { firstName: 'Jane', lastName: 'Smith', salary: 60000 },
@@ -171,12 +166,12 @@ describe('Testing printTable function', () => {
         {
           name: 'fullName',
           title: 'Full Name',
-          function: (row: Row) => `${row.firstName} ${row.lastName}`,
+          function: (row: Dictionary) => `${row.firstName} ${row.lastName}`,
         },
         {
           name: 'taxed_salary',
           title: 'After Tax',
-          function: (row: Row) => (row.salary * 0.8).toFixed(2),
+          function: (row: Dictionary) => (row.salary * 0.8).toFixed(2),
         },
       ],
     };

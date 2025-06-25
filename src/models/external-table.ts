@@ -4,6 +4,9 @@ import { TableStyleDetails } from './internal-table';
 
 export { ALIGNMENT, COLOR };
 
+// Type for table cell values - can be string, number, or undefined
+export type CellValue = string | number | undefined;
+
 /**
  * Configuration options for a table column
  */
@@ -32,7 +35,7 @@ export interface ComputedColumn extends ColumnOptionsRaw {
    * @param array - The complete array of row data
    * @returns The computed value for this column
    */
-  function: (arg0: any, index: number, array: any[]) => any;
+  function: (arg0: Dictionary, index: number, array: Dictionary[]) => CellValue;
 }
 
 /**
@@ -41,14 +44,14 @@ export interface ComputedColumn extends ColumnOptionsRaw {
  * @param row2 - Second row to compare
  * @returns Negative number if row1 should come before row2, positive if row2 should come before row1, 0 if equal
  */
-export type RowSortFunction = (row1: any, row2: any) => number;
+export type RowSortFunction = (row1: Dictionary, row2: Dictionary) => number;
 
 /**
  * Function type for filtering table rows
  * @param row - The row data to evaluate
  * @returns True if the row should be included, false if it should be filtered out
  */
-export type RowFilterFunction = (row: any) => boolean;
+export type RowFilterFunction = (row: Dictionary) => boolean;
 
 /**
  * Default styling options applied to all columns unless overridden
