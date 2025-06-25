@@ -97,7 +97,9 @@ export const validateColor = (color?: string): void => {
  * @param columns Array of columns to validate
  * @throws TableInputError if validation fails
  */
-export const validateColumns = (columns: (ColumnOptionsRaw | string)[]): void => {
+export const validateColumns = (
+  columns: (ColumnOptionsRaw | string)[]
+): void => {
   if (!Array.isArray(columns)) {
     throw new TableInputError('Columns must be an array');
   }
