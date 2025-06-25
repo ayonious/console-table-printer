@@ -47,12 +47,7 @@ export const convertRawRowOptionsToStandard = (
 };
 
 export const createTableHorizontalBorders = (
-  {
-    left,
-    mid,
-    right,
-    other,
-  }: BorderStyle,
+  { left, mid, right, other }: BorderStyle,
   column_lengths: number[]
 ) => {
   // ╚
@@ -136,7 +131,10 @@ export const renderTableHorizontalBorders = (
   return str;
 };
 
-export const createHeaderAsRow = (createRowFn: (color: COLOR, text: Dictionary, separator: boolean) => Row, columns: Column[]): Row => {
+export const createHeaderAsRow = (
+  createRowFn: (color: COLOR, text: Dictionary, separator: boolean) => Row,
+  columns: Column[]
+): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {
