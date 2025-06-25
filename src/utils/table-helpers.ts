@@ -138,7 +138,7 @@ export const renderTableHorizontalBorders = (
 // (createRow, [{ name: "id", title: "ID" }, { name: "name", title: "Name" }]) =>
 // { color: "white_bold", separator: false, text: { id: "ID", name: "Name" } }
 export const createHeaderAsRow = (
-  createRowFn: CreateRowFunction, 
+  createRowFn: CreateRowFunction,
   columns: Column[]
 ): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
