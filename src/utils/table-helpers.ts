@@ -27,6 +27,13 @@ export interface RowOptions {
   separator: boolean;
 }
 
+export interface BorderStyle {
+  left: string;
+  mid: string;
+  right: string;
+  other: string;
+}
+
 export const convertRawRowOptionsToStandard = (
   options?: RowOptionsRaw
 ): RowOptions | undefined => {
@@ -45,7 +52,7 @@ export const createTableHorizontalBorders = (
     mid,
     right,
     other,
-  }: { left: string; mid: string; right: string; other: string },
+  }: BorderStyle,
   column_lengths: number[]
 ) => {
   // ╚
@@ -122,14 +129,14 @@ export const findLenOfColumn = (
 };
 
 export const renderTableHorizontalBorders = (
-  style: any,
+  style: BorderStyle,
   column_lengths: number[]
 ): string => {
   const str = createTableHorizontalBorders(style, column_lengths);
   return str;
 };
 
-export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
+export const createHeaderAsRow = (createRowFn: (color: COLOR, text: Dictionary, separator: boolean) => Row, columns: Column[]): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {

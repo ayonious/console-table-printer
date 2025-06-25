@@ -205,7 +205,7 @@ const renderRowSeparator = (table: TableInternal, row: Row): string[] => {
   const lastRowIndex = table.rows.length - 1;
   const currentRowIndex = table.rows.indexOf(row);
 
-  if (currentRowIndex !== lastRowIndex && row.separator) {
+  if (currentRowIndex !== lastRowIndex && row.separator && table.tableStyle.rowSeparator) {
     // ╟═══════╬═══════════════════════════════════════╬════════╢
     ret.push(
       renderTableHorizontalBorders(
