@@ -1,40 +1,33 @@
 import Table from '../src/console-table-printer';
-import { TableInputError } from '../src/utils/input-validators';
 import { ComputedColumn } from '../src/models/external-table';
 
 describe('Input Validation Tests', () => {
   describe('Column Validation', () => {
-    test('should throw error for empty column name', () => {
-      const table = new Table();
-      expect(() => table.addColumn('')).toThrow(TableInputError);
-      expect(() => table.addColumn('   ')).toThrow(TableInputError);
-    });
-
     test('should throw error for invalid column alignment', () => {
       const table = new Table();
       expect(() =>
         table.addColumn({ name: 'test', alignment: 'invalid_alignment' as any })
-      ).toThrow(TableInputError);
+      ).toThrow('Invalid alignment value. Must be one of: left, right, center');
     });
 
     test('should throw error for invalid column color', () => {
       const table = new Table();
       expect(() =>
         table.addColumn({ name: 'test', color: 'invalid_color' as any })
-      ).toThrow(TableInputError);
+      ).toThrow('Invalid color value');
     });
 
     test('should throw error for negative maxLen', () => {
       const table = new Table();
       expect(() => table.addColumn({ name: 'test', maxLen: -5 })).toThrow(
-        TableInputError
+        'maxLen must be a positive number'
       );
     });
 
     test('should throw error for negative minLen', () => {
       const table = new Table();
       expect(() => table.addColumn({ name: 'test', minLen: -5 })).toThrow(
-        TableInputError
+        'minLen must be a positive number'
       );
     });
 
@@ -45,7 +38,7 @@ describe('Input Validation Tests', () => {
           name: 'test',
           function: 'not_a_function' as any,
         } as ComputedColumn)
-      ).toThrow(TableInputError);
+      ).toThrow('Computed column function must be a function');
     });
   });
 
@@ -53,35 +46,39 @@ describe('Input Validation Tests', () => {
     test('should throw error for non-array columns', () => {
       const table = new Table();
       expect(() => table.addColumns('not_an_array' as any)).toThrow(
-        TableInputError
+        'Columns must be an array'
       );
     });
 
     test('should throw error for duplicate column names', () => {
       const table = new Table();
       expect(() => table.addColumns(['col1', 'col2', 'col1'])).toThrow(
-        TableInputError
+        'Duplicate column name: col1'
       );
 
       expect(() =>
         table.addColumns([{ name: 'col1' }, { name: 'col2' }, { name: 'col1' }])
-      ).toThrow(TableInputError);
+      ).toThrow('Duplicate column name: col1');
     });
   });
 
   describe('Row Data Validation', () => {
     test('should throw error for null row data', () => {
       const table = new Table(['col1', 'col2']);
-      expect(() => table.addRow(null as any)).toThrow(TableInputError);
+      expect(() => table.addRow(null as any)).toThrow(
+        'Row data must be a non-null object'
+      );
     });
 
     test('should throw error for non-object row data', () => {
       const table = new Table(['col1', 'col2']);
       expect(() => table.addRow('not_an_object' as any)).toThrow(
-        TableInputError
+        'Row data must be an object'
       );
 
-      expect(() => table.addRow(123 as any)).toThrow(TableInputError);
+      expect(() => table.addRow(123 as any)).toThrow(
+        'Row data must be an object'
+      );
     });
   });
 
@@ -89,7 +86,7 @@ describe('Input Validation Tests', () => {
     test('should throw error for non-array rows', () => {
       const table = new Table(['col1', 'col2']);
       expect(() => table.addRows('not_an_array' as any)).toThrow(
-        TableInputError
+        'Rows must be an array'
       );
     });
 
@@ -101,13 +98,13 @@ describe('Input Validation Tests', () => {
           null as any,
           { col1: 'value3', col2: 'value4' },
         ])
-      ).toThrow(TableInputError);
+      ).toThrow('Row data must be a non-null object');
     });
   });
 
   describe('Table Construction Validation', () => {
-    test('should throw error for invalid columns in constructor', () => {
-      expect(() => new Table(['valid', ''])).toThrow(TableInputError);
+    test('should accept empty column names in constructor', () => {
+      expect(() => new Table(['valid', ''])).not.toThrow();
     });
 
     test('should throw error for invalid rows in constructor options', () => {
@@ -117,7 +114,7 @@ describe('Input Validation Tests', () => {
             columns: [{ name: 'col1' }, { name: 'col2' }],
             rows: [{ col1: 'value1', col2: 'value2' }, null as any],
           })
-      ).toThrow(TableInputError);
+      ).toThrow('Row data must be a non-null object');
     });
 
     test('should throw error for invalid columns in constructor options', () => {
@@ -129,7 +126,7 @@ describe('Input Validation Tests', () => {
               { name: 'col2', alignment: 'invalid' as any },
             ],
           })
-      ).toThrow(TableInputError);
+      ).toThrow('Invalid alignment value. Must be one of: left, right, center');
     });
   });
 
@@ -137,7 +134,9 @@ describe('Input Validation Tests', () => {
     test('should accept valid column definitions', () => {
       const table = new Table();
       expect(() => table.addColumn('validColumn')).not.toThrow();
+      expect(() => table.addColumn('')).not.toThrow();
       expect(() => table.addColumn({ name: 'validColumn2' })).not.toThrow();
+      expect(() => table.addColumn({ name: '' })).not.toThrow();
       expect(() =>
         table.addColumn({
           name: 'computed',

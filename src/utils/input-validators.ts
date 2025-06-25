@@ -19,18 +19,11 @@ export class TableInputError extends Error {
  */
 export const validateColumn = (column: ColumnOptionsRaw | string): void => {
   if (typeof column === 'string') {
-    if (!column || column.trim() === '') {
-      throw new TableInputError('Column name cannot be empty');
-    }
     return;
   }
 
   if (!column) {
     throw new TableInputError('Column definition cannot be null or undefined');
-  }
-
-  if (!column.name || column.name.trim() === '') {
-    throw new TableInputError('Column name cannot be empty');
   }
 
   if (column.alignment && !ALIGNMENTS.includes(column.alignment)) {
