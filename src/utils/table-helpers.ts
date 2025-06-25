@@ -128,7 +128,7 @@ export const findLenOfColumn = (
 // ({ left: "╚", mid: "╩", right: "╝", other: "═" }, [5, 10, 7]) => "╚═══════╩════════════╩═════════╝"
 // (undefined, [5, 10, 7]) => ""
 export const renderTableHorizontalBorders = (
-  style: any,
+  style: TableLineDetails,
   column_lengths: number[]
 ): string => {
   const str = createTableHorizontalBorders(style, column_lengths);

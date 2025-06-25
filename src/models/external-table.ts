@@ -1,8 +1,10 @@
 import { ColorMap } from '../utils/colored-console-line';
 import { ALIGNMENT, CharLengthDict, COLOR, Dictionary } from './common';
-import { TableStyleDetails } from './internal-table';
+import { TableStyleDetails as InternalTableStyleDetails } from './internal-table';
 
 export { ALIGNMENT, COLOR };
+
+export type TableStyleDetails = Partial<InternalTableStyleDetails>;
 
 // Type for table cell values - can be string, number, or undefined
 export type CellValue = string | number | undefined;
