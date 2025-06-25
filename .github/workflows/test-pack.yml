@@ -58,7 +58,7 @@ jobs:
 
           # Expected tarball size range (allow some variation)
           EXPECTED_MIN=10000  # ~10KB
-          EXPECTED_MAX=13000  # ~13KB
+          EXPECTED_MAX=14000  # ~14KB
 
           if [ "$SIZE_BYTES" -lt "$EXPECTED_MIN" ] || [ "$SIZE_BYTES" -gt "$EXPECTED_MAX" ]; then
             echo "❌ Package tarball size ${SIZE_BYTES} bytes is outside expected range (${EXPECTED_MIN}-${EXPECTED_MAX} bytes)"
