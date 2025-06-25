@@ -1,5 +1,5 @@
 import { printTable } from '../index';
-import { Dictionary } from '../src/models/common';
+import { ComplexOptions } from '../src/models/external-table';
 
 describe('Testing printTable function', () => {
   // Basic test without any options
@@ -15,7 +15,7 @@ describe('Testing printTable function', () => {
 
   // Empty data test
   it('should handle empty data array', () => {
-    const testData: Dictionary[] = [];
+    const testData: any[] = [];
     const result = printTable(testData);
     expect(result).toBeUndefined();
   });
@@ -166,15 +166,15 @@ describe('Testing printTable function', () => {
         {
           name: 'fullName',
           title: 'Full Name',
-          function: (row: Dictionary) => `${row.firstName} ${row.lastName}`,
+          function: (row) => `${row.firstName} ${row.lastName}`,
         },
         {
           name: 'taxed_salary',
           title: 'After Tax',
-          function: (row: Dictionary) => (row.salary * 0.8).toFixed(2),
+          function: (row) => (row.salary * 0.8).toFixed(2),
         },
       ],
-    };
+    } as ComplexOptions;
 
     const result = printTable(testData, options);
     expect(result).toBeUndefined();
