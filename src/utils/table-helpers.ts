@@ -1,5 +1,5 @@
 import { CharLengthDict, COLOR, Dictionary, Row } from '../models/common';
-import { Column } from '../models/internal-table';
+import { Column, TableLineDetails } from '../models/internal-table';
 import { findWidthInConsole } from './console-utils';
 import {
   biggestWordInSentence,
@@ -45,7 +45,7 @@ export const createTableHorizontalBorders = (
     mid,
     right,
     other,
-  }: { left: string; mid: string; right: string; other: string },
+  }: TableLineDetails,
   column_lengths: number[]
 ) => {
   // ╚
