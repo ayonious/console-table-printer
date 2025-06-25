@@ -7,6 +7,7 @@ import {
   findLenOfColumn,
   createHeaderAsRow,
   getWidthLimitedColumnsArray,
+  CreateRowFunction,
 } from './table-helpers';
 import { DEFAULT_ROW_SEPARATOR } from './table-constants';
 import { ComputedColumn } from '../models/external-table';
@@ -114,7 +115,11 @@ describe('table-helpers', () => {
         { name: 'col1', title: 'Column 1' },
         { name: 'col2', title: 'Column 2' },
       ];
-      const createRowFn = (color: string, text: any, separator: boolean) => ({
+      const createRowFn: CreateRowFunction = (
+        color: string,
+        text: any,
+        separator: boolean
+      ) => ({
         color,
         text,
         separator,
