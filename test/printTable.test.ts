@@ -1,4 +1,5 @@
 import { printTable } from '../index';
+import { ComplexOptions } from '../src/models/external-table';
 
 describe('Testing printTable function', () => {
   // Basic test without any options
@@ -150,12 +151,6 @@ describe('Testing printTable function', () => {
 
   // Test with computed columns
   it('should print table with computed columns', () => {
-    type Row = {
-      firstName: string;
-      lastName: string;
-      salary: number;
-    };
-
     const testData = [
       { firstName: 'John', lastName: 'Doe', salary: 50000 },
       { firstName: 'Jane', lastName: 'Smith', salary: 60000 },
@@ -171,15 +166,15 @@ describe('Testing printTable function', () => {
         {
           name: 'fullName',
           title: 'Full Name',
-          function: (row: Row) => `${row.firstName} ${row.lastName}`,
+          function: (row) => `${row.firstName} ${row.lastName}`,
         },
         {
           name: 'taxed_salary',
           title: 'After Tax',
-          function: (row: Row) => (row.salary * 0.8).toFixed(2),
+          function: (row) => (row.salary * 0.8).toFixed(2),
         },
       ],
-    };
+    } as ComplexOptions;
 
     const result = printTable(testData, options);
     expect(result).toBeUndefined();
