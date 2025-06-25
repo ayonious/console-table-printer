@@ -64,7 +64,10 @@ class TableInternal {
 
   initDetailed(options: ComplexOptions) {
     this.title = options?.title || this.title;
-    this.tableStyle = options?.style || this.tableStyle;
+    this.tableStyle = {
+      ...this.tableStyle,
+      ...options?.style,
+    };
     this.sortFunction = options?.sort || this.sortFunction;
     this.filterFunction = options?.filter || this.filterFunction;
     this.enabledColumns = options?.enabledColumns || this.enabledColumns;

@@ -27,5 +27,5 @@ export type TableStyleDetails = {
   headerBottom: TableLineDetails;
   tableBottom: TableLineDetails;
   vertical: string;
-  rowSeparator?: TableLineDetails;
+  rowSeparator: TableLineDetails;
 };
