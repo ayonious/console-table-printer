@@ -1,4 +1,4 @@
-import { CharLengthDict, Row } from '../models/common';
+import { CharLengthDict, Dictionary, Row } from '../models/common';
 import { ComplexOptions } from '../models/external-table';
 import { Column, TableStyleDetails } from '../models/internal-table';
 import ColoredConsoleLine, { ColorMap } from '../utils/colored-console-line';
@@ -235,7 +235,7 @@ export const renderTable = (table: TableInternal): string => {
 };
 
 export const renderSimpleTable = (
-  rows: any[],
+  rows: Dictionary[],
   tableOptions?: ComplexOptions
 ) => {
   const table = new TableInternal(tableOptions);
@@ -244,7 +244,7 @@ export const renderSimpleTable = (
 };
 
 export const printSimpleTable = (
-  rows: any[],
+  rows: Dictionary[],
   tableOptions?: ComplexOptions
 ) => {
   console.log(renderSimpleTable(rows, tableOptions));
