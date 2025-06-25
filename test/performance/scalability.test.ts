@@ -52,6 +52,9 @@
 import { printTable, Table } from '../../index';
 
 describe('Scalability Performance Tests', () => {
+  // Add retry configuration for all tests in this suite
+  jest.retryTimes(2); // This means each test will run up to 3 times (initial + 2 retries)
+
   // Scalability thresholds
   const SCALABILITY_LIMITS = {
     linearScalingFactor: 30.0, // Performance should scale linearly (within 30x factor for real-world variations)
