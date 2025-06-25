@@ -13,7 +13,10 @@ import {
 
 const max = (a: number, b: number) => Math.max(a, b);
 
-// takes any input that is given by user and converts to string
+// (42) => "42"
+// ("hello") => "hello"
+// (undefined) => ""
+// (null) => ""
 export const cellText = (text: string | number): string =>
   text === undefined || text === null ? '' : `${text}`;
 
@@ -39,6 +42,7 @@ export const convertRawRowOptionsToStandard = (
   return undefined;
 };
 
+// ({ left: "╚", mid: "╩", right: "╝", other: "═" }, [5, 10, 7]) => "╚═══════╩════════════╩═════════╝"
 export const createTableHorizontalBorders = (
   {
     left,
@@ -65,6 +69,7 @@ export const createTableHorizontalBorders = (
   return ret;
 };
 
+// ("id") => { name: "id", title: "id" }
 export const createColumFromOnlyName = (
   name: string
 ): { name: string; title: string } => ({
@@ -72,6 +77,7 @@ export const createColumFromOnlyName = (
   title: name,
 });
 
+// ("green", { id: 1, name: "John" }, true) => { color: "green", separator: true, text: { id: 1, name: "John" } }
 export const createRow = (
   color: COLOR,
   text: Dictionary,
@@ -82,6 +88,8 @@ export const createRow = (
   text,
 });
 
+// ({ name: "id", title: "ID", minLen: 2 }, [{ text: { id: 1 } }, { text: { id: 100 } }]) => 3
+// Calculates optimal column width based on content and constraints
 export const findLenOfColumn = (
   column: Column,
   rows: Row[],
@@ -121,6 +129,8 @@ export const findLenOfColumn = (
   return length;
 };
 
+// ({ left: "╚", mid: "╩", right: "╝", other: "═" }, [5, 10, 7]) => "╚═══════╩════════════╩═════════╝"
+// (undefined, [5, 10, 7]) => ""
 export const renderTableHorizontalBorders = (
   style: any,
   column_lengths: number[]
@@ -129,6 +139,8 @@ export const renderTableHorizontalBorders = (
   return str;
 };
 
+// (createRow, [{ name: "id", title: "ID" }, { name: "name", title: "Name" }]) => 
+// { color: "white_bold", separator: false, text: { id: "ID", name: "Name" } }
 export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
@@ -138,7 +150,8 @@ export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   return row;
 };
 
-// { col1: ['How', 'Is', 'Going'], col2: ['I am', 'Tom'],  }
+// ([{ name: "desc", length: 10 }], { text: { desc: "This is a long description" } })
+// => { desc: ["This is a", "long", "description"] }
 export const getWidthLimitedColumnsArray = (
   columns: Column[],
   row: Row,
