@@ -129,6 +129,8 @@ jobs:
             "dist/src/utils/table-constants.d.ts"
             "dist/src/utils/table-helpers.js"
             "dist/src/utils/table-helpers.d.ts"
+            "dist/src/utils/input-validators.js"
+            "dist/src/utils/input-validators.d.ts"
             "package.json"
             "LICENSE"
             "README.md"
