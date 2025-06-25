@@ -27,6 +27,10 @@ export interface RowOptions {
   separator: boolean;
 }
 
+export interface CreateRowFunction {
+  (color: COLOR, text: Dictionary, separator: boolean): Row;
+}
+
 export const convertRawRowOptionsToStandard = (
   options?: RowOptionsRaw
 ): RowOptions | undefined => {
@@ -70,7 +74,7 @@ export const createColumFromOnlyName = (
 });
 
 // ("green", { id: 1, name: "John" }, true) => { color: "green", separator: true, text: { id: 1, name: "John" } }
-export const createRow = (
+export const createRow: CreateRowFunction = (
   color: COLOR,
   text: Dictionary,
   separator: boolean
@@ -133,7 +137,10 @@ export const renderTableHorizontalBorders = (
 
 // (createRow, [{ name: "id", title: "ID" }, { name: "name", title: "Name" }]) =>
 // { color: "white_bold", separator: false, text: { id: "ID", name: "Name" } }
-export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
+export const createHeaderAsRow = (
+  createRowFn: CreateRowFunction, 
+  columns: Column[]
+): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
   const row: Row = createRowFn(headerColor, {}, false);
   columns.forEach((column) => {
