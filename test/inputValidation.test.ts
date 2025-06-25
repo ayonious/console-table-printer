@@ -1,4 +1,4 @@
-import Table from '../src/console-table-printer';
+import { Table } from '..';
 import { ComputedColumn } from '../src/models/external-table';
 
 describe('Input Validation Tests', () => {
