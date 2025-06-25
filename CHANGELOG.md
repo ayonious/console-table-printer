@@ -1,3 +1,10 @@
+## [2.14.5](https://github.com/console-table-printer/console-table-printer/compare/v2.14.4...v2.14.5) (2025-06-25)
+
+
+### Bug Fixes
+
+* Better Types for calculated Column, sort, filter functions ([#542](https://github.com/console-table-printer/console-table-printer/issues/542)) ([6bd7a44](https://github.com/console-table-printer/console-table-printer/commit/6bd7a4470d348c800126f3122d5a240a7ce2bd70))
+
 ## [2.14.4](https://github.com/console-table-printer/console-table-printer/compare/v2.14.3...v2.14.4) (2025-06-24)
 
 
