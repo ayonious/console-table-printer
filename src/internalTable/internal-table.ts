@@ -20,7 +20,12 @@ import {
   createRow,
   RowOptions,
 } from '../utils/table-helpers';
-import { validateColumn, validateColumns, validateRowData, validateRows } from '../utils/input-validators';
+import {
+  validateColumn,
+  validateColumns,
+  validateRowData,
+  validateRows,
+} from '../utils/input-validators';
 import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
@@ -72,14 +77,14 @@ class TableInternal {
     this.enabledColumns = options?.enabledColumns || this.enabledColumns;
     this.disabledColumns = options?.disabledColumns || this.disabledColumns;
     this.computedColumns = options?.computedColumns || this.computedColumns;
-    
+
     if (options?.columns) {
       validateColumns(options.columns);
       this.columns = options.columns.map((column) =>
         rawColumnToInternalColumn(column, options?.defaultColumnOptions)
       );
     }
-    
+
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
     this.defaultColumnOptions =

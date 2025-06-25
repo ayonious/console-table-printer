@@ -53,7 +53,7 @@ export const COLORS = [
   'white_bold',
   'reset',
   'crimson',
-  'gray'
+  'gray',
 ];
 
 export const DEFAULT_ROW_FONT_COLOR: COLOR = 'white';

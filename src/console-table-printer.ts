@@ -9,7 +9,7 @@ import {
   validateColumn,
   validateColumns,
   validateRowData,
-  validateRows
+  validateRows,
 } from './utils/input-validators';
 
 export default class Table {
