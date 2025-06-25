@@ -13,10 +13,7 @@ import {
 
 const max = (a: number, b: number) => Math.max(a, b);
 
-// (42) => "42"
-// ("hello") => "hello"
-// (undefined) => ""
-// (null) => ""
+// takes any input that is given by user and converts to string
 export const cellText = (text: string | number): string =>
   text === undefined || text === null ? '' : `${text}`;
 
@@ -44,7 +41,12 @@ export const convertRawRowOptionsToStandard = (
 
 // ({ left: "╚", mid: "╩", right: "╝", other: "═" }, [5, 10, 7]) => "╚═══════╩════════════╩═════════╝"
 export const createTableHorizontalBorders = (
-  { left, mid, right, other }: TableLineDetails,
+  {
+    left,
+    mid,
+    right,
+    other,
+  }: TableLineDetails,
   column_lengths: number[]
 ) => {
   // ╚
@@ -134,7 +136,7 @@ export const renderTableHorizontalBorders = (
   return str;
 };
 
-// (createRow, [{ name: "id", title: "ID" }, { name: "name", title: "Name" }]) =>
+// (createRow, [{ name: "id", title: "ID" }, { name: "name", title: "Name" }]) => 
 // { color: "white_bold", separator: false, text: { id: "ID", name: "Name" } }
 export const createHeaderAsRow = (createRowFn: any, columns: Column[]): Row => {
   const headerColor: COLOR = DEFAULT_HEADER_FONT_COLOR;
