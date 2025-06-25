@@ -27,6 +27,7 @@ describe('Jest Test Discovery', () => {
     'test/charLen.test.ts',
     'test/foreignLanguage.test.ts',
     'test/general.test.ts',
+    'test/inputValidation.test.ts',
     'test/lineWidthLimit.test.ts',
     'test/newLines.test.ts',
     'test/printTable.test.ts',
@@ -103,6 +104,7 @@ describe('Jest Test Discovery', () => {
     'src/utils/console-utils.test.ts',
     'src/utils/colored-console-line.test.ts',
     'src/utils/string-utils.test.ts',
+    'src/utils/input-validators.test.ts',
   ];
 
   describe('Test File Detection', () => {

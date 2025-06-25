@@ -86,7 +86,7 @@ describe('Testing column alignment', () => {
         { name: 'green_value_center', alignment: 'center', color: 'green' },
         { name: 'col1' },
         { name: 'col2' },
-        { name: 'col2' },
+        { name: 'col3' },
       ],
     });
 

@@ -20,6 +20,7 @@ import {
   createRow,
   RowOptions,
 } from '../utils/table-helpers';
+import { validateColumn, validateColumns, validateRowData, validateRows } from '../utils/input-validators';
 import { rawColumnToInternalColumn } from './input-converter';
 import { renderTable } from './internal-table-printer';
 
@@ -55,6 +56,7 @@ class TableInternal {
   defaultColumnOptions?: DefaultColumnOptions;
 
   initSimple(columns: string[]) {
+    validateColumns(columns);
     this.columns = columns.map((column) => ({
       name: column,
       title: column,
@@ -70,10 +72,14 @@ class TableInternal {
     this.enabledColumns = options?.enabledColumns || this.enabledColumns;
     this.disabledColumns = options?.disabledColumns || this.disabledColumns;
     this.computedColumns = options?.computedColumns || this.computedColumns;
-    this.columns =
-      options?.columns?.map((column) =>
+    
+    if (options?.columns) {
+      validateColumns(options.columns);
+      this.columns = options.columns.map((column) =>
         rawColumnToInternalColumn(column, options?.defaultColumnOptions)
-      ) || this.columns;
+      );
+    }
+    
     this.rowSeparator = options?.rowSeparator || this.rowSeparator;
     this.charLength = options?.charLength || this.charLength;
     this.defaultColumnOptions =
@@ -86,6 +92,7 @@ class TableInternal {
     }
 
     if (options.rows !== undefined) {
+      validateRows(options.rows);
       this.addRows(options.rows);
     }
   }
@@ -114,6 +121,7 @@ class TableInternal {
   }
 
   createColumnFromRow(text: Dictionary) {
+    validateRowData(text);
     const colNames = this.columns.map((col) => col.name);
     Object.keys(text).forEach((key) => {
       if (!colNames.includes(key)) {
@@ -128,6 +136,7 @@ class TableInternal {
   }
 
   addColumn(textOrObj: string | ComputedColumn | ColumnOptionsRaw) {
+    validateColumn(textOrObj);
     const columnOptionsFromInput =
       typeof textOrObj === 'string'
         ? createColumFromOnlyName(textOrObj)
@@ -141,12 +150,14 @@ class TableInternal {
   }
 
   addColumns(toBeInsertedColumns: string[] | ColumnOptionsRaw[]) {
+    validateColumns(toBeInsertedColumns);
     toBeInsertedColumns.forEach((toBeInsertedColumn) => {
       this.addColumn(toBeInsertedColumn);
     });
   }
 
   addRow(text: Dictionary, options?: RowOptions) {
+    validateRowData(text);
     this.createColumnFromRow(text);
     this.rows.push(
       createRow(
@@ -160,6 +171,7 @@ class TableInternal {
   }
 
   addRows(toBeInsertedRows: Dictionary[], options?: RowOptions) {
+    validateRows(toBeInsertedRows);
     toBeInsertedRows.forEach((toBeInsertedRow) => {
       this.addRow(toBeInsertedRow, options);
     });
